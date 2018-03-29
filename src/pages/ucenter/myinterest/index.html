@@ -1,0 +1,84 @@
+<ion-header no-border>
+    <ion-toolbar no-padding>
+        <app-toolbar HasBack="true"  [Title]="headTitle"></app-toolbar>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ucenter-myinterest">
+    <ion-grid class="header-banner">
+        <ion-row align-items-center justify-content-center>
+            <ion-col text-center>
+                <img class="banner" src="assets/imgs/quanyi.png">
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid class="list-grid-default block-content">
+        <ion-grid>
+            <ion-row class="block-title" no-border>
+                <ion-col>
+                    <span class="vertical-line"></span>
+                    <h3 class="title">费率</h3>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-row p-l-10>
+            <ion-col col-12 class="nopoints">
+                <ul class="list-row-inner">
+                    <li><span class="fee-desc">{{App.UserInfo.rate}}%+2元/笔</span></li>
+                    <li class="d-flex justify-content-end"><button ion-button class="btn-point">无积分</button></li>
+                </ul>
+                <ul class="list-row-inner">
+                    <li class="desc">即时到账，单笔上2万，交易时间8:30-22:00</li>
+                </ul>
+            </ion-col>
+        </ion-row>
+        <ion-row p-l-10 p-t-10>
+            <ion-col col-12>
+                <ul class="list-row-inner">
+                    <li><span class="fee-desc">{{App.UserInfo.rate1}}%+2元/笔</span></li>
+                    <li class="d-flex justify-content-end">
+                        <button ion-button class="btn-point">
+                            <ion-icon name="thumbs-up"></ion-icon>
+                            <span class="text">有积分</span>
+                        </button>
+                    </li>
+                </ul>
+            </ion-col>
+            <ion-col col-12 class="d-flex" items-center>
+                <ul class="list-row-inner">
+                    <li class="desc">即时到账，单笔上2万，交易时间9:00-22:00</li>
+                </ul>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid class="list-grid-default block-content" m-t-10>
+        <ion-grid>
+            <ion-row class="block-title">
+                <ion-col>
+                    <span class="vertical-line"></span>
+                    <h3 class="title">推广奖励</h3>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-row class="invfriend" p-l-10>
+            <ion-col col-6>
+                <ul class="list-row-inner">
+                    <li text-center><img class="icon" src="assets/imgs/jianjie.png"></li>
+                    <li>
+                        <p>直接推广客户</p>
+                        <p color="red" class="award">返6元/万</p>
+                    </li>
+                </ul>
+            </ion-col>
+            <ion-col col-6>
+                <ul class="list-row-inner">
+                    <li text-center><img class="icon" src="assets/imgs/zhijie.png"></li>
+                    <li>
+                        <p>间接推广客户</p>
+                        <p class="award" color="red">返2元/万</p>
+                    </li>
+                </ul>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

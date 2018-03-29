@@ -1,0 +1,11 @@
+@each $color, $value in $grays {
+    @include bg-variant(".bgc-gray-#{$color}", $value);
+}
+
+.bg-white {
+  background-color: $color-white;
+}
+
+.bg-transparent {
+  background-color: transparent;
+}

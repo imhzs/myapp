@@ -1,0 +1,59 @@
+<ion-header no-border>
+    <ion-toolbar no-padding>
+        <app-toolbar HasBack="true"  [Title]="headTitle"></app-toolbar>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="auth-page">
+    <ion-grid class="nav">
+        <ion-row>
+            <ion-col col-12>
+                <div class="d-flex nav-icon-wrp align-items-center justify-content-between">
+                    <div class="circle d-flex align-items-center justify-content-center">
+                        <span>1</span>
+                    </div>
+                    <div class="line flex-fill"></div>
+                    <div class="line flex-fill"></div>
+                    <div class="circle d-flex align-items-center justify-content-center">
+                        <span>2</span>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col col-12 p-l-22 p-r-22>
+                <div class="d-flex nav-text-wrp align-items-center justify-content-between">
+                    <div class="text">身份证正反面</div>
+                    <div class="text">手持身份证</div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid no-padding>
+        <ion-row>
+            <ion-col no-padding col-12 class="d-flex justify-content-center">
+                <label class="up-card" class="d-flex justify-content-center">
+                    <img class="card-woman" src="assets/imgs/women.png" />
+                </label>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid no-padding>
+        <ion-row>
+            <ion-col no-padding col-12 class="d-flex justify-content-center" (click)="OnClickFile($event)">
+                <label class="label" class="up-card" for="card_reverse">
+                    <img class="camaram" src="assets/imgs/cam.png" />
+                    <!-- <input class="hide" type="file" name="take_card" id="card_reverse" accept="image/png,image/jpeg,image/jpg" capture="camera" (change)="onFileChange($event)" /> -->
+                    <img class="card-img" src="{{previouFile}}" />
+                </label>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col p-t-40>
+                <div class="d-flex justify-content-center">
+                    <button ion-button class="cbtn" [class.btn-bg-gray]="!canSubmit" [disabled]="!canSubmit" (click)="OnConfirm()" full>提交</button>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
