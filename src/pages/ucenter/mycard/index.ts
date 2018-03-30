@@ -41,36 +41,37 @@ export class MycardPage implements OnInit
   }
 
   ngOnInit() {
-    // this.selectedCreditCard = CardHelper.getPrimaryCard(CREDIT_CARD).id;
-    // this.selectedDepositCard = CardHelper.getPrimaryCard(DEPOSIT_CARD).id;
   }
 
   // 删除信用卡
   DelCreditCards(cardId) {
     this.Servie.DelCard(cardId).then(res => {
-      this.CreditCards.splice(this.CreditCards.indexOf(cardId), 1)
-        if (res) {
-          App.ShowToast('信用卡删除成功');
-          App.CurrentCreditCards = {};
-          this.Auth.GetUserData();
-        } else {
-          App.ShowError('信用卡删除失败');
-        }
+      if (res) {
+        CardHelper.delCard(cardId);
+        this.CreditCards = CardHelper.filterCard(CREDIT_CARD);
+        
+        App.ShowToast('信用卡删除成功');
+        App.CurrentCreditCards = {};
+        this.Auth.GetUserData();
+      } else {
+        App.ShowError('信用卡删除失败');
+      }
     })
   }
 
   // 删除储蓄卡
   DelDepositCards(cardId) {
     this.Servie.DelCard(cardId).then(res => {
-      this.DepositCards.splice(this.DepositCards.indexOf(cardId), 1)
-        if (res) {
-          App.ShowToast('储蓄卡删除成功');
-          App.CurrentDepositCard = {};
-          this.Auth.GetUserData();
-        } else {
-          App.ShowError('信用卡删除失败');
-        }
+      if (res) {
+        CardHelper.delCard(cardId);
+        this.DepositCards = CardHelper.filterCard(DEPOSIT_CARD);
 
+        App.ShowToast('储蓄卡删除成功');
+        App.CurrentDepositCard = {};
+        this.Auth.GetUserData();
+      } else {
+        App.ShowError('信用卡删除失败');
+      }
     })
   }
 

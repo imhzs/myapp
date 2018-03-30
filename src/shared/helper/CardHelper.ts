@@ -76,6 +76,17 @@ export class CardHelper
 		});
 		App.Cards = cards;
 	}
+
+	// 删除卡片
+	public static delCard(id: number) {
+		let cards = App.Cards;
+		cards.forEach((v, k) => {
+			if (v.id === id) {
+				cards.splice(k, 1);
+			}
+		});
+		App.Cards = cards;
+	}
 }
 
 // 主卡

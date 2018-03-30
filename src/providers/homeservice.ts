@@ -46,7 +46,6 @@ export class HomeService extends TBaseService
   async GetCardList()
   {
     const result = await this.Post('kpay/api/bankcard/list').then(res => res.json());
-    // console.log(result);
 
     if (result.code === 1) {
       return result.data;
@@ -119,7 +118,6 @@ export class HomeService extends TBaseService
   async GetTolBanks()
   {
     const result = await this.Post('kpay/api/bank/info').then(res => res.json());
-    console.log(result)
     if (result.code === 1){
       return result.data;
     } else {

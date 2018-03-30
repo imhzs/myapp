@@ -1,15 +1,7 @@
 <ion-header no-border>
-  <div class="register">
-    <ion-row class="bgc-grad-primary back-btn">
-      <ion-col f-1-6 p-h-15>
-        <span>
-          <ion-icon f-2-0 float-left tappable>&#xf3cf;</ion-icon>
-            我的卡片
-          <ion-icon f-2-0 float-right tappable (click)="AddCreditCard()" *ngIf="CardSwitch == CreditCard">&#xf273;</ion-icon>
-        </span>
-      </ion-col>
-    </ion-row>
-  </div>
+  <ion-toolbar no-padding>
+    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>

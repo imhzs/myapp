@@ -28616,6 +28616,10 @@ ion-toolbar.search-bar .searchbar .searchbar-search-icon {
   height: auto;
 }
 
+.btn-home-pay {
+  border-radius: 24px;
+}
+
 .auth-page .card {
   position: relative;
   height: 150px;
