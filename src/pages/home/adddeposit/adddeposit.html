@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar no-padding>
+    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="h-adddepositcam-page">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <span ion-text f-13 text-gray>请绑定持卡人本人储蓄卡，此储蓄卡用于收款</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="page-content" m-b-10>
+    <ion-row class="d-flex align-items-center form-ctrl border-bottom-1px">
+      <ion-col col-3>持卡人</ion-col>
+      <ion-col col-8>{{App.UserInfo.name}}</ion-col>
+    </ion-row>
+
+    <ion-row class="d-flex align-items-center form-ctrl">
+      <ion-col col-3>身份证</ion-col>
+      <ion-col col-8>{{IdCard}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <form novalidate [formGroup]="Form_Group">
+    <div class="page-content">
+      <ion-grid>
+        <ion-row class="d-flex align-items-center border-bottom-1px form-ctrl">
+          <ion-col col-3>卡号</ion-col>
+          <ion-col col-7><ion-input type="number" placeholder="请输入储蓄卡卡号" formControlName="CardNo" no-margin></ion-input></ion-col>
+          <ion-col col-2>
+            <button ion-button icon-only class="bg-transparent btn-h-auto" (click)="onChangeFile(BankCardFront)">
+              <ion-icon name="qr-scanner" text-black-light></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row (click)="ClickOpenBank()" class="d-flex align-items-center border-bottom-1px form-ctrl">
+          <ion-col col-3>银行</ion-col>
+          <ion-col col-8>
+            <span ion-text text-gray>{{BankName}}</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="d-flex align-items-center border-bottom-1px form-ctrl" (click)="ClickBranchBank()">
+          <ion-col col-3>支行</ion-col>
+          <ion-col col-8>
+            <span ion-text text-gray>{{BranchName}}</span>
+          </ion-col>
+          <ion-col text-right text-black-light><ion-icon>&#xf3d1;</ion-icon></ion-col>
+        </ion-row>
+
+        <ion-row class="d-flex align-items-center form-ctrl">
+          <ion-col col-3>手机号</ion-col>
+          <ion-col col-8><ion-input type="Tel" placeholder="请输入银行预留手机号" formControlName="Mobile"></ion-input></ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <ion-row justify-content-center m-t-20>
+      <ion-col col-11>
+        <button class="bgc-grad-primary bgc-header" 
+          [class.btn-disabled]="CompleteBtnIsDisabled" ion-button round block f-1-6 tappable 
+          [disabled]="CompleteBtnIsDisabled" 
+          (click)="Finish()">完成</button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

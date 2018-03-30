@@ -4,7 +4,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 export class PageToolbarComponent
 {
-
   constructor() {}
 
   // @Input()  FlexEnd: Boolean = false;
@@ -17,9 +16,6 @@ export class PageToolbarComponent
   @Input()  BtnText: string;
   @Output() BtnTextEvent = new EventEmitter();
   @Output() BtnIconEvent = new EventEmitter();
-
-
-
 }
 
 

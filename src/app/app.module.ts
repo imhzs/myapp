@@ -7,7 +7,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { MyApp } from './app.component';
 import { StatusBar } from '../UltraCreation/Native/StatusBar';
 import { SplashScreen } from '../UltraCreation/Native/SplashScreen';
-import { PagesModule } from '../pages';
+// import { PagesModule } from '../pages';
 import * as Svc from '../providers';
 import { AppVersion } from '@ionic-native/app-version';
 import { FileTransfer } from '@ionic-native/file-transfer';
@@ -20,7 +20,7 @@ let config = {
   backButtonText: '',
   pageTransitionDelay: 0,
   swipeBackEnabled: false,
-  // statusbarPadding: false,
+  preloadModules: true
 };
 
 @NgModule({
@@ -29,7 +29,7 @@ let config = {
     HttpModule,
     IonicModule.forRoot(MyApp, config),
     TranslateModule.forRoot(),
-    PagesModule
+    // PagesModule
   ],
   bootstrap: [IonicApp],
   declarations: [

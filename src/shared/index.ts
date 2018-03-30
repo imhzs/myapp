@@ -6,24 +6,23 @@ import { PageToolbarComponent } from './component/toolbar';
 import { PagePanelComponent } from './component/panel';
 
 @NgModule({
-    imports: [
-        IonicPageModule
-    ],
-    declarations: [
-        SwiperComp,
-        PageToolbarComponent,
-        PagePanelComponent,
-        PageMarqueeComponent,
-    ],
-    entryComponents: [
-
-    ],
-    exports: [
-        SwiperComp,
-        PageToolbarComponent,
-        PagePanelComponent,
-        PageMarqueeComponent,
-    ],
+  imports: [
+    IonicPageModule
+  ],
+  declarations: [
+    SwiperComp,
+    PageToolbarComponent,
+    PagePanelComponent,
+    PageMarqueeComponent
+  ],
+  entryComponents: [
+  ],
+  exports: [
+    SwiperComp,
+    PageToolbarComponent,
+    PagePanelComponent,
+    PageMarqueeComponent
+  ],
 })
 export class SharedModule
 {

@@ -1,0 +1,58 @@
+<ion-header no-border>
+  <ion-toolbar no-padding>
+    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="h-checkout-page">
+	<ion-grid class="page-content" p-h-40>
+		<ion-row align-items-center class="border-bottom-1px" p-b-5>
+			<ion-col col-12>
+				<div class="f-flex flex-fill flex-column justify-content-center align-items-center l-h-d pay-amount">
+					<p text-center><span ion-text f-13 text-black-light>支付金额(元)</span></p>
+					<p text-center><span ion-text f-20 class="amount">10000.00</span></p>
+				</div>
+			</ion-col>
+		</ion-row>
+		<ion-row align-items-center p-b-10>
+			<ion-col col-12>
+				<div class="f-flex flex-fill flex-column justify-content-center align-items-center receive-amount">
+					<p text-center><span ion-text f-13 text-black-light>到账金额(元)</span></p>
+					<p text-center><span ion-text f-35 class="amount">9950.00</span></p>
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	<ion-grid class="page-content bank-wrp" m-t-10>
+		<ion-row align-items-center class="border-bottom-1px" p-v-10>
+			<ion-col col-6>
+				<p><span ion-text>付款信用卡</span></p>
+			</ion-col>
+			<ion-col col-6>
+				<div class="d-flex align-items-center justify-content-end">
+					<ion-img src="assets/banklogo/bank_308.png" class="img" alt="icon"></ion-img>
+					<span ion-text m-l-5>中信银行(1843)</span>
+				</div>
+			</ion-col>
+		</ion-row>
+		<ion-row align-items-center p-v-10>
+			<ion-col col-6>
+				<p><span ion-text>收款储蓄卡</span></p>
+			</ion-col>
+			<ion-col col-6>
+				<div class="d-flex align-items-center justify-content-end">
+					<ion-img src="assets/banklogo/bank_308.png" class="img" alt="icon"></ion-img>
+					<span ion-text m-l-5>招商银行(1843)</span>
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	<ion-grid>
+		<ion-row>
+			<ion-col col-12>
+				<button type="button" ion-button full color="primary" 
+					(cilck)="Pay()" [disabled]="!CanSubmited" 
+					[class.btn-disabled]="!CanSubmited">去付款</button>
+			</ion-col>
+		</ion-row>		
+	</ion-grid>
+</ion-content>

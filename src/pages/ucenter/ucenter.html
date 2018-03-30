@@ -1,0 +1,48 @@
+<ion-header no-border>
+  <ion-toolbar no-padding>
+    <app-toolbar [Title]="HeadTitle" AppIcon="true" BtnIcon="&#xf103;" (BtnIconEvent)="App.Nav.push(App.RootPage.UsetupPage)"></app-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ucenter-page">
+  <div m-b-10>
+    <ion-card no-margin p-v-10>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/zfb.png">
+        </ion-avatar>
+        <h2>Marty McFly</h2>
+      </ion-item>
+    </ion-card>
+  </div>
+
+  <ion-card no-margin>
+    <ion-list>
+      <button ion-item class="border-bottom-1px">
+        <ion-icon name="cart" item-start></ion-icon>
+        <ion-label item-start f-14>收款记录</ion-label>
+        <!-- <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon> -->
+      </button>
+
+      <button ion-item>
+        <ion-icon name="medical" item-start></ion-icon>
+        <span ion-text item-start f-14>我的卡片</span>
+        <span ion-text item-end f-13 text-gray>0张信用卡，0张储蓄卡</span>
+        <!-- <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon> -->
+      </button>
+    </ion-list>
+  </ion-card>
+  <div m-t-10>
+    <ion-card no-margin>
+      <ion-list>
+        <button ion-item>
+          <ion-icon name="cart" item-start></ion-icon>
+          <ion-label item-start f-14>在线客服</ion-label>
+          <!-- <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon> -->
+        </button>
+      </ion-list>
+    </ion-card>
+  </div>
+</ion-content>
+
+<!--  个人中心 -->

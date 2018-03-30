@@ -8,7 +8,7 @@ import * as Svc from '../providers';
 })
 @Injectable()
 export class MyApp {
-  rootPage: any;
+  rootPage: any = 'TabsPage';
 
   constructor(App: Svc.TApplication, public Auth: Svc.TAuthService, private appUpdate: Svc.CheckAppUpdate)
   {
@@ -20,7 +20,6 @@ export class MyApp {
       if (App.IsIos) {
         StatusBar.styleBlackTranslucent();
       } else {
-        // StatusBar.styleBlackTranslucent();
         StatusBar.backgroundColorByHexString('#2D93F3');
       }
     })
@@ -29,7 +28,7 @@ export class MyApp {
       StatusBar.show();
     })
     .then(() => {
-      this.Auth.judgeLogin().then(root => this.rootPage = root);
+      // this.Auth.judgeLogin().then(root => this.rootPage = root);
     });
   }
 }
