@@ -26,21 +26,17 @@ export class UcenterPage implements OnInit
 
   ngOnInit()
   {
-    this.authText = App.IsIdAuthed ? '已完成' : '未完成';
+    // this.authText = App.IsIdAuthed ? '已完成' : '未完成';
   }
 
   InitUserInfo()
   {
     console.log(App.UserInfo);
- 
-    this.ShowPhone = App.UserInfo.mobile.substr(0,3) + this.ShowPhone + App.UserInfo.mobile.substr(-4);
+    // this.ShowPhone = App.UserInfo.mobile.substr(0,3) + this.ShowPhone + App.UserInfo.mobile.substr(-4);
   }
 
   OnAuthClick()
   {
-    if (!App.IsIdAuthed) {
-      App.Nav.push(App.RootPage.NoldentifyPage);
-    }
   }
 }
 
