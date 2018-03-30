@@ -16,5 +16,8 @@
 				border-radius: 50%;
 			}
 		}
+		&.no-card {
+			bacground-color: $color-background;
+		}
 	}
 }
