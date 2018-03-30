@@ -24,18 +24,13 @@ export class MycardPage implements OnInit
   // 储蓄卡
   DepositCards: Array<Types.CardOptions> = new Array<Types.CardOptions>();
 
-  // 当前tab索引
-  ActiveIndex = 0;
-
   CardSwitch: number = CREDIT_CARD;
 
+  // 信用卡标识
   CreditCard: number = CREDIT_CARD;
 
+  // 储蓄卡标识
   DepositCard: number = DEPOSIT_CARD;
-
-  selectedCreditCard: number;
-
-  selectedDepositCard: number;
 
   constructor(public Servie: HomeService, private Auth: TAuthService, public navCtrl: NavController) {
   }
@@ -48,8 +43,6 @@ export class MycardPage implements OnInit
   ngOnInit() {
     // this.selectedCreditCard = CardHelper.getPrimaryCard(CREDIT_CARD).id;
     // this.selectedDepositCard = CardHelper.getPrimaryCard(DEPOSIT_CARD).id;
-    this.selectedCreditCard = 1;
-    this.selectedDepositCard = 2;
   }
 
   // 删除信用卡
@@ -81,23 +74,23 @@ export class MycardPage implements OnInit
     })
   }
 
+  // 设置主卡
+  async SetPrimaryCard(t: number, id: number) {
+    let res = await this.Servie.SetPrimCard(id);
+    if (false !== res) {
+      CardHelper.setPrimary(t, id);
+      this.CreditCards = CardHelper.filterCard(CREDIT_CARD);
+      this.DepositCards = CardHelper.filterCard(DEPOSIT_CARD);
+    }
+  }
+
   // 添加信用卡
   AddCreditCard() {
-    App.Nav.push(App.RootPage.AddcreditsCamPage, App.RootPage.MycardPage);
+    App.Nav.push(App.RootPage.AddCreditPage, App.RootPage.MycardPage);
   }
 
   // 添加储蓄卡
   AddDepositCard() {
-    App.Nav.push(App.RootPage.AddDepositCamPage, App.RootPage.MycardPage);
-  }
-
-  // 当前tab
-  TabsIndex() {
-    this.navCtrl.parent.select(3);
-  }
-
-  // 切换tab
-  SwitchTabs(n:number) {
-    this.ActiveIndex = n;
+    App.Nav.push(App.RootPage.AddDepositPage, App.RootPage.MycardPage);
   }
 }

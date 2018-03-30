@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Injectable } from '@angular/core';
 import { NavParams } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { setTimeout, clearTimeout } from 'timers';
@@ -7,9 +7,15 @@ import { setTimeout, clearTimeout } from 'timers';
   selector: 'page-finalpay',
   templateUrl: 'index.html',
 })
-export class FinalpayPage {
+@Injectable()
+export class FinalpayPage implements OnInit
+{
+  headTitle :string = '银联支付';
+
   action: string;
+
   value: string;
+
   browser: any = {
     isLoaded: false, // 网页是否被加载
     proObj: null, // 进度条对象
@@ -19,33 +25,46 @@ export class FinalpayPage {
     url: '',
     share: null // 是否具有分享功能（传递一个分享对象ShareModel过来）
   };
+
   flag: boolean = true;
+
   this_html: any = '';
+
   htmltext: any = '';
+
+  formAction: string = '';
+
+  @ViewChild('paymentForm') paymentForm: ElementRef;
 
   // 分享控制的配置
   shareConfig: any = {
     isShow: false
   };
 
-  constructor(public navParams: NavParams, private sanitizer: DomSanitizer)
-  {
+  constructor(public navParams: NavParams, private sanitizer: DomSanitizer) {
+  }
+
+  ngOnInit() {
     let bodyText = this.navParams.get('innerHtml').toString();
 
-    if (bodyText.indexOf('form') == -1) {
+    if (bodyText.indexOf('form') == -1 && bodyText.indexOf('body') > -1) {
       this.flag = false;
       let tmp_html = bodyText.match(/<body[^>]*>(.*)?<\/body>/)[1];
       tmp_html = this.sanitizer.bypassSecurityTrustHtml(tmp_html);
       this.this_html = tmp_html;
     } else if(bodyText.indexOf('form') > -1) {
       this.flag = true;
-      let tmpHtml = bodyText.match(/<form[^>]*>(.*)?<\/form>/)[0];
-      tmpHtml = tmpHtml.replace('<form', '<form target="brower"');
+      let arr = bodyText.match(/<form[^>]*>(.*)?<\/form>/);
+      let tmpHtml = arr[1];
+      this.formAction = this.getFormAction(arr[0]);
+      // tmpHtml = tmpHtml.replace('<form', '<form target="targetIframe"');
       tmpHtml = this.sanitizer.bypassSecurityTrustHtml(tmpHtml);
       this.htmltext = tmpHtml;
     }
+
     let browser = this.navParams.get('browser');
     if (browser) {
+      this.flag = false;
       this.browser.title = browser.title;
       this.browser.url = browser.url;
       this.browser.secUrl = this.sanitizer.bypassSecurityTrustResourceUrl(browser.url);
@@ -59,27 +78,23 @@ export class FinalpayPage {
     this.reload();
   }
 
-  ionViewDidEnter()
-  {
+  ionViewDidEnter() {
     if (this.flag) {
-      document.querySelector('form').submit();
+      this.paymentForm.nativeElement.submit();
     }
     if(!this.browser.proObj) {
       this.browser.proObj = document.getElementById('progress');
-      console.log(this.browser.proObj);
     }
 
     this.onprogress();
   }
 
-  private random(min: number, max: number): number
-  {
+  private random(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   // 网页访问进度
-  private onprogress()
-  {
+  private onprogress() {
     // 随机时间
     let timeout = this.random(10, 30);
     let timer = setTimeout(() => {
@@ -126,7 +141,11 @@ export class FinalpayPage {
     }, 10);
   }
 
-  headTitle :string = '银联支付';
-
-  // https://api.bclrpay.com/trade/handle
+  private getFormAction(s: string): string {
+    let arr = s.match(new RegExp(/action=['|"]([^'|"]*)/));
+    if (arr.length > 1) {
+      return arr[1];
+    }
+    return '';
+  }
 }

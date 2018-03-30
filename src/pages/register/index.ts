@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TAuthService } from '../../providers/auth';
 
@@ -6,14 +6,25 @@ import { TAuthService } from '../../providers/auth';
   selector: 'page-register',
   templateUrl: 'index.html'
 })
+@Injectable()
 export class RegisterPage implements OnInit
 {
   App = window.App;
-  constructor(public Service: TAuthService)
-  {}
 
-  ngOnInit()
-  {
+  public State: number = 0;
+
+  public VCodeText: string = "获取验证码";
+
+  Form_Group: FormGroup;
+
+  Tel: FormControl;
+
+  VCode: FormControl;
+
+  constructor(public Service: TAuthService) {
+  }
+
+  ngOnInit() {
     this.Form_Group = new FormGroup({
       Tel: this.Tel = new FormControl('', [
           Validators.required,
@@ -29,19 +40,14 @@ export class RegisterPage implements OnInit
 
   }
 
-
-  //倒计时
-  times()
-  {
+  // 倒计时
+  times() {
     let count: number = 60;
-    let timer = setInterval(() =>
-    {
-      if (count > 0)
-      {
+    let timer = setInterval(() => {
+      if (count > 0) {
         count --;
         this.VCodeText = '已发送' + count + 's';
-        if (count === 0)
-        {
+        if (count === 0) {
           this.VCodeText = '重新获取';
           this.State = 0;
           clearInterval(timer);
@@ -50,41 +56,22 @@ export class RegisterPage implements OnInit
     }, 1000);
   }
 
-  //验证手机号码以及验证码
-  GetVeriyCode()
-  {
-    this.Service.GetVerifyCode(this.Form_Group.value.Tel).then(res =>
-    {
-      if(res.code === 1)
-      {
+  // 验证手机号码以及验证码
+  GetVeriyCode() {
+    this.Service.GetVerifyCode(this.Form_Group.value.Tel).then(res => {
+      if(res.code === 1) {
         // this.CodeSend = true;
         this.State = 1;
         this.times();
         return App.ShowToast("发送成功");
-      }
-      else
-      {
+      } else {
         return App.ShowToast(res.msg)
       }
     })
     .catch(err => App.ShowToast(err.msg));
   }
 
- 
-  NextTable()
-  {
+  NextTable() {
     this.Service.CheckVerifyCode(this.Form_Group.value.Tel, this.Form_Group.value.VCode);
   }
-
-
-
-
-
-
-    public State: number = 0;
-    public VCodeText: string = "获取验证码";
-    Form_Group: FormGroup;
-    Tel: FormControl;
-    VCode: FormControl;
-  
 }

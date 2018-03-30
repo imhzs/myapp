@@ -1,5 +1,6 @@
 
 import { Component, OnInit, Injectable } from '@angular/core';
+
 import { HomeService } from '../../../providers/homeservice';
 import { TypeInfo } from '../../../UltraCreation/Core/TypeInfo';
 import * as Types from '../../../providers/types';
@@ -134,7 +135,7 @@ export class CreditCardPage implements OnInit
     if (!App.IsIdAuthed) {
       App.Nav.push(App.RootPage.AuthCardPage);
     } else {
-      App.Nav.push(App.RootPage.AddcreditsPage, CreditCardPage);
+      App.Nav.push(App.RootPage.AddCreditPage, CreditCardPage);
     }
   }
 }

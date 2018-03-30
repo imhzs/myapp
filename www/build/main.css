@@ -28616,6 +28616,97 @@ ion-toolbar.search-bar .searchbar .searchbar-search-icon {
   height: auto;
 }
 
+.auth-page .card {
+  position: relative;
+  height: 150px;
+  overflow: hidden;
+}
+
+.auth-page .card .img {
+  position: absolute;
+  width: 92%;
+  height: 92%;
+  left: 4%;
+  top: 4%;
+}
+
+.auth-page .card .desc {
+  position: absolute;
+  bottom: 8px;
+}
+
+.auth-page .card .badge {
+  z-index: 10;
+  border-radius: 0;
+}
+
+.auth-page .card [icon-only] {
+  z-index: 10;
+}
+
+.auth-page .card.example .img {
+  position: absolute;
+  width: 88%;
+  height: 88%;
+  left: 6%;
+  top: 6%;
+}
+
+.auth-page .border-1px {
+  position: relative;
+}
+
+.auth-page .border-1px:after {
+  content: "";
+  pointer-events: none;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+  .auth-page .border-1px:after {
+    width: 200%;
+    height: 200%;
+    border-radius: 4px;
+    -webkit-transform: scale(0.5) translateZ(0);
+    transform: scale(0.5) translateZ(0);
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+  .auth-page .border-1px:after {
+    width: 300%;
+    height: 300%;
+    border-radius: 6px;
+    -webkit-transform: scale(0.33) translateZ(0);
+    transform: scale(0.33) translateZ(0);
+  }
+}
+
+.h-checkout-page .pay-amount .amount {
+  color: #333;
+}
+
+.h-checkout-page .receive-amount {
+  line-height: 30px;
+}
+
+.h-checkout-page .bank-wrp .img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
 .h-creditcard-page .card {
   height: 6rem;
   border-radius: 6px;
@@ -28638,4 +28729,12 @@ ion-toolbar.search-bar .searchbar .searchbar-search-icon {
   width: 20px;
   height: 20px;
   border-radius: 50%;
+}
+
+.h-creditcard-page .card.no-card {
+  bacground-color: #f3f4f5;
+}
+
+.ucenter-page .card {
+  width: 100%;
 }

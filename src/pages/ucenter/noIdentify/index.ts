@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../../../providers/homeservice';
-import { AddcreditsPage } from '../../home/addcredits/index';
-import { AdddepositPage } from '../../home/adddeposit/index';
-import * as Types from '../../../providers/types';
-import { TAuthService } from '../../../providers/auth';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({

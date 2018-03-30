@@ -60,10 +60,28 @@ export class CardHelper
 		});
 		return cards;
 	}
+
+	// 设置主卡
+	public static setPrimary(t: number, id: number): void {
+		let cards = App.Cards;
+
+		cards.forEach((card, k) => {
+			if (parseInt(card.type) === t) {
+				if (card.id === id) {
+					cards[k].primary = PRIMARY_CARD.toString();
+				} else {
+					cards[k].primary = NOT_PRI_CARD.toString();
+				}
+			}
+		});
+		App.Cards = cards;
+	}
 }
 
 // 主卡
 export const PRIMARY_CARD: number = 1;
+
+export const NOT_PRI_CARD: number = 0;
 
 // 信用卡
 export const CREDIT_CARD: number = 0;

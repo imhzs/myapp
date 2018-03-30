@@ -191,11 +191,7 @@ $InsideOutsideDirection: '',
   }
 }
 
-@mixin border-1px($color, $radius, $style) {
-  @if $color == null {$color: #ccc;}
-  @if $radius == null {$radius: 2px;}
-  @if $style == null {$style: solid;}
-
+@mixin border-1px($color: #ccc, $radius: 2px, $style: solid) {
   position: relative;
   &:after {
     content: "";

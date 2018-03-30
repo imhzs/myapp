@@ -6,40 +6,27 @@ export { CreditCardPage } from '../../pages/home/creditCard';
 export { CardInforPage } from '../../pages/home/cardInfor';
 export { FinalpayPage } from '../../pages/home/finalpay';
 export { ConfirminfoPage } from '../../pages/home/confirminfo';
-export { AddcreditsPage } from '../../pages/home/addcredits';
-export { AddcreditsCamPage } from '../../pages/home/addcredits/cam';
+export { AddCreditPage } from '../../pages/home/addcredits';
 export { ChangecardsPage } from '../../pages/home/changecards';
-export { AdddepositPage } from '../../pages/home/adddeposit';
-export { AddDepositCamPage } from '../../pages/home/adddeposit/cam';
+export { AddDepositPage } from '../../pages/home/adddeposit';
 export { ListofbankPage } from '../../pages/home/listofbank';
 export { BranchcardPage } from '../../pages/home/branchcard';
-export { UsevoucherPage } from '../../pages/home/usevoucher';
 export { StartPage } from '../../pages/start';
 export { ModifypwdPage } from '../../pages/modifypwd';
 export { FindpwdPage } from '../../pages/findpwd';
-export { ResetpwdPage } from '../../pages/home/resetpwd'
-
-
+export { ResetpwdPage } from '../../pages/home/resetpwd';
+export { CheckoutPage } from '../../pages/home/checkout';
 
 export { UcenterPage } from '../../pages/ucenter';
 export { LoginPage } from '../../pages/login';
 export { LoanPage } from '../../pages/loan';
 export { SetPwdPage } from '../../pages/SetPwd';
+export { AuthPage } from '../../pages/auth';
 
-export { ApplycardPage } from '../../pages/applycard';
-export { ProfitsPage } from '../../pages/ucenter/profits';
 export { OrdersPage } from '../../pages/ucenter/orders';
 export { RecordsPage } from '../../pages/ucenter/records';
 export { UinfoPage } from '../../pages/ucenter/uinfo';
 export { UsetupPage } from '../../pages/ucenter/usetup';
-export { CashbackPage } from '../../pages/ucenter/cashback';
-export { VoucherPage } from '../../pages/ucenter/voucher';
-export { MyclientPage } from '../../pages/ucenter/myclient';
 export { VIPmembersPage } from '../../pages/ucenter/VIPmembers';
 export { MycardPage } from '../../pages/ucenter/mycard';
 export { RegisterPage } from '../../pages/register';
-export { NoldentifyPage } from '../../pages/ucenter/noIdentify';
-export { MyInterestPage } from '../../pages/ucenter/myinterest';
-export { AuthCardPage } from '../../pages/ucenter/authcard';
-export { AuthManPage } from '../../pages/ucenter/authman';
-export { NecInfoPage } from '../../pages/ucenter/necinfo';
