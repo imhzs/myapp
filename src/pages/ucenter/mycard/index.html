@@ -20,26 +20,13 @@
   <div [ngSwitch]="CardSwitch">
     <!-- 信用卡 -->
     <div *ngSwitchCase="CreditCard">
-      <!-- 未添加 -->
-      <ion-grid>
-        <ion-row>
-          <ion-col col-12 class="card page-content" text-center 
-            *ngIf="CreditCards.length == 0" (click)="AddCreditCard()">
-            <button ion-button icon-left class="bg-transparent">
-              <ion-icon name="add-circle" color="primary"></ion-icon>
-              <span ion-text color="primary">添加信用卡</span>
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
       <!-- 已添加 -->
       <ion-grid>
         <ion-row m-t-10>
           <ion-col col-12 class="card page-content" p-h-10>
             <div class="d-flex justify-content-between border-bottom-1px" p-v-10>
               <div class="flex-fill d-flex align-items-center justify-content-start">
-                <ion-img src="assets/banklogo/bank_308.png" width="30" height="30" alt="logo"></ion-img>
+                <img src="assets/banklogo/bank_308.png" width="30" height="30" alt="logo" />
                 <div class="d-flex flex-fill flex-column justify-content-center l-h-d" m-l-5>
                   <p><label f-18>招商银行</label></p>
                   <p><span ion-text f-12>**** **** **** 2632</span></p>
@@ -65,7 +52,7 @@
           <ion-col col-12 class="card page-content" p-h-10>
             <div class="d-flex justify-content-between border-bottom-1px" p-v-10>
               <div class="flex-fill d-flex align-items-center justify-content-start">
-                <ion-img src="assets/banklogo/bank_308.png" width="30" height="30" alt="logo"></ion-img>
+                <img src="assets/banklogo/bank_308.png" width="30" height="30" alt="logo" />
                 <div class="d-flex flex-fill flex-column justify-content-center l-h-d" m-l-5>
                   <p><label f-18>招商银行</label></p>
                   <p><span ion-text f-12>**** **** **** 2632</span></p>
@@ -84,6 +71,19 @@
                 <span ion-text m-l-5>设为主卡</span>
               </div>
             </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <!-- 未添加 -->
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12 text-center 
+            (click)="AddCreditCard()">
+            <button ion-button icon-center full>
+              <ion-icon name="add-circle"></ion-icon>
+              <span ion-text m-l-5>添加信用卡</span>
+            </button>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -91,27 +91,13 @@
 
     <!-- 储蓄卡 -->
     <div *ngSwitchCase="DepositCard">
-      <!-- 未添加 -->
-      <ion-grid>
-        <ion-row>
-          <ion-col col-12 class="card page-content" text-center 
-            *ngIf="DepositCards.length == 0" 
-            (click)="AddDepositCard()">
-            <button ion-button icon-left class="bg-transparent">
-              <ion-icon name="add-circle" color="primary"></ion-icon>
-              <span ion-text color="primary">添加储蓄卡</span>
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
       <!-- 已添加 -->
       <ion-grid>
         <ion-row m-t-10>
           <ion-col col-12 class="card page-content" p-h-10>
             <div class="d-flex justify-content-between border-bottom-1px" p-v-10>
               <div class="flex-fill d-flex align-items-center justify-content-start">
-                <ion-img src="assets/banklogo/bank_308.png" width="30" height="30" alt="logo"></ion-img>
+                <img src="assets/banklogo/bank_308.png" width="30" height="30" alt="logo" />
                 <div class="d-flex flex-fill flex-column justify-content-center l-h-d" m-l-5>
                   <p><label f-18>招商银行</label></p>
                   <p><span ion-text f-12>**** **** **** 2632</span></p>
@@ -137,7 +123,7 @@
           <ion-col col-12 class="card page-content" p-h-10>
             <div class="d-flex justify-content-between border-bottom-1px" p-v-10>
               <div class="flex-fill d-flex align-items-center justify-content-start">
-                <ion-img src="assets/banklogo/bank_308.png" width="30" height="30" alt="logo"></ion-img>
+                <img src="assets/banklogo/bank_308.png" width="30" height="30" alt="logo" />
                 <div class="d-flex flex-fill flex-column justify-content-center l-h-d" m-l-5>
                   <p><label f-18>招商银行</label></p>
                   <p><span ion-text f-12>**** **** **** 2632</span></p>
@@ -156,6 +142,19 @@
                 <span ion-text m-l-5>设为主卡</span>
               </div>
             </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <!-- 未添加 -->
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12 text-center 
+            (click)="AddDepositCard()">
+            <button ion-button icon-center full>
+              <ion-icon name="add-circle"></ion-icon>
+              <span ion-text m-l-5>添加储蓄卡</span>
+            </button>
           </ion-col>
         </ion-row>
       </ion-grid>
