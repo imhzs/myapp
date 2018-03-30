@@ -1,23 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
+
 import { TAuthService } from '../../../providers/auth';
-// import { TCameraService } from '../../../providers/camera';
-// import { CropPhoto } from '../../../shared/component/crop';
 
 @Component({
   selector: 'page-uinfo',
   templateUrl: 'index.html'
 })
-
+@Injectable()
 export class UinfoPage
 {
   App = window.App;
+
+  private ImgData = { ImgSrc: void 0 };
+
+  nickname: string;
+
+  HeadTitle: string = "个人资料";
+
+  UserInfo: any = [];
+
+  ShowPhone: string = "****";
+
+  ShowID: string = "********";
+
+  infoName: string = " ";
 
   constructor(public Auth: TAuthService) {
     this.InitUserInfo();
   }
 
-  InitUserInfo()
-  {
+  InitUserInfo() {
     this.UserInfo = App.UserInfo;
     console.log(this.UserInfo);
 
@@ -25,80 +37,18 @@ export class UinfoPage
     if(this.UserInfo.idCardNo !== null) this.ShowID = this.UserInfo.idCardNo.substr(0,6) + this.ShowID + this.UserInfo.idCardNo.substr(-4);
 
     this.ImgData.ImgSrc = App.UserFace;
-    if(this.UserInfo.name !== null)
-    {
+    if(this.UserInfo.name !== null) {
       this.infoName = this.UserInfo.name.substr(-1);
 
       let str = '';
-      for (let i = 0; i < this.UserInfo.name.length-1; i++)
-      {
+      for (let i = 0; i < this.UserInfo.name.length-1; i++) {
         str += '*';
       }
       this.infoName =  str +  this.infoName;
     }
-
   }
 
-  // TakePhoto()
-  // {
-  //   App.ShowLoading();
-  //   console.log(this.ImgData.ImgSrc);
-
-  //   let _alertConfig =
-  //   {
-  //     title:'上传头像',
-  //     buttons: [
-  //       {
-  //         text: '相机拍照',
-  //         handler: () => {
-
-  //           this.CameraSvc.GetPicture(0).then(imageData =>
-  //             {
-  //               let imgSrc = 'data:image/jpeg;base64,' + imageData;
-  //               this.ImgData.ImgSrc = imgSrc;
-  //               localStorage.setItem('imageface', this.ImgData.ImgSrc);
-  //               App.UserFace;
-  //               App.HideLoading();
-
-  //             }, (error) =>
-  //             {
-  //                 App.HideLoading();
-  //             });
-  //         }
-  //       },
-  //       {
-  //         text: '相册',
-  //         handler: () => {
-  //           this.CameraSvc.GetPicture(1).then(imageData =>
-  //             {
-  //               let imgSrc = 'data:image/jpeg;base64,' + imageData;
-  //               this.ImgData.ImgSrc = imgSrc;
-  //               localStorage.setItem('imageface', this.ImgData.ImgSrc);
-  //               App.UserFace;
-  //               App.HideLoading();
-  //               // this.ShowCropModal(imgSrc);
-
-  //             }, (error) =>
-  //             {
-  //                 App.HideLoading();
-  //             });
-  //         }
-  //       },
-  //       {
-  //         text: '取消',
-  //         role: 'cancel',
-  //         handler: () => {
-  //           App.HideLoading();
-  //         }
-  //       }
-  //     ]
-  //   }
-  //   App.ShowAlert(_alertConfig);
-  // }
-
-
-  ChangeNickName()
-  {
+  ChangeNickName() {
     let _alertOption =
     {
       title: '昵称',
@@ -124,105 +74,8 @@ export class UinfoPage
     }
 
     App.ShowAlert(_alertOption).then((modal) =>
-      modal.onDidDismiss(() =>
-      {
-
+      modal.onDidDismiss(() => {
       })
     );
   }
-
-
-  private ImgData = { ImgSrc: void 0 };
-  nickname;
-  HeadTitle: string = "个人资料";
-  UserInfo: any = [];
-  ShowPhone: string = "****";
-  ShowID: string = "********";
-  infoName: string = " ";
 }
-
-
-  /*
-  ShowCropModal(imgSrc)
-  {
-    App.ShowModal(CropPhoto, {imgSrc: imgSrc, imgData: this.ImgData }).then((modal) =>
-    {
-        App.HideLoading();
-        modal.onDidDismiss(() => {
-          // this.Auth.UploadFace(this.ImgData.ImgSrc);
-          App.HideLoading();
-        });
-    }).catch(error =>
-    {
-        App.HideLoading();
-        App.ShowError(error);
-    });
-  }
-  */
-
-  /*
-  SavePhotoToLocal(ImgData: any)
-  {
-      let FileName = new Date().getTime() + '.jpg';
-      this.CameraSvc.CameraFile.FileName = FileName;
-      alert(FileName);
-      console.log('fileName = ' + FileName);
-      return this.CameraSvc.WriteFile(this.CameraSvc.CameraFile.FileName, ImgData)
-          .then((result) =>
-          {
-
-              ImgData.ImgSrc = void 0;
-              alert(result.ImgSrc);
-              console.log('write success');
-              return true;
-          })
-          .catch((error) =>
-          {
-              console.log('write error = ' + error);
-          });
-  }
-  */
-  /*
-  ChangeImg() {
-
-    let options = {
-      targetWidth: 400,
-     targetHeight: 400
-    };
-
-    let actionSheet = this.alertCtrl.create({
-      title:'上传头像',
-      buttons: [
-        {
-          text: '相册',
-          handler: () => {
-
-            this.native.getPictureByPhotoLibrary(options).then(imageBase64 => {
-              this.getPictureSuccess(imageBase64);
-            });
-          }
-        },
-        {
-          text: '相机拍照',
-          handler: () => {
-            this.native.getPictureByCamera(options).then(imageBase64 => {
-              this.getPictureSuccess(imageBase64);
-             });
-          }
-        },
-        {
-          text: '取消',
-          role: 'cancel'
-        }
-      ]
-    });
-
-    actionSheet.present();
-  }
-
-  private getPictureSuccess(imageBase64) {
-    this.isChange = true;
-    this.imageBase64 = <string>imageBase64;
-    this.avatarPath = 'data:image/jpeg;base64,' + imageBase64;
-  }
-  */

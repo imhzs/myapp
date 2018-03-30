@@ -1,26 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
+
 import { MineService } from '../../../providers/mineservice';
 
 @Component({
   selector: 'page-records',
   templateUrl: 'index.html'
 })
-
+@Injectable()
 export class RecordsPage
 {
   App = window.App;
-  constructor(public Service: MineService)
-  {
+
+  HeadTitle: string='收款记录'
+
+  ListData: Array<any>;
+
+  DataEmpty: boolean;
+
+  constructor(public Service: MineService) {
     this.GetCashList();
   }
 
-  GetCashList()
-  {
+  GetCashList() {
     this.Service.GetCashList().then(res => this.DataProcess(res));
   }
 
-  DataProcess(data)
-  {
+  DataProcess(data) {
     if (data.length == 0) return this.DataEmpty = true;
     this.DataEmpty = false;
     this.ListData = new Array<any>();
@@ -32,27 +37,19 @@ export class RecordsPage
         data: []
       }
     ];
-    for (let i = 0; i < data.length; i ++)
-    {
+    for (let i = 0; i < data.length; i ++) {
       let tmpJson = data[i];
-      if (tmpMonth == data[i].time.split(' ')[0].substr(0,7))
-      {
-        for (let j = 0; j < this.ListData.length; j ++)
-        {
-          if (this.ListData[j].month == tmpMonth) 
-          {
+      if (tmpMonth == data[i].time.split(' ')[0].substr(0,7)) {
+        for (let j = 0; j < this.ListData.length; j ++) {
+          if (this.ListData[j].month == tmpMonth)  {
             this.ListData[j].data.push(tmpJson);
-            //成功订单统计
-            if(tmpJson.status == '1')
-            {
+            // 成功订单统计
+            if(tmpJson.status == '1') {
               this.ListData[j].total += Number(tmpJson.amount);
             }
-      
           }
         }
-      }
-      else
-      {
+      } else {
         tmpMonth = data[i].time.split(' ')[0].substr(0,7);
         this.ListData.push ({
           month: tmpMonth,
@@ -62,9 +59,4 @@ export class RecordsPage
       }
     }
   }
-
-  HeadTitle: string='收款记录'
-  ListData: Array<any>;
-  DataEmpty: boolean;
-
 }
