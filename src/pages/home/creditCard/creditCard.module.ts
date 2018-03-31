@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 
-import { CreditCardPage } from './creditCard';
+import { CreditCardPage } from './creditcard';
 import { SharedModule } from '../../../shared';
 
 @NgModule({

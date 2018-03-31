@@ -13,10 +13,10 @@
     </div>
     <ion-row class="action-btn" justify-content-center>
       <ion-col col-5>
-        <a href="#/register" ion-button full color="primary">注册</a>
+        <button [navPush]="App.RootPage.RegisterPage" ion-button full color="primary">注册</button>
       </ion-col>
       <ion-col col-5>
-        <a href="#/login" class="active" ion-button full color="primary">登录</a>
+        <button [navPush]="App.RootPage.LoginPage" class="active" ion-button full color="primary">登录</button>
       </ion-col>
     </ion-row>
   </div>

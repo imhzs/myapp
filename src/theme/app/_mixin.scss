@@ -167,6 +167,15 @@ $InsideOutsideDirection: '',
   }
 }
 
+@mixin border-none() {
+  &:before {
+    display: none
+  }
+  &:after {
+    display: none
+  }
+}
+
 @mixin border-top-1px($color) {
   &:before {
     border-top: 1px solid $color;

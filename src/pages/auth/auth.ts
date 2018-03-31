@@ -9,6 +9,7 @@ import { FileService } from '../../providers/fileservice';
 	selector: 'page-auth',
 	templateUrl: 'auth.html'
 })
+@Injectable()
 export class AuthPage implements OnInit
 {
 	CardFront: string = 'front';

@@ -14,18 +14,20 @@ export class LoginPage implements OnInit
 {
   App = window.App;
 
-  Form_Group: FormGroup;
+  formGroup: FormGroup;
 
   Tel: FormControl;
 
   Pass: FormControl;
+
+  findPasswordPage: any;
 
   constructor(private Auth: TAuthService) {
   }
 
   ngOnInit()
   {
-    this.Form_Group = new FormGroup({
+    this.formGroup = new FormGroup({
       Tel: this.Tel = new FormControl('', [
         Validators.required,
         Validators.pattern(/^1[3|4|5|7|8][0-9]{9}$/)
@@ -44,6 +46,7 @@ export class LoginPage implements OnInit
   }
 
   Login() {
-    this.Auth.Login(this.Form_Group.value.Tel, this.Form_Group.value.Pass);
+    console.log(this.formGroup.value.Pass);
+    this.Auth.Login(this.formGroup.value.Tel, this.formGroup.value.Pass);
   }
 }

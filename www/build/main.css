@@ -28069,6 +28069,14 @@ body {
   }
 }
 
+.border-none:before {
+  display: none;
+}
+
+.border-none:after {
+  display: none;
+}
+
 .form-ctrl {
   height: 50px;
 }

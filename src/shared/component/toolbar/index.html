@@ -1,7 +1,7 @@
 <div class="app-toolbar-primary" [class.cover-color]="CoverColor">
   <div class="toolbar-buttons">
     <ng-template [ngIf]="HasBack">
-      <button ion-button class="back-bar-button" (click)="GoBack()" tappable></button>
+      <button ion-button class="back-bar-button" navPop tappable></button>
     </ng-template>
   </div>
   <div class="toolbar-title">

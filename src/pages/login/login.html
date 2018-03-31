@@ -14,7 +14,7 @@
     </ion-row>
     <div>
       <ion-grid text-center>
-        <form novalidate [formGroup]="Form_Group" autocomplete="off">
+        <form novalidate [formGroup]="formGroup" autocomplete="off">
           <ion-row class="border-bottom-1px">
             <ion-col col-12>
               <ion-input type="Tel" placeholder="请输入手机号" formControlName="Tel" required></ion-input>
@@ -31,7 +31,7 @@
             </ion-col>
           </ion-row>
         </form>
-        <a href="#/findpassword" ion-text color="primary" p-t-5>忘记密码 ?</a>
+        <button ion-button outline no-border [navPush]="App.RootPage.FindPasswordPage" ion-text color="primary" p-t-5>忘记密码 ?</button>
       </ion-grid>
     </div>
   </div>

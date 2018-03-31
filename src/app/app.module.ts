@@ -4,15 +4,15 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpModule } from '@angular/http';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { MyApp } from './app.component';
-import { StatusBar } from '../UltraCreation/Native/StatusBar';
-import { SplashScreen } from '../UltraCreation/Native/SplashScreen';
-// import { PagesModule } from '../pages';
-import * as Svc from '../providers';
 import { AppVersion } from '@ionic-native/app-version';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { Camera } from '@ionic-native/camera';
 import { Device } from '@ionic-native/device';
+
+import { MyApp } from './app.component';
+import * as Svc from '../providers';
+import { StatusBar } from '../UltraCreation/Native/StatusBar';
+import { SplashScreen } from '../UltraCreation/Native/SplashScreen';
 
 enableProdMode();
 
@@ -28,8 +28,7 @@ let config = {
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp, config),
-    TranslateModule.forRoot(),
-    // PagesModule
+    TranslateModule.forRoot()
   ],
   bootstrap: [IonicApp],
   declarations: [
