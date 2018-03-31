@@ -7,7 +7,7 @@ import { HomeService } from '../../../providers/homeservice';
 @IonicPage()
 @Component({
   selector: 'page-cardInfor',
-  templateUrl: 'cardInfor.html'
+  templateUrl: 'cardinfor.html'
 })
 @Injectable()
 export class CardInforPage implements OnInit

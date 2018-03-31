@@ -18,7 +18,7 @@ export class RegisterPage implements OnInit
 
   public VCodeText: string = "获取验证码";
 
-  Form_Group: FormGroup;
+  formGroup: FormGroup;
 
   Tel: FormControl;
 
@@ -28,19 +28,17 @@ export class RegisterPage implements OnInit
   }
 
   ngOnInit() {
-    this.Form_Group = new FormGroup({
+    this.formGroup = new FormGroup({
       Tel: this.Tel = new FormControl('', [
-          Validators.required,
-          Validators.pattern(/^1[3|4|5|7|8][0-9]{9}$/)
+        Validators.required,
+        Validators.pattern(/^1[3|4|5|7|8][0-9]{9}$/)
       ]),
 
       VCode: this.VCode = new FormControl('', [
-          Validators.required,
-          Validators.minLength(4)
-      ]),
-
+        Validators.required,
+        Validators.minLength(4)
+      ])
     });
-
   }
 
   // 倒计时
@@ -61,9 +59,8 @@ export class RegisterPage implements OnInit
 
   // 验证手机号码以及验证码
   GetVeriyCode() {
-    this.Service.GetVerifyCode(this.Form_Group.value.Tel).then(res => {
+    this.Service.GetVerifyCode(this.formGroup.value.Tel).then(res => {
       if(res.code === 1) {
-        // this.CodeSend = true;
         this.State = 1;
         this.times();
         return App.ShowToast("发送成功");
@@ -75,6 +72,6 @@ export class RegisterPage implements OnInit
   }
 
   NextTable() {
-    this.Service.CheckVerifyCode(this.Form_Group.value.Tel, this.Form_Group.value.VCode);
+    this.Service.CheckVerifyCode(this.formGroup.value.Tel, this.formGroup.value.VCode);
   }
 }

@@ -1,5 +1,5 @@
 import { Component, ViewChild, NgZone, OnInit, Injectable } from '@angular/core';
-import { Content, IonicPage } from 'ionic-angular';
+import { Content, IonicPage, NavController } from 'ionic-angular';
 
 import { HomeService } from '../../providers/homeservice';
 
@@ -15,9 +15,11 @@ export class HomePage implements OnInit
 
   @ViewChild(Content) content: Content;
 
-  constructor(public zone: NgZone, public Service: HomeService) {
+  constructor(public zone: NgZone, public Service: HomeService, public nav: NavController) {
   }
 
   ngOnInit() {
+  	// console.log(App.UserInfo);
+  	// console.log(App.Nav.push('SetPasswordPage'));
   }
 }

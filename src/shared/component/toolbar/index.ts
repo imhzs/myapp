@@ -16,6 +16,10 @@ export class PageToolbarComponent
   @Input()  BtnText: string;
   @Output() BtnTextEvent = new EventEmitter();
   @Output() BtnIconEvent = new EventEmitter();
+
+  GoBack() {
+    history.go(-1);
+  }
 }
 
 

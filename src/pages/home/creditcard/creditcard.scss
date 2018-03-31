@@ -1,0 +1,23 @@
+.h-creditcard-page {
+	.card {
+		height: 6rem;
+		border-radius: 6px;
+		&.has-card {
+			@include gradient-x(#ff8351, #ff5f4b, 20%);
+			.btn-change {
+				height: auto;
+				padding: 4px;
+				border: 1px solid $color-white;
+				font-size: 13px;
+			}
+			.icon-bank {
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+			}
+		}
+		&.no-card {
+			bacground-color: $color-background;
+		}
+	}
+}

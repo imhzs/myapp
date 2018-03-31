@@ -8,7 +8,7 @@ import * as Types from '../../../providers/types';
 @IonicPage()
 @Component({
   selector: 'page-creditCard',
-  templateUrl: 'creditCard.html'
+  templateUrl: 'creditcard.html'
 })
 @Injectable()
 export class CreditCardPage implements OnInit

@@ -13,17 +13,17 @@ export class TAuthService extends TBaseService
 
   async judgeLogin() {
     if (!this.IsLogin) {
-      return App.RootPage.TabsPage;
+      return 'TabsPage';
       // return App.RootPage.StartPage;
     } else if (!await this.CheckToken()) {
-      return App.RootPage.TabsPage;
+      return 'TabsPage';
       // return App.RootPage.StartPage;
     } else if(!Network.IsOnline) {
-      return App.RootPage.TabsPage;
+      return 'TabsPage';
       // return App.RootPage.StartPage;
     } else {
       // this.GetUserData();
-      return App.RootPage.TabsPage;
+      return 'TabsPage';
     }
   }
 
@@ -53,7 +53,7 @@ export class TAuthService extends TBaseService
 
     const result = await this.Post('kpay/api/checkPwdVeriCode').then( res => res.json());
     if(result.code === 1) {
-      App.Nav.push(App.RootPage.ResetpwdPage, {mobile: tel, code: VCode});
+      App.Nav.push('ResetPasswordPage', {mobile: tel, code: VCode});
     } else {
       App.ShowError(result.msg);
     }
@@ -134,9 +134,8 @@ export class TAuthService extends TBaseService
     this.SetParam('veriCode', VCode);
 
     const result = await this.Post('kpay/api/checkRegVeriCode').then(res => res.json());
-    // return result;
     if (result.code === 1) {
-      App.Nav.push(App.RootPage.SetPwdPage, {mobile: Tel, code: VCode});
+      App.Nav.push('SetPasswordPage', {mobile: Tel, code: VCode});
     } else {
       App.ShowError(result.msg);
     }
