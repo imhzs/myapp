@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+
 import { TypeInfo } from '../UltraCreation/Core/TypeInfo';
 import { TBaseService } from './pub_service';
 import { Network } from '../UltraCreation/Native/Network'
+import { UserModel } from '../models/user-model';
 
 @Injectable()
 export class TAuthService extends TBaseService
@@ -28,8 +30,7 @@ export class TAuthService extends TBaseService
   }
 
   // 登录
-  async Login(Tel: number, Password: string)
-  {
+  async Login(Tel: number, Password: string) {
     this.SetParam('mobile', Tel.toString());
     this.SetParam('password', this.Md5T(Password).toString());
 
@@ -46,8 +47,7 @@ export class TAuthService extends TBaseService
   }
 
   // 校验找回密码短信验证码
-  async GetFindPwdData(tel: number, VCode: string)
-  {
+  async GetFindPwdData(tel: number, VCode: string) {
     this.SetParam('mobile', tel.toString());
     this.SetParam('veriCode', VCode);
 
@@ -60,8 +60,7 @@ export class TAuthService extends TBaseService
   }
 
   // 获取找回密码短信验证码
-  async GetResetPwdData(tel: number)
-  {
+  async GetResetPwdData(tel: number) {
     this.SetParam('mobile', tel.toString());
     const result = await this.Post('kpay/api/getPwdVericode').then( res => res.json());
     console.log(result);
@@ -74,8 +73,7 @@ export class TAuthService extends TBaseService
   }
 
   // 修改用户密码
-  async GetchangePsdData(tel: number, pwd: string, VCode: string)
-  {
+  async GetchangePsdData(tel: number, pwd: string, VCode: string) {
     this.SetParam('mobile', tel.toString());
     this.SetParam('password', this.Md5T(pwd).toString());
     this.SetParam('veriCode', VCode);
@@ -90,8 +88,7 @@ export class TAuthService extends TBaseService
   }
 
   // 获取修改密码验证码
-  async getPwdVericode(mobile)
-  {
+  async getPwdVericode(mobile) {
     this.SetParam('mobile', mobile);
 
     const result = await this.Post('kpay/api/getPwdVericode').then(res => res.json());
@@ -99,8 +96,7 @@ export class TAuthService extends TBaseService
   }
 
   // 注册
-  async SignIn(Tel: number, Password: string, Code?: string, Recommend?: string)
-  {
+  async SignIn(Tel: number, Password: string, Code?: string, Recommend?: string) {
     this.SetParam('mobile', Tel.toString());
     this.SetParam('password', this.Md5T(Password).toString());
     this.SetParam('veriCode', Code);
@@ -119,8 +115,7 @@ export class TAuthService extends TBaseService
   }
 
   // 获取注册验证码
-  async GetVerifyCode(Tel: number)
-  {
+  async GetVerifyCode(Tel: number) {
     this.SetParam('mobile', Tel.toString());
 
     const result = await this.Post('kpay/api/getVericode').then(res => res.json());
@@ -128,8 +123,7 @@ export class TAuthService extends TBaseService
   }
 
   // 验证注册验证码
-  async CheckVerifyCode(Tel: number, VCode: string)
-  {
+  async CheckVerifyCode(Tel: number, VCode: string) {
     this.SetParam('mobile', Tel.toString());
     this.SetParam('veriCode', VCode);
 
@@ -142,31 +136,27 @@ export class TAuthService extends TBaseService
   }
 
   // 退出登陆
-  Logout()
-  {
+  Logout() {
     localStorage.removeItem('token');
-    App.UserInfo = {};
+    App.UserInfo = null;
     App.DisableHardwareBackButton();
     App.Nav.push(App.RootPage.StartPage);
   }
 
   // 判断登录
-  get IsLogin()
-  {
+  get IsLogin() {
     return TypeInfo.Assigned(localStorage.getItem('token'));
   }
 
   // 校验token有效性
-  async CheckToken()
-  {
+  async CheckToken() {
     const result = await this.Post('kpay/api/checkToken').then(res => res.json());
     if (result.code === 1) return true;
     return false;
   }
 
   // 修改用户信息
-  async ModifyUserInfo(json)
-  {
+  async ModifyUserInfo(json) {
     for (let k in json) {
       this.SetParam(k, json[k]);
     }
@@ -180,16 +170,31 @@ export class TAuthService extends TBaseService
   }
 
   // 获取用户信息
-  async GetUserData()
-  {
+  async GetUserData() {
     const result = await this.Post('kpay/api/user/info').then(res => res.json());
     if (result.code === 1) {
       result.data.canTrade = '1';
-      App.UserInfo = result.data;
+      App.UserInfo = <UserModel>result.data;
       result.data.vip === '1' ? App.IsVip = true : App.IsVip = false;
       result.data.canTrade === '1' ? App.CanTrade = true : App.CanTrade = false;
     } else {
       App.ShowError(result.msg).then(() => this.Logout());
+    }
+  }
+
+  // 第三方登录
+  async thirtyLoogin(mobile: string, key: string) {
+    this.SetParam('mobile', mobile);
+    this.SetParam('key', key);
+
+    let res = await this.Post('kpay/api/login/partner').then(res => res.json());
+    if (res.code === 1) {
+      localStorage.setItem('token', res.data.token);
+      this.GetUserData().then(() => {
+      });
+      return true;
+    } else {
+      return false;
     }
   }
 }

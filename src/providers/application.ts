@@ -4,7 +4,8 @@ import { Platform, Content } from 'ionic-angular';
 import {TAppController} from '../UltraCreation/ng-ion/appcontroller';
 import * as RootPage from '../shared/root';
 import { TypeInfo } from '../UltraCreation/Core/TypeInfo';
-import { CardOptions } from './types/card';
+import { CardModel } from '../models/card-model';
+import { UserModel } from '../models/user-model';
 
 declare global
 {
@@ -24,10 +25,10 @@ export class TApplication extends TAppController
   Platform: Platform;
 
   // 用户信息
-  UserInfo: any = {};
+  UserInfo: UserModel;
 
   // 银行卡信息
-  Cards: Array<CardOptions> = new Array<CardOptions>();
+  Cards: Array<CardModel> = new Array<CardModel>();
 
   // 是否VIP会员
   IsVip: boolean = false;
@@ -138,7 +139,7 @@ export class TApplication extends TAppController
 
   IsReal(page?: any)
   {
-    if (parseInt(App.UserInfo.idAuthed) !== 1) {
+    if (App.UserInfo.idAuthed !== 1) {
       App.Nav.push(App.RootPage.NoldentifyPage);
     } else if(page) {
       App.Nav.push(page);
@@ -150,13 +151,13 @@ export class TApplication extends TAppController
   // 是否已完成身份认证
   get IsIdAuthed(): boolean
   {
-    return parseInt(App.UserInfo.idAuthed) > 0;
+    return App.UserInfo.idAuthed > 0;
   }
 
   // 是否完成储蓄卡验证
   get IsBankcardAuthed(): boolean
   {
-    return parseInt(App.UserInfo.bankcardAuthed) > 0;
+    return App.UserInfo.bankcardAuthed > 0;
   }
 
   // 是否已完成身份认证

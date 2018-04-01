@@ -5,14 +5,12 @@ import { TBaseService } from '../providers/pub_service';
 @Injectable()
 export class HomeService extends TBaseService
 {
-  constructor(public http: Http)
-  {
+  constructor(public http: Http) {
     super(http);
   }
 
   // 身份证认证
-  async VerifyId(idcardNo, name, mobile?: string)
-  {
+  async VerifyId(idcardNo, name, mobile?: string) {
     this.SetParam('idcardNo', idcardNo);
     this.SetParam('name', name);
     if (mobile) {
@@ -32,8 +30,7 @@ export class HomeService extends TBaseService
   }
 
   // 获取当日分润明细
-  async GetProfitToday()
-  {
+  async GetProfitToday() {
     let result = await this.Post('kpay/api/user/myprofit/today').then(res => res.json());
     if (result.code === 1) {
       return result.data;
@@ -43,8 +40,7 @@ export class HomeService extends TBaseService
   }
 
   // 获取银行卡列表
-  async GetCardList()
-  {
+  async GetCardList() {
     const result = await this.Post('kpay/api/bankcard/list').then(res => res.json());
 
     if (result.code === 1) {
@@ -56,8 +52,7 @@ export class HomeService extends TBaseService
   }
 
   // 设置银行卡主卡
-  async SetPrimCard(cardId)
-  {
+  async SetPrimCard(cardId) {
     this.SetParam('cardId', cardId);
     const result = await this.Post('kpay/api/bankcard/setPrimary').then(res => res.json());
 
@@ -70,8 +65,7 @@ export class HomeService extends TBaseService
   }
 
   // 添加信用卡
-  async AddCreditCard(cardNo, mobile)
-  {
+  async AddCreditCard(cardNo, mobile) {
     this.SetParam('cardNo', cardNo);
     this.SetParam('mobile', mobile);
     const result = await this.Post('kpay/api/bankcard/addCredit').then(res => res.json());
@@ -84,8 +78,7 @@ export class HomeService extends TBaseService
   }
 
   // 添加储蓄卡
-  async AddDeposiCard(cardNo, bankName, bankNo, branchName, mobile)
-  {
+  async AddDeposiCard(cardNo, bankName, bankNo, branchName, mobile) {
     this.SetParam('cardNo', cardNo);
     this.SetParam('bankName', bankName);
     this.SetParam('bankNo', bankNo);
@@ -103,8 +96,7 @@ export class HomeService extends TBaseService
   }
 
   // 删除银行卡
-  async DelCard(cardId)
-  {
+  async DelCard(cardId) {
     this.SetParam('cardId', cardId);
     const result = await this.Post('kpay/api/bankcard/del').then(res => res.json());
     if (result.code === 1) {
@@ -115,8 +107,7 @@ export class HomeService extends TBaseService
   }
 
   // 获取银行总行信息
-  async GetTolBanks()
-  {
+  async GetTolBanks() {
     const result = await this.Post('kpay/api/bank/info').then(res => res.json());
     if (result.code === 1){
       return result.data;
@@ -126,8 +117,7 @@ export class HomeService extends TBaseService
   }
 
   //获取银行支行信息
-  async GetBranchBanks(massage)
-  {
+  async GetBranchBanks(massage) {
     this.SetParam('name', massage)
     const result = await this.PostNoLoading('kpay/api/bank/list').then(res => res.json());
     if (result.code === 1) {
@@ -137,10 +127,8 @@ export class HomeService extends TBaseService
     }
   }
 
-
   // 取现可用返现券
-  async GetAvaCash(amount)
-  {
+  async GetAvaCash(amount) {
     this.SetParam('amount', amount);
     const result = await this.Post('kpay/api/cash/cashback/available').then(res => res.json());
     if (result.code === 1 && result.data) {
@@ -151,8 +139,7 @@ export class HomeService extends TBaseService
   }
 
   // 获取银行取现列表
-  async GetBankPage(cardId, enterCardId, amount, cashbackId?)
-  {
+  async GetBankPage(cardId, enterCardId, amount, cashbackId?) {
     this.SetParam('cardId', cardId);
     this.SetParam('enterCardId', enterCardId);
     this.SetParam('amount', Math.round(amount * 100));
@@ -165,8 +152,7 @@ export class HomeService extends TBaseService
   }
 
   // 快捷取现获取验证码
-  async GetVerifyode(acctNo, cvn2, expDate, mobile, amount, cashbackId?)
-  {
+  async GetVerifyode(acctNo, cvn2, expDate, mobile, amount, cashbackId?) {
     this.SetParam('acctNo', acctNo);
     this.SetParam('cvn2', cvn2);
     this.SetParam('amount', Math.round(amount * 100));
@@ -191,8 +177,7 @@ export class HomeService extends TBaseService
   }
 
   // 快捷取现确认
-  async ConfirmResult(orderNo, smsCode)
-  {
+  async ConfirmResult(orderNo, smsCode) {
     this.SetParam('orderNo', orderNo);
     this.SetParam('smsCode', smsCode);
 

@@ -4,14 +4,14 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="h-creditcard-page">
-  <ion-grid class="page-content">
+  <ion-grid class="page-content" p-h-10>
     <ion-row justify-content-center>
       <ion-col col-12>
         <ion-label>付款信用卡</ion-label>
       </ion-col>
       <!-- 未添加信用卡 -->
       <ion-col col-12 class="card no-card" text-center *ngIf="!CurrentCreditCard">
-        <button ion-button icon-left class="bg-transparent">
+        <button ion-button icon-left class="bg-transparent" (click)="AddCreditCard()">
           <ion-icon name="add-circle" color="primary"></ion-icon>
           <span ion-text color="primary">添加信用卡</span>
         </button>
@@ -26,7 +26,7 @@
             <span ion-text f-14 text-light m-l-5>招商银行</span>
           </div>
           <div class="flex-fill" text-right>
-            <button type="button" ion-button class="bg-transparent btn-change" no-padding no-margin>更换</button>
+            <button type="button" ion-button class="bg-transparent btn-change" (click)="ChangeCreditCard()" no-padding no-margin>更换</button>
           </div>
         </div>
         <div>
@@ -41,9 +41,9 @@
       </ion-col>
       <!-- 未添加储蓄卡 -->
       <ion-col col-12 class="card no-card" text-center *ngIf="!CurrentDepositCard">
-        <button ion-button icon-left class="bg-transparent">
+        <button ion-button icon-left class="bg-transparent" (click)="AddDepositCard()">
           <ion-icon name="add-circle" color="primary"></ion-icon>
-          <span ion-text color="primary">收款储蓄卡</span>
+          <span ion-text color="primary">添加储蓄卡</span>
         </button>
       </ion-col>
       <!-- 未添加储蓄卡 -->
@@ -56,7 +56,7 @@
             <span ion-text f-14 text-light m-l-5>招商银行</span>
           </div>
           <div class="flex-fill" text-right>
-            <button type="button" ion-button class="bg-transparent btn-change" no-padding no-margin>更换</button>
+            <button type="button" ion-button class="bg-transparent btn-change" (click)="ChangeDepositCard()" no-padding no-margin>更换</button>
           </div>
         </div>
         <div>
@@ -72,13 +72,13 @@
         <ion-label>收款金额(元)</ion-label>
       </ion-col>
       <ion-col col-12>
-        <ion-input type="number" name="amount" ([ngModel])="Amount.InputAmount" no-margin f-30 placeholder="500-20000"></ion-input>
+        <ion-input type="number" name="amount" ([ngModel])="Amount.InputAmount" no-margin f-30 placeholder="500-20000" p-l-5></ion-input>
       </ion-col>
     </ion-row>
     <ion-row p-t-5>
       <ion-col class="l-h-d">
-        <p ion-text text-gray>费率：{{Rate}}%+3元，保底8元</p>
-        <p ion-text text-gray>交易时间：9:00-21:00，立即到账</p>
+        <p ion-text class="text-fee">费率：{{Rate}}%+3元，保底8元</p>
+        <p ion-text class="text-t">交易时间：9:00-21:00，立即到账</p>
       </ion-col>
     </ion-row>
   </ion-grid>

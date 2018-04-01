@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 
 import { LoginPage } from './login';
 import { SharedModule } from '../../shared';
+import * as Svc from '../../providers';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,9 @@ import { SharedModule } from '../../shared';
   ],
   entryComponents: [
     LoginPage
+  ],
+  providers: [
+    Svc.TAuthService
   ]
 })
 export class LoginPageModule {}

@@ -24,26 +24,22 @@ export class FileService extends TBaseService
 
   protected targetHeight: number = 292;
 
-  constructor(public http: Http, private camera: Camera, private fileTransfer: FileTransfer)
-  {
+  constructor(public http: Http, private camera: Camera, private fileTransfer: FileTransfer) {
     super(http);
     this.params = new FormData();
   }
 
   // 附件上传
-  async OcrUpload(fileKey: string, file: any, cType: string)
-  {
+  async OcrUpload(fileKey: string, file: any, cType: string) {
     return await this.PostFile('kpay/api/ocr/upload', fileKey, file, {'type': cType});
   }
 
    // 身份认证
-   async IdentityAuth(file: any, cType: string)
-   {
+   async IdentityAuth(file: any, cType: string) {
       return await this.PostFile('kpay/api/ocr/idcard', 'file', file, {'type': cType});
    }
 
-   async PostFiles(uri: string)
-   {
+   async PostFiles(uri: string) {
       let resp;
       resp = await this.PostByXMLHttpReq(uri).then((resp) => resp);
       if (resp.code === 1) {
@@ -53,8 +49,7 @@ export class FileService extends TBaseService
       return false;
    }
 
-   async PostFile(uri: string, fileKey: string, file: any, params?: any)
-   {
+   async PostFile(uri: string, fileKey: string, file: any, params?: any) {
       for (let k in params) {
         this.SetParam(k, params[k]);
       }
@@ -210,8 +205,7 @@ export class FileService extends TBaseService
     return new File([u8arr], filename, {'type': mime});
   }
 
-  PostByFileTransfer(uri: string, fileKey: string, file: any, params?: any)
-  {
+  PostByFileTransfer(uri: string, fileKey: string, file: any, params?: any) {
     return new Promise((resolve, reject) => {
       let BaseUrl = this.BaseUrl;
       let url = `${BaseUrl}/${uri}`;
@@ -244,8 +238,7 @@ export class FileService extends TBaseService
     });
   }
 
-  async PostByXMLHttpReq(uri: string, fileKey?: string, file?: any)
-  {
+  async PostByXMLHttpReq(uri: string, fileKey?: string, file?: any) {
     return new Promise((resolve, reject) => {
       let BaseUrl = this.BaseUrl;
       let url = `${BaseUrl}/${uri}`;

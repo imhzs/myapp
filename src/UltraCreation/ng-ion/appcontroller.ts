@@ -68,8 +68,7 @@ export class TAppController
 
   get Nav(): NavController
   {
-    return this.Instance.getActiveNav() as NavController;
-    // return this.Instance.getActiveNavs()[0] as NavController;
+    return this.Instance.getActiveNavs()[0] as NavController;
   }
 
   get ActiveView(): ViewController

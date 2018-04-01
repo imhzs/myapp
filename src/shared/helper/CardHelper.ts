@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { HomeService } from '../../providers/homeservice';
-import { CardOptions } from '../../providers/types/card';
+import { CardModel } from '../../models/card-model';
 import { TypeInfo } from '../../UltraCreation/Core/TypeInfo';
 
 @Injectable()
@@ -19,16 +19,16 @@ export class CardHelper
 	async initData() {
 		let res = await this.service.GetCardList().then((resp) => resp.json());
 		if (false === res) {
-			App.Cards = new Array<CardOptions>();
+			App.Cards = new Array<CardModel>();
 		} else {
 			App.Cards = res;
 		}
 	}
 
 	// 获取主卡
-	public static getPrimaryCard(t: number): CardOptions {
+	public static getPrimaryCard(t: number): CardModel {
 		let cards = App.Cards;
-		let c: CardOptions;
+		let c: CardModel;
 
 		cards.forEach((card) => {
 			if (parseInt(card.type) === t && parseInt(card.primary) === PRIMARY_CARD) {
@@ -39,12 +39,12 @@ export class CardHelper
 	}
 
 	// 获取一张卡片
-	public static getOneCard(t: number): CardOptions {
+	public static getCardById(id: number): CardModel {
 		let cards = App.Cards;
-		let c: CardOptions;
+		let c: CardModel;
 
 		cards.forEach((card) => {
-			if (parseInt(card.type) === t) {
+			if (card.id === id) {
 				c = card;
 			}
 		});
@@ -52,7 +52,7 @@ export class CardHelper
 	}
 
 	// 根据类型刷选卡片
-	public static filterCard(t: number): Array<CardOptions> {
+	public static filterCard(t: number): Array<CardModel> {
 		let cards = App.Cards;
 
 		cards.filter((card) => {

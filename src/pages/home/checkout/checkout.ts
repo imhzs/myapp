@@ -2,7 +2,7 @@ import { Component, Injectable } from '@angular/core';
 import { NavParams, IonicPage } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
-import { CardOptions } from '../../../providers/types/card';
+import { CardModel } from '../../../models/card-model';
 import { HomeService } from '../../../providers/homeservice';
 
 @IonicPage()
@@ -20,10 +20,10 @@ export class CheckoutPage
 	ReceiveAmount: number;
 
 	// 信用卡
-	CreditCard: CardOptions;
+	CreditCard: CardModel;
 
 	// 储蓄卡
-	DepositCard: CardOptions;
+	DepositCard: CardModel;
 
 	// 标题
 	HeadTitle: string = '确认收款';

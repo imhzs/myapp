@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { IonicPage } from 'ionic-angular';
 
 import { HomeService } from '../../../providers/homeservice';
-import * as Types from '../../../providers/types';
+import { CardModel } from '../../../models/card-model';
 import { TAuthService } from '../../../providers/auth';
 import { CardHelper, PRIMARY_CARD, CREDIT_CARD, DEPOSIT_CARD } from '../../../shared/helper/CardHelper';
 
@@ -21,10 +21,10 @@ export class MycardPage implements OnInit
   HeadTitle: string = "我的卡片";
 
   // 信用卡
-  CreditCards: Array<Types.CardOptions> = new Array<Types.CardOptions>();
+  CreditCards: Array<CardModel> = new Array<CardModel>();
 
   // 储蓄卡
-  DepositCards: Array<Types.CardOptions> = new Array<Types.CardOptions>();
+  DepositCards: Array<CardModel> = new Array<CardModel>();
 
   CardSwitch: number = CREDIT_CARD;
 

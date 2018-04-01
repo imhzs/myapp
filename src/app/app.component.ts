@@ -1,4 +1,6 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, ViewChild } from '@angular/core';
+import { NavController } from 'ionic-angular';
+
 import { SplashScreen } from '../UltraCreation/Native/SplashScreen';
 import { StatusBar } from '../UltraCreation/Native/StatusBar';
 import * as Svc from '../providers';
@@ -7,13 +9,14 @@ import * as Svc from '../providers';
   template: `<ion-nav #rootNavController [root]="rootPage"></ion-nav>`
 })
 @Injectable()
-export class MyApp {
-  rootPage: any = 'TabsPage';
+export class MyApp
+{
+  @ViewChild('rootNavController') nav: NavController;
 
-  constructor(App: Svc.TApplication, public Auth: Svc.TAuthService, private appUpdate: Svc.CheckAppUpdate)
-  {
+  rootPage: string = 'TabsPage';
+
+  constructor(App: Svc.TApplication, public Auth: Svc.TAuthService) {
     App.Platform.ready().then(() => {
-      this.appUpdate.appUpdate();
       SplashScreen.show();
       StatusBar.hide();
       StatusBar.overlaysWebView(true);

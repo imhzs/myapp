@@ -23,15 +23,13 @@ export class CheckAppUpdate
 
   App = window.App;
 
-  constructor (private http: Http, private appVersion: AppVersion, private fileTransfer: FileTransfer, private device: Device)
-  {
+  constructor (private http: Http, private appVersion: AppVersion, private fileTransfer: FileTransfer, private device: Device) {
     this.file = new File();
     this.fileOpener = new FileOpener();
   }
 
   // 检查更新
-  appUpdate()
-  {
+  appUpdate() {
     if (!App.IsAndroid) {
       return;
     }
@@ -66,8 +64,7 @@ export class CheckAppUpdate
   }
 
   // 获取版本配置信息
-  setUpdateInfo()
-  {
+  setUpdateInfo() {
     return new Promise((resolve, reject) => {
       this.http.get('http://58mpay.com/pay/update.xml').toPromise()
       .then(resp => {
@@ -85,20 +82,17 @@ export class CheckAppUpdate
   }
 
   // 设置新版本
-  setVersion(version: number)
-  {
+  setVersion(version: number) {
     this.version = version;
   }
 
   // apk下载路径
-  setApkUrl(url: string)
-  {
+  setApkUrl(url: string) {
     this.apkUrl = url;
   }
 
   // 从xml中获取值
-  getFromXml(key: string): string
-  {
+  getFromXml(key: string): string {
     let arr = this.xml.match('<(' + key + ')>([^<>]+)<\/' + key + '>');
     if (arr.length > 2) {
       return arr[2];
@@ -107,8 +101,7 @@ export class CheckAppUpdate
   }
 
   // 当前版本
-  setCurVersion()
-  {
+  setCurVersion() {
     this.appVersion.getVersionCode()
         .then(no => {
           this.curVersion = parseInt(no);
@@ -119,8 +112,7 @@ export class CheckAppUpdate
   }
 
   // 是否有版本更新
-  hasNewVersion(): boolean
-  {
+  hasNewVersion(): boolean {
     return this.curVersion > 0 && (this.curVersion < this.version);
   }
 
@@ -163,13 +155,11 @@ export class CheckAppUpdate
   }
 
   // 显示下载进度条
-  showProcess()
-  {
+  showProcess() {
     App.ShowLoading({ content: '下载中...' });
   }
 
-  get getStoragePath(): string
-  {
+  get getStoragePath(): string {
     if (App.IsAndroid && this.device.version > '7') {
       return this.file.dataDirectory;
     }

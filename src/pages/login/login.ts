@@ -1,10 +1,13 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { IonicPage } from 'ionic-angular';
+import { URLSearchParams } from '@angular/http';
+import { IonicPage, NavParams, NavController } from 'ionic-angular';
 
 import { TAuthService } from '../../providers/auth';
 
-@IonicPage()
+@IonicPage({
+  segment: 'login/:mobile/:key'
+})
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
@@ -22,11 +25,14 @@ export class LoginPage implements OnInit
 
   findPasswordPage: any;
 
-  constructor(private Auth: TAuthService) {
+  private searchParams: URLSearchParams;
+
+  constructor(private Auth: TAuthService, public navParams: NavParams, private nav: NavController) {
+    this.searchParams = new URLSearchParams(location.search);
+    // this.Auth.thirtyLoogin(this.navParams.get('mobile'), this.navParams.get('key'));
   }
 
-  ngOnInit()
-  {
+  ngOnInit() {
     this.formGroup = new FormGroup({
       Tel: this.Tel = new FormControl('', [
         Validators.required,
@@ -41,12 +47,13 @@ export class LoginPage implements OnInit
   }
 
   get LoginDisabled(): boolean {
-    if (this.Tel.invalid || this.Pass.invalid) return true;
+    if (this.Tel.invalid || this.Pass.invalid) {
+      return true;
+    }
     return false;
   }
 
   Login() {
-    console.log(this.formGroup.value.Pass);
     this.Auth.Login(this.formGroup.value.Tel, this.formGroup.value.Pass);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { NavParams, IonicPage } from 'ionic-angular';
+import { NavParams, IonicPage, ViewController } from 'ionic-angular';
 
-import * as Types from '../../../providers/types';
+import { CardModel } from '../../../models/card-model';
 import { HomeService } from '../../../providers/homeservice';
 
 @IonicPage()
@@ -12,10 +12,13 @@ import { HomeService } from '../../../providers/homeservice';
 @Injectable()
 export class ChangecardsPage implements OnInit
 {
-  constructor(public Service: HomeService, public navParams: NavParams) {
+  autoManufacturers: string;
+
+  constructor(public Service: HomeService, public navParams: NavParams, public viewCtrl: ViewController) {
   }
 
   ngOnInit() {
+    console.log(this.navParams.get('id'));
     this.BankList = [];
     for (let item of this.navParams.data) {
       if (item.primary === '1') item.chose = true;
@@ -39,7 +42,13 @@ export class ChangecardsPage implements OnInit
     .catch((err) => App.ShowError('接口异常...'));
   }
 
+  public confirmCard() {
+    console.log(this.autoManufacturers);
+    let data = {id: this.autoManufacturers};
+    this.viewCtrl.dismiss(data);
+  }
+
   HeadTitle: string = "我的信用卡";
 
-  private BankList: Array<Types.CardOptions> = [];
+  private BankList: Array<CardModel> = new Array<CardModel>();
 }

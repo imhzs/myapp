@@ -1,9 +1,10 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 
 import { HomeService } from '../../../providers/homeservice';
 import { TypeInfo } from '../../../UltraCreation/Core/TypeInfo';
-import * as Types from '../../../providers/types';
+import { CardModel } from '../../../models/card-model';
+import { CardHelper, CREDIT_CARD, DEPOSIT_CARD } from '../../../shared/helper/CardHelper';
 
 @IonicPage()
 @Component({
@@ -18,16 +19,13 @@ export class CreditCardPage implements OnInit
   // 费率
   Rate: number;
 
-  // 所有卡列表
-  CardList: Array<Types.CardOptions>;
-
   // 信用卡
-  CurrentCreditCard: Types.CardOptions;
-  CreditCards = new Array<Types.CardOptions>();
+  CurrentCreditCard: CardModel;
+  CreditCards = new Array<CardModel>();
 
   // 储蓄卡
-  CurrentDepositCard: Types.CardOptions;
-  DepositCards = new Array<Types.CardOptions>();
+  CurrentDepositCard: CardModel;
+  DepositCards = new Array<CardModel>();
 
   HeadTitle: string = "刷卡提现";
 
@@ -40,39 +38,28 @@ export class CreditCardPage implements OnInit
   // 是否可以提交标识
   CanSubmited: boolean = false;
 
-  constructor(public Service: HomeService) {
-    // this.GetCardList();
+  constructor(public Service: HomeService, public navCtrl: NavController) {
     this.Rate = App.UserInfo.rate;
+    this.InitData();
   }
 
   ngOnInit() {
   }
 
-  GetCardList() {
-    this.Service.GetCardList().then(res => {
-      if (!TypeInfo.Assigned(res.length) || res.length === 0) {
-        return;
-      }
-      this.CardList = new Array<Types.CardOptions>();
-      this.CreditCards = new Array<Types.CardOptions>();
-      this.DepositCards = new Array<Types.CardOptions>();
+  // 初始化数据
+  InitData() {
+    this.CreditCards = CardHelper.filterCard(CREDIT_CARD);
+    this.DepositCards = CardHelper.filterCard(DEPOSIT_CARD);
+    this.CurrentCreditCard = CardHelper.getPrimaryCard(CREDIT_CARD);
+    this.CurrentDepositCard = CardHelper.getPrimaryCard(DEPOSIT_CARD);
 
-      for (let item of res) {
-        this.CardList.push(item);
-        if (item.type === '0') {
-          this.CreditCards.push(item);
-          if(item.primary === '1') {
-            App.CurrentCreditCards = this.CurrentCreditCard = item;
-          }
-        }
+    if (!TypeInfo.Assigned(this.CurrentCreditCard) && this.CreditCards.length > 0) {
+      this.CurrentCreditCard = this.CreditCards[0];
+    }
 
-        if (item.type === '1') {
-          this.DepositCards.push(item);
-          this.CurrentDepositCard = item;
-        }
-      }
-    })
-    .catch(err => console.log(err));
+    if (!TypeInfo.Assigned(this.CurrentDepositCard) && this.DepositCards.length > 0) {
+      this.CurrentCreditCard = this.DepositCards[0];
+    }
   }
 
   InputAmount() {
@@ -83,6 +70,7 @@ export class CreditCardPage implements OnInit
     this.Amount.OutputAmount = Math.floor((this.Amount.InputAmount * (1 - this.Rate / 100)) * 10) / 10;
   }
 
+  // 确认提交
   ConfirmPay() {
     let date = new Date();
     let hour = date.getHours();
@@ -115,29 +103,32 @@ export class CreditCardPage implements OnInit
     });
   }
 
-  ChangeCard() {
-    App.ShowModal(App.RootPage.ChangecardsPage,this.CreditCards).then((modal) => {
+  // 更换信用卡
+  ChangeCreditCard() {
+    App.ShowModal('ChangecardsPage', {data: this.CreditCards, t: CREDIT_CARD}).then((modal) => {
       modal.onDidDismiss((data) => {
-        if (TypeInfo.Assigned(data)) {
-          App.CurrentCreditCards = this.CurrentCreditCard = data;
-          this.CreditCards.forEach((item) => {
-            if (item.id === data.id) {
-              item.primary = '1';
-            } else {
-              item.primary = '0';
-            }
-          });
-        }
-      });
-    })
+        this.CurrentCreditCard = CardHelper.getCardById(data.id);
+      })
+    });
   }
 
+  // 更换储蓄卡
+  ChangeDepositCard() {
+    App.ShowModal('ChangecardsPage', {data: this.DepositCards, t: DEPOSIT_CARD}).then((modal) => {
+      modal.onDidDismiss((data) => {
+        this.CurrentDepositCard = CardHelper.getCardById(data.id);
+      })
+    });
+  }
+
+  // 添加信用卡
   AddCreditCard() {
-    if (!App.IsIdAuthed) {
-      App.Nav.push(App.RootPage.AuthCardPage);
-    } else {
-      App.Nav.push(App.RootPage.AddCreditPage, CreditCardPage);
-    }
+    this.navCtrl.push('AddCreditPage');
+  }
+
+  // 添加储蓄卡
+  AddDepositCard() {
+    this.navCtrl.push('AddDepositPage');
   }
 }
 
