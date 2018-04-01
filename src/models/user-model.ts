@@ -1,6 +1,6 @@
 export interface UserModel {
   userId: number, // 当前用户ID
-  mobile: string, // 手机号
+  mobile: number, // 手机号
   nickName?: string, // 昵称
   sex?: string, // 性别
   avatar?: string, // 头像URI

@@ -4,7 +4,7 @@ webpackJsonp([28],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(313);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(314);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_0__application__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mineservice__ = __webpack_require__(59);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_1__mineservice__["a"]; });
@@ -14,7 +14,7 @@ webpackJsonp([28],{
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_3__auth__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fileservice__ = __webpack_require__(56);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_4__fileservice__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__checkAppUpdate__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__checkAppUpdate__ = __webpack_require__(349);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_5__checkAppUpdate__["a"]; });
 
 
@@ -49,10 +49,10 @@ webpackEmptyAsyncContext.id = 141;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TAuthService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Core_TypeInfo__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pub_service__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UltraCreation_Native_Network__ = __webpack_require__(307);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UltraCreation_Native_Network__ = __webpack_require__(308);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -433,10 +433,9 @@ var TAuthService = /** @class */ (function (_super) {
     };
     TAuthService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
     ], TAuthService);
     return TAuthService;
-    var _a;
 }(__WEBPACK_IMPORTED_MODULE_3__pub_service__["a" /* TBaseService */]));
 
 //# sourceMappingURL=auth.js.map
@@ -449,7 +448,7 @@ var TAuthService = /** @class */ (function (_super) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_pub_service__ = __webpack_require__(57);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -1061,47 +1060,47 @@ Object.freeze(TypeInfo);
 
 var map = {
 	"../pages/auth/auth.module": [
-		369,
+		367,
 		26
 	],
 	"../pages/findpassword/findpassword.module": [
-		370,
+		368,
 		25
 	],
 	"../pages/home/addcredit/addcredit.module": [
-		396,
+		370,
 		24
 	],
 	"../pages/home/adddeposit/adddeposit.module": [
-		371,
+		369,
 		23
 	],
 	"../pages/home/branchcard/branchcard.module": [
-		372,
+		371,
 		22
 	],
 	"../pages/home/cardinfor/cardinfor.module": [
-		373,
+		372,
 		21
 	],
 	"../pages/home/changecards/changecards.module": [
-		374,
+		373,
 		20
 	],
 	"../pages/home/checkout/checkout.module": [
-		375,
+		374,
 		19
 	],
 	"../pages/home/confirminfo/confirminfo.module": [
-		376,
+		375,
 		18
 	],
 	"../pages/home/creditcard/creditcard.module": [
-		377,
+		376,
 		17
 	],
 	"../pages/home/finalpay/finalpay.module": [
-		378,
+		377,
 		16
 	],
 	"../pages/home/home.module": [
@@ -1109,67 +1108,67 @@ var map = {
 		15
 	],
 	"../pages/home/listofbank/listofbank.module": [
-		380,
+		378,
 		14
 	],
 	"../pages/home/resetpassword/resetpassword.module": [
-		381,
+		380,
 		13
 	],
 	"../pages/loan/loan.module": [
-		382,
+		381,
 		12
 	],
 	"../pages/login/login.module": [
-		383,
+		382,
 		11
 	],
 	"../pages/modifypassword/modifypassword.module": [
-		384,
+		383,
 		10
 	],
 	"../pages/register/register.module": [
-		385,
+		384,
 		27
 	],
 	"../pages/setpassword/setpassword.module": [
-		386,
+		385,
 		9
 	],
 	"../pages/start/start.module": [
-		387,
+		386,
 		8
 	],
 	"../pages/tabs/tabs.module": [
-		388,
+		387,
 		7
 	],
 	"../pages/ucenter/VIPmembers/VIPmembers.module": [
-		395,
+		394,
 		6
 	],
 	"../pages/ucenter/mycard/mycard.module": [
-		389,
+		388,
 		5
 	],
 	"../pages/ucenter/orders/orders.module": [
-		390,
+		389,
 		4
 	],
 	"../pages/ucenter/records/records.module": [
-		391,
+		390,
 		3
 	],
 	"../pages/ucenter/ucenter.module": [
-		392,
+		391,
 		2
 	],
 	"../pages/ucenter/uinfo/uinfo.module": [
-		393,
+		392,
 		1
 	],
 	"../pages/ucenter/usetup/usetup.module": [
-		394,
+		393,
 		0
 	]
 };
@@ -1189,7 +1188,167 @@ module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 228:
+/***/ 184:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return CardHelper; });
+/* unused harmony export PRIMARY_CARD */
+/* unused harmony export NOT_PRI_CARD */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CREDIT_CARD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return DEPOSIT_CARD; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_homeservice__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Core_TypeInfo__ = __webpack_require__(18);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+var CardHelper = /** @class */ (function () {
+    function CardHelper(service) {
+        this.service = service;
+        this.APP = window.App;
+        if (!__WEBPACK_IMPORTED_MODULE_2__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].IsArrayLike(App.Cards)) {
+            this.initData();
+        }
+    }
+    // 初始化数据
+    CardHelper.prototype.initData = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var res;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.service.GetCardList().then(function (resp) { return resp.json(); })];
+                    case 1:
+                        res = _a.sent();
+                        if (false === res) {
+                            App.Cards = new Array();
+                        }
+                        else {
+                            App.Cards = res;
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    // 获取主卡
+    CardHelper.getPrimaryCard = function (t) {
+        var cards = App.Cards;
+        var c;
+        cards.forEach(function (card) {
+            if (parseInt(card.type) === t && parseInt(card.primary) === PRIMARY_CARD) {
+                c = card;
+            }
+        });
+        return c;
+    };
+    // 获取一张卡片
+    CardHelper.getCardById = function (id) {
+        var cards = App.Cards;
+        var c;
+        cards.forEach(function (card) {
+            if (card.id === id) {
+                c = card;
+            }
+        });
+        return c;
+    };
+    // 根据类型刷选卡片
+    CardHelper.filterCard = function (t) {
+        var cards = App.Cards;
+        cards.filter(function (card) {
+            return parseInt(card.type) === t;
+        });
+        return cards;
+    };
+    // 设置主卡
+    CardHelper.setPrimary = function (t, id) {
+        var cards = App.Cards;
+        cards.forEach(function (card, k) {
+            if (parseInt(card.type) === t) {
+                if (card.id === id) {
+                    cards[k].primary = PRIMARY_CARD.toString();
+                }
+                else {
+                    cards[k].primary = NOT_PRI_CARD.toString();
+                }
+            }
+        });
+        App.Cards = cards;
+    };
+    // 删除卡片
+    CardHelper.delCard = function (id) {
+        var cards = App.Cards;
+        cards.forEach(function (v, k) {
+            if (v.id === id) {
+                cards.splice(k, 1);
+            }
+        });
+        App.Cards = cards;
+    };
+    CardHelper = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_homeservice__["a" /* HomeService */]])
+    ], CardHelper);
+    return CardHelper;
+}());
+
+// 主卡
+var PRIMARY_CARD = 1;
+var NOT_PRI_CARD = 0;
+// 信用卡
+var CREDIT_CARD = 0;
+// 储蓄卡
+var DEPOSIT_CARD = 1;
+//# sourceMappingURL=CardHelper.js.map
+
+/***/ }),
+
+/***/ 229:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1224,7 +1383,7 @@ var SplashScreen = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 229:
+/***/ 230:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1326,7 +1485,7 @@ var StatusBar = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 230:
+/***/ 231:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1454,7 +1613,7 @@ var AuthPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 231:
+/***/ 232:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1547,7 +1706,7 @@ var FindPasswordPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 232:
+/***/ 233:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1754,7 +1913,165 @@ var AddDepositPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 233:
+/***/ 234:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddCreditPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__ = __webpack_require__(56);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+var AddCreditPage = /** @class */ (function () {
+    function AddCreditPage(Service, navParams, Auth, fileService) {
+        this.Service = Service;
+        this.navParams = navParams;
+        this.Auth = Auth;
+        this.fileService = fileService;
+        this.App = window.App;
+        this.HeadTitle = "添加信用卡";
+        this.AddWrong = false;
+        this.WrongMsg = '';
+        this.BankCardFront = __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["a" /* BANKCARD_FRONT */];
+        this.GetIdCard(App.UserInfo.idCardNo);
+    }
+    AddCreditPage.prototype.ngOnInit = function () {
+        this.Form_Group_Card = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormGroup */]({
+            CardNo: this.CardNo = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]('', [
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required,
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].minLength(16)
+            ]),
+            Mobile: this.Mobile = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]('', [
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required,
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].pattern(/^1[3|4|5|7|8][0-9]{9}$/)
+            ])
+        });
+    };
+    Object.defineProperty(AddCreditPage.prototype, "CompleteBtnIsDisabled", {
+        get: function () {
+            if (this.CardNo.invalid || this.Mobile.invalid) {
+                return true;
+            }
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AddCreditPage.prototype.GetIdCard = function (IdNo) {
+        if (__WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(IdNo)) {
+            this.ShowIDCard = IdNo.substr(0, 6);
+            for (var i = 0; i < (IdNo.length - 10); i++) {
+                this.ShowIDCard += '*';
+            }
+            this.ShowIDCard += IdNo.substr(-4);
+        }
+    };
+    // 提交数据
+    AddCreditPage.prototype.AddCard = function () {
+        var _this = this;
+        this.Service.AddCreditCard(this.Form_Group_Card.value.CardNo, this.Form_Group_Card.value.Mobile).then(function (res) {
+            if (false !== res) {
+                App.ShowToast('信用卡添加成功');
+                _this.Auth.GetUserData().then(function () { return App.Nav.push(App.RootPage[_this.navParams.data]); });
+            }
+        });
+    };
+    // 选择文件
+    AddCreditPage.prototype.OnChangeFile = function (e) {
+        var _this = this;
+        this.fileService.showAddImage().then(function (rst) {
+            console.log(rst);
+            _this.uploadFile(rst.file, __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["a" /* BANKCARD_FRONT */]);
+        }).catch(function (error) {
+            console.log(error);
+        });
+    };
+    // 保存文件
+    AddCreditPage.prototype.uploadFile = function (file, cType) {
+        return __awaiter(this, void 0, void 0, function () {
+            var res;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.fileService.OcrUpload('file', file, cType)];
+                    case 1:
+                        res = _a.sent();
+                        if (false !== res) {
+                            this.CardNo.setValue(res.cardNo.replace(/\s*/g, ''));
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddCreditPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-addcredit',
+            templateUrl: 'addcredits.html'
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_5__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["b" /* FileService */]])
+    ], AddCreditPage);
+    return AddCreditPage;
+}());
+
+//# sourceMappingURL=addcredit.js.map
+
+/***/ }),
+
+/***/ 235:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1809,7 +2126,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
-var _ = __webpack_require__(308);
+var _ = __webpack_require__(309);
 var BranchcardPage = /** @class */ (function () {
     function BranchcardPage(navParams, Service) {
         this.navParams = navParams;
@@ -1860,7 +2177,7 @@ var BranchcardPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 234:
+/***/ 236:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2023,7 +2340,7 @@ var CardInforPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 235:
+/***/ 237:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2044,13 +2361,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ChangecardsPage = /** @class */ (function () {
-    function ChangecardsPage(Service, navParams) {
+    function ChangecardsPage(Service, navParams, viewCtrl) {
         this.Service = Service;
         this.navParams = navParams;
+        this.viewCtrl = viewCtrl;
         this.HeadTitle = "我的信用卡";
-        this.BankList = [];
+        this.BankList = new Array();
     }
     ChangecardsPage.prototype.ngOnInit = function () {
+        console.log(this.navParams.get('id'));
         this.BankList = [];
         for (var _i = 0, _a = this.navParams.data; _i < _a.length; _i++) {
             var item = _a[_i];
@@ -2075,12 +2394,17 @@ var ChangecardsPage = /** @class */ (function () {
             .then(function () { return setTimeout(function () { return App.ActiveView.dismiss(item); }); })
             .catch(function (err) { return App.ShowError('接口异常...'); });
     };
+    ChangecardsPage.prototype.confirmCard = function () {
+        console.log(this.autoManufacturers);
+        var data = { id: this.autoManufacturers };
+        this.viewCtrl.dismiss(data);
+    };
     ChangecardsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-changecards',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\changecards\changecards.html"*/'<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <!-- <app-toolbar HasBack="true" [Title]="HeadTitle" BtnIcon="&#xf273;" (BtnIconEvent)="AddCards()"></app-toolbar> -->\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle" BtnText="确定" (BtnTextEvent)="confirmCard()"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-list radio-group [(ngModel)]="autoManufacturers">\n\n  \n\n    <ion-item>\n\n      <ion-label>Cord</ion-label>\n\n      <ion-radio value="cord"></ion-radio>\n\n    </ion-item>\n\n  \n\n    <ion-item>\n\n      <ion-label>Duesenberg</ion-label>\n\n      <ion-radio value="duesenberg"></ion-radio>\n\n    </ion-item>\n\n  \n\n    <ion-item>\n\n      <ion-label>Hudson</ion-label>\n\n      <ion-radio value="hudson"></ion-radio>\n\n    </ion-item>\n\n  \n\n    <ion-item>\n\n      <ion-label>Packard</ion-label>\n\n      <ion-radio value="packard"></ion-radio>\n\n    </ion-item>\n\n  \n\n    <ion-item>\n\n      <ion-label>Studebaker</ion-label>\n\n      <ion-radio value="studebaker"></ion-radio>\n\n    </ion-item>\n\n  \n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\changecards\changecards.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ViewController */]])
     ], ChangecardsPage);
     return ChangecardsPage;
 }());
@@ -2089,7 +2413,7 @@ var ChangecardsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 236:
+/***/ 238:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2169,7 +2493,7 @@ var CheckoutPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 237:
+/***/ 239:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2209,7 +2533,7 @@ var ConfirminfoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 238:
+/***/ 240:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2218,6 +2542,7 @@ var ConfirminfoPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_CardHelper__ = __webpack_require__(184);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2227,6 +2552,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2246,36 +2572,23 @@ var CreditCardPage = /** @class */ (function () {
         };
         // 是否可以提交标识
         this.CanSubmited = false;
-        // this.GetCardList();
         this.Rate = App.UserInfo.rate;
+        this.InitData();
     }
     CreditCardPage.prototype.ngOnInit = function () {
     };
-    CreditCardPage.prototype.GetCardList = function () {
-        var _this = this;
-        this.Service.GetCardList().then(function (res) {
-            if (!__WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(res.length) || res.length === 0) {
-                return;
-            }
-            _this.CardList = new Array();
-            _this.CreditCards = new Array();
-            _this.DepositCards = new Array();
-            for (var _i = 0, res_1 = res; _i < res_1.length; _i++) {
-                var item = res_1[_i];
-                _this.CardList.push(item);
-                if (item.type === '0') {
-                    _this.CreditCards.push(item);
-                    if (item.primary === '1') {
-                        App.CurrentCreditCards = _this.CurrentCreditCard = item;
-                    }
-                }
-                if (item.type === '1') {
-                    _this.DepositCards.push(item);
-                    _this.CurrentDepositCard = item;
-                }
-            }
-        })
-            .catch(function (err) { return console.log(err); });
+    // 初始化数据
+    CreditCardPage.prototype.InitData = function () {
+        this.CreditCards = __WEBPACK_IMPORTED_MODULE_4__shared_helper_CardHelper__["b" /* CardHelper */].filterCard(__WEBPACK_IMPORTED_MODULE_4__shared_helper_CardHelper__["a" /* CREDIT_CARD */]);
+        this.DepositCards = __WEBPACK_IMPORTED_MODULE_4__shared_helper_CardHelper__["b" /* CardHelper */].filterCard(__WEBPACK_IMPORTED_MODULE_4__shared_helper_CardHelper__["c" /* DEPOSIT_CARD */]);
+        this.CurrentCreditCard = __WEBPACK_IMPORTED_MODULE_4__shared_helper_CardHelper__["b" /* CardHelper */].getPrimaryCard(__WEBPACK_IMPORTED_MODULE_4__shared_helper_CardHelper__["a" /* CREDIT_CARD */]);
+        this.CurrentDepositCard = __WEBPACK_IMPORTED_MODULE_4__shared_helper_CardHelper__["b" /* CardHelper */].getPrimaryCard(__WEBPACK_IMPORTED_MODULE_4__shared_helper_CardHelper__["c" /* DEPOSIT_CARD */]);
+        if (!__WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(this.CurrentCreditCard) && this.CreditCards.length > 0) {
+            this.CurrentCreditCard = this.CreditCards[0];
+        }
+        if (!__WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(this.CurrentDepositCard) && this.DepositCards.length > 0) {
+            this.CurrentCreditCard = this.DepositCards[0];
+        }
     };
     CreditCardPage.prototype.InputAmount = function () {
         if (!this.Amount.InputAmount) {
@@ -2284,6 +2597,7 @@ var CreditCardPage = /** @class */ (function () {
         }
         this.Amount.OutputAmount = Math.floor((this.Amount.InputAmount * (1 - this.Rate / 100)) * 10) / 10;
     };
+    // 确认提交
     CreditCardPage.prototype.ConfirmPay = function () {
         var _this = this;
         var date = new Date();
@@ -2314,27 +2628,29 @@ var CreditCardPage = /** @class */ (function () {
             }
         });
     };
-    CreditCardPage.prototype.ChangeCard = function () {
+    // 更换信用卡
+    CreditCardPage.prototype.ChangeCreditCard = function () {
         var _this = this;
-        App.ShowModal(App.RootPage.ChangecardsPage, this.CreditCards).then(function (modal) {
+        App.ShowModal('ChangecardsPage', { data: this.CreditCards, t: __WEBPACK_IMPORTED_MODULE_4__shared_helper_CardHelper__["a" /* CREDIT_CARD */] }).then(function (modal) {
             modal.onDidDismiss(function (data) {
-                if (__WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(data)) {
-                    App.CurrentCreditCards = _this.CurrentCreditCard = data;
-                    _this.CreditCards.forEach(function (item) {
-                        if (item.id === data.id) {
-                            item.primary = '1';
-                        }
-                        else {
-                            item.primary = '0';
-                        }
-                    });
-                }
+                _this.CurrentCreditCard = __WEBPACK_IMPORTED_MODULE_4__shared_helper_CardHelper__["b" /* CardHelper */].getCardById(data.id);
             });
         });
     };
+    // 更换储蓄卡
+    CreditCardPage.prototype.ChangeDepositCard = function () {
+        var _this = this;
+        App.ShowModal('ChangecardsPage', { data: this.DepositCards, t: __WEBPACK_IMPORTED_MODULE_4__shared_helper_CardHelper__["c" /* DEPOSIT_CARD */] }).then(function (modal) {
+            modal.onDidDismiss(function (data) {
+                _this.CurrentDepositCard = __WEBPACK_IMPORTED_MODULE_4__shared_helper_CardHelper__["b" /* CardHelper */].getCardById(data.id);
+            });
+        });
+    };
+    // 添加信用卡
     CreditCardPage.prototype.AddCreditCard = function () {
         this.navCtrl.push('AddCreditPage');
     };
+    // 添加储蓄卡
     CreditCardPage.prototype.AddDepositCard = function () {
         this.navCtrl.push('AddDepositPage');
     };
@@ -2352,7 +2668,7 @@ var CreditCardPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 239:
+/***/ 241:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2360,7 +2676,7 @@ var CreditCardPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_timers__ = __webpack_require__(310);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_timers__ = __webpack_require__(311);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_timers___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_timers__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2511,57 +2827,7 @@ var FinalpayPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 240:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__ = __webpack_require__(16);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var HomePage = /** @class */ (function () {
-    function HomePage(zone, Service, nav) {
-        this.zone = zone;
-        this.Service = Service;
-        this.nav = nav;
-        this.App = window.App;
-    }
-    HomePage.prototype.ngOnInit = function () {
-        console.log(location.search);
-        // console.log(App.UserInfo);
-        // console.log(App.Nav.push('SetPasswordPage'));
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Content */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Content */])
-    ], HomePage.prototype, "content", void 0);
-    HomePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-grid>\n\n    <ion-row class="border-bottom-1px">\n\n      <ion-col col-1>\n\n        <ion-icon name="volume-up"></ion-icon>\n\n      </ion-col>\n\n      <ion-col cil-11>我的通知</ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-header>\n\n\n\n<ion-content class="home-page">\n\n  <ion-grid class="page-content">\n\n    <ion-row align-items-center justify-content-center class="border-bottom-1px" p-b-10>\n\n      <ion-col col-10 col-xs-8 col-md-6 col-lg-4>\n\n        <button type="button" class="btn-home-pay" ion-button full>刷卡收款</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row p-t-15>\n\n      <ion-col col-4>\n\n        <a href="#" [navPush]="App.RootPage.AuthPage" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/a-credit.png" alt="办信用卡" width="60" height="60" />\n\n          <label text-center>办信用卡</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#" [navPush]="App.RootPage.AddDepositCamPage" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="身份认证" width="60" height="60" />\n\n          <label text-center>身份认证</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#" [navPush]="App.RootPage.MycardPage" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="会员福利" width="60" height="60" />\n\n          <label text-center>会员福利</label>\n\n        </a>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row>\n\n      <ion-col col-12>\n\n        <ion-label>新手大礼包</ion-label>\n\n        <div>\n\n          <img src="assets/imgs/zhengm.png" />\n\n        </div>\n\n      </ion-col>\n\n    </ion-row>  \n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row>\n\n      <ion-col col-12>\n\n        <ion-label>vip专区</ion-label>\n\n        <div>\n\n          <img src="assets/imgs/zhengm.png" />\n\n        </div>\n\n      </ion-col>\n\n    </ion-row>  \n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row>\n\n      <ion-col col-12>\n\n        <ion-label>精选信用卡</ion-label>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col col-4>\n\n        <a href="#" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="办信用卡" width="60" height="60" />\n\n          <label text-center>办信用卡</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="身份认证" width="60" height="60" />\n\n          <label text-center>身份认证</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="会员福利" width="60" height="60" />\n\n          <label text-center>会员福利</label>\n\n        </a>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\home.html"*/
-        }),
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */], __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
-    ], HomePage);
-    return HomePage;
-}());
-
-//# sourceMappingURL=home.js.map
-
-/***/ }),
-
-/***/ 241:
+/***/ 242:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2608,7 +2874,54 @@ var ListofbankPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 242:
+/***/ 243:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__ = __webpack_require__(16);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var HomePage = /** @class */ (function () {
+    function HomePage(zone, Service, nav) {
+        this.zone = zone;
+        this.Service = Service;
+        this.nav = nav;
+        this.App = window.App;
+    }
+    HomePage.prototype.ngOnInit = function () {
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Content */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Content */])
+    ], HomePage.prototype, "content", void 0);
+    HomePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-home',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-grid>\n\n    <ion-row class="border-bottom-1px">\n\n      <ion-col col-1>\n\n        <ion-icon name="volume-up"></ion-icon>\n\n      </ion-col>\n\n      <ion-col cil-11>我的通知</ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-header>\n\n\n\n<ion-content class="home-page">\n\n  <ion-grid class="page-content">\n\n    <ion-row align-items-center justify-content-center class="border-bottom-1px" p-b-10>\n\n      <ion-col col-10 col-xs-8 col-md-6 col-lg-4>\n\n        <button type="button" class="btn-home-pay" ion-button full>刷卡收款</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row p-t-15>\n\n      <ion-col col-4>\n\n        <a href="#" [navPush]="App.RootPage.AuthPage" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/a-credit.png" alt="办信用卡" width="60" height="60" />\n\n          <label text-center>办信用卡</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#" [navPush]="App.RootPage.AddDepositCamPage" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="身份认证" width="60" height="60" />\n\n          <label text-center>身份认证</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#" [navPush]="App.RootPage.MycardPage" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="会员福利" width="60" height="60" />\n\n          <label text-center>会员福利</label>\n\n        </a>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row>\n\n      <ion-col col-12>\n\n        <ion-label>新手大礼包</ion-label>\n\n        <div>\n\n          <img src="assets/imgs/zhengm.png" />\n\n        </div>\n\n      </ion-col>\n\n    </ion-row>  \n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row>\n\n      <ion-col col-12>\n\n        <ion-label>vip专区</ion-label>\n\n        <div>\n\n          <img src="assets/imgs/zhengm.png" />\n\n        </div>\n\n      </ion-col>\n\n    </ion-row>  \n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row>\n\n      <ion-col col-12>\n\n        <ion-label>精选信用卡</ion-label>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col col-4>\n\n        <a href="#" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="办信用卡" width="60" height="60" />\n\n          <label text-center>办信用卡</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="身份认证" width="60" height="60" />\n\n          <label text-center>身份认证</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="会员福利" width="60" height="60" />\n\n          <label text-center>会员福利</label>\n\n        </a>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\home.html"*/
+        }),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */], __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
+    ], HomePage);
+    return HomePage;
+}());
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 244:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2669,7 +2982,7 @@ var ResetPasswordPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 243:
+/***/ 245:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2809,14 +3122,14 @@ var LoanPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 244:
+/***/ 246:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2881,7 +3194,7 @@ var LoginPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 245:
+/***/ 247:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2919,165 +3232,7 @@ var TabsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 246:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddCreditPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__ = __webpack_require__(56);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-
-var AddCreditPage = /** @class */ (function () {
-    function AddCreditPage(Service, navParams, Auth, fileService) {
-        this.Service = Service;
-        this.navParams = navParams;
-        this.Auth = Auth;
-        this.fileService = fileService;
-        this.App = window.App;
-        this.HeadTitle = "添加信用卡";
-        this.AddWrong = false;
-        this.WrongMsg = '';
-        this.BankCardFront = __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["a" /* BANKCARD_FRONT */];
-        this.GetIdCard(App.UserInfo.idCardNo);
-    }
-    AddCreditPage.prototype.ngOnInit = function () {
-        this.Form_Group_Card = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormGroup */]({
-            CardNo: this.CardNo = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]('', [
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required,
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].minLength(16)
-            ]),
-            Mobile: this.Mobile = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]('', [
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required,
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].pattern(/^1[3|4|5|7|8][0-9]{9}$/)
-            ])
-        });
-    };
-    Object.defineProperty(AddCreditPage.prototype, "CompleteBtnIsDisabled", {
-        get: function () {
-            if (this.CardNo.invalid || this.Mobile.invalid) {
-                return true;
-            }
-            return false;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    AddCreditPage.prototype.GetIdCard = function (IdNo) {
-        if (__WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(IdNo)) {
-            this.ShowIDCard = IdNo.substr(0, 6);
-            for (var i = 0; i < (IdNo.length - 10); i++) {
-                this.ShowIDCard += '*';
-            }
-            this.ShowIDCard += IdNo.substr(-4);
-        }
-    };
-    // 提交数据
-    AddCreditPage.prototype.AddCard = function () {
-        var _this = this;
-        this.Service.AddCreditCard(this.Form_Group_Card.value.CardNo, this.Form_Group_Card.value.Mobile).then(function (res) {
-            if (false !== res) {
-                App.ShowToast('信用卡添加成功');
-                _this.Auth.GetUserData().then(function () { return App.Nav.push(App.RootPage[_this.navParams.data]); });
-            }
-        });
-    };
-    // 选择文件
-    AddCreditPage.prototype.OnChangeFile = function (e) {
-        var _this = this;
-        this.fileService.showAddImage().then(function (rst) {
-            console.log(rst);
-            _this.uploadFile(rst.file, __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["a" /* BANKCARD_FRONT */]);
-        }).catch(function (error) {
-            console.log(error);
-        });
-    };
-    // 保存文件
-    AddCreditPage.prototype.uploadFile = function (file, cType) {
-        return __awaiter(this, void 0, void 0, function () {
-            var res;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.fileService.OcrUpload('file', file, cType)];
-                    case 1:
-                        res = _a.sent();
-                        if (false !== res) {
-                            this.CardNo.setValue(res.cardNo.replace(/\s*/g, ''));
-                        }
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddCreditPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-addcredit',
-            templateUrl: 'addcredits.html'
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_5__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["b" /* FileService */]])
-    ], AddCreditPage);
-    return AddCreditPage;
-}());
-
-//# sourceMappingURL=addcredit.js.map
-
-/***/ }),
-
-/***/ 247:
+/***/ 248:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3110,7 +3265,7 @@ var StartPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 248:
+/***/ 249:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3202,23 +3357,24 @@ var ModifyPasswordPage = /** @class */ (function () {
         configurable: true
     });
     ModifyPasswordPage.prototype.ConfirmModify = function () {
-        this.Service.GetchangePsdData(App.UserInfo['mobile'], this.FormGroup.value.pwd, this.FormGroup.value.VCode);
+        this.Service.GetchangePsdData(App.UserInfo.mobile, this.FormGroup.value.pwd, this.FormGroup.value.VCode);
     };
     ModifyPasswordPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-modifypwd',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\modifypassword\modifypassword.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <div class="register">\n\n    <div>\n\n      <ion-grid text-center>\n\n        <ion-row class="reg-line">\n\n          <ion-col col-12>\n\n            <input type="Tel" [(ngModel)]="tel" readonly>\n\n          </ion-col>\n\n        </ion-row>\n\n        <form novalidate [formGroup]="FormGroup" autocomplete="off">\n\n          <ion-row class="reg-line">\n\n            <ion-col col-7>\n\n              <input type="text" placeholder="请输入验证码" formControlName="VCode" required>\n\n            </ion-col>\n\n            <ion-col col-5>\n\n              <button class="smbtn" (click)="GetTelCode()">{{VCodeText}}</button>\n\n            </ion-col>\n\n          </ion-row>\n\n          <ion-row class="reg-line">\n\n            <ion-col col-12>\n\n              <input [attr.type]="pwdText" placeholder="请设置新密码"  formControlName="pwd" required/>\n\n              <img src="assets/imgs/nosee.png" alt="" class="eye" (click)="pwdType()" *ngIf = "!pwdVisible">\n\n              <img src="assets/imgs/cansee.png" alt="" class="eye" (click)="pwdType()" *ngIf = "pwdVisible" >\n\n            </ion-col>\n\n          </ion-row>\n\n        </form>\n\n        <ion-row m-t-30>\n\n          <ion-col col-12>\n\n            <button class="bgc-grad-primary bgc-header " [disabled]="ConfirmBtnIsDisabled" (click)="ConfirmModify()">确认</button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n    \n\n    '/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\modifypassword\modifypassword.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_auth__["a" /* TAuthService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth__["a" /* TAuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth__["a" /* TAuthService */]) === "function" && _a || Object])
     ], ModifyPasswordPage);
     return ModifyPasswordPage;
+    var _a;
 }());
 
 //# sourceMappingURL=modifypassword.js.map
 
 /***/ }),
 
-/***/ 249:
+/***/ 250:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3264,7 +3420,7 @@ var UcenterPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 250:
+/***/ 251:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3349,7 +3505,7 @@ var SetPasswordPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 251:
+/***/ 252:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3395,7 +3551,7 @@ var OrdersPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 252:
+/***/ 253:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3474,7 +3630,7 @@ var RecordsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 253:
+/***/ 254:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3564,7 +3720,7 @@ var UinfoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 254:
+/***/ 255:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3631,7 +3787,7 @@ var UsetupPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 255:
+/***/ 256:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3711,7 +3867,7 @@ var VIPmembersPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 256:
+/***/ 257:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3720,7 +3876,7 @@ var VIPmembersPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_controller__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_CardHelper__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_CardHelper__ = __webpack_require__(184);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3867,7 +4023,7 @@ var MycardPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 257:
+/***/ 258:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3954,13 +4110,13 @@ var RegisterPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 258:
+/***/ 259:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(259);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(260);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(274);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -3968,7 +4124,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 273:
+/***/ 274:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3976,17 +4132,17 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(184);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_in_app_browser__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_app_version__ = __webpack_require__(191);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_app_version__ = __webpack_require__(192);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_file_transfer__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_camera__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_device__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_component__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_device__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_component__ = __webpack_require__(366);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__UltraCreation_Native_StatusBar__ = __webpack_require__(229);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__UltraCreation_Native_SplashScreen__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__UltraCreation_Native_StatusBar__ = __webpack_require__(230);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__UltraCreation_Native_SplashScreen__ = __webpack_require__(229);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4027,6 +4183,7 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/auth/auth.module#AuthPageModule', name: 'AuthPage', segment: 'auth', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/findpassword/findpassword.module#FindPasswordPageModule', name: 'FindPasswordPage', segment: 'findpassword', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/adddeposit/adddeposit.module#AddDepositPageModule', name: 'AddDepositPage', segment: 'adddeposit', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/addcredit/addcredit.module#CreditCardPageModule', name: 'AddCreditPage', segment: 'addcredit', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/branchcard/branchcard.module#BranchcardPageModule', name: 'BranchcardPage', segment: 'branchcard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/cardinfor/cardinfor.module#CardInforPageModule', name: 'CardInforPage', segment: 'cardinfor', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/changecards/changecards.module#ChangecardsPageModule', name: 'ChangecardsPage', segment: 'changecards', priority: 'low', defaultHistory: [] },
@@ -4034,8 +4191,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/home/confirminfo/confirminfo.module#ConfirminfoPageModule', name: 'ConfirminfoPage', segment: 'confirminfo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/creditcard/creditcard.module#CreditCardPageModule', name: 'CreditCardPage', segment: 'creditcard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/finalpay/finalpay.module#FinalpayPageModule', name: 'FinalpayPage', segment: 'finalpay', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/listofbank/listofbank.module#ListofbankPageModule', name: 'ListofbankPage', segment: 'listofbank', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/resetpassword/resetpassword.module#ResetPasswordPageModule', name: 'ResetPasswordPage', segment: 'resetpassword', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/loan/loan.module#LoanPageModule', name: 'LoanPage', segment: 'loan', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login/:mobile/:key', priority: 'low', defaultHistory: [] },
@@ -4050,8 +4207,7 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/ucenter/ucenter.module#UcenterPageModule', name: 'UcenterPage', segment: 'ucenter', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ucenter/uinfo/uinfo.module#UinfoPageModule', name: 'UinfoPage', segment: 'uinfo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ucenter/usetup/usetup.module#UsetupPageModule', name: 'UsetupPage', segment: 'usetup', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/ucenter/VIPmembers/VIPmembers.module#VIPmembersPageModule', name: 'VIPmembersPage', segment: 'VIPmembers', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/addcredit/addcredit.module#CreditCardPageModule', name: 'AddCreditPage', segment: 'addcredit', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/ucenter/VIPmembers/VIPmembers.module#VIPmembersPageModule', name: 'VIPmembersPage', segment: 'VIPmembers', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["a" /* TranslateModule */].forRoot()
@@ -4088,7 +4244,7 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 307:
+/***/ 308:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4141,14 +4297,14 @@ var Network = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 313:
+/***/ 314:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TApplication; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UltraCreation_ng_ion_appcontroller__ = __webpack_require__(314);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_root__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UltraCreation_ng_ion_appcontroller__ = __webpack_require__(315);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_root__ = __webpack_require__(348);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(18);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -4177,8 +4333,6 @@ var TApplication = /** @class */ (function (_super) {
     __extends(TApplication, _super);
     function TApplication(Injector) {
         var _this = _super.call(this, Injector) || this;
-        // 用户信息
-        _this.UserInfo = {};
         // 银行卡信息
         _this.Cards = new Array();
         // 是否VIP会员
@@ -4271,7 +4425,7 @@ var TApplication = /** @class */ (function (_super) {
         configurable: true
     });
     TApplication.prototype.IsReal = function (page) {
-        if (parseInt(App.UserInfo.idAuthed) !== 1) {
+        if (App.UserInfo.idAuthed !== 1) {
             App.Nav.push(App.RootPage.NoldentifyPage);
         }
         else if (page) {
@@ -4284,7 +4438,7 @@ var TApplication = /** @class */ (function (_super) {
     Object.defineProperty(TApplication.prototype, "IsIdAuthed", {
         // 是否已完成身份认证
         get: function () {
-            return parseInt(App.UserInfo.idAuthed) > 0;
+            return App.UserInfo.idAuthed > 0;
         },
         enumerable: true,
         configurable: true
@@ -4292,7 +4446,7 @@ var TApplication = /** @class */ (function (_super) {
     Object.defineProperty(TApplication.prototype, "IsBankcardAuthed", {
         // 是否完成储蓄卡验证
         get: function () {
-            return parseInt(App.UserInfo.bankcardAuthed) > 0;
+            return App.UserInfo.bankcardAuthed > 0;
         },
         enumerable: true,
         configurable: true
@@ -4326,13 +4480,13 @@ var TApplication = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 314:
+/***/ 315:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TAppController; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_platform_platform__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_components_app_app__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular_components_toast_toast_controller__ = __webpack_require__(104);
@@ -4342,7 +4496,7 @@ var TApplication = /** @class */ (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic_angular_components_action_sheet_action_sheet_controller__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ionic_angular_components_popover_popover_controller__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Core_TypeInfo__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Core_Exception__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Core_Exception__ = __webpack_require__(347);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4764,7 +4918,7 @@ var TAppController = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 346:
+/***/ 347:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4904,66 +5058,66 @@ var EUsage = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 347:
+/***/ 348:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_tabs_tabs__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_tabs_tabs__ = __webpack_require__(247);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "TabsPage", function() { return __WEBPACK_IMPORTED_MODULE_0__pages_tabs_tabs__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_home_home__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_home_home__ = __webpack_require__(243);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "HomePage", function() { return __WEBPACK_IMPORTED_MODULE_1__pages_home_home__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_home_creditcard_creditcard__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_home_creditcard_creditcard__ = __webpack_require__(240);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CreditCardPage", function() { return __WEBPACK_IMPORTED_MODULE_2__pages_home_creditcard_creditcard__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_cardinfor_cardinfor__ = __webpack_require__(234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_cardinfor_cardinfor__ = __webpack_require__(236);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CardInforPage", function() { return __WEBPACK_IMPORTED_MODULE_3__pages_home_cardinfor_cardinfor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_finalpay_finalpay__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_finalpay_finalpay__ = __webpack_require__(241);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FinalpayPage", function() { return __WEBPACK_IMPORTED_MODULE_4__pages_home_finalpay_finalpay__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_confirminfo_confirminfo__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_confirminfo_confirminfo__ = __webpack_require__(239);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirminfoPage", function() { return __WEBPACK_IMPORTED_MODULE_5__pages_home_confirminfo_confirminfo__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_addcredit_addcredit__ = __webpack_require__(246);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_addcredit_addcredit__ = __webpack_require__(234);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AddCreditPage", function() { return __WEBPACK_IMPORTED_MODULE_6__pages_home_addcredit_addcredit__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_changecards_changecards__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_changecards_changecards__ = __webpack_require__(237);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ChangecardsPage", function() { return __WEBPACK_IMPORTED_MODULE_7__pages_home_changecards_changecards__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_adddeposit_adddeposit__ = __webpack_require__(232);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_adddeposit_adddeposit__ = __webpack_require__(233);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AddDepositPage", function() { return __WEBPACK_IMPORTED_MODULE_8__pages_home_adddeposit_adddeposit__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_listofbank_listofbank__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_listofbank_listofbank__ = __webpack_require__(242);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ListofbankPage", function() { return __WEBPACK_IMPORTED_MODULE_9__pages_home_listofbank_listofbank__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_branchcard_branchcard__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_branchcard_branchcard__ = __webpack_require__(235);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "BranchcardPage", function() { return __WEBPACK_IMPORTED_MODULE_10__pages_home_branchcard_branchcard__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_start_start__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_start_start__ = __webpack_require__(248);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "StartPage", function() { return __WEBPACK_IMPORTED_MODULE_11__pages_start_start__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_modifypassword_modifypassword__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_modifypassword_modifypassword__ = __webpack_require__(249);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ModifyPasswordPage", function() { return __WEBPACK_IMPORTED_MODULE_12__pages_modifypassword_modifypassword__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_findpassword_findpassword__ = __webpack_require__(231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_findpassword_findpassword__ = __webpack_require__(232);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FindPasswordPage", function() { return __WEBPACK_IMPORTED_MODULE_13__pages_findpassword_findpassword__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_home_resetpassword_resetpassword__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_home_resetpassword_resetpassword__ = __webpack_require__(244);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ResetPasswordPage", function() { return __WEBPACK_IMPORTED_MODULE_14__pages_home_resetpassword_resetpassword__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_home_checkout_checkout__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_home_checkout_checkout__ = __webpack_require__(238);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CheckoutPage", function() { return __WEBPACK_IMPORTED_MODULE_15__pages_home_checkout_checkout__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_ucenter_ucenter__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_ucenter_ucenter__ = __webpack_require__(250);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "UcenterPage", function() { return __WEBPACK_IMPORTED_MODULE_16__pages_ucenter_ucenter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_login_login__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_login_login__ = __webpack_require__(246);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPage", function() { return __WEBPACK_IMPORTED_MODULE_17__pages_login_login__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_loan_loan__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_loan_loan__ = __webpack_require__(245);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "LoanPage", function() { return __WEBPACK_IMPORTED_MODULE_18__pages_loan_loan__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_setpassword_setpassword__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_setpassword_setpassword__ = __webpack_require__(251);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "SetPasswordPage", function() { return __WEBPACK_IMPORTED_MODULE_19__pages_setpassword_setpassword__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_auth_auth__ = __webpack_require__(230);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_auth_auth__ = __webpack_require__(231);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AuthPage", function() { return __WEBPACK_IMPORTED_MODULE_20__pages_auth_auth__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_ucenter_orders_orders__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_ucenter_orders_orders__ = __webpack_require__(252);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "OrdersPage", function() { return __WEBPACK_IMPORTED_MODULE_21__pages_ucenter_orders_orders__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_ucenter_records_records__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_ucenter_records_records__ = __webpack_require__(253);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "RecordsPage", function() { return __WEBPACK_IMPORTED_MODULE_22__pages_ucenter_records_records__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_ucenter_uinfo_uinfo__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_ucenter_uinfo_uinfo__ = __webpack_require__(254);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "UinfoPage", function() { return __WEBPACK_IMPORTED_MODULE_23__pages_ucenter_uinfo_uinfo__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_ucenter_usetup_usetup__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_ucenter_usetup_usetup__ = __webpack_require__(255);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "UsetupPage", function() { return __WEBPACK_IMPORTED_MODULE_24__pages_ucenter_usetup_usetup__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_ucenter_VIPmembers_VIPmembers__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_ucenter_VIPmembers_VIPmembers__ = __webpack_require__(256);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "VIPmembersPage", function() { return __WEBPACK_IMPORTED_MODULE_25__pages_ucenter_VIPmembers_VIPmembers__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_ucenter_mycard_mycard__ = __webpack_require__(256);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_ucenter_mycard_mycard__ = __webpack_require__(257);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MycardPage", function() { return __WEBPACK_IMPORTED_MODULE_26__pages_ucenter_mycard_mycard__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_register_register__ = __webpack_require__(257);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_register_register__ = __webpack_require__(258);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterPage", function() { return __WEBPACK_IMPORTED_MODULE_27__pages_register_register__["a"]; });
 // import { from } from 'rxjs/observable/from';
 
@@ -4998,178 +5152,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 348:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return CardHelper; });
-/* unused harmony export PRIMARY_CARD */
-/* unused harmony export NOT_PRI_CARD */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CREDIT_CARD; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return DEPOSIT_CARD; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_homeservice__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Core_TypeInfo__ = __webpack_require__(18);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-var CardHelper = /** @class */ (function () {
-    function CardHelper(service) {
-        this.service = service;
-        this.APP = window.App;
-        if (!__WEBPACK_IMPORTED_MODULE_2__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].IsArrayLike(App.Cards)) {
-            this.initData();
-        }
-    }
-    // 初始化数据
-    CardHelper.prototype.initData = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var res;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.service.GetCardList().then(function (resp) { return resp.json(); })];
-                    case 1:
-                        res = _a.sent();
-                        if (false === res) {
-                            App.Cards = new Array();
-                        }
-                        else {
-                            App.Cards = res;
-                        }
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    // 获取主卡
-    CardHelper.getPrimaryCard = function (t) {
-        var cards = App.Cards;
-        var c;
-        cards.forEach(function (card) {
-            if (parseInt(card.type) === t && parseInt(card.primary) === PRIMARY_CARD) {
-                c = card;
-            }
-        });
-        return c;
-    };
-    // 获取一张卡片
-    CardHelper.getOneCard = function (t) {
-        var cards = App.Cards;
-        var c;
-        cards.forEach(function (card) {
-            if (parseInt(card.type) === t) {
-                c = card;
-            }
-        });
-        return c;
-    };
-    // 根据类型刷选卡片
-    CardHelper.filterCard = function (t) {
-        var cards = App.Cards;
-        cards.filter(function (card) {
-            return parseInt(card.type) === t;
-        });
-        return cards;
-    };
-    // 设置主卡
-    CardHelper.setPrimary = function (t, id) {
-        var cards = App.Cards;
-        cards.forEach(function (card, k) {
-            if (parseInt(card.type) === t) {
-                if (card.id === id) {
-                    cards[k].primary = PRIMARY_CARD.toString();
-                }
-                else {
-                    cards[k].primary = NOT_PRI_CARD.toString();
-                }
-            }
-        });
-        App.Cards = cards;
-    };
-    // 删除卡片
-    CardHelper.delCard = function (id) {
-        var cards = App.Cards;
-        cards.forEach(function (v, k) {
-            if (v.id === id) {
-                cards.splice(k, 1);
-            }
-        });
-        App.Cards = cards;
-    };
-    CardHelper = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_homeservice__["a" /* HomeService */]])
-    ], CardHelper);
-    return CardHelper;
-}());
-
-// 主卡
-var PRIMARY_CARD = 1;
-var NOT_PRI_CARD = 0;
-// 信用卡
-var CREDIT_CARD = 0;
-// 储蓄卡
-var DEPOSIT_CARD = 1;
-//# sourceMappingURL=CardHelper.js.map
-
-/***/ }),
-
-/***/ 351:
+/***/ 349:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckAppUpdate; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__ = __webpack_require__(191);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__ = __webpack_require__(192);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_opener__ = __webpack_require__(352);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_device__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_opener__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_device__ = __webpack_require__(193);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5333,25 +5327,24 @@ var CheckAppUpdate = /** @class */ (function () {
     });
     CheckAppUpdate = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__["a" /* AppVersion */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__["a" /* AppVersion */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__["a" /* FileTransfer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__["a" /* FileTransfer */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__ionic_native_device__["a" /* Device */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__ionic_native_device__["a" /* Device */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__["a" /* AppVersion */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__["a" /* FileTransfer */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_device__["a" /* Device */]])
     ], CheckAppUpdate);
     return CheckAppUpdate;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=checkAppUpdate.js.map
 
 /***/ }),
 
-/***/ 368:
+/***/ 366:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Native_SplashScreen__ = __webpack_require__(228);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Native_SplashScreen__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__ = __webpack_require__(230);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers__ = __webpack_require__(128);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5417,10 +5410,10 @@ var MyApp = /** @class */ (function () {
 /* unused harmony export BANKCARD_BACK */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FileService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(182);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz__ = __webpack_require__(305);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz__ = __webpack_require__(306);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_lrz__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_pub_service__ = __webpack_require__(57);
 var __extends = (this && this.__extends) || (function () {
@@ -5782,10 +5775,9 @@ var FileService = /** @class */ (function (_super) {
     };
     FileService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__["a" /* FileTransfer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__["a" /* FileTransfer */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__["a" /* FileTransfer */]])
     ], FileService);
     return FileService;
-    var _a, _b, _c;
 }(__WEBPACK_IMPORTED_MODULE_5__providers_pub_service__["a" /* TBaseService */]));
 
 //# sourceMappingURL=fileservice.js.map
@@ -5797,8 +5789,8 @@ var FileService = /** @class */ (function (_super) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TBaseService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ts_md5_dist_md5__ = __webpack_require__(306);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ts_md5_dist_md5__ = __webpack_require__(307);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ts_md5_dist_md5___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_ts_md5_dist_md5__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Core_TypeInfo__ = __webpack_require__(18);
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -5961,7 +5953,7 @@ var TBaseService = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MineService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_pub_service__ = __webpack_require__(57);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -6190,5 +6182,5 @@ var MineService = /** @class */ (function (_super) {
 
 /***/ })
 
-},[258]);
+},[259]);
 //# sourceMappingURL=main.js.map

@@ -92,6 +92,6 @@ export class ModifyPasswordPage implements OnInit
   }
 
   ConfirmModify() {
-    this.Service.GetchangePsdData(App.UserInfo['mobile'], this.FormGroup.value.pwd, this.FormGroup.value.VCode);
+    this.Service.GetchangePsdData(App.UserInfo.mobile, this.FormGroup.value.pwd, this.FormGroup.value.VCode);
   }
 }
