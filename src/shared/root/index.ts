@@ -6,7 +6,7 @@ export { CreditCardPage } from '../../pages/home/creditcard/creditcard';
 export { CardInforPage } from '../../pages/home/cardinfor/cardinfor';
 export { FinalpayPage } from '../../pages/home/finalpay/finalpay';
 export { ConfirminfoPage } from '../../pages/home/confirminfo/confirminfo';
-export { AddCreditPage } from '../../pages/home/addcredit/addcredit';
+export { AddCreditCardPage } from '../../pages/home/addcreditcard/addcreditcard';
 export { ChangecardsPage } from '../../pages/home/changecards/changecards';
 export { AddDepositPage } from '../../pages/home/adddeposit/adddeposit';
 export { ListofbankPage } from '../../pages/home/listofbank/listofbank';

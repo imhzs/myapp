@@ -25,7 +25,7 @@ export class TApplication extends TAppController
   Platform: Platform;
 
   // 用户信息
-  UserInfo: UserModel;
+  UserInfo: UserModel = <UserModel>{};
 
   // 银行卡信息
   Cards: Array<CardModel> = new Array<CardModel>();
@@ -48,8 +48,7 @@ export class TApplication extends TAppController
 
   private BackButtonPressed: boolean = false;
 
-  constructor(Injector: Injector)
-  {
+  constructor(Injector: Injector) {
     super(Injector);
     window.App = this;
     this.Platform.ready().then(() => {
@@ -80,32 +79,27 @@ export class TApplication extends TAppController
     });
   }
 
-  keyboardShowHandler(e)
-  {
+  keyboardShowHandler(e) {
     if(window.scrollY < 100) {
       window.scrollTo(0, e.keyboardHeight);
     }
   }
 
-  keyboardHideHandler(e)
-  {
+  keyboardHideHandler(e) {
     if(window.scrollY != 0) {
       window.scrollTo(0, 0);
     }
   }
 
-  DisableHardwareBackButton()
-  {
+  DisableHardwareBackButton() {
     this.HardwareBackButtonDisabled = true;
   }
 
-  EnableHardwareBackButton()
-  {
+  EnableHardwareBackButton() {
     this.HardwareBackButtonDisabled = false;
   }
 
-  ShowToast(MsgOrConfig: string | Object): Promise<any>
-  {
+  ShowToast(MsgOrConfig: string | Object): Promise<any> {
     if (MsgOrConfig instanceof Object) {
       return super.ShowToast(MsgOrConfig);
     } else {
@@ -113,8 +107,7 @@ export class TApplication extends TAppController
     }
   }
 
-  ShowLoading(MsgOrConfig?: string | Object): Promise<any>
-  {
+  ShowLoading(MsgOrConfig?: string | Object): Promise<any> {
     if (MsgOrConfig instanceof Object) {
       return super.ShowLoading(MsgOrConfig);
     } else {
@@ -122,23 +115,21 @@ export class TApplication extends TAppController
     }
   }
 
-  ShowError(err: any, duration: number = 3000, position: 'top' | 'bottom' | 'middle' = 'middle'): Promise<void>
-  {
+  ShowError(err: any, duration: number = 3000, position: 'top' | 'bottom' | 'middle' = 'middle'): Promise<void> {
     return super.ShowError(err, {
         duration: duration, position: position,
         style: 'toast-error',  prefix_lang: 'hint.'});
   }
 
-  get UserFace(): any
-  {
+  get UserFace(): any {
     if(TypeInfo.Assigned(localStorage.getItem('imageface'))) {
-      return { backgroundImage : 'url(' + localStorage.getItem('imageface') + ')' };
+      let avatar = localStorage.getItem('imageface');
+      return { backgroundImage : `url(${avatar})` };
     }
     return null;
   }
 
-  IsReal(page?: any)
-  {
+  IsReal(page?: any) {
     if (App.UserInfo.idAuthed !== 1) {
       App.Nav.push(App.RootPage.NoldentifyPage);
     } else if(page) {
@@ -149,25 +140,21 @@ export class TApplication extends TAppController
   }
 
   // 是否已完成身份认证
-  get IsIdAuthed(): boolean
-  {
+  get IsIdAuthed(): boolean {
     return App.UserInfo.idAuthed > 0;
   }
 
   // 是否完成储蓄卡验证
-  get IsBankcardAuthed(): boolean
-  {
+  get IsBankcardAuthed(): boolean {
     return App.UserInfo.bankcardAuthed > 0;
   }
 
   // 是否已完成身份认证
-  get IsCompleteAuthed(): boolean
-  {
+  get IsCompleteAuthed(): boolean {
     return this.IsIdAuthed && this.IsBankcardAuthed;
   }
 
-  get IconFace(): boolean
-  {
+  get IconFace(): boolean {
     if(this.UserFace === null && this.UserInfo.sex === '男') {
       return true;
     }

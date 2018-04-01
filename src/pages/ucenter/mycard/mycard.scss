@@ -1,0 +1,15 @@
+.u-mycard {
+  .segment {
+    .segment-button {
+      height: 4.2rem;
+      line-height: 4rem;
+      background-color: $color-white;
+      border: none;
+      color: color($colors, primary);
+      &.segment-activated {
+        background-color: $color-white;
+        border-bottom: 1px solid color($colors, primary);
+      }
+    }
+  }
+}

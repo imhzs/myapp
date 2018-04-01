@@ -29,7 +29,8 @@ export class LoginPage implements OnInit
 
   constructor(private Auth: TAuthService, public navParams: NavParams, private nav: NavController) {
     this.searchParams = new URLSearchParams(location.search);
-    // this.Auth.thirtyLoogin(this.navParams.get('mobile'), this.navParams.get('key'));
+    this.Auth.thirtyLoogin(this.navParams.get('mobile'), this.navParams.get('key'));
+    console.log(App.UserInfo);
   }
 
   ngOnInit() {

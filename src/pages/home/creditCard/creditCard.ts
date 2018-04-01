@@ -1,10 +1,9 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 
-import { HomeService } from '../../../providers/homeservice';
 import { TypeInfo } from '../../../UltraCreation/Core/TypeInfo';
 import { CardModel } from '../../../models/card-model';
-import { CardHelper, CREDIT_CARD, DEPOSIT_CARD } from '../../../shared/helper/CardHelper';
+import { CardHelper, CREDIT_CARD, DEPOSIT_CARD } from '../../../shared/helper/card-helper';
 
 @IonicPage()
 @Component({
@@ -35,11 +34,9 @@ export class CreditCardPage implements OnInit
     OutputAmount: undefined
   };
 
-  // 是否可以提交标识
-  CanSubmited: boolean = false;
-
-  constructor(public Service: HomeService, public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public cardHelper: CardHelper) {
     this.Rate = App.UserInfo.rate;
+    console.log(App.UserInfo);
     this.InitData();
   }
 
@@ -48,10 +45,10 @@ export class CreditCardPage implements OnInit
 
   // 初始化数据
   InitData() {
-    this.CreditCards = CardHelper.filterCard(CREDIT_CARD);
-    this.DepositCards = CardHelper.filterCard(DEPOSIT_CARD);
-    this.CurrentCreditCard = CardHelper.getPrimaryCard(CREDIT_CARD);
-    this.CurrentDepositCard = CardHelper.getPrimaryCard(DEPOSIT_CARD);
+    this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
+    this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
+    this.CurrentCreditCard = this.cardHelper.getPrimaryCard(CREDIT_CARD);
+    this.CurrentDepositCard = this.cardHelper.getPrimaryCard(DEPOSIT_CARD);
 
     if (!TypeInfo.Assigned(this.CurrentCreditCard) && this.CreditCards.length > 0) {
       this.CurrentCreditCard = this.CreditCards[0];
@@ -62,6 +59,7 @@ export class CreditCardPage implements OnInit
     }
   }
 
+  // 计算到账金额
   InputAmount() {
     if (!this.Amount.InputAmount) {
       this.Amount.OutputAmount = undefined;
@@ -83,31 +81,16 @@ export class CreditCardPage implements OnInit
       App.ShowError('请先添加银行卡和储蓄卡');
       return;
     }
-    
-    this.CanSubmited = true;
 
-    this.Service.GetBankPage(this.CurrentCreditCard.id, this.CurrentDepositCard.id,this.Amount.InputAmount).then(res => {
-      this.CanSubmited = false;
-
-      // 跳转银联页面
-      if(res) {
-        if(res.indexOf('<html>') == -1) {
-          let data = JSON.parse(res);
-          App.ShowError(data.respMsg);
-        } else {
-          App.Nav.push(App.RootPage.FinalpayPage, {innerHtml: res});
-        }
-      } else {
-        App.ShowError('系统异常，请尝试有积分提现, 或稍后再试');
-      }
-    });
+    this.InputAmount();
+    this.navCtrl.push('CheckoutPage', {creditCard: this.CurrentCreditCard, depositCard: this.CurrentDepositCard, amount: this.Amount});
   }
 
   // 更换信用卡
   ChangeCreditCard() {
     App.ShowModal('ChangecardsPage', {data: this.CreditCards, t: CREDIT_CARD}).then((modal) => {
       modal.onDidDismiss((data) => {
-        this.CurrentCreditCard = CardHelper.getCardById(data.id);
+        this.CurrentCreditCard = this.cardHelper.getCardById(data.id);
       })
     });
   }
@@ -116,19 +99,24 @@ export class CreditCardPage implements OnInit
   ChangeDepositCard() {
     App.ShowModal('ChangecardsPage', {data: this.DepositCards, t: DEPOSIT_CARD}).then((modal) => {
       modal.onDidDismiss((data) => {
-        this.CurrentDepositCard = CardHelper.getCardById(data.id);
+        this.CurrentDepositCard = this.cardHelper.getCardById(data.id);
       })
     });
   }
 
   // 添加信用卡
   AddCreditCard() {
-    this.navCtrl.push('AddCreditPage');
+    this.navCtrl.push('AddCreditCardPage');
   }
 
   // 添加储蓄卡
   AddDepositCard() {
     this.navCtrl.push('AddDepositPage');
+  }
+
+  // 是否可以点击下一步
+  get CanGoNext() {
+    return TypeInfo.IsObject(this.CurrentCreditCard) && TypeInfo.IsObject(this.CurrentDepositCard) && this.Amount.InputAmount > 100;
   }
 }
 

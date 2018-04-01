@@ -5,7 +5,7 @@ import { IonicPage } from 'ionic-angular';
 import { HomeService } from '../../../providers/homeservice';
 import { CardModel } from '../../../models/card-model';
 import { TAuthService } from '../../../providers/auth';
-import { CardHelper, PRIMARY_CARD, CREDIT_CARD, DEPOSIT_CARD } from '../../../shared/helper/CardHelper';
+import { CardHelper, PRIMARY_CARD, CREDIT_CARD, DEPOSIT_CARD } from '../../../shared/helper/card-helper';
 
 @IonicPage()
 @Component({
@@ -34,12 +34,12 @@ export class MycardPage implements OnInit
   // 储蓄卡标识
   DepositCard: number = DEPOSIT_CARD;
 
-  constructor(public Servie: HomeService, private Auth: TAuthService, public navCtrl: NavController) {
+  constructor(public Servie: HomeService, private Auth: TAuthService, public navCtrl: NavController, public cardHelper: CardHelper) {
   }
 
   ionViewDidEnter() {
-    this.CreditCards = CardHelper.filterCard(CREDIT_CARD);
-    this.DepositCards = CardHelper.filterCard(DEPOSIT_CARD);
+    this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
+    this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
   }
 
   ngOnInit() {
@@ -49,8 +49,8 @@ export class MycardPage implements OnInit
   DelCreditCards(cardId) {
     this.Servie.DelCard(cardId).then(res => {
       if (res) {
-        CardHelper.delCard(cardId);
-        this.CreditCards = CardHelper.filterCard(CREDIT_CARD);
+        this.cardHelper.delCard(cardId);
+        this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
         
         App.ShowToast('信用卡删除成功');
         App.CurrentCreditCards = {};
@@ -65,8 +65,8 @@ export class MycardPage implements OnInit
   DelDepositCards(cardId) {
     this.Servie.DelCard(cardId).then(res => {
       if (res) {
-        CardHelper.delCard(cardId);
-        this.DepositCards = CardHelper.filterCard(DEPOSIT_CARD);
+        this.cardHelper.delCard(cardId);
+        this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
 
         App.ShowToast('储蓄卡删除成功');
         App.CurrentDepositCard = {};
@@ -81,9 +81,9 @@ export class MycardPage implements OnInit
   async SetPrimaryCard(t: number, id: number) {
     let res = await this.Servie.SetPrimCard(id);
     if (false !== res) {
-      CardHelper.setPrimary(t, id);
-      this.CreditCards = CardHelper.filterCard(CREDIT_CARD);
-      this.DepositCards = CardHelper.filterCard(DEPOSIT_CARD);
+      this.cardHelper.setPrimary(t, id);
+      this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
+      this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
     }
   }
 

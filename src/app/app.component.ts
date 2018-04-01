@@ -13,6 +13,7 @@ export class MyApp
 {
   @ViewChild('rootNavController') nav: NavController;
 
+  // 启动页
   rootPage: string = 'TabsPage';
 
   constructor(App: Svc.TApplication, public Auth: Svc.TAuthService) {
@@ -31,7 +32,7 @@ export class MyApp
       StatusBar.show();
     })
     .then(() => {
-      // this.Auth.judgeLogin().then(root => this.rootPage = root);
+      // this.Auth.judgeLogin();
     });
   }
 }

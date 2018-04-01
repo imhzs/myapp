@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { TBaseService } from '../providers/pub_service';
-import { TypeInfo } from '../UltraCreation/Core/TypeInfo';
 
 @Injectable()
 export class MineService extends TBaseService

@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 
 import { CreditCardPage } from './creditcard';
 import { SharedModule } from '../../../shared';
+import { CardHelper } from '../../../shared/helper/card-helper';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,9 @@ import { SharedModule } from '../../../shared';
   ],
   entryComponents: [
     CreditCardPage
+  ],
+  providers: [
+    CardHelper
   ]
 })
 export class CreditCardPageModule {}

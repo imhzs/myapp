@@ -18,15 +18,13 @@ export class ModifyPasswordPage implements OnInit
     
   VCode: FormControl;
 
+  Password: FormControl;
+
   HeadTitle: string = "修改密码";
 
-  private pwd: FormControl;
+  VCodeText: string = '获取验证码';
 
-  private VCodeText: string = '获取验证码';
-
-  private pwdVisible: boolean = false;
-
-  private pwdText: string = 'password';
+  pwdVisible: boolean = false;
 
   private tel: string = "****";
 
@@ -34,13 +32,16 @@ export class ModifyPasswordPage implements OnInit
   }
 
   ngOnInit() {
-    this.tel = App.UserInfo['mobile'].substr(0,3) + this.tel + App.UserInfo['mobile'].substr(-4);
+    if (App.UserInfo.mobile) {
+      this.tel = App.UserInfo.mobile.toString().substr(0, 3) + this.tel + App.UserInfo.mobile.toString().substr(-4);
+    }
+
     this.FormGroup = new FormGroup({
       VCode: this.VCode = new FormControl('', [
         Validators.required,
         Validators.minLength(4)
       ]),
-      pwd: this.pwd = new FormControl('', [
+      Password: this.Password = new FormControl('', [
         Validators.required,
         Validators.minLength(6)
       ])
@@ -63,7 +64,7 @@ export class ModifyPasswordPage implements OnInit
   }
 
   GetTelCode() {
-    this.Service.getPwdVericode(App.UserInfo['mobile']).then(res => {
+    this.Service.getPwdVericode(App.UserInfo.mobile).then(res => {
       if(res.code === 1) {
       this.times();
         return App.ShowToast('发送成功');
@@ -74,24 +75,14 @@ export class ModifyPasswordPage implements OnInit
     .catch(err => App.ShowToast(err.msg));
   }
 
-  // 密码是否可看
-  pwdType() {
-    this.pwdVisible = !this.pwdVisible;
-    if(this.pwdVisible) {
-      this.pwdText = 'text';
-    } else {
-      this.pwdText = 'password';
-    }
-  }
-
   get ConfirmBtnIsDisabled(): boolean {
-    if(this.VCode.invalid || this.pwd.invalid) {
+    if(this.VCode.invalid || this.Password.invalid) {
       return true;
     }
     return false;
   }
 
   ConfirmModify() {
-    this.Service.GetchangePsdData(App.UserInfo.mobile, this.FormGroup.value.pwd, this.FormGroup.value.VCode);
+    this.Service.GetchangePsdData(App.UserInfo.mobile, this.FormGroup.value.Password, this.FormGroup.value.VCode);
   }
 }

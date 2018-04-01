@@ -28633,6 +28633,11 @@ ion-toolbar.search-bar .searchbar .searchbar-search-icon {
   box-shadow: none;
 }
 
+.btn-form {
+  height: auto;
+  padding: 8px;
+}
+
 .auth-page .card {
   position: relative;
   height: 150px;
@@ -28764,4 +28769,17 @@ ion-toolbar.search-bar .searchbar .searchbar-search-icon {
 
 .ucenter-page .card {
   width: 100%;
+}
+
+.u-mycard .segment .segment-button {
+  height: 4.2rem;
+  line-height: 4rem;
+  background-color: #fff;
+  border: none;
+  color: #569af3;
+}
+
+.u-mycard .segment .segment-button.segment-activated {
+  background-color: #fff;
+  border-bottom: 1px solid #569af3;
 }

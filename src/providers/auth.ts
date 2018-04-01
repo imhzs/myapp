@@ -16,15 +16,12 @@ export class TAuthService extends TBaseService
   async judgeLogin() {
     if (!this.IsLogin) {
       return 'TabsPage';
-      // return App.RootPage.StartPage;
     } else if (!await this.CheckToken()) {
       return 'TabsPage';
-      // return App.RootPage.StartPage;
     } else if(!Network.IsOnline) {
       return 'TabsPage';
-      // return App.RootPage.StartPage;
     } else {
-      // this.GetUserData();
+      this.GetUserData();
       return 'TabsPage';
     }
   }
@@ -88,7 +85,7 @@ export class TAuthService extends TBaseService
   }
 
   // 获取修改密码验证码
-  async getPwdVericode(mobile) {
+  async getPwdVericode(mobile: number) {
     this.SetParam('mobile', mobile);
 
     const result = await this.Post('kpay/api/getPwdVericode').then(res => res.json());
@@ -191,6 +188,8 @@ export class TAuthService extends TBaseService
     if (res.code === 1) {
       localStorage.setItem('token', res.data.token);
       this.GetUserData().then(() => {
+        console.log(App.UserInfo);
+        App.Nav.push('CreditCardPage');
       });
       return true;
     } else {

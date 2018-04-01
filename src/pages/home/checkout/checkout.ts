@@ -4,6 +4,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { CardModel } from '../../../models/card-model';
 import { HomeService } from '../../../providers/homeservice';
+import { AmountOptions } from '../creditcard/creditcard';
 
 @IonicPage()
 @Component({
@@ -32,8 +33,9 @@ export class CheckoutPage
 	CanSubmited: boolean = true;
 
 	constructor (private navParams: NavParams, private service: HomeService) {
-		this.PayAmount = this.navParams.get('payAmount');
-		this.ReceiveAmount = this.navParams.get('receiveAmount');
+		let amount = <AmountOptions>this.navParams.get('amount');
+		this.PayAmount = amount.InputAmount;
+		this.ReceiveAmount = amount.OutputAmount;
 		this.CreditCard = this.navParams.get('creditCard');
 		this.DepositCard = this.navParams.get('depositCard');
 	}
