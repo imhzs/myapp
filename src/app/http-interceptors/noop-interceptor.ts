@@ -16,8 +16,8 @@ export class NoopInterceptor implements HttpInterceptor {
     if (!req.headers.has('Authorization')) {
       let token = localStorage.getItem('token');
       dupReq = req.clone({
-            headers: req.headers.set('Authorization', `Bearer ${token}`)
-          });
+                headers: req.headers.set('Authorization', `Bearer ${token}`)
+              });
     }
     let resp = next.handle(dupReq);
     console.log(resp.take(1));
