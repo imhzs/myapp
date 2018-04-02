@@ -7,32 +7,21 @@ import { TypeInfo } from '../../UltraCreation/Core/TypeInfo';
 @Injectable()
 export class CardHelper
 {
-	APP = <any>window.App;
+	private cards: Array<CardModel> = new Array<CardModel>();
 
 	constructor(private service: HomeService) {
-		if (!TypeInfo.IsArrayLike(App.Cards) || App.Cards.length <= 0) {
-			this.initData();
-		}
-	}
-
-	// 初始化数据
-	async initData() {
-		await this.service.GetCardList().subscribe(
+		this.service.currentCards.subscribe(
 			data => {
-				App.Cards = data;
-			},
-			error => {
-				App.Cards = new Array<CardModel>();
+				this.cards = data;
 			}
 		);
 	}
 
 	// 获取主卡
 	public getPrimaryCard(t: number): CardModel {
-		let cards = App.Cards;
 		let c: CardModel;
 
-		cards.forEach((card) => {
+		this.cards.forEach((card) => {
 			if (parseInt(card.type) === t && parseInt(card.primary) === PRIMARY_CARD) {
 				c = card;
 			}
@@ -42,10 +31,9 @@ export class CardHelper
 
 	// 获取一张卡片
 	public getCardById(id: number): CardModel {
-		let cards = App.Cards;
 		let c: CardModel;
 
-		cards.forEach((card) => {
+		this.cards.forEach((card) => {
 			if (card.id === id) {
 				c = card;
 			}
@@ -55,7 +43,7 @@ export class CardHelper
 
 	// 根据类型刷选卡片
 	public filterCard(t: number): Array<CardModel> {
-		let cards = App.Cards;
+		let cards = this.cards;
 
 		cards.filter((card) => {
 			return parseInt(card.type) === t;
@@ -65,29 +53,26 @@ export class CardHelper
 
 	// 设置主卡
 	public setPrimary(t: number, id: number): void {
-		let cards = App.Cards;
-
-		cards.forEach((card, k) => {
+		this.cards.forEach((card, k) => {
 			if (parseInt(card.type) === t) {
 				if (card.id === id) {
-					cards[k].primary = PRIMARY_CARD.toString();
+					this.cards[k].primary = PRIMARY_CARD.toString();
 				} else {
-					cards[k].primary = NOT_PRI_CARD.toString();
+					this.cards[k].primary = NOT_PRI_CARD.toString();
 				}
 			}
 		});
-		App.Cards = cards;
+		this.service.updateCards(this.cards);
 	}
 
 	// 删除卡片
 	public delCard(id: number) {
-		let cards = App.Cards;
-		cards.forEach((v, k) => {
+		this.cards.forEach((v, k) => {
 			if (v.id === id) {
-				cards.splice(k, 1);
+				this.cards.splice(k, 1);
 			}
 		});
-		App.Cards = cards;
+		this.service.updateCards(this.cards);
 	}
 }
 

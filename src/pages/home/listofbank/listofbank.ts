@@ -21,8 +21,8 @@ export class ListofbankPage implements OnInit
   }
 
   ngOnInit() {
-    this.Service.GetTolBanks().then(res => {
-      // this.BankList = res;
+    this.Service.GetTolBanks().subscribe(data => {
+      // this.BankList = data;
     })
   }
 

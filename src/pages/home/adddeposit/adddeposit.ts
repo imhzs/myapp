@@ -123,7 +123,7 @@ export class AddDepositPage implements OnInit
   Finish() {
     this.Service.AddDeposiCard(this.Form_Group.value.CardNo, this.BankName,
       this.TranCode, this.BranchName, this.Form_Group.value.Mobile).subscribe(res => {
-        this.Auth.GetUserData().subscribe(data => {
+        this.Auth.currentUser.subscribe(data => {
           App.Nav.push(App.RootPage[this.navParams.data]);
         });
       });

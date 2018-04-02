@@ -18,14 +18,6 @@ export class ThirdPartyPage
   App: any = <any>window.App;
 
   constructor (private auth: TAuthService, private nav: NavController, private navParams: NavParams) {
-    this.auth.thirdPartyLogin(this.navParams.get('mobile'), this.navParams.get('key')).subscribe(data => {
-      CredentialHelper.setToken(data.data.token);
-      this.auth.GetUserData().subscribe(
-        data => {
-          App.UserInfo = <UserModel>data.data;
-          App.Nav.push('CreditCardPage');
-        }
-      );
-    });
+    this.auth.thirdPartyLogin(this.navParams.get('mobile'), this.navParams.get('key'));
   }
 }

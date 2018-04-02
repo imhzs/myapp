@@ -64,15 +64,8 @@ export class ModifyPasswordPage implements OnInit
   }
 
   GetTelCode() {
-    this.Service.getPwdVericode(App.UserInfo.mobile).then(res => {
-      // if(res.code === 1) {
-      // this.times();
-      //   return App.ShowToast('发送成功');
-      // } else {
-      //   return App.ShowToast(res.msg)
-      // }
+    this.Service.getPwdVericode(App.UserInfo.mobile).subscribe(res => {
     })
-    .catch(err => App.ShowToast(err.msg));
   }
 
   get ConfirmBtnIsDisabled(): boolean {

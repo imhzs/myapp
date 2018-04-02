@@ -16,7 +16,7 @@ export class OrdersPage
 
   GetCashDetail(id)
   {
-    this.Service.GetCashDetail(id).then(res => this.OrderDetail = res)
+    this.Service.GetCashDetail(id).subscribe(data => this.OrderDetail = data.data);
   }
 
   HeadTitle: string = "订单详情";

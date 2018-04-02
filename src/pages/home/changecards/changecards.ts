@@ -37,9 +37,9 @@ export class ChangecardsPage implements OnInit
     for (let i of this.BankList) i.chose = false;
     item.chose = !item.chose;
 
-    this.Service.SetPrimCard(item.id)
-    .then(() => setTimeout(() => App.ActiveView.dismiss(item)))
-    .catch((err) => App.ShowError('接口异常...'));
+    this.Service.SetPrimCard(item.id).subscribe(data => {
+      App.ActiveView.dismiss(item);
+    });
   }
 
   public confirmCard() {

@@ -15,28 +15,20 @@ export class TAuthService extends TBaseService
 {
   App: any = <any>window.App;
 
-  public subject: Subject<UserModel> = new Subject<UserModel>(); 
+  public subject: Subject<UserModel> = new Subject<UserModel>();
 
   constructor(protected http: HttpClient) {
     super(http);
   }
 
-  judgeLogin() {
-    if (!this.IsLogin) {
-      return 'TabsPage';
-    }
-    this.CheckToken().subscribe(
-      data => {
-        this.GetUserData();
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-
+  // 获取当前登录用户
   get currentUser(): Observable<UserModel> {
     return this.subject.asObservable();
+  }
+
+  // 更新用户数据
+  public updateUser(user: any) {
+    this.subject.next(Object.assign({}, user));
   }
 
   // 登录
@@ -136,8 +128,8 @@ export class TAuthService extends TBaseService
   // 获取用户信息
   GetUserData() {
     return this.Post('kpay/api/user/info').map((resp: any) => {
-      let userResponseJson: UserModel = resp.data;
-      this.subject.next(Object.assign({}, userResponseJson));
+      let userData: UserModel = resp.data;
+      this.updateUser(userData);
     })
     .subscribe(
       data => {
@@ -161,6 +153,7 @@ export class TAuthService extends TBaseService
       data => {
         CredentialHelper.setToken(data.data.token);
         this.GetUserData();
+        App.Nav.push('CreditCardPage');
       },
       error => {
         console.error(error);  

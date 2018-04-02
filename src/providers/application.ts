@@ -6,6 +6,7 @@ import * as RootPage from '../shared/root';
 import { TypeInfo } from '../UltraCreation/Core/TypeInfo';
 import { CardModel } from '../models/card-model';
 import { UserModel } from '../models/user-model';
+import { TAuthService } from '../providers/auth';
 
 declare global
 {
@@ -48,7 +49,7 @@ export class TApplication extends TAppController
 
   private BackButtonPressed: boolean = false;
 
-  constructor(Injector: Injector) {
+  constructor(Injector: Injector, public auth: TAuthService) {
     super(Injector);
     window.App = this;
     this.Platform.ready().then(() => {
@@ -76,6 +77,12 @@ export class TApplication extends TAppController
         window.addEventListener('native.keyboardshow', this.keyboardShowHandler.bind(this));
         window.addEventListener('native.keyboardhide', this.keyboardHideHandler.bind(this));
       }
+
+      this.auth.currentUser.subscribe(data => {
+        console.log('User Data');
+        console.log(data);
+        this.UserInfo = data;
+      });
     });
   }
 

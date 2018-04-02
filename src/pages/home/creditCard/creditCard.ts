@@ -2,6 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 
 import { TAuthService } from '../../../providers/auth';
+import { HomeService } from '../../../providers/homeservice';
 import { TypeInfo } from '../../../UltraCreation/Core/TypeInfo';
 import { CardModel } from '../../../models/card-model';
 import { CardHelper, CREDIT_CARD, DEPOSIT_CARD } from '../../../shared/helper/card-helper';
@@ -35,14 +36,14 @@ export class CreditCardPage implements OnInit
     OutputAmount: undefined
   };
 
-  constructor(public navCtrl: NavController, public cardHelper: CardHelper, private auth: TAuthService) {
-    this.InitData();
+  constructor(public navCtrl: NavController, public cardHelper: CardHelper, private auth: TAuthService, private homeService: HomeService) {
+    this.homeService.GetCardList();
+    this.auth.currentUser.subscribe((data) => {
+      this.InitData();
+    })
   }
 
-  ngOnInit() {
-    this.auth.currentUser.subscribe((data) => {
-      console.log(data);
-    })
+  ngOnInit() {  
   }
 
   // 初始化数据
@@ -51,6 +52,8 @@ export class CreditCardPage implements OnInit
     this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
     this.CurrentCreditCard = this.cardHelper.getPrimaryCard(CREDIT_CARD);
     this.CurrentDepositCard = this.cardHelper.getPrimaryCard(DEPOSIT_CARD);
+
+    console.log('CurrentCreditCard', this.CurrentCreditCard);
 
     if (!TypeInfo.Assigned(this.CurrentCreditCard) && this.CreditCards.length > 0) {
       this.CurrentCreditCard = this.CreditCards[0];

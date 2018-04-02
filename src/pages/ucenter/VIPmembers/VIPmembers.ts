@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+// import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { IonicPage } from 'ionic-angular';
 
 import { MineService } from '../../../providers/mineservice';
@@ -16,52 +16,34 @@ export class VIPmembersPage implements OnInit
     this.GetVipDeadLine(10);
   }
 
-  ngOnInit()
-  {
-
-    this.Service.GetVipList().then(res => {
-      // this.VipList = res;
-      // for (let i = 0; i < this.VipList.length; i ++)
-      // {
-      //   // let len = this.VipList[i].name.length;
-      //   // this.VipList[i].name = this.VipList[i].name.substr(0, len-4);
-      //   if (this.VipList[i].name.indexOf(App.UserInfo['rank']) !== -1)
-      //   {
-      //     this.VipId = this.VipList[i].id;
-      //   }
-
-      // }
-      // this.PayAmount = this.VipList[this.VipIndex].price;
-      // console.log(this.VipList);
+  ngOnInit() {
+    this.Service.GetVipList().subscribe(resp => {
+      this.VipList = resp.data;
+      for (let i = 0; i < this.VipList.length; i ++) {
+        if (this.VipList[i].name.indexOf(App.UserInfo['rank']) !== -1) {
+          this.VipId = this.VipList[i].id;
+        }
+      }
+      this.PayAmount = this.VipList[this.VipIndex].price;
     });
 
-    if (App.UserInfo['vip'])
-    {
+    if (App.UserInfo['vip']) {
       this.GetVipDeadLine(App.UserInfo['packageDays']);
     }
   }
 
-  ChooseVIP(ind)
-  {
+  ChooseVIP(ind) {
     if (this.VipList[ind].name == App.UserInfo['rank']) return;
     this.VipIndex = ind;
     this.PayAmount = this.VipList[ind].price;
   }
 
-  Submit()
-  {
-
-    this.Service.BuyVip(this.VipList[this.VipIndex].id).then(res => {
-
-      // new InAppBrowser().create(res.qrCode, '_system');
-
+  Submit() {
+    this.Service.BuyVip(this.VipList[this.VipIndex].id).subscribe(resp => {
     })
-
   }
 
-
-  GetVipDeadLine(days: number)//number
-  {
+  GetVipDeadLine(days: number) {
     const TDate = new Date().getTime();
     let stamp = days * 864e5;
     let DeadStamp = TDate + stamp;

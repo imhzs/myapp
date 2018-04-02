@@ -17,7 +17,7 @@ export class MyApp
   // 启动页
   rootPage: string = 'TabsPage';
 
-  constructor(App: TApplication, public Auth: TAuthService) {
+  constructor(App: TApplication, public auth: TAuthService) {
     App.Platform.ready().then(() => {
       SplashScreen.show();
       StatusBar.hide();
@@ -31,9 +31,8 @@ export class MyApp
     .then(() => {
       SplashScreen.hide();
       StatusBar.show();
-    })
-    .then(() => {
-      this.Auth.judgeLogin();
+    }).then(() => {
+      this.auth.GetUserData();
     });
   }
 }

@@ -24,7 +24,7 @@ export class RecordsPage
   }
 
   GetCashList() {
-    this.Service.GetCashList().then(res => this.DataProcess(res));
+    this.Service.GetCashList().subscribe(data => this.DataProcess(data.data));
   }
 
   DataProcess(data) {

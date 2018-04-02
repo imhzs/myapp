@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
+import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
+const _ = require('lodash');
+
 import { TBaseService } from '../providers/pub_service';
+import { CardModel } from '../models/card-model';
 
 @Injectable()
 export class HomeService extends TBaseService
 {
+  public subject: Subject<Array<CardModel>> = new Subject<Array<CardModel>>();
+
   constructor(protected http: HttpClient) {
     super(http);
   }
@@ -27,8 +34,28 @@ export class HomeService extends TBaseService
   }
 
   // 获取银行卡列表
-  GetCardList(): Observable<any> {
-    return this.Post('kpay/api/bankcard/list');
+  GetCardList() {
+    return this.Post('kpay/api/bankcard/list').map((resp: any) => {
+      let cards: Array<CardModel> = resp.data;
+      this.updateCards(cards);
+    }).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  // 用户当前卡片
+  get currentCards() {
+    return this.subject.asObservable();
+  }
+
+  // 更新卡片数据
+  public updateCards(cards) {
+    this.subject.next(_.concat(new Array<CardModel>(), cards));
   }
 
   // 设置银行卡主卡

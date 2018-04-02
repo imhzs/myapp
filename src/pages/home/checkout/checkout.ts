@@ -54,20 +54,15 @@ export class CheckoutPage
     }
 
     this.CanSubmited = false;
-    this.service.GetBankPage(this.CreditCard.id, this.DepositCard.id,this.PayAmount).then(res => {
+    this.service.GetBankPage(this.CreditCard.id, this.DepositCard.id,this.PayAmount).subscribe(data => {
       // 跳转银联页面
-      // if(res) {
-      //   if (/^[http:\/\/|https:\/\/](.*)?/.test(res)) {
-      //     (new InAppBrowser()).create(encodeURI(res));
-      //   } else if(res.indexOf('<html>') == -1) {
-      //     let data = JSON.parse(res);
-      //     App.ShowError(data.respMsg);
-      //   } else {
-      //     App.Nav.push(App.RootPage.FinalpayPage, {innerHtml: res});
-      //   }
-      // } else {
-      //   App.ShowError('系统异常，请尝试有积分提现, 或稍后再试');
-      // }
+      if (/^[http:\/\/|https:\/\/](.*)?/.test(data)) {
+				(new InAppBrowser()).create(encodeURI(data));
+			} else if(data.indexOf('<html>') == -1) {
+				App.ShowError(data.respMsg);
+			} else {
+				App.Nav.push(App.RootPage.FinalpayPage, {innerHtml: data});
+			}
     });
 	}
 }
