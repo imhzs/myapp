@@ -1,13 +1,14 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 
+import { TAuthService } from '../../../providers/auth';
 import { TypeInfo } from '../../../UltraCreation/Core/TypeInfo';
 import { CardModel } from '../../../models/card-model';
 import { CardHelper, CREDIT_CARD, DEPOSIT_CARD } from '../../../shared/helper/card-helper';
 
 @IonicPage()
 @Component({
-  selector: 'page-creditCard',
+  selector: 'page-creditcard',
   templateUrl: 'creditcard.html'
 })
 @Injectable()
@@ -34,13 +35,14 @@ export class CreditCardPage implements OnInit
     OutputAmount: undefined
   };
 
-  constructor(public navCtrl: NavController, public cardHelper: CardHelper) {
-    this.Rate = App.UserInfo.rate;
-    console.log(App.UserInfo);
+  constructor(public navCtrl: NavController, public cardHelper: CardHelper, private auth: TAuthService) {
     this.InitData();
   }
 
   ngOnInit() {
+    this.auth.currentUser.subscribe((data) => {
+      console.log(data);
+    })
   }
 
   // 初始化数据

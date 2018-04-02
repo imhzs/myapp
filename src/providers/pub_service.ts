@@ -1,5 +1,7 @@
-import { Http, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { URLSearchParams } from '@angular/http';
 import { Md5 } from "ts-md5/dist/md5";
+import { Observable } from 'rxjs/Observable';
 
 import { TypeInfo } from '../UltraCreation/Core/TypeInfo';
 
@@ -7,12 +9,21 @@ const API_URL = 'http://39.104.113.132';
 
 export class TBaseService
 {
-  protected headers: Headers;
+  // 请求失败
+  static REQ_OK: number = 1;
+
+  // 请求成功
+  static REQ_FAIL: number = 0;
+
+  // 登录超时
+  static SESSION_TIMEOUT = 2;
+
+  protected headers: HttpHeaders;
 
   protected params: URLSearchParams;
 
-  constructor(public http: Http) {
-    this.headers = new Headers();
+  constructor(protected http: HttpClient) {
+    this.headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
     this.params = new URLSearchParams();
   }
 
@@ -28,55 +39,38 @@ export class TBaseService
     return '';
   }
 
-  get CreateHeader() {
-    this.SetHeader('Authorization', this.getToken);
-    this.setDefaultContentType();
-
-    return new RequestOptions({headers: this.headers});
-  }
-
-  protected setDefaultContentType() {
-    if (!this.headers.has('Content-Type')) {
-      this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    }
-  }
-
   // 设置请求头
   SetHeader(name: string, value: string) {
-    if (this.headers.has(name)) {
-      this.headers.delete(name);
-      this.headers.set(name, value);
-    } else {
-      this.headers.append(name, value);
-    }
+    this.headers.set(name, value);
   }
 
+  // md5加密
   Md5T(Password: string) {
     return Md5.hashStr(Password.toString());
   }
 
+  // get请求
   async Get(uri: string){
     let url = API_URL + '/' + uri;
-    return await this.http.get(url, this.CreateHeader).toPromise();
+    return await this.http.get(url, {headers: this.headers});
   }
 
-  async Post(Uri: string, Data?: any) {
-    App.ShowLoading();
-    let url = API_URL + '/' + Uri;
-    App.HideLoading();
+  // 发送POST请求
+  Post(Uri: string, Data?: any): Observable<any> {
+    let url = `${API_URL}/${Uri}`;
     let params = this.params.toString();
     this.setNewParams();
-    return await this.http.post(url, params, this.CreateHeader).toPromise();
+    return this.http.post(url, params, {headers: this.headers});
   }
 
   async PostNoLoading(Uri: string, Data?: any) {
     let url = API_URL + '/' + Uri;
     let params = this.params.toString();
-    console.log(params);
     this.setNewParams();
-    return await this.http.post(url, params, this.CreateHeader).toPromise();
+    return await this.http.post(url, params, {headers: this.headers});
   }
 
+  // 设置参数
   public SetParam(key: string, value: any) {
     if (this.params.has(key)) {
       this.params.set(key, value);
@@ -85,6 +79,7 @@ export class TBaseService
     }
   }
 
+  // 重置请求参数
   protected setNewParams() {
     this.params = new URLSearchParams();
   }

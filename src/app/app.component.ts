@@ -3,7 +3,8 @@ import { NavController } from 'ionic-angular';
 
 import { SplashScreen } from '../UltraCreation/Native/SplashScreen';
 import { StatusBar } from '../UltraCreation/Native/StatusBar';
-import * as Svc from '../providers';
+import { TApplication } from '../providers/application';
+import { TAuthService } from '../providers/auth';
 
 @Component({
   template: `<ion-nav #rootNavController [root]="rootPage"></ion-nav>`
@@ -16,7 +17,7 @@ export class MyApp
   // 启动页
   rootPage: string = 'TabsPage';
 
-  constructor(App: Svc.TApplication, public Auth: Svc.TAuthService) {
+  constructor(App: TApplication, public Auth: TAuthService) {
     App.Platform.ready().then(() => {
       SplashScreen.show();
       StatusBar.hide();
@@ -32,7 +33,7 @@ export class MyApp
       StatusBar.show();
     })
     .then(() => {
-      // this.Auth.judgeLogin();
+      this.Auth.judgeLogin();
     });
   }
 }

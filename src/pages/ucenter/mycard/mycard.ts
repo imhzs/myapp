@@ -47,44 +47,36 @@ export class MycardPage implements OnInit
 
   // 删除信用卡
   DelCreditCards(cardId) {
-    this.Servie.DelCard(cardId).then(res => {
-      if (res) {
-        this.cardHelper.delCard(cardId);
-        this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
-        
-        App.ShowToast('信用卡删除成功');
-        App.CurrentCreditCards = {};
-        this.Auth.GetUserData();
-      } else {
-        App.ShowError('信用卡删除失败');
-      }
+    this.Servie.DelCard(cardId).subscribe(res => {
+      this.cardHelper.delCard(cardId);
+      this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
+      
+      App.ShowToast('信用卡删除成功');
+      App.CurrentCreditCards = {};
+      this.Auth.GetUserData();
     })
   }
 
   // 删除储蓄卡
   DelDepositCards(cardId) {
-    this.Servie.DelCard(cardId).then(res => {
-      if (res) {
-        this.cardHelper.delCard(cardId);
-        this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
+    this.Servie.DelCard(cardId).subscribe(data => {
+      this.cardHelper.delCard(cardId);
+      this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
 
-        App.ShowToast('储蓄卡删除成功');
-        App.CurrentDepositCard = {};
-        this.Auth.GetUserData();
-      } else {
-        App.ShowError('信用卡删除失败');
-      }
+      App.ShowToast('储蓄卡删除成功');
+      App.CurrentDepositCard = {};
+      this.Auth.GetUserData();
     })
   }
 
   // 设置主卡
   async SetPrimaryCard(t: number, id: number) {
-    let res = await this.Servie.SetPrimCard(id);
-    if (false !== res) {
-      this.cardHelper.setPrimary(t, id);
-      this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
-      this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
-    }
+    let res = this.Servie.SetPrimCard(id);
+    // if (false !== res) {
+    //   this.cardHelper.setPrimary(t, id);
+    //   this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
+    //   this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
+    // }
   }
 
   // 添加信用卡

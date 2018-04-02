@@ -1,26 +1,49 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpEvent, HttpInterceptor, HttpHandler, HttpRequest
-} from '@angular/common/http';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
+import { ErrorObservable } from 'rxjs/Observable/ErrorObservable';
+import { catchError, tap } from 'rxjs/operators';
+import { PartialObserver } from 'rxjs/Observer';
 
-import { Storage } from '@ionic/storage';
+import { CredentialHelper } from '../../shared/helper/credential-helper';
+import { TBaseService } from '../../providers/pub_service';
+import { TypeInfo } from '../../UltraCreation/Core/TypeInfo';
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()
-export class NoopInterceptor implements HttpInterceptor {
+export class NoopInterceptor implements HttpInterceptor
+{
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('Authorization');
-    let dupReq: HttpRequest = req;
+    let jwtReq: HttpRequest<any> = req;
     if (!req.headers.has('Authorization')) {
       let token = localStorage.getItem('token');
-      dupReq = req.clone({
-                headers: req.headers.set('Authorization', `Bearer ${token}`)
-              });
+      jwtReq = req.clone({ headers: req.headers.set('Authorization', `Bearer ${token}`) });
     }
-    let resp = next.handle(dupReq);
-    console.log(resp.take(1));
-    return resp;
+
+    return next.handle(jwtReq).pipe(catchError(this.handleError)).pipe(tap((event) => {
+      console.log('response');
+      if (event instanceof HttpResponse) {
+        if (event.body.code === TBaseService.SESSION_TIMEOUT) {
+          App.Nav.push('LoginPage');
+          return new ErrorObservable('登录超时');
+        } else if (event.body.code === TBaseService.REQ_FAIL) {
+          if (TypeInfo.Assigned(event.body.msg)) {
+            App.ShowError(event.body.msg);
+          }
+          return new ErrorObservable('请求失败');
+        }
+      }
+    }));
+  }
+
+  // 错误处理
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.error.message);
+    } else {
+      console.log(`Backend returned code ${error.status}, body was: ${error.error}`);
+    }
+    return new ErrorObservable('Something bad happened; please try again later.');
   }
 }

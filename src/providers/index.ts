@@ -1,6 +1,14 @@
-export * from './application';
-export * from './mineservice';
-export * from './homeservice';
-export * from './auth';
-export * from './fileservice';
-export * from './checkAppUpdate';
+import { TApplication } from './application';
+import { MineService } from './mineservice';
+import { HomeService } from './homeservice';
+import { TAuthService } from './auth';
+import { FileService } from './fileservice';
+import { CheckAppUpdate } from './checkAppUpdate';
+
+import { NgModule } from '@angular/core';
+
+@NgModule({
+  providers: [TApplication, MineService, HomeService, TAuthService, FileService, CheckAppUpdate]
+})
+
+export class ProviderModule { }

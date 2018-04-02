@@ -1,93 +1,49 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { TBaseService } from '../providers/pub_service';
 
 @Injectable()
 export class MineService extends TBaseService
 {
-  constructor(public http: Http) {
+  constructor(public http: HttpClient) {
     super(http);
   }
 
   //获取取现记录列表
-  async GetCashList() {
-    const result = await this.Post('kpay/api/cash/getCashList').then(res => res.json());
-    console.log(result);
-
-    if (result.code === 1) {
-      return result.data;
-    } else {
-      App.ShowError(result.msg);
-      App.Nav.pop();
-    }
+  GetCashList() {
+    return this.Post('kpay/api/cash/getCashList');
   }
 
   // 获取取现记录详情
-  async GetCashDetail(orderId) {
+  GetCashDetail(orderId) {
     this.SetParam('id', orderId);
-    const result = await this.Post('kpay/api/cash/getCashDetail').then(res => res.json());
-    if (result.code === 1) {
-      return result.data;
-    } else {
-      App.ShowError(result.msg);
-      App.Nav.pop();
-    }
+    return this.Post('kpay/api/cash/getCashDetail');
   }
 
   // 获取红包礼券voucher
-  async GetVoucherList() {
-    const result = await this.Post('kpay/api/cash/cashback/list').then(res => res.json());
-    if (result.code === 1) {
-      return result.data;
-    } else {
-      App.ShowError(result.msg);
-      App.Nav.pop();
-    }
+  GetVoucherList() {
+    return this.Post('kpay/api/cash/cashback/list');
   }
 
   // 获取我的客户
-  async GetMyCustomer() {
-    const result = await this.Post('kpay/api/user/mycustomer').then(res => res.json());
-    if (result.code === 1) {
-      return result.data;
-    } else {
-      App.ShowError(result.msg);
-      App.Nav.pop();
-    }
+  GetMyCustomer() {
+    return this.Post('kpay/api/user/mycustomer');
   }
 
   // 获取返现记录
-  async GetCashBack() {
-    const result = await this.Post('kpay/api/trade/list').then(res => res.json());
-    if (result.code === 1) {
-      return result.data;
-    } else {
-      App.ShowError(result.msg);
-      App.Nav.pop();
-    }
+  GetCashBack() {
+    return this.Post('kpay/api/trade/list');
   }
 
   // 获取VIP套餐列表
-  async GetVipList() {
-    const result = await this.Post('kpay/api/package/list').then(res => res.json());
-    if (result.code === 1) {
-      return result.data;
-    } else {
-      App.ShowError(result.msg);
-      App.Nav.pop();
-    }
+  GetVipList() {
+    return this.Post('kpay/api/package/list');
   }
 
   // 购买Vip
-  async BuyVip(id) {
+  BuyVip(id) {
     this.SetParam('packId', id);
-    const result = await this.Post('kpay/api/package/buy', {packId: id}).then(res => res.json());
-    if (result.code === 1) {
-      return result.data;
-    } else {
-      App.ShowError(result.msg);
-      return false
-    }
+    return this.Post('kpay/api/package/buy', {packId: id});
   }
 }
 

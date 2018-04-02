@@ -130,23 +130,26 @@ export class TApplication extends TAppController
   }
 
   IsReal(page?: any) {
-    if (App.UserInfo.idAuthed !== 1) {
-      App.Nav.push(App.RootPage.NoldentifyPage);
-    } else if(page) {
-      App.Nav.push(page);
-    } else {
-      return;
-    }
+    return false;
+    // if (App.UserInfo.idAuthed !== 1) {
+    //   App.Nav.push(App.RootPage.NoldentifyPage);
+    // } else if(page) {
+    //   App.Nav.push(page);
+    // } else {
+    //   return;
+    // }
   }
 
   // 是否已完成身份认证
   get IsIdAuthed(): boolean {
-    return App.UserInfo.idAuthed > 0;
+    return false;
+    // return App.UserInfo.idAuthed > 0;
   }
 
   // 是否完成储蓄卡验证
   get IsBankcardAuthed(): boolean {
-    return App.UserInfo.bankcardAuthed > 0;
+    return false;
+    // return App.UserInfo.bankcardAuthed > 0;
   }
 
   // 是否已完成身份认证
@@ -155,9 +158,9 @@ export class TApplication extends TAppController
   }
 
   get IconFace(): boolean {
-    if(this.UserFace === null && this.UserInfo.sex === '男') {
-      return true;
-    }
+    // if(this.UserFace === null && this.UserInfo.sex === '男') {
+    //   return true;
+    // }
     return false;
   }
 }

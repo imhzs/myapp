@@ -59,19 +59,18 @@ export class RegisterPage implements OnInit
 
   // 验证手机号码以及验证码
   GetVeriyCode() {
-    this.Service.GetVerifyCode(this.formGroup.value.Tel).then(res => {
-      if(res.code === 1) {
-        this.State = 1;
-        this.times();
-        return App.ShowToast("发送成功");
-      } else {
-        return App.ShowToast(res.msg)
+    this.Service.GetVerifyCode(this.formGroup.value.Tel).subscribe(
+      data => {
+        console.log(data);
       }
-    })
-    .catch(err => App.ShowToast(err.msg));
+    );
   }
 
   NextTable() {
-    this.Service.CheckVerifyCode(this.formGroup.value.Tel, this.formGroup.value.VCode);
+    this.Service.CheckVerifyCode(this.formGroup.value.Tel, this.formGroup.value.VCode).subscribe(
+      data => {
+        console.log(data);
+      }
+    );
   }
 }

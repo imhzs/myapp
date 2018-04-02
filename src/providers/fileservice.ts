@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FileTransfer, FileUploadOptions } from '@ionic-native/file-transfer';
 import lrz from 'lrz';
@@ -24,7 +24,7 @@ export class FileService extends TBaseService
 
   protected targetHeight: number = 292;
 
-  constructor(public http: Http, private camera: Camera, private fileTransfer: FileTransfer) {
+  constructor(public http: HttpClient, private camera: Camera, private fileTransfer: FileTransfer) {
     super(http);
     this.params = new FormData();
   }

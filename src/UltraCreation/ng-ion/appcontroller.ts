@@ -1,5 +1,5 @@
 import {Injectable, Injector, isDevMode} from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
+// import {TranslateService} from '@ngx-translate/core';
 
 import {Platform} from 'ionic-angular/platform/platform';
 import {App} from 'ionic-angular/components/app/app';
@@ -48,7 +48,7 @@ export class TAppController
     this.ActionSheetCtrl = Injector.get(ActionSheetController);
     this.PopoverCtrl = Injector.get(PopoverController);
 
-    this.Translation = Injector.get(TranslateService);
+    // this.Translation = Injector.get(TranslateService);
   }
 
   get IsAndroid(): boolean
@@ -115,14 +115,14 @@ export class TAppController
       msg = '';
     }
     if (msg !== '') {
-      if (TypeInfo.Assigned(config) && TypeInfo.Assigned(config.prefix_lang)) {
-        const lang_id = config.prefix_lang + msg;
-        const localize_msg = this.Translate(lang_id);
+      // if (TypeInfo.Assigned(config) && TypeInfo.Assigned(config.prefix_lang)) {
+      //   const lang_id = config.prefix_lang + msg;
+      //   const localize_msg = this.Translate(lang_id);
 
-        if (localize_msg !== lang_id) {
-          msg = localize_msg;
-        }
-      }
+      //   if (localize_msg !== lang_id) {
+      //     msg = localize_msg;
+      //   }
+      // }
 
       try {
         await this.ShowToast({message: msg, position: config.position, duration: config.duration,
@@ -304,53 +304,53 @@ export class TAppController
 
 /* langulage support */
 
-  SetDefaultLanguage(lang: string)
-  {
-    this.Translation.setDefaultLang(lang);
-  }
+  // SetDefaultLanguage(lang: string)
+  // {
+  //   this.Translation.setDefaultLang(lang);
+  // }
 
-  get Languages(): string[]
-  {
-    return this.Translation.getLangs();
-  }
+  // get Languages(): string[]
+  // {
+  //   return this.Translation.getLangs();
+  // }
 
-  AddLanguage(Name: string, Translation?: Object, Merge: boolean = false)
-  {
-    if (TypeInfo.Assigned(Translation)) {
-      this.Translation.setTranslation(Name, Translation, Merge);
-    } else {
-      this.Translation.addLangs([Name]);
-    }
+  // AddLanguage(Name: string, Translation?: Object, Merge: boolean = false)
+  // {
+  //   if (TypeInfo.Assigned(Translation)) {
+  //     this.Translation.setTranslation(Name, Translation, Merge);
+  //   } else {
+  //     this.Translation.addLangs([Name]);
+  //   }
 
-    if (this.Languages.length === 1) {
-      this.Translation.setDefaultLang(Name);
-    }
-  }
+  //   if (this.Languages.length === 1) {
+  //     this.Translation.setDefaultLang(Name);
+  //   }
+  // }
 
-  get Language(): string
-  {
-    const RetVal = this.Translation.currentLang;
+  // get Language(): string
+  // {
+  //   const RetVal = this.Translation.currentLang;
 
-    if (TypeInfo.Assigned(RetVal)) {
-      return RetVal;
-    } else {
-      return 'en';
-    }
-  }
+  //   if (TypeInfo.Assigned(RetVal)) {
+  //     return RetVal;
+  //   } else {
+  //     return 'en';
+  //   }
+  // }
 
-  set Language(Value: string)
-  {
-    this.Translation.use(Value);
-  }
+  // set Language(Value: string)
+  // {
+  //   this.Translation.use(Value);
+  // }
 
-  Translate(Key: string | string[]): any
-  {
-    return this.Translation.instant(Key);
-  }
+  // Translate(Key: string | string[]): any
+  // {
+  //   return this.Translation.instant(Key);
+  // }
 
   Instance: App;
   Platform: Platform;
-  Translation: TranslateService;
+  // Translation: TranslateService;
 
   protected ActionSheetCtrl: ActionSheetController;
   protected AlertCtrl: AlertController;

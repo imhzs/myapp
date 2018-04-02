@@ -17,12 +17,14 @@ export class CardHelper
 
 	// 初始化数据
 	async initData() {
-		let res = await this.service.GetCardList();
-		if (false === res) {
-			App.Cards = new Array<CardModel>();
-		} else {
-			App.Cards = res;
-		}
+		await this.service.GetCardList().subscribe(
+			data => {
+				App.Cards = data;
+			},
+			error => {
+				App.Cards = new Array<CardModel>();
+			}
+		);
 	}
 
 	// 获取主卡

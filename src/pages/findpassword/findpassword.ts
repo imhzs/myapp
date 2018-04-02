@@ -56,15 +56,14 @@ export class FindPasswordPage implements OnInit
   }
 
   GetCode() {
-    this.Service.GetResetPwdData(this.formGroup.value.tel).then(res => {
-      if(res.code === 1) {
-        this.times();
-        return App.ShowToast("发送成功");
-      } else {
-        return App.ShowToast(res.msg)
+    this.Service.GetResetPwdData(this.formGroup.value.tel).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
       }
-    })
-    .catch(err => App.ShowToast(err.msg));
+    );
   }
     
   GetTelCode() {

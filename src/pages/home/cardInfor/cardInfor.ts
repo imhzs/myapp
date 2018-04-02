@@ -66,8 +66,8 @@ export class CardInforPage implements OnInit
 
   // 获取可用优惠券
   GetAvaCash() {
-    this.Service.GetAvaCash(this.Params.OutputAmount).then(res => {
-      this.Voucher = res;
+    this.Service.GetAvaCash(this.Params.OutputAmount).subscribe(res => {
+      // this.Voucher = res;
     })
   }
 
@@ -92,11 +92,8 @@ export class CardInforPage implements OnInit
         this.Params.Mobile,
         this.Params.OutputAmount,
         this.VoucherId)
-      .then(res => {
-        if (res) {
-          this.OrderNo = res;
-          this.times();
-        }
+      .subscribe(res => {
+        this.times();
       });
     } else {
       this.Service.GetVerifyode(
@@ -105,11 +102,8 @@ export class CardInforPage implements OnInit
         this.Form_Group_Info.value.CardDate,
         this.Params.Mobile,
         this.Params.OutputAmount)
-      .then(res => {
-        if (res) {
-          this.OrderNo = res;
-          this.times();
-        }
+      .subscribe(res => {
+        this.times();
       });
     }
   }
@@ -120,11 +114,8 @@ export class CardInforPage implements OnInit
       App.ShowError('验证码输入不正确');
       return;
     }
-    this.Service.ConfirmResult(this.OrderNo, this.Form_Group_Info.value.VerifyCode).then(res => {
-      if (res) {
-        App.Nav.push(App.RootPage.ConfirminfoPage, {InCard: this.Params.DepositCard, FinalAmount: this.Params.InputAmount, CardCode: this.Params.DepositCode});
-      }
-
+    this.Service.ConfirmResult(this.OrderNo, this.Form_Group_Info.value.VerifyCode).subscribe(res => {
+      App.Nav.push(App.RootPage.ConfirminfoPage, {InCard: this.Params.DepositCard, FinalAmount: this.Params.InputAmount, CardCode: this.Params.DepositCode});
     })
   }
 

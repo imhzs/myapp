@@ -122,12 +122,10 @@ export class AddDepositPage implements OnInit
   // 完成添加
   Finish() {
     this.Service.AddDeposiCard(this.Form_Group.value.CardNo, this.BankName,
-      this.TranCode, this.BranchName, this.Form_Group.value.Mobile).then(res => {
-        if (res) {
-          App.ShowToast('储蓄卡添加成功!');
-          this.Auth.GetUserData();
+      this.TranCode, this.BranchName, this.Form_Group.value.Mobile).subscribe(res => {
+        this.Auth.GetUserData().subscribe(data => {
           App.Nav.push(App.RootPage[this.navParams.data]);
-        }
+        });
       });
   }
 

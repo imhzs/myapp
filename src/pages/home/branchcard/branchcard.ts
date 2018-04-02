@@ -23,7 +23,7 @@ export class BranchcardPage implements OnInit
     this.BankName = this.navParams.get('Bank');
     this.BankCode = this.navParams.get('Code');
     this.Service.GetBranchBanks(this.BankName).then(res => {
-      this.BranchList = res;
+      // this.BranchList = res;
     });
     this.debounced = _.debounce(this.GetKey, 500);
   }
@@ -31,7 +31,7 @@ export class BranchcardPage implements OnInit
   async GetKey() {
     let params = this.BankName + ',' + this.KeyWord;
     this.Service.GetBranchBanks(params).then(res => {
-      this.BranchList = res;
+      // this.BranchList = res;
     })
   }
 

@@ -73,11 +73,8 @@ export class AddCreditCardPage implements OnInit
 
   // 提交数据
   AddCard() {
-    this.Service.AddCreditCard(this.Form_Group_Card.value.CardNo, this.Form_Group_Card.value.Mobile).then(res => {
-      if (false !== res) {
-        App.ShowToast('信用卡添加成功');
-        this.Auth.GetUserData().then(()=>App.Nav.push(App.RootPage[this.navParams.data]));
-      }
+    this.Service.AddCreditCard(this.Form_Group_Card.value.CardNo, this.Form_Group_Card.value.Mobile).subscribe(res => {
+      this.Auth.GetUserData().subscribe(()=>App.Nav.push(App.RootPage[this.navParams.data]));
     });
   }
 

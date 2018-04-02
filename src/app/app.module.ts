@@ -2,7 +2,9 @@ import { NgModule, enableProdMode, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { TranslateModule } from '@ngx-translate/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
+
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { AppVersion } from '@ionic-native/app-version';
 import { FileTransfer } from '@ionic-native/file-transfer';
@@ -10,7 +12,7 @@ import { Camera } from '@ionic-native/camera';
 import { Device } from '@ionic-native/device';
 
 import { MyApp } from './app.component';
-import * as Svc from '../providers';
+import { ProviderModule } from '../providers';
 import { StatusBar } from '../UltraCreation/Native/StatusBar';
 import { SplashScreen } from '../UltraCreation/Native/SplashScreen';
 import { InterceptorModule } from './http-interceptors';
@@ -27,9 +29,12 @@ let config = {
 @NgModule({
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
+    InterceptorModule,
+    ProviderModule,
     IonicModule.forRoot(MyApp, config),
-    TranslateModule.forRoot()
+    TranslateModule.forRoot(),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   declarations: [
@@ -46,14 +51,7 @@ let config = {
     StatusBar,
     SplashScreen,
     InAppBrowser,
-    InterceptorModule,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Svc.TApplication,
-    Svc.TAuthService,
-    Svc.FileService,
-    Svc.MineService,
-    Svc.HomeService,
-    Svc.CheckAppUpdate
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}
