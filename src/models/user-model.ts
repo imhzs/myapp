@@ -7,6 +7,7 @@ export interface UserModel {
   idAuthed?: number, // 身份认证标识 0：未认证 1：已认证
   bankcardAuthed?: number, // 银行卡认证标识 0：未认证 1：已认证
   idCardNo?: string, // 身份证号
+  name?: string, // 真实姓名
   vip?: number, // 是否VIP 0:否 1:是
   rank?: string, // 会员等级
   rate?: number, // 无积分费率%

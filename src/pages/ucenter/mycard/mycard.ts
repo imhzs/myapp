@@ -13,7 +13,7 @@ import { CardHelper, PRIMARY_CARD, CREDIT_CARD, DEPOSIT_CARD } from '../../../sh
   templateUrl: 'mycard.html'
 })
 @Injectable()
-export class MycardPage implements OnInit
+export class MyCardPage implements OnInit
 {
   App = window.App;
 
@@ -34,6 +34,9 @@ export class MycardPage implements OnInit
   // 储蓄卡标识
   DepositCard: number = DEPOSIT_CARD;
 
+  // 主卡表示
+  PrimaryCard: number = PRIMARY_CARD;
+
   constructor(public Servie: HomeService, private Auth: TAuthService, public navCtrl: NavController, public cardHelper: CardHelper) {
   }
 
@@ -46,7 +49,7 @@ export class MycardPage implements OnInit
   }
 
   // 删除信用卡
-  DelCreditCards(cardId) {
+  DelCreditCard(cardId) {
     this.Servie.DelCard(cardId).subscribe(res => {
       this.cardHelper.delCard(cardId);
       this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
@@ -58,7 +61,7 @@ export class MycardPage implements OnInit
   }
 
   // 删除储蓄卡
-  DelDepositCards(cardId) {
+  DelDepositCard(cardId) {
     this.Servie.DelCard(cardId).subscribe(data => {
       this.cardHelper.delCard(cardId);
       this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
@@ -81,11 +84,11 @@ export class MycardPage implements OnInit
 
   // 添加信用卡
   AddCreditCard() {
-    App.Nav.push(App.RootPage.AddCreditPage, App.RootPage.MycardPage);
+    App.Nav.push('AddCreditCardPage');
   }
 
   // 添加储蓄卡
   AddDepositCard() {
-    App.Nav.push(App.RootPage.AddDepositPage, App.RootPage.MycardPage);
+    App.Nav.push('AddDepositPage', 'MyCardPage');
   }
 }

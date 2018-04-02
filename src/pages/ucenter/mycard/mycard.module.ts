@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 
-import { MycardPage } from './mycard';
+import { MyCardPage } from './mycard';
 import { SharedModule } from '../../../shared';
 import { CardHelper } from '../../../shared/helper/card-helper';
 
 @NgModule({
   declarations: [
-    MycardPage
+    MyCardPage
   ],
   imports: [
   	SharedModule,
-    IonicPageModule.forChild(MycardPage)
+    IonicPageModule.forChild(MyCardPage)
   ],
   entryComponents: [
-    MycardPage
+    MyCardPage
   ],
   providers: [
     CardHelper
   ]
 })
-export class MycardPageModule {}
+export class MyCardPageModule {}

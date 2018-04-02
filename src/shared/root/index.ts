@@ -28,5 +28,5 @@ export { RecordsPage } from '../../pages/ucenter/records/records';
 export { UinfoPage } from '../../pages/ucenter/uinfo/uinfo';
 export { UsetupPage } from '../../pages/ucenter/usetup/usetup';
 export { VIPmembersPage } from '../../pages/ucenter/VIPmembers/VIPmembers';
-export { MycardPage } from '../../pages/ucenter/mycard/mycard';
+export { MyCardPage } from '../../pages/ucenter/mycard/mycard';
 export { RegisterPage } from '../../pages/register/register';
