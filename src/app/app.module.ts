@@ -13,6 +13,7 @@ import { MyApp } from './app.component';
 import * as Svc from '../providers';
 import { StatusBar } from '../UltraCreation/Native/StatusBar';
 import { SplashScreen } from '../UltraCreation/Native/SplashScreen';
+import { InterceptorModule } from './http-interceptors';
 
 enableProdMode();
 
@@ -45,6 +46,7 @@ let config = {
     StatusBar,
     SplashScreen,
     InAppBrowser,
+    InterceptorModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Svc.TApplication,
     Svc.TAuthService,
