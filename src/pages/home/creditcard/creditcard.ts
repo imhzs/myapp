@@ -44,6 +44,9 @@ export class CreditCardPage implements OnInit
   }
 
   ngOnInit() {
+  }
+
+  ionViewDidEnter() {
     if (!App.IsIdAuthed) {
       let alertOpts = {
         title: '温馨提示',

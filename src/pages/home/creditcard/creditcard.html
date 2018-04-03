@@ -22,15 +22,15 @@
       <ion-col col-12 class="d-flex flex-column justify-content-between card has-card" p-h-10 p-v-10 *ngIf="CurrentCreditCard">
         <div class="d-flex justify-content-between">
           <div class="flex-fill d-flex align-items-center justify-content-start">
-            <ion-img class="icon-bank" src="assets/banklogo/bank_308.png" alt="银行"></ion-img>
-            <span ion-text f-14 text-light m-l-5>招商银行</span>
+            <ion-img class="icon-bank" src="assets/banklogo/bank_{{CurrentCreditCard.code}}.png" alt="{{CurrentCreditCard.bank}}"></ion-img>
+            <span ion-text f-14 text-light m-l-5>{{CurrentCreditCard.bank}}</span>
           </div>
           <div class="flex-fill" text-right>
             <button type="button" ion-button class="bg-transparent btn-change" (click)="ChangeCreditCard()" no-padding no-margin>更换</button>
           </div>
         </div>
         <div>
-          <span ion-text text-light>**** **** **** 1483</span>
+          <span ion-text text-light>**** **** **** {{CurrentCreditCard.cardNo}}</span>
         </div>
       </ion-col>
       <!-- 已添加信用卡 -->
@@ -52,15 +52,15 @@
       <ion-col col-12 class="d-flex flex-column justify-content-between card has-card" p-h-10 p-v-10 *ngIf="CurrentDepositCard">
         <div class="d-flex justify-content-between">
           <div class="flex-fill d-flex align-items-center justify-content-start">
-            <ion-img class="icon-bank" src="assets/banklogo/bank_308.png" alt="银行"></ion-img>
-            <span ion-text f-14 text-light m-l-5>招商银行</span>
+            <ion-img class="icon-bank" src="assets/banklogo/bank_{{CurrentCreditCard.code}}.png" alt="{{CurrentCreditCard.bank}}"></ion-img>
+            <span ion-text f-14 text-light m-l-5>{{CurrentCreditCard.bank}}</span>
           </div>
           <div class="flex-fill" text-right>
             <button type="button" ion-button class="bg-transparent btn-change" (click)="ChangeDepositCard()" no-padding no-margin>更换</button>
           </div>
         </div>
         <div>
-          <span ion-text text-light>**** **** **** 1483</span>
+          <span ion-text text-light>**** **** **** {{CurrentCreditCard.cardNo}}</span>
         </div>
       </ion-col>
       <!-- 已添加储蓄卡 -->

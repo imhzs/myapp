@@ -52,7 +52,9 @@ export class AddCreditCardPage implements OnInit
         Validators.pattern(/^1[3|4|5|7|8][0-9]{9}$/)
       ])
     });
+  }
 
+  ionViewDidEnter() {
     if (!App.IsIdAuthed) {
       let alertOpts = {
         title: '温馨提示',
