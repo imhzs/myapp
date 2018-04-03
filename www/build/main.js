@@ -130,7 +130,7 @@ webpackEmptyAsyncContext.id = 160;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pub_service__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__ = __webpack_require__(338);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -318,53 +318,53 @@ var map = {
 		487,
 		22
 	],
-	"../pages/home/cardinfor/cardinfor.module": [
+	"../pages/home/cardInfor/cardInfor.module": [
 		488,
-		21
+		0
 	],
 	"../pages/home/changecards/changecards.module": [
 		489,
-		20
+		21
 	],
 	"../pages/home/checkout/checkout.module": [
 		490,
-		19
+		20
 	],
 	"../pages/home/confirminfo/confirminfo.module": [
 		491,
-		18
+		19
 	],
 	"../pages/home/creditcard/creditcard.module": [
 		492,
-		17
+		18
 	],
 	"../pages/home/finalpay/finalpay.module": [
 		493,
-		16
+		17
 	],
 	"../pages/home/home.module": [
 		494,
-		15
+		16
 	],
 	"../pages/home/listofbank/listofbank.module": [
 		495,
-		14
+		15
 	],
 	"../pages/home/resetpassword/resetpassword.module": [
 		496,
-		13
+		14
 	],
 	"../pages/loan/loan.module": [
 		497,
-		12
+		13
 	],
 	"../pages/login/login.module": [
 		498,
-		11
+		12
 	],
 	"../pages/modifypassword/modifypassword.module": [
 		499,
-		10
+		11
 	],
 	"../pages/register/register.module": [
 		500,
@@ -372,15 +372,15 @@ var map = {
 	],
 	"../pages/setpassword/setpassword.module": [
 		501,
-		9
+		10
 	],
 	"../pages/start/start.module": [
 		502,
-		8
+		9
 	],
 	"../pages/tabs/tabs.module": [
 		503,
-		7
+		8
 	],
 	"../pages/thirdparty/thirdparty.module": [
 		504,
@@ -388,31 +388,31 @@ var map = {
 	],
 	"../pages/ucenter/VIPmembers/VIPmembers.module": [
 		511,
-		6
+		7
 	],
 	"../pages/ucenter/mycard/mycard.module": [
 		505,
-		5
+		6
 	],
 	"../pages/ucenter/orders/orders.module": [
 		506,
-		4
+		5
 	],
 	"../pages/ucenter/records/records.module": [
 		507,
-		3
+		4
 	],
 	"../pages/ucenter/ucenter.module": [
 		508,
-		2
+		3
 	],
 	"../pages/ucenter/uinfo/uinfo.module": [
 		509,
-		1
+		2
 	],
 	"../pages/ucenter/usetup/usetup.module": [
 		510,
-		0
+		1
 	]
 };
 function webpackAsyncContext(req) {
@@ -733,8 +733,8 @@ var StatusBar = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TApplication; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UltraCreation_ng_ion_appcontroller__ = __webpack_require__(382);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_root__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UltraCreation_ng_ion_appcontroller__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_root__ = __webpack_require__(383);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth__ = __webpack_require__(17);
 var __extends = (this && this.__extends) || (function () {
@@ -980,8 +980,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var AuthPage = /** @class */ (function () {
     function AuthPage(fileService) {
         this.fileService = fileService;
-        this.CardFront = 'front';
-        this.CardBack = 'back';
+        this.CardFront = 'idcard_front';
+        this.CardBack = 'idcard_back';
         this.ExampleFront = '';
         this.ExampleBank = '';
         this.HeadTitle = '身份认证';
@@ -1024,9 +1024,6 @@ var AuthPage = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.fileService.IdentityAuth(file, cType)];
                     case 1:
                         res = _a.sent();
-                        if (false === res && cType == this.CardFront) {
-                            App.ShowError('识别身份证失败，请手动输入');
-                        }
                         if (false !== res && cType == this.CardFront) {
                             this.idCardNo.setValue(res.idno);
                             this.username.setValue(res.name);
@@ -1038,12 +1035,13 @@ var AuthPage = /** @class */ (function () {
     };
     AuthPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-auth',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\auth\auth.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content class="auth-page">\n\n	<ion-grid class="page-content">\n\n		<ion-row p-t-5>\n\n			<ion-col col-12>\n\n				<ion-label f-13 no-margin>证件照片</ion-label>\n\n			</ion-col>\n\n		</ion-row>\n\n		<ion-row>\n\n			<ion-col col-6 (click)="OnChangeFile(CardFront, $event)">\n\n				<div class="d-flex justify-content-center card border-1px">\n\n					<img class="img" [src]="PreviewFiles[CardFront]" *ngIf="PreviewFiles[CardFront] != DefaultImg" />\n\n					<button class="bg-transparent" icon-only *ngIf="PreviewFiles[CardFront] == DefaultImg">\n\n						<ion-icon name="ios-add-circle-outline" color="primary"></ion-icon>\n\n					</button>\n\n					<ion-label class="desc" *ngIf="PreviewFiles[CardFront] == DefaultImg">身份证反面照片</ion-label>\n\n				</div>\n\n			</ion-col>\n\n			<ion-col col-6 (click)="OnChangeFile(CardBack, $event)">\n\n				<div class="d-flex justify-content-center card border-1px">\n\n					<img class="img" [src]="PreviewFiles[CardBack]" *ngIf="PreviewFiles[CardBack] != DefaultImg" />\n\n					<button class="bg-transparent" icon-only *ngIf="PreviewFiles[CardBack] == DefaultImg">\n\n						<ion-icon name="ios-add-circle-outline" color="primary"></ion-icon>\n\n					</button>\n\n					<ion-label class="desc" *ngIf="PreviewFiles[CardBack] == DefaultImg">身份证反面照片</ion-label>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n		<!-- 示例 -->\n\n		<ion-row>\n\n			<ion-col col-6>\n\n				<div class="d-flex justify-content-start align-items-start card example border-1px">\n\n					<ion-badge color="primary" class="badge">示例</ion-badge>\n\n					<img class="img" src="assets/imgs/zhengm.png" />\n\n				</div>\n\n			</ion-col>\n\n			<ion-col col-6>\n\n				<div class="d-flex justify-content-start align-items-start card example border-1px">\n\n					<ion-badge color="primary" class="badge">示例</ion-badge>\n\n					<img class="img" src="assets/imgs/zhengm.png" />\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n	</ion-grid>\n\n	<div class="page-content" m-t-10>\n\n		<form novalidate [formGroup]="formGroupCard" m-t-10>\n\n	    <ion-grid>\n\n	      <ion-row class="d-flex align-items-center form-ctrl border-bottom-1px">\n\n	        <ion-col col-4>姓名</ion-col>\n\n	        <ion-col col-8><ion-input type="text" placeholder="请输入姓名" formControlName="username"></ion-input></ion-col>\n\n	      </ion-row>\n\n\n\n	      <ion-row class="d-flex align-items-center form-ctrl">\n\n	        <ion-col col-4>身份证号</ion-col>\n\n	        <ion-col col-8><ion-input type="text" placeholder="请输入身份证号" formControlName="idCardNo"></ion-input></ion-col>\n\n	      </ion-row>\n\n	    </ion-grid>\n\n	  </form>\n\n  </div>\n\n  <ion-grid>\n\n  	<ion-row>\n\n  		<ion-col col-12>\n\n  			<button type="button" ion-button color="primary" full>立即认证</button>\n\n  		</ion-col>\n\n  	</ion-row>\n\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\auth\auth.html"*/
+            selector: 'page-auth',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\auth\auth.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content class="auth-page">\n\n	<ion-grid class="page-content">\n\n		<ion-row p-t-5>\n\n			<ion-col col-12>\n\n				<ion-label f-13 no-margin>证件照片</ion-label>\n\n			</ion-col>\n\n		</ion-row>\n\n		<ion-row>\n\n			<ion-col col-6 (click)="OnChangeFile(CardFront, $event)">\n\n				<div class="d-flex justify-content-center card border-1px">\n\n					<img class="img" [src]="PreviewFiles[CardFront]" *ngIf="PreviewFiles[CardFront] != DefaultImg" />\n\n					<button class="bg-transparent" icon-only *ngIf="PreviewFiles[CardFront] == DefaultImg">\n\n						<ion-icon name="ios-add-circle-outline" color="primary"></ion-icon>\n\n					</button>\n\n					<ion-label class="desc" *ngIf="PreviewFiles[CardFront] == DefaultImg">身份证反面照片</ion-label>\n\n				</div>\n\n			</ion-col>\n\n			<ion-col col-6 (click)="OnChangeFile(CardBack, $event)">\n\n				<div class="d-flex justify-content-center card border-1px">\n\n					<img class="img" [src]="PreviewFiles[CardBack]" *ngIf="PreviewFiles[CardBack] != DefaultImg" />\n\n					<button class="bg-transparent" icon-only *ngIf="PreviewFiles[CardBack] == DefaultImg">\n\n						<ion-icon name="ios-add-circle-outline" color="primary"></ion-icon>\n\n					</button>\n\n					<ion-label class="desc" *ngIf="PreviewFiles[CardBack] == DefaultImg">身份证反面照片</ion-label>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n		<!-- 示例 -->\n\n		<ion-row>\n\n			<ion-col col-6>\n\n				<div class="d-flex justify-content-start align-items-start card example border-1px">\n\n					<ion-badge color="primary" class="badge">示例</ion-badge>\n\n					<img class="img" src="assets/imgs/zhengm.png" />\n\n				</div>\n\n			</ion-col>\n\n			<ion-col col-6>\n\n				<div class="d-flex justify-content-start align-items-start card example border-1px">\n\n					<ion-badge color="primary" class="badge">示例</ion-badge>\n\n					<img class="img" src="assets/imgs/zhengm.png" />\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n	</ion-grid>\n\n	<div class="page-content" m-t-10>\n\n		<form novalidate [formGroup]="formGroupCard" m-t-10>\n\n	    <ion-grid>\n\n	      <ion-row class="d-flex align-items-center form-ctrl border-bottom-1px">\n\n	        <ion-col col-4>姓名</ion-col>\n\n	        <ion-col col-8><ion-input type="text" placeholder="请输入姓名" formControlName="username"></ion-input></ion-col>\n\n	      </ion-row>\n\n\n\n	      <ion-row class="d-flex align-items-center form-ctrl">\n\n	        <ion-col col-4>身份证号</ion-col>\n\n	        <ion-col col-8><ion-input type="text" placeholder="请输入身份证号" formControlName="idCardNo"></ion-input></ion-col>\n\n	      </ion-row>\n\n	    </ion-grid>\n\n	  </form>\n\n  </div>\n\n  <ion-grid>\n\n  	<ion-row>\n\n  		<ion-col col-12>\n\n  			<button type="button" ion-button color="primary" full>立即认证</button>\n\n  		</ion-col>\n\n  	</ion-row>\n\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\auth\auth.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_fileservice__["b" /* FileService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__providers_fileservice__["b" /* FileService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_fileservice__["b" /* FileService */]) === "function" && _a || Object])
     ], AuthPage);
     return AuthPage;
+    var _a;
 }());
 
 //# sourceMappingURL=auth.js.map
@@ -1199,6 +1197,7 @@ var TypeInfo;
         if (Src.subarray && Dst.subarray) {
             Dst.set(Src.subarray(SrcOffset, SrcOffset + Count), DstOffset);
         }
+        // Fallback to ordinary array
         else {
             for (var i = 0; i < Count; i++)
                 Dst[DstOffset + i] = Src[SrcOffset + i];
@@ -1344,7 +1343,7 @@ var FindPasswordPage = /** @class */ (function () {
     });
     FindPasswordPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-findpwd',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\findpassword\findpassword.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n      <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <div class="register">\n\n    <div>\n\n      <ion-grid text-center>\n\n        <form novalidate [formGroup]="formGroup" autocomplete="off">\n\n          <ion-row class="reg-line">\n\n            <ion-col col-12>\n\n              <ion-input type="number" placeholder="请输入手机号码" formControlName="tel" required></ion-input>\n\n            </ion-col>\n\n          </ion-row>\n\n          <ion-row class="reg-line">\n\n            <ion-col col-7>\n\n              <ion-input type="text" placeholder="请输入验证码" formControlName="VCode" required></ion-input>\n\n            </ion-col>\n\n            <ion-col col-5>\n\n              <button ion-button outline (click)="GetCode()" [disabled]="tel.invalid">\n\n                <span ion-text f-13>{{VCodeText}}</span>\n\n              </button>\n\n            </ion-col>\n\n          </ion-row>\n\n        </form>\n\n        <ion-row m-t-30>\n\n          <ion-col col-12>\n\n              <button ion-button full color="primary" [class.btn-disabled]="FindDisabled" [disabled]="FindDisabled" (click)=" GetTelCode()">下一步</button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n  </div>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\findpassword\findpassword.html"*/
+            selector: 'page-findpwd',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\findpassword\findpassword.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n      <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <div class="register">\n\n    <div>\n\n      <ion-grid text-center>\n\n        <form novalidate [formGroup]="formGroup" autocomplete="off">\n\n          <ion-row class="reg-line">\n\n            <ion-col col-12>\n\n              <ion-input type="number" placeholder="请输入手机号码" formControlName="tel" required></ion-input>\n\n            </ion-col>\n\n          </ion-row>\n\n          <ion-row class="reg-line">\n\n            <ion-col col-7>\n\n              <ion-input type="text" placeholder="请输入验证码" formControlName="VCode" required></ion-input>\n\n            </ion-col>\n\n            <ion-col col-5>\n\n              <button ion-button outline (click)="GetCode()" [disabled]="tel.invalid">\n\n                <span ion-text f-13>{{VCodeText}}</span>\n\n              </button>\n\n            </ion-col>\n\n          </ion-row>\n\n        </form>\n\n        <ion-row m-t-30>\n\n          <ion-col col-12>\n\n              <button ion-button full color="primary" [class.btn-disabled]="FindDisabled" [disabled]="FindDisabled" (click)=" GetTelCode()">下一步</button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n  </div>\n\n</ion-content>'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\findpassword\findpassword.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_auth__["a" /* TAuthService */]])
@@ -1443,6 +1442,29 @@ var AddCreditCardPage = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].pattern(/^1[3|4|5|7|8][0-9]{9}$/)
             ])
         });
+        if (!App.IsIdAuthed) {
+            var alertOpts = {
+                title: '温馨提示',
+                message: '为了您的资金安全，首次刷卡需先完成身份认证',
+                cssClass: 'text-left',
+                buttons: [
+                    {
+                        text: '取消',
+                        role: 'cancel',
+                        handler: function () {
+                            App.Nav.push('HomePage');
+                        }
+                    },
+                    {
+                        text: '确认',
+                        handler: function () {
+                            App.Nav.push('AuthPage');
+                        }
+                    }
+                ]
+            };
+            App.ShowAlert(alertOpts);
+        }
     };
     Object.defineProperty(AddCreditCardPage.prototype, "CompleteBtnIsDisabled", {
         get: function () {
@@ -1499,11 +1521,12 @@ var AddCreditCardPage = /** @class */ (function () {
     };
     AddCreditCardPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-addcreditcard',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\addcreditcard\addcreditcard.html"*/'<ion-header no-border>\n\n  <!-- 添加信用卡 -->\n\n  <ion-toolbar no-padding>\n\n      <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="adddepositcam-page">\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n        <span ion-text f-13 text-gray>请绑定持卡人的具有银联标识信用卡，此信用卡用于付款刷卡</span>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content">\n\n    <ion-row class="d-flex align-items-center form-ctrlborder-bottom-1px">\n\n      <ion-col col-3>持卡人</ion-col>\n\n      <ion-col>{{App.UserInfo.name}}</ion-col>\n\n    </ion-row>\n\n    <ion-row class="d-flex align-items-center form-ctrl">\n\n      <ion-col col-3>身份证</ion-col>\n\n      <ion-col>{{ShowIDCard}}</ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <div class="page-content" m-t-15>\n\n    <form novalidate [formGroup]="Form_Group_Card">\n\n      <ion-grid>\n\n        <ion-row class="d-flex align-items-center form-ctrl border-bottom-1px">\n\n          <ion-col col-3>卡号</ion-col>\n\n          <ion-col col-7><ion-input type=\'number\' placeholder="请输信用卡卡号" formControlName="CardNo"></ion-input></ion-col>\n\n          <ion-col col-2>\n\n            <button ion-button icon-only class="bg-transparent btn-h-auto btn-no-shadow" (click)="onChangeFile(BankCardFront)">\n\n              <ion-icon name="qr-scanner" text-black-light></ion-icon>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <ion-row class="d-flex align-items-center form-ctrl">\n\n          <ion-col col-3>手机号</ion-col>\n\n          <ion-col> <ion-input type=\'number\' placeholder="请输银行预留手机号" formControlName="Mobile"></ion-input></ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </form>\n\n  </div>\n\n  <ion-row justify-content-center m-t-15>\n\n    <ion-col col-11>\n\n      <button class="bgc-grad-primary bgc-header" \n\n        ion-button round block f-1-6 \n\n        [disabled]="CompleteBtnIsDisabled" \n\n        [class.btn-disabled]="CompleteBtnIsDisabled"\n\n        (click)="AddCard()">保存</button>\n\n    </ion-col>\n\n  </ion-row>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\addcreditcard\addcreditcard.html"*/
+            selector: 'page-addcreditcard',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\home\addcreditcard\addcreditcard.html"*/'<ion-header no-border>\n\n  <!-- 添加信用卡 -->\n\n  <ion-toolbar no-padding>\n\n      <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="adddepositcam-page">\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n        <span ion-text f-13 text-gray>请绑定持卡人的具有银联标识信用卡，此信用卡用于付款刷卡</span>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content">\n\n    <ion-row class="d-flex align-items-center form-ctrlborder-bottom-1px">\n\n      <ion-col col-3>持卡人</ion-col>\n\n      <ion-col>{{App.UserInfo.name}}</ion-col>\n\n    </ion-row>\n\n    <ion-row class="d-flex align-items-center form-ctrl">\n\n      <ion-col col-3>身份证</ion-col>\n\n      <ion-col>{{ShowIDCard}}</ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <div class="page-content" m-t-15>\n\n    <form novalidate [formGroup]="Form_Group_Card">\n\n      <ion-grid>\n\n        <ion-row class="d-flex align-items-center form-ctrl border-bottom-1px">\n\n          <ion-col col-3>卡号</ion-col>\n\n          <ion-col col-7><ion-input type=\'number\' placeholder="请输信用卡卡号" formControlName="CardNo"></ion-input></ion-col>\n\n          <ion-col col-2>\n\n            <button ion-button icon-only class="bg-transparent btn-h-auto btn-no-shadow" (click)="onChangeFile(BankCardFront)">\n\n              <ion-icon name="qr-scanner" text-black-light></ion-icon>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <ion-row class="d-flex align-items-center form-ctrl">\n\n          <ion-col col-3>手机号</ion-col>\n\n          <ion-col> <ion-input type=\'number\' placeholder="请输银行预留手机号" formControlName="Mobile"></ion-input></ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </form>\n\n  </div>\n\n  <ion-row justify-content-center m-t-15>\n\n    <ion-col col-11>\n\n      <button class="bgc-grad-primary bgc-header" \n\n        ion-button round block f-1-6 \n\n        [disabled]="CompleteBtnIsDisabled" \n\n        [class.btn-disabled]="CompleteBtnIsDisabled"\n\n        (click)="AddCard()">保存</button>\n\n    </ion-col>\n\n  </ion-row>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\home\addcreditcard\addcreditcard.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_5__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["b" /* FileService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__providers_auth__["a" /* TAuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_auth__["a" /* TAuthService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["b" /* FileService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["b" /* FileService */]) === "function" && _d || Object])
     ], AddCreditCardPage);
     return AddCreditCardPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=addcreditcard.js.map
@@ -1604,6 +1627,29 @@ var AddDepositPage = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].pattern(/^1[3|4|5|7|8][0-9]{9}$/)
             ])
         });
+        if (!App.IsIdAuthed) {
+            var alertOpts = {
+                title: '温馨提示',
+                message: '为了您的资金安全，首次刷卡需先完成身份认证',
+                cssClass: 'text-left',
+                buttons: [
+                    {
+                        text: '取消',
+                        role: 'cancel',
+                        handler: function () {
+                            App.Nav.push('HomePage');
+                        }
+                    },
+                    {
+                        text: '确认',
+                        handler: function () {
+                            App.Nav.push('AuthPage');
+                        }
+                    }
+                ]
+            };
+            App.ShowAlert(alertOpts);
+        }
     };
     Object.defineProperty(AddDepositPage.prototype, "CompleteBtnIsDisabled", {
         // 卡号是否符合规则
@@ -1703,12 +1749,13 @@ var AddDepositPage = /** @class */ (function () {
     };
     AddDepositPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-adddeposit',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\adddeposit\adddeposit.html"*/'<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content class="h-adddepositcam-page">\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n        <span ion-text f-13 text-gray>请绑定持卡人本人储蓄卡，此储蓄卡用于收款</span>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-b-10>\n\n    <ion-row class="d-flex align-items-center form-ctrl border-bottom-1px">\n\n      <ion-col col-3>持卡人</ion-col>\n\n      <ion-col col-8>{{App.UserInfo.name}}</ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row class="d-flex align-items-center form-ctrl">\n\n      <ion-col col-3>身份证</ion-col>\n\n      <ion-col col-8>{{IdCard}}</ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <form novalidate [formGroup]="Form_Group">\n\n    <div class="page-content">\n\n      <ion-grid>\n\n        <ion-row class="d-flex align-items-center border-bottom-1px form-ctrl">\n\n          <ion-col col-3>卡号</ion-col>\n\n          <ion-col col-7><ion-input type="number" placeholder="请输入储蓄卡卡号" formControlName="CardNo" no-margin></ion-input></ion-col>\n\n          <ion-col col-2>\n\n            <button ion-button icon-right class="bg-transparent btn-h-auto btn-no-shadow" (click)="onChangeFile(BankCardFront)">\n\n              <ion-icon name="qr-scanner" text-black-light></ion-icon>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <ion-row (click)="ClickOpenBank()" class="d-flex align-items-center border-bottom-1px form-ctrl">\n\n          <ion-col col-3>银行</ion-col>\n\n          <ion-col col-8>\n\n            <span ion-text text-gray>{{BankName}}</span>\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <ion-row class="d-flex align-items-center border-bottom-1px form-ctrl" (click)="ClickBranchBank()">\n\n          <ion-col col-3>支行</ion-col>\n\n          <ion-col col-8>\n\n            <span ion-text text-gray>{{BranchName}}</span>\n\n          </ion-col>\n\n          <ion-col text-right text-black-light><ion-icon>&#xf3d1;</ion-icon></ion-col>\n\n        </ion-row>\n\n\n\n        <ion-row class="d-flex align-items-center form-ctrl">\n\n          <ion-col col-3>手机号</ion-col>\n\n          <ion-col col-8><ion-input type="Tel" placeholder="请输入银行预留手机号" formControlName="Mobile"></ion-input></ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n\n\n    <ion-row justify-content-center m-t-20>\n\n      <ion-col col-11>\n\n        <button class="bgc-grad-primary bgc-header" \n\n          [class.btn-disabled]="CompleteBtnIsDisabled" ion-button round block f-1-6 tappable \n\n          [disabled]="CompleteBtnIsDisabled" \n\n          (click)="Finish()">完成</button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </form>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\adddeposit\adddeposit.html"*/
+            selector: 'page-adddeposit',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\home\adddeposit\adddeposit.html"*/'<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content class="h-adddepositcam-page">\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n        <span ion-text f-13 text-gray>请绑定持卡人本人储蓄卡，此储蓄卡用于收款</span>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-b-10>\n\n    <ion-row class="d-flex align-items-center form-ctrl border-bottom-1px">\n\n      <ion-col col-3>持卡人</ion-col>\n\n      <ion-col col-8>{{App.UserInfo.name}}</ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row class="d-flex align-items-center form-ctrl">\n\n      <ion-col col-3>身份证</ion-col>\n\n      <ion-col col-8>{{IdCard}}</ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <form novalidate [formGroup]="Form_Group">\n\n    <div class="page-content">\n\n      <ion-grid>\n\n        <ion-row class="d-flex align-items-center border-bottom-1px form-ctrl">\n\n          <ion-col col-3>卡号</ion-col>\n\n          <ion-col col-7><ion-input type="number" placeholder="请输入储蓄卡卡号" formControlName="CardNo" no-margin></ion-input></ion-col>\n\n          <ion-col col-2>\n\n            <button ion-button icon-right class="bg-transparent btn-h-auto btn-no-shadow" (click)="onChangeFile(BankCardFront)">\n\n              <ion-icon name="qr-scanner" text-black-light></ion-icon>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <ion-row (click)="ClickOpenBank()" class="d-flex align-items-center border-bottom-1px form-ctrl">\n\n          <ion-col col-3>银行</ion-col>\n\n          <ion-col col-8>\n\n            <span ion-text text-gray>{{BankName}}</span>\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <ion-row class="d-flex align-items-center border-bottom-1px form-ctrl" (click)="ClickBranchBank()">\n\n          <ion-col col-3>支行</ion-col>\n\n          <ion-col col-8>\n\n            <span ion-text text-gray>{{BranchName}}</span>\n\n          </ion-col>\n\n          <ion-col text-right text-black-light><ion-icon>&#xf3d1;</ion-icon></ion-col>\n\n        </ion-row>\n\n\n\n        <ion-row class="d-flex align-items-center form-ctrl">\n\n          <ion-col col-3>手机号</ion-col>\n\n          <ion-col col-8><ion-input type="Tel" placeholder="请输入银行预留手机号" formControlName="Mobile"></ion-input></ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n\n\n    <ion-row justify-content-center m-t-20>\n\n      <ion-col col-11>\n\n        <button class="bgc-grad-primary bgc-header" \n\n          [class.btn-disabled]="CompleteBtnIsDisabled" ion-button round block f-1-6 tappable \n\n          [disabled]="CompleteBtnIsDisabled" \n\n          (click)="Finish()">完成</button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </form>\n\n</ion-content>'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\home\adddeposit\adddeposit.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_5__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["b" /* FileService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__providers_auth__["a" /* TAuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_auth__["a" /* TAuthService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["b" /* FileService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["b" /* FileService */]) === "function" && _d || Object])
     ], AddDepositPage);
     return AddDepositPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=adddeposit.js.map
@@ -1807,10 +1854,10 @@ var BranchcardPage = /** @class */ (function () {
     };
     BranchcardPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-branchcard',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\branchcard\branchcard.html"*/'<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n  <ion-toolbar class="search-bar">\n\n    <ion-searchbar  (ngModelChange)="SearchBank()" placeholder="请输关键字搜索,如\'福田\'" [(ngModel)]="KeyWord"></ion-searchbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-list class="bankcard-list">\n\n    <ion-item *ngFor="let item of BranchList" (click)="SelectedBranch(item)">\n\n      <ion-avatar item-start>\n\n        <img src="assets/banklogo/bank_{{BankCode}}.png">\n\n      </ion-avatar>\n\n      <h2>{{item.bankName}}</h2>\n\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\branchcard\branchcard.html"*/
+            selector: 'page-branchcard',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\home\branchcard\branchcard.html"*/'<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n  <ion-toolbar class="search-bar">\n\n    <ion-searchbar  (ngModelChange)="SearchBank()" placeholder="请输关键字搜索,如\'福田\'" [(ngModel)]="KeyWord"></ion-searchbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-list class="bankcard-list">\n\n    <ion-item *ngFor="let item of BranchList" (click)="SelectedBranch(item)">\n\n      <ion-avatar item-start>\n\n        <img src="assets/banklogo/bank_{{BankCode}}.png">\n\n      </ion-avatar>\n\n      <h2>{{item.bankName}}</h2>\n\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\home\branchcard\branchcard.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__["a" /* HomeService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__["a" /* HomeService */]])
     ], BranchcardPage);
     return BranchcardPage;
 }());
@@ -1820,160 +1867,6 @@ var BranchcardPage = /** @class */ (function () {
 /***/ }),
 
 /***/ 274:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CardInforPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__ = __webpack_require__(22);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var CardInforPage = /** @class */ (function () {
-    function CardInforPage(navParams, Service) {
-        this.navParams = navParams;
-        this.Service = Service;
-        this.App = window.App;
-        this.HeadTitle = "确认信息";
-        this.VCodeText = '获取验证码';
-        this.State = 0;
-        this.ShowFront = false;
-        this.ShowBack = false;
-        this.Voucher = [];
-        this.Params = {
-            InputAmount: this.navParams.get('OutAmount'),
-            OutputAmount: this.navParams.get('InAmount'),
-            CreditCard: this.navParams.get('CreditCard'),
-            DepositCard: this.navParams.get('DepositCard'),
-            Code: this.navParams.get('Code'),
-            CreditCode: this.navParams.get('CreditCode'),
-            DepositCode: this.navParams.get('DepositCode'),
-            Mobile: this.navParams.get('Mobile')
-        };
-    }
-    CardInforPage.prototype.ngOnInit = function () {
-        this.Form_Group_Info = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormGroup */]({
-            CVN: this.CVN = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]('', [
-                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required,
-                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].minLength(3)
-            ]),
-            CardDate: this.CardDate = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]('', [
-                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required,
-                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].minLength(4)
-            ]),
-            VerifyCode: this.VerifyCode = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]('', [
-                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required,
-                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].minLength(6)
-            ]),
-        });
-        this.GetAvaCash();
-    };
-    // 倒计时
-    CardInforPage.prototype.times = function () {
-        var _this = this;
-        var count = 60;
-        var timer = setInterval(function () {
-            if (count > 0) {
-                count--;
-                _this.VCodeText = '已发送' + count + 's';
-                if (count === 0) {
-                    _this.VCodeText = '重新获取';
-                    _this.State = 0;
-                    clearInterval(timer);
-                }
-            }
-        }, 1000);
-    };
-    // 获取可用优惠券
-    CardInforPage.prototype.GetAvaCash = function () {
-        this.Service.GetAvaCash(this.Params.OutputAmount).subscribe(function (res) {
-            // this.Voucher = res;
-        });
-    };
-    Object.defineProperty(CardInforPage.prototype, "VCodeBtnIsDisabled", {
-        get: function () {
-            if (this.CVN.invalid || this.CardDate.invalid) {
-                return true;
-            }
-            return false;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(CardInforPage.prototype, "CompleteBtnIsDisabled", {
-        get: function () {
-            if (this.CVN.invalid || this.CardDate.invalid || this.VerifyCode.invalid)
-                return true;
-            return false;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    CardInforPage.prototype.GetVerifyCode = function () {
-        var _this = this;
-        if (this.VoucherId) {
-            this.Service.GetVerifyode(this.Params.Code, this.Form_Group_Info.value.CVN, this.Form_Group_Info.value.CardDate, this.Params.Mobile, this.Params.OutputAmount, this.VoucherId)
-                .subscribe(function (res) {
-                _this.times();
-            });
-        }
-        else {
-            this.Service.GetVerifyode(this.Params.Code, this.Form_Group_Info.value.CVN, this.Form_Group_Info.value.CardDate, this.Params.Mobile, this.Params.OutputAmount)
-                .subscribe(function (res) {
-                _this.times();
-            });
-        }
-    };
-    CardInforPage.prototype.ConfirmCode = function () {
-        var _this = this;
-        if (!this.OrderNo) {
-            App.ShowError('验证码输入不正确');
-            return;
-        }
-        this.Service.ConfirmResult(this.OrderNo, this.Form_Group_Info.value.VerifyCode).subscribe(function (res) {
-            App.Nav.push(App.RootPage.ConfirminfoPage, { InCard: _this.Params.DepositCard, FinalAmount: _this.Params.InputAmount, CardCode: _this.Params.DepositCode });
-        });
-    };
-    CardInforPage.prototype.ShowBackEmp = function () {
-        this.ShowBack = true;
-    };
-    CardInforPage.prototype.ShowFrontEmp = function () {
-        this.ShowFront = true;
-    };
-    CardInforPage.prototype.CloseCard = function () {
-        this.ShowBack = this.ShowFront = false;
-    };
-    CardInforPage.prototype.ClickUserVoucher = function () {
-    };
-    CardInforPage.prototype.ClickUserChosen = function () {
-    };
-    CardInforPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-cardInfor',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\cardinfor\cardinfor.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n  <ion-toolbar no-padding>\n\n    <ion-grid class="list-grid-default bgc-grad-primary">\n\n      <ion-row padding-vertical>\n\n        <ion-col>\n\n          <ul class="list-row-inner">\n\n            <li class="title" text-center>\n\n              <div class="bold" f-2-5 ion-text color="light"><span f-1-2>￥</span>{{Params.OutputAmount}}</div>\n\n              <p class="color-fopacity-7">收款金额</p>\n\n            </li>\n\n            <li class="title" text-center>\n\n              <div class="bold" f-2-5 ion-text color="light"><span f-1-2>￥</span>{{Params.InputAmount}}</div>\n\n              <p class="color-fopacity-7">到账金额</p>\n\n            </li>\n\n          </ul>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-grid class="grid-inforlist-default" m-b-10>\n\n    <ion-row class="border-last">\n\n      <ion-col col-4>收款储蓄卡</ion-col>\n\n      <ion-col>\n\n        <span class="bank-face"><img src="assets/banklogo/bank_{{Params.DepositCode}}.png"></span>\n\n        <span>{{Params.DepositCard}}</span>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <form novalidate [formGroup]="Form_Group_Info">\n\n    <ion-grid class="grid-inforlist-default" m-b-10>\n\n      <ion-row>\n\n        <ion-col col-4>付款信用卡</ion-col>\n\n        <ion-col>\n\n          <span class="bank-face"><img src="assets/banklogo/bank_{{Params.CreditCode}}.png"></span>\n\n          <span>{{Params.CreditCard}}</span>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col col-4>CVN2</ion-col>\n\n        <ion-col col-6><ion-input type=\'number\' placeholder="卡片背面末三位数" formControlName="CVN"></ion-input></ion-col>\n\n        <ion-col (click)="ShowBackEmp()" text-right text-nowrap><span ion-text color="orange">示例</span></ion-col>\n\n      </ion-row>\n\n      <ion-row class="border-last">\n\n        <ion-col col-4>有效期</ion-col>\n\n        <ion-col col-6><ion-input type=\'number\' placeholder="卡片正面有效期" formControlName="CardDate"></ion-input></ion-col>\n\n        <ion-col (click)="ShowFrontEmp()" text-right text-nowrap><span ion-text color="orange">示例</span></ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n    <ion-grid class="grid-inforlist-default" m-b-10 *ngIf="Voucher.length > 0">\n\n      <ion-row class="border-last" (click)="ClickUserVoucher()">\n\n        <ion-col col-4>抵扣券</ion-col>\n\n        <ion-col col-5><span ion-text color="orange">{{Voucher.length}}张可用</span></ion-col>\n\n        <ion-col text-right col-2>去使用</ion-col>\n\n        <ion-col text-right><ion-icon>&#xf3d1;</ion-icon></ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n    <ion-grid class="grid-inforlist-default" m-b-10>\n\n      <ion-row [ngStyle]="{\'padding\':\'6px 12px 5px 0\'}">\n\n        <ion-col col-4>手机号</ion-col>\n\n        <ion-col col-4>{{Params.Mobile}}</ion-col>\n\n        <ion-col text-right>\n\n          <button class="btn" ion-button p-l-5 p-r-5 f-1-5 [disabled]="VCodeBtnIsDisabled" (click)="GetVerifyCode()" tappable>{{VCodeText}}</button>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row class="border-last">\n\n        <ion-col col-4>验证码</ion-col>\n\n        <ion-col><ion-input type=\'text\' placeholder="请输入验证码" formControlName="VerifyCode"></ion-input></ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </form>\n\n  <ion-row justify-content-center m-t-10>\n\n    <ion-col col-11>\n\n      <button class="bgc-grad-primary bgc-header" ion-button block round f-1-6 [disabled]="CompleteBtnIsDisabled" (click)="ConfirmCode()" tappable>确认</button>\n\n    </ion-col>\n\n  </ion-row>\n\n</ion-content>\n\n\n\n<!-- 确认信息阴影弹框正面 样式在grid.scss-->\n\n<div *ngIf="ShowFront">\n\n  <div class="shadow-bgc"></div>\n\n  <div class="shadow-cont">\n\n    <ion-grid>\n\n      <ion-row justify-content-center>\n\n        <ion-col col-10 text-center>\n\n          <img src="assets/imgs/main1.png">\n\n          <div m-t-10 ion-text color="light">\n\n            <p no-margin>有效期为信用卡正面"VALID THRU"右侧日期</p>\n\n            <p no-margin>如输入"1210"</p>\n\n          </div>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row  justify-content-center class="banks-contC">\n\n        <ion-col col-5>\n\n          <button class="small" ion-button block (click)="CloseCard()">知道了</button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n</div>\n\n\n\n<div *ngIf="ShowBack">\n\n  <div class="shadow-bgc"></div>\n\n  <!-- 确认信息阴影弹框反面 -->\n\n  <div class="shadow-cont">\n\n    <ion-grid>\n\n      <ion-row justify-content-center>\n\n        <ion-col col-10 text-center>\n\n          <img src="assets/imgs/main2.png">\n\n          <div m-t-10 ion-text color="light">\n\n            <p no-margin>CVN2为信用卡背面末三位数字</p>\n\n            <p no-margin>如输入"267"</p>\n\n          </div>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row  justify-content-center class="banks-contC">\n\n        <ion-col col-5>\n\n          <button class="small" ion-button block (click)="CloseCard()">知道了</button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n</div>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\cardinfor\cardinfor.html"*/
-        }),
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */]])
-    ], CardInforPage);
-    return CardInforPage;
-}());
-
-//# sourceMappingURL=cardinfor.js.map
-
-/***/ }),
-
-/***/ 275:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2034,10 +1927,10 @@ var ChangecardsPage = /** @class */ (function () {
     };
     ChangecardsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-changecards',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\changecards\changecards.html"*/'<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <!-- <app-toolbar HasBack="true" [Title]="HeadTitle" BtnIcon="&#xf273;" (BtnIconEvent)="AddCards()"></app-toolbar> -->\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle" BtnText="确定" (BtnTextEvent)="confirmCard()"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-list radio-group [(ngModel)]="autoManufacturers">\n\n  \n\n    <ion-item>\n\n      <ion-label>Cord</ion-label>\n\n      <ion-radio value="cord"></ion-radio>\n\n    </ion-item>\n\n  \n\n    <ion-item>\n\n      <ion-label>Duesenberg</ion-label>\n\n      <ion-radio value="duesenberg"></ion-radio>\n\n    </ion-item>\n\n  \n\n    <ion-item>\n\n      <ion-label>Hudson</ion-label>\n\n      <ion-radio value="hudson"></ion-radio>\n\n    </ion-item>\n\n  \n\n    <ion-item>\n\n      <ion-label>Packard</ion-label>\n\n      <ion-radio value="packard"></ion-radio>\n\n    </ion-item>\n\n  \n\n    <ion-item>\n\n      <ion-label>Studebaker</ion-label>\n\n      <ion-radio value="studebaker"></ion-radio>\n\n    </ion-item>\n\n  \n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\changecards\changecards.html"*/
+            selector: 'page-changecards',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\home\changecards\changecards.html"*/'<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <!-- <app-toolbar HasBack="true" [Title]="HeadTitle" BtnIcon="&#xf273;" (BtnIconEvent)="AddCards()"></app-toolbar> -->\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle" BtnText="确定" (BtnTextEvent)="confirmCard()"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-list radio-group [(ngModel)]="autoManufacturers">\n\n  \n\n    <ion-item>\n\n      <ion-label>Cord</ion-label>\n\n      <ion-radio value="cord"></ion-radio>\n\n    </ion-item>\n\n  \n\n    <ion-item>\n\n      <ion-label>Duesenberg</ion-label>\n\n      <ion-radio value="duesenberg"></ion-radio>\n\n    </ion-item>\n\n  \n\n    <ion-item>\n\n      <ion-label>Hudson</ion-label>\n\n      <ion-radio value="hudson"></ion-radio>\n\n    </ion-item>\n\n  \n\n    <ion-item>\n\n      <ion-label>Packard</ion-label>\n\n      <ion-radio value="packard"></ion-radio>\n\n    </ion-item>\n\n  \n\n    <ion-item>\n\n      <ion-label>Studebaker</ion-label>\n\n      <ion-radio value="studebaker"></ion-radio>\n\n    </ion-item>\n\n  \n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\home\changecards\changecards.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ViewController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */]])
     ], ChangecardsPage);
     return ChangecardsPage;
 }());
@@ -2046,7 +1939,7 @@ var ChangecardsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 276:
+/***/ 275:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2109,10 +2002,10 @@ var CheckoutPage = /** @class */ (function () {
     };
     CheckoutPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-checkout',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\checkout\checkout.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content class="h-checkout-page">\n\n	<ion-grid class="page-content" p-h-40>\n\n		<ion-row align-items-center class="border-bottom-1px" p-b-5>\n\n			<ion-col col-12>\n\n				<div class="f-flex flex-fill flex-column justify-content-center align-items-center l-h-d pay-amount">\n\n					<p text-center><span ion-text f-13 text-black-light>支付金额(元)</span></p>\n\n					<p text-center><span ion-text f-20 class="amount">10000.00</span></p>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n		<ion-row align-items-center p-b-10>\n\n			<ion-col col-12>\n\n				<div class="f-flex flex-fill flex-column justify-content-center align-items-center receive-amount">\n\n					<p text-center><span ion-text f-13 text-black-light>到账金额(元)</span></p>\n\n					<p text-center><span ion-text f-35 class="amount">9950.00</span></p>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n	</ion-grid>\n\n	<ion-grid class="page-content bank-wrp" m-t-10>\n\n		<ion-row align-items-center class="border-bottom-1px" p-v-10>\n\n			<ion-col col-6>\n\n				<p><span ion-text>付款信用卡</span></p>\n\n			</ion-col>\n\n			<ion-col col-6>\n\n				<div class="d-flex align-items-center justify-content-end">\n\n					<ion-img src="assets/banklogo/bank_308.png" class="img" alt="icon"></ion-img>\n\n					<span ion-text m-l-5>中信银行(1843)</span>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n		<ion-row align-items-center p-v-10>\n\n			<ion-col col-6>\n\n				<p><span ion-text>收款储蓄卡</span></p>\n\n			</ion-col>\n\n			<ion-col col-6>\n\n				<div class="d-flex align-items-center justify-content-end">\n\n					<ion-img src="assets/banklogo/bank_308.png" class="img" alt="icon"></ion-img>\n\n					<span ion-text m-l-5>招商银行(1843)</span>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n	</ion-grid>\n\n	<ion-grid>\n\n		<ion-row>\n\n			<ion-col col-12>\n\n				<button type="button" ion-button full color="primary" \n\n					(cilck)="Pay()" [disabled]="!CanSubmited" \n\n					[class.btn-disabled]="!CanSubmited">去付款</button>\n\n			</ion-col>\n\n		</ion-row>		\n\n	</ion-grid>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\checkout\checkout.html"*/
+            selector: 'page-checkout',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\home\checkout\checkout.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content class="h-checkout-page">\n\n	<ion-grid class="page-content" p-h-40>\n\n		<ion-row align-items-center class="border-bottom-1px" p-b-5>\n\n			<ion-col col-12>\n\n				<div class="f-flex flex-fill flex-column justify-content-center align-items-center l-h-d pay-amount">\n\n					<p text-center><span ion-text f-13 text-black-light>支付金额(元)</span></p>\n\n					<p text-center><span ion-text f-20 class="amount">10000.00</span></p>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n		<ion-row align-items-center p-b-10>\n\n			<ion-col col-12>\n\n				<div class="f-flex flex-fill flex-column justify-content-center align-items-center receive-amount">\n\n					<p text-center><span ion-text f-13 text-black-light>到账金额(元)</span></p>\n\n					<p text-center><span ion-text f-35 class="amount">9950.00</span></p>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n	</ion-grid>\n\n	<ion-grid class="page-content bank-wrp" m-t-10>\n\n		<ion-row align-items-center class="border-bottom-1px" p-v-10>\n\n			<ion-col col-6>\n\n				<p><span ion-text>付款信用卡</span></p>\n\n			</ion-col>\n\n			<ion-col col-6>\n\n				<div class="d-flex align-items-center justify-content-end">\n\n					<ion-img src="assets/banklogo/bank_308.png" class="img" alt="icon"></ion-img>\n\n					<span ion-text m-l-5>中信银行(1843)</span>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n		<ion-row align-items-center p-v-10>\n\n			<ion-col col-6>\n\n				<p><span ion-text>收款储蓄卡</span></p>\n\n			</ion-col>\n\n			<ion-col col-6>\n\n				<div class="d-flex align-items-center justify-content-end">\n\n					<ion-img src="assets/banklogo/bank_308.png" class="img" alt="icon"></ion-img>\n\n					<span ion-text m-l-5>招商银行(1843)</span>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n	</ion-grid>\n\n	<ion-grid>\n\n		<ion-row>\n\n			<ion-col col-12>\n\n				<button type="button" ion-button full color="primary" \n\n					(cilck)="Pay()" [disabled]="!CanSubmited" \n\n					[class.btn-disabled]="!CanSubmited">去付款</button>\n\n			</ion-col>\n\n		</ion-row>		\n\n	</ion-grid>\n\n</ion-content>'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\home\checkout\checkout.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */]])
     ], CheckoutPage);
     return CheckoutPage;
 }());
@@ -2121,7 +2014,7 @@ var CheckoutPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 277:
+/***/ 276:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2149,10 +2042,10 @@ var ConfirminfoPage = /** @class */ (function () {
     }
     ConfirminfoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-confirminfo',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\confirminfo\confirminfo.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <ion-row class="bgc-grad-primary grid-confirm-card">\n\n      <ion-col text-center>\n\n      <p><ion-icon f-5-0>&#xf2bc;</ion-icon><span f-3-0>收款成功</span></p>\n\n        <div><span f-1-5>￥</span><span f-5-0>{{Amount}}</span></div>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-grid class="list-grid-default" m-b-10>\n\n    <ion-row align-items-center p-l-10>\n\n      <ion-col p-t-8 p-b-8>\n\n        <ul class="list-row-inner">\n\n          <li class="title infor">收款储蓄卡</li>\n\n          <li class="note">\n\n            <span class="bank-face"><img src="assets/banklogo/bank_{{CardCode}}.png"></span>\n\n            <span ion-text color="dark">{{CardInfo}}</span>\n\n          </li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="list-grid-default" m-b-10>\n\n    <ion-row align-items-center p-l-10>\n\n      <ion-col p-t-8 p-b-8>\n\n        <ul class="list-row-inner">\n\n          <li class="title infor">订单状态</li>\n\n          <li class="note" *ngIf="Status; then Done; else Failed">\n\n            <span ion-text color="orange">交易成功</span>\n\n          </li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row align-items-center p-l-10>\n\n      <ion-col p-t-8 p-b-8>\n\n        <ul class="list-row-inner">\n\n          <li class="title infor">预计到账时间</li>\n\n          <li class="note"><span ion-text color="dark" >实时到账</span></li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-row text-right p-r-10 ion-text color="gray"><ion-col>*如未实时到账，一般最晚第二个工作日可到账</ion-col></ion-row>\n\n  <ion-row justify-content-center m-t-50  [navPush]="App.RootPage.TabsPage">\n\n    <ion-col col-11><button class="bgc-grad-primary bgc-header" round ion-button block  f-1-6>完 成</button></ion-col>\n\n  </ion-row>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\confirminfo\confirminfo.html"*/
+            selector: 'page-confirminfo',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\home\confirminfo\confirminfo.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <ion-row class="bgc-grad-primary grid-confirm-card">\n\n      <ion-col text-center>\n\n      <p><ion-icon f-5-0>&#xf2bc;</ion-icon><span f-3-0>收款成功</span></p>\n\n        <div><span f-1-5>￥</span><span f-5-0>{{Amount}}</span></div>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-grid class="list-grid-default" m-b-10>\n\n    <ion-row align-items-center p-l-10>\n\n      <ion-col p-t-8 p-b-8>\n\n        <ul class="list-row-inner">\n\n          <li class="title infor">收款储蓄卡</li>\n\n          <li class="note">\n\n            <span class="bank-face"><img src="assets/banklogo/bank_{{CardCode}}.png"></span>\n\n            <span ion-text color="dark">{{CardInfo}}</span>\n\n          </li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="list-grid-default" m-b-10>\n\n    <ion-row align-items-center p-l-10>\n\n      <ion-col p-t-8 p-b-8>\n\n        <ul class="list-row-inner">\n\n          <li class="title infor">订单状态</li>\n\n          <li class="note" *ngIf="Status; then Done; else Failed">\n\n            <span ion-text color="orange">交易成功</span>\n\n          </li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row align-items-center p-l-10>\n\n      <ion-col p-t-8 p-b-8>\n\n        <ul class="list-row-inner">\n\n          <li class="title infor">预计到账时间</li>\n\n          <li class="note"><span ion-text color="dark" >实时到账</span></li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-row text-right p-r-10 ion-text color="gray"><ion-col>*如未实时到账，一般最晚第二个工作日可到账</ion-col></ion-row>\n\n  <ion-row justify-content-center m-t-50  [navPush]="App.RootPage.TabsPage">\n\n    <ion-col col-11><button class="bgc-grad-primary bgc-header" round ion-button block  f-1-6>完 成</button></ion-col>\n\n  </ion-row>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\home\confirminfo\confirminfo.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
     ], ConfirminfoPage);
     return ConfirminfoPage;
 }());
@@ -2161,7 +2054,7 @@ var ConfirminfoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 278:
+/***/ 277:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2209,6 +2102,29 @@ var CreditCardPage = /** @class */ (function () {
         });
     }
     CreditCardPage.prototype.ngOnInit = function () {
+        if (!App.IsIdAuthed) {
+            var alertOpts = {
+                title: '温馨提示',
+                message: '为了您的资金安全，首次刷卡需先完成身份认证',
+                cssClass: 'text-left',
+                buttons: [
+                    {
+                        text: '取消',
+                        role: 'cancel',
+                        handler: function () {
+                            App.Nav.push('HomePage');
+                        }
+                    },
+                    {
+                        text: '确认',
+                        handler: function () {
+                            App.Nav.push('AuthPage');
+                        }
+                    }
+                ]
+            };
+            App.ShowAlert(alertOpts);
+        }
     };
     // 初始化数据
     CreditCardPage.prototype.InitData = function () {
@@ -2283,19 +2199,20 @@ var CreditCardPage = /** @class */ (function () {
     });
     CreditCardPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-creditcard',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\creditcard\creditcard.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content class="h-creditcard-page">\n\n  <ion-grid class="page-content" p-h-10>\n\n    <ion-row justify-content-center>\n\n      <ion-col col-12>\n\n        <ion-label>付款信用卡</ion-label>\n\n      </ion-col>\n\n      <!-- 未添加信用卡 -->\n\n      <ion-col col-12 class="card no-card" text-center *ngIf="!CurrentCreditCard">\n\n        <button ion-button icon-left class="bg-transparent" (click)="AddCreditCard()">\n\n          <ion-icon name="add-circle" color="primary"></ion-icon>\n\n          <span ion-text color="primary">添加信用卡</span>\n\n        </button>\n\n      </ion-col>\n\n      <!-- 未添加信用卡 -->\n\n\n\n      <!-- 已添加信用卡 -->\n\n      <ion-col col-12 class="d-flex flex-column justify-content-between card has-card" p-h-10 p-v-10 *ngIf="CurrentCreditCard">\n\n        <div class="d-flex justify-content-between">\n\n          <div class="flex-fill d-flex align-items-center justify-content-start">\n\n            <ion-img class="icon-bank" src="assets/banklogo/bank_308.png" alt="银行"></ion-img>\n\n            <span ion-text f-14 text-light m-l-5>招商银行</span>\n\n          </div>\n\n          <div class="flex-fill" text-right>\n\n            <button type="button" ion-button class="bg-transparent btn-change" (click)="ChangeCreditCard()" no-padding no-margin>更换</button>\n\n          </div>\n\n        </div>\n\n        <div>\n\n          <span ion-text text-light>**** **** **** 1483</span>\n\n        </div>\n\n      </ion-col>\n\n      <!-- 已添加信用卡 -->\n\n    </ion-row>\n\n    <ion-row justify-content-center>\n\n      <ion-col col-12>\n\n        <ion-label>收款储蓄卡</ion-label>\n\n      </ion-col>\n\n      <!-- 未添加储蓄卡 -->\n\n      <ion-col col-12 class="card no-card" text-center *ngIf="!CurrentDepositCard">\n\n        <button ion-button icon-left class="bg-transparent" (click)="AddDepositCard()">\n\n          <ion-icon name="add-circle" color="primary"></ion-icon>\n\n          <span ion-text color="primary">添加储蓄卡</span>\n\n        </button>\n\n      </ion-col>\n\n      <!-- 未添加储蓄卡 -->\n\n\n\n      <!-- 已添加储蓄卡 -->\n\n      <ion-col col-12 class="d-flex flex-column justify-content-between card has-card" p-h-10 p-v-10 *ngIf="CurrentDepositCard">\n\n        <div class="d-flex justify-content-between">\n\n          <div class="flex-fill d-flex align-items-center justify-content-start">\n\n            <ion-img class="icon-bank" src="assets/banklogo/bank_308.png" alt="银行"></ion-img>\n\n            <span ion-text f-14 text-light m-l-5>招商银行</span>\n\n          </div>\n\n          <div class="flex-fill" text-right>\n\n            <button type="button" ion-button class="bg-transparent btn-change" (click)="ChangeDepositCard()" no-padding no-margin>更换</button>\n\n          </div>\n\n        </div>\n\n        <div>\n\n          <span ion-text text-light>**** **** **** 1483</span>\n\n        </div>\n\n      </ion-col>\n\n      <!-- 已添加储蓄卡 -->\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10 p-b-10>\n\n    <ion-row class="border-bottom-1px">\n\n      <ion-col>\n\n        <ion-label>收款金额(元)</ion-label>\n\n      </ion-col>\n\n      <ion-col col-12>\n\n        <ion-input type="number" name="amount" ([ngModel])="Amount.InputAmount" no-margin f-30 placeholder="500-20000" p-l-5></ion-input>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row p-t-5>\n\n      <ion-col class="l-h-d">\n\n        <p ion-text class="text-fee">费率：{{Rate}}%+3元，保底8元</p>\n\n        <p ion-text class="text-t">交易时间：9:00-21:00，立即到账</p>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n        <button type="button" ion-button full [disabled]="!CanGoNext" [class.btn-disabled]="!CanGoNext">下一步</button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\creditcard\creditcard.html"*/
+            selector: 'page-creditcard',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\home\creditcard\creditcard.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content class="h-creditcard-page">\n\n  <ion-grid class="page-content" p-h-10>\n\n    <ion-row justify-content-center>\n\n      <ion-col col-12>\n\n        <ion-label>付款信用卡</ion-label>\n\n      </ion-col>\n\n      <!-- 未添加信用卡 -->\n\n      <ion-col col-12 class="card no-card" text-center *ngIf="!CurrentCreditCard">\n\n        <button ion-button icon-left class="bg-transparent" (click)="AddCreditCard()">\n\n          <ion-icon name="add-circle" color="primary"></ion-icon>\n\n          <span ion-text color="primary">添加信用卡</span>\n\n        </button>\n\n      </ion-col>\n\n      <!-- 未添加信用卡 -->\n\n\n\n      <!-- 已添加信用卡 -->\n\n      <ion-col col-12 class="d-flex flex-column justify-content-between card has-card" p-h-10 p-v-10 *ngIf="CurrentCreditCard">\n\n        <div class="d-flex justify-content-between">\n\n          <div class="flex-fill d-flex align-items-center justify-content-start">\n\n            <ion-img class="icon-bank" src="assets/banklogo/bank_308.png" alt="银行"></ion-img>\n\n            <span ion-text f-14 text-light m-l-5>招商银行</span>\n\n          </div>\n\n          <div class="flex-fill" text-right>\n\n            <button type="button" ion-button class="bg-transparent btn-change" (click)="ChangeCreditCard()" no-padding no-margin>更换</button>\n\n          </div>\n\n        </div>\n\n        <div>\n\n          <span ion-text text-light>**** **** **** 1483</span>\n\n        </div>\n\n      </ion-col>\n\n      <!-- 已添加信用卡 -->\n\n    </ion-row>\n\n    <ion-row justify-content-center>\n\n      <ion-col col-12>\n\n        <ion-label>收款储蓄卡</ion-label>\n\n      </ion-col>\n\n      <!-- 未添加储蓄卡 -->\n\n      <ion-col col-12 class="card no-card" text-center *ngIf="!CurrentDepositCard">\n\n        <button ion-button icon-left class="bg-transparent" (click)="AddDepositCard()">\n\n          <ion-icon name="add-circle" color="primary"></ion-icon>\n\n          <span ion-text color="primary">添加储蓄卡</span>\n\n        </button>\n\n      </ion-col>\n\n      <!-- 未添加储蓄卡 -->\n\n\n\n      <!-- 已添加储蓄卡 -->\n\n      <ion-col col-12 class="d-flex flex-column justify-content-between card has-card" p-h-10 p-v-10 *ngIf="CurrentDepositCard">\n\n        <div class="d-flex justify-content-between">\n\n          <div class="flex-fill d-flex align-items-center justify-content-start">\n\n            <ion-img class="icon-bank" src="assets/banklogo/bank_308.png" alt="银行"></ion-img>\n\n            <span ion-text f-14 text-light m-l-5>招商银行</span>\n\n          </div>\n\n          <div class="flex-fill" text-right>\n\n            <button type="button" ion-button class="bg-transparent btn-change" (click)="ChangeDepositCard()" no-padding no-margin>更换</button>\n\n          </div>\n\n        </div>\n\n        <div>\n\n          <span ion-text text-light>**** **** **** 1483</span>\n\n        </div>\n\n      </ion-col>\n\n      <!-- 已添加储蓄卡 -->\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10 p-b-10>\n\n    <ion-row class="border-bottom-1px">\n\n      <ion-col>\n\n        <ion-label>收款金额(元)</ion-label>\n\n      </ion-col>\n\n      <ion-col col-12>\n\n        <ion-input type="number" name="amount" ([ngModel])="Amount.InputAmount" no-margin f-30 placeholder="500-20000" p-l-5></ion-input>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row p-t-5>\n\n      <ion-col class="l-h-d">\n\n        <p ion-text class="text-fee">费率：{{Rate}}%+3元，保底8元</p>\n\n        <p ion-text class="text-t">交易时间：9:00-21:00，立即到账</p>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n        <button type="button" ion-button full [disabled]="!CanGoNext" [class.btn-disabled]="!CanGoNext">下一步</button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\home\creditcard\creditcard.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_5__shared_helper_card_helper__["b" /* CardHelper */], __WEBPACK_IMPORTED_MODULE_2__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__shared_helper_card_helper__["b" /* CardHelper */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__shared_helper_card_helper__["b" /* CardHelper */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth__["a" /* TAuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth__["a" /* TAuthService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */]) === "function" && _d || Object])
     ], CreditCardPage);
     return CreditCardPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=creditcard.js.map
 
 /***/ }),
 
-/***/ 279:
+/***/ 278:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2303,7 +2220,7 @@ var CreditCardPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_timers__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_timers__ = __webpack_require__(340);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_timers___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_timers__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2442,10 +2359,10 @@ var FinalpayPage = /** @class */ (function () {
     ], FinalpayPage.prototype, "paymentForm", void 0);
     FinalpayPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-finalpay',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\finalpay\finalpay.html"*/'\n\n<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="headTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="content">\n\n  <div class="progress" [hidden]="browser.isLoaded">\n\n    <div class="progress-inner" id="progress"></div>\n\n  </div>\n\n  <div *ngIf="flag">\n\n    <iframe [src]="browser.secUrl" id="iframe" class="iframe" \n\n      sandbox="allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-forms"\n\n      (load)="loaded()"\n\n      name="targetIframe">\n\n    </iframe>\n\n    <form [action]="formAction" #paymentForm name="pay_form" method="post" target="targetIframe">\n\n      <div [innerHtml]="htmltext"></div>\n\n    </form>\n\n  </div>\n\n  <div *ngIf="!flag" [innerHtml]="this_html"></div>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\finalpay\finalpay.html"*/,
+            selector: 'page-finalpay',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\home\finalpay\finalpay.html"*/'\n\n<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="headTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="content">\n\n  <div class="progress" [hidden]="browser.isLoaded">\n\n    <div class="progress-inner" id="progress"></div>\n\n  </div>\n\n  <div *ngIf="flag">\n\n    <iframe [src]="browser.secUrl" id="iframe" class="iframe" \n\n      sandbox="allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-forms"\n\n      (load)="loaded()"\n\n      name="targetIframe">\n\n    </iframe>\n\n    <form [action]="formAction" #paymentForm name="pay_form" method="post" target="targetIframe">\n\n      <div [innerHtml]="htmltext"></div>\n\n    </form>\n\n  </div>\n\n  <div *ngIf="!flag" [innerHtml]="this_html"></div>\n\n</ion-content>'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\home\finalpay\finalpay.html"*/,
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["c" /* DomSanitizer */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["c" /* DomSanitizer */]])
     ], FinalpayPage);
     return FinalpayPage;
 }());
@@ -2454,7 +2371,7 @@ var FinalpayPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 280:
+/***/ 279:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2489,10 +2406,10 @@ var HomePage = /** @class */ (function () {
     ], HomePage.prototype, "content", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-grid>\n\n    <ion-row class="border-bottom-1px">\n\n      <ion-col col-1>\n\n        <ion-icon name="volume-up"></ion-icon>\n\n      </ion-col>\n\n      <ion-col cil-11>我的通知</ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-header>\n\n\n\n<ion-content class="home-page">\n\n  <ion-grid class="page-content">\n\n    <ion-row align-items-center justify-content-center class="border-bottom-1px" p-b-10>\n\n      <ion-col col-10 col-xs-8 col-md-6 col-lg-4>\n\n        <button type="button" class="btn-home-pay" ion-button full>刷卡收款</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row p-t-15>\n\n      <ion-col col-4>\n\n        <a href="#/auth" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/a-credit.png" alt="办信用卡" width="60" height="60" />\n\n          <label text-center>办信用卡</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#/addDeposit" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="身份认证" width="60" height="60" />\n\n          <label text-center>身份认证</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#/myCard" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="会员福利" width="60" height="60" />\n\n          <label text-center>会员福利</label>\n\n        </a>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row>\n\n      <ion-col col-12>\n\n        <ion-label>新手大礼包</ion-label>\n\n        <div>\n\n          <img src="assets/imgs/zhengm.png" />\n\n        </div>\n\n      </ion-col>\n\n    </ion-row>  \n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row>\n\n      <ion-col col-12>\n\n        <ion-label>vip专区</ion-label>\n\n        <div>\n\n          <img src="assets/imgs/zhengm.png" />\n\n        </div>\n\n      </ion-col>\n\n    </ion-row>  \n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row>\n\n      <ion-col col-12>\n\n        <ion-label>精选信用卡</ion-label>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col col-4>\n\n        <a href="#" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="办信用卡" width="60" height="60" />\n\n          <label text-center>办信用卡</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="身份认证" width="60" height="60" />\n\n          <label text-center>身份认证</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="会员福利" width="60" height="60" />\n\n          <label text-center>会员福利</label>\n\n        </a>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-grid>\n\n    <ion-row class="border-bottom-1px">\n\n      <ion-col col-1>\n\n        <ion-icon name="volume-up"></ion-icon>\n\n      </ion-col>\n\n      <ion-col cil-11>我的通知</ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-header>\n\n\n\n<ion-content class="home-page">\n\n  <ion-grid class="page-content">\n\n    <ion-row align-items-center justify-content-center class="border-bottom-1px" p-b-10>\n\n      <ion-col col-10 col-xs-8 col-md-6 col-lg-4>\n\n        <button type="button" class="btn-home-pay" ion-button full>刷卡收款</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row p-t-15>\n\n      <ion-col col-4>\n\n        <a href="#/auth" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/a-credit.png" alt="办信用卡" width="60" height="60" />\n\n          <label text-center>办信用卡</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#/addDeposit" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="身份认证" width="60" height="60" />\n\n          <label text-center>身份认证</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#/MyCard" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="会员福利" width="60" height="60" />\n\n          <label text-center>会员福利</label>\n\n        </a>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row>\n\n      <ion-col col-12>\n\n        <ion-label>新手大礼包</ion-label>\n\n        <div>\n\n          <img src="assets/imgs/zhengm.png" />\n\n        </div>\n\n      </ion-col>\n\n    </ion-row>  \n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row>\n\n      <ion-col col-12>\n\n        <ion-label>vip专区</ion-label>\n\n        <div>\n\n          <img src="assets/imgs/zhengm.png" />\n\n        </div>\n\n      </ion-col>\n\n    </ion-row>  \n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row>\n\n      <ion-col col-12>\n\n        <ion-label>精选信用卡</ion-label>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col col-4>\n\n        <a href="#" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="办信用卡" width="60" height="60" />\n\n          <label text-center>办信用卡</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="身份认证" width="60" height="60" />\n\n          <label text-center>身份认证</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="会员福利" width="60" height="60" />\n\n          <label text-center>会员福利</label>\n\n        </a>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\home\home.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */], __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */], __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
     ], HomePage);
     return HomePage;
 }());
@@ -2501,7 +2418,7 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 281:
+/***/ 280:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2535,7 +2452,7 @@ var ListofbankPage = /** @class */ (function () {
     };
     ListofbankPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-listofbank',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\listofbank\listofbank.html"*/'<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-list class="bankcard-list">\n\n    <ion-item *ngFor="let item of BankList" (click)="SelectedBank(item)">\n\n      <ion-avatar item-start>\n\n        <img src="assets/banklogo/bank_{{item.id}}.png">\n\n      </ion-avatar>\n\n      <h2>{{item.bankName}}</h2>\n\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\listofbank\listofbank.html"*/
+            selector: 'page-listofbank',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\home\listofbank\listofbank.html"*/'<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-list class="bankcard-list">\n\n    <ion-item *ngFor="let item of BankList" (click)="SelectedBank(item)">\n\n      <ion-avatar item-start>\n\n        <img src="assets/banklogo/bank_{{item.id}}.png">\n\n      </ion-avatar>\n\n      <h2>{{item.bankName}}</h2>\n\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\home\listofbank\listofbank.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_homeservice__["a" /* HomeService */]])
@@ -2547,7 +2464,7 @@ var ListofbankPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 282:
+/***/ 281:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2596,10 +2513,10 @@ var ResetPasswordPage = /** @class */ (function () {
     };
     ResetPasswordPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-resetpwd',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\resetpassword\resetpassword.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle" ></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <div class="register">\n\n    <ion-grid text-center>\n\n      <form novalidate [formGroup]="formGroup" autocomplete="off">\n\n        <ion-row class="border-bottom-1px">\n\n          <ion-col col-12>\n\n            <ion-input type="password" placeholder="请输入密码" formControlName="pwd" required></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n      </form>\n\n      <ion-row class="border-bottom-1px">\n\n        <ion-col col-12>\n\n          <ion-input type="password" placeholder="请确认密码" [(ngModel)]="conpwd"></ion-input>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row m-t-30>\n\n        <ion-col col-12>\n\n          <button ion-button full color="primary" (click)="clickgetlogin()" [class.btn-disabled]="pwd.invalid" [disabled]="pwd.invalid">完成</button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\resetpassword\resetpassword.html"*/
+            selector: 'page-resetpwd',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\home\resetpassword\resetpassword.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle" ></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <div class="register">\n\n    <ion-grid text-center>\n\n      <form novalidate [formGroup]="formGroup" autocomplete="off">\n\n        <ion-row class="border-bottom-1px">\n\n          <ion-col col-12>\n\n            <ion-input type="password" placeholder="请输入密码" formControlName="pwd" required></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n      </form>\n\n      <ion-row class="border-bottom-1px">\n\n        <ion-col col-12>\n\n          <ion-input type="password" placeholder="请确认密码" [(ngModel)]="conpwd"></ion-input>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row m-t-30>\n\n        <ion-col col-12>\n\n          <button ion-button full color="primary" (click)="clickgetlogin()" [class.btn-disabled]="pwd.invalid" [disabled]="pwd.invalid">完成</button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n</ion-content>'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\home\resetpassword\resetpassword.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */]])
     ], ResetPasswordPage);
     return ResetPasswordPage;
 }());
@@ -2608,7 +2525,7 @@ var ResetPasswordPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 283:
+/***/ 282:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2737,7 +2654,7 @@ var LoanPage = /** @class */ (function () {
     };
     LoanPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-loan',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\loan\loan.html"*/'<ion-header no-border>\n\n  <ion-navbar class="app-navbar-primary">\n\n    <ion-title>{{browser.title}}</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <div class="progress" [hidden]="browser.isLoaded">\n\n  <div class="progress-inner" id="progress"></div>\n\n  </div>\n\n\n\n  <iframe id="iframe" class="iframe"\n\n    sandbox="allow-scripts allow-top-navigation allow-pointer-lock allow-same-origin allow-popups allow-forms"\n\n    [src]="browser.secUrl"\n\n    (load)="loaded()">\n\n  </iframe>\n\n</ion-content>\n\n\n\n  '/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\loan\loan.html"*/
+            selector: 'page-loan',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\loan\loan.html"*/'<ion-header no-border>\n\n  <ion-navbar class="app-navbar-primary">\n\n    <ion-title>{{browser.title}}</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <div class="progress" [hidden]="browser.isLoaded">\n\n  <div class="progress-inner" id="progress"></div>\n\n  </div>\n\n\n\n  <iframe id="iframe" class="iframe"\n\n    sandbox="allow-scripts allow-top-navigation allow-pointer-lock allow-same-origin allow-popups allow-forms"\n\n    [src]="browser.secUrl"\n\n    (load)="loaded()">\n\n  </iframe>\n\n</ion-content>\n\n\n\n  '/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\loan\loan.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["c" /* DomSanitizer */]])
     ], LoanPage);
@@ -2748,7 +2665,7 @@ var LoanPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 284:
+/***/ 283:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2804,10 +2721,10 @@ var LoginPage = /** @class */ (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\login\login.html"*/'<ion-content>\n\n  <div class="register">\n\n    <ion-row class="bgc-grad-primary back-btn">\n\n      <ion-col col-12 f-1-6>\n\n        <span>登 录\n\n          <ion-icon f-2-0 p-r-15 [navPush]="App.RootPage.StartPage" float-right tappable>&#xf2c0;</ion-icon>\n\n        </span>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row justify-content-center>\n\n      <ion-col class="col" col-3 p-v-40 text-center>\n\n        <img src="assets/imgs/58icon.png">\n\n      </ion-col>\n\n    </ion-row>\n\n    <div>\n\n      <ion-grid text-center>\n\n        <form novalidate [formGroup]="formGroup" autocomplete="off">\n\n          <ion-row class="border-bottom-1px">\n\n            <ion-col col-12>\n\n              <ion-input type="Tel" placeholder="请输入手机号" formControlName="Tel" required></ion-input>\n\n            </ion-col>\n\n          </ion-row>\n\n          <ion-row class="border-bottom-1px">\n\n            <ion-col col-12>\n\n              <ion-input type="password" placeholder="请输入密码" formControlName="Pass" required></ion-input>\n\n            </ion-col>\n\n          </ion-row>\n\n          <ion-row m-t-30>\n\n            <ion-col col-12>\n\n              <button ion-button full (click)="Login()" [class.btn-disabled]="LoginDisabled" [disabled]="LoginDisabled">登录</button>\n\n            </ion-col>\n\n          </ion-row>\n\n        </form>\n\n        <button ion-button outline no-border [navPush]="App.RootPage.FindPasswordPage" ion-text color="primary" p-t-5>忘记密码 ?</button>\n\n      </ion-grid>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\login\login.html"*/
+            selector: 'page-login',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\login\login.html"*/'<ion-content>\n\n  <div class="register">\n\n    <ion-row class="bgc-grad-primary back-btn">\n\n      <ion-col col-12 f-1-6>\n\n        <span>登 录\n\n          <ion-icon f-2-0 p-r-15 [navPush]="App.RootPage.StartPage" float-right tappable>&#xf2c0;</ion-icon>\n\n        </span>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row justify-content-center>\n\n      <ion-col class="col" col-3 p-v-40 text-center>\n\n        <img src="assets/imgs/58icon.png">\n\n      </ion-col>\n\n    </ion-row>\n\n    <div>\n\n      <ion-grid text-center>\n\n        <form novalidate [formGroup]="formGroup" autocomplete="off">\n\n          <ion-row class="border-bottom-1px">\n\n            <ion-col col-12>\n\n              <ion-input type="Tel" placeholder="请输入手机号" formControlName="Tel" required></ion-input>\n\n            </ion-col>\n\n          </ion-row>\n\n          <ion-row class="border-bottom-1px">\n\n            <ion-col col-12>\n\n              <ion-input type="password" placeholder="请输入密码" formControlName="Pass" required></ion-input>\n\n            </ion-col>\n\n          </ion-row>\n\n          <ion-row m-t-30>\n\n            <ion-col col-12>\n\n              <button ion-button full (click)="Login()" [class.btn-disabled]="LoginDisabled" [disabled]="LoginDisabled">登录</button>\n\n            </ion-col>\n\n          </ion-row>\n\n        </form>\n\n        <button ion-button outline no-border [navPush]="App.RootPage.FindPasswordPage" ion-text color="primary" p-t-5>忘记密码 ?</button>\n\n      </ion-grid>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\login\login.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* NavController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */]])
     ], LoginPage);
     return LoginPage;
 }());
@@ -2816,7 +2733,7 @@ var LoginPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 285:
+/***/ 284:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2894,7 +2811,7 @@ var ModifyPasswordPage = /** @class */ (function () {
     };
     ModifyPasswordPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-modifypwd',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\modifypassword\modifypassword.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <div class="page-content">\n\n    <ion-grid text-center>\n\n      <ion-row class="border-bottom-1px form-ctrl">\n\n        <ion-col col-12>\n\n          <ion-input type="Tel" [(ngModel)]="tel" readonly></ion-input>\n\n        </ion-col>\n\n      </ion-row>\n\n      <form novalidate [formGroup]="FormGroup" autocomplete="off">\n\n        <ion-row class="border-bottom-1px form-ctrl">\n\n          <ion-col col-7>\n\n            <ion-input type="text" placeholder="请输入验证码" formControlName="VCode" required></ion-input>\n\n          </ion-col>\n\n          <ion-col col-5>\n\n            <button ion-button class="btn-no-shadow btn-form" (click)="GetTelCode()">\n\n              <span ion-text>{{VCodeText}}</span>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row class="border-bottom-1px form-ctrl">\n\n          <ion-col col-12>\n\n            <ion-input type="password" placeholder="请设置新密码"  formControlName="Password" required></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n      </form>\n\n      <ion-row m-t-30>\n\n        <ion-col col-12>\n\n          <button ion-button full color="primary" [class.btn-disabled]="ConfirmBtnIsDisabled" [disabled]="ConfirmBtnIsDisabled" (click)="ConfirmModify()">确认</button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n</ion-content>\n\n    \n\n    '/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\modifypassword\modifypassword.html"*/
+            selector: 'page-modifypwd',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\modifypassword\modifypassword.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <div class="page-content">\n\n    <ion-grid text-center>\n\n      <ion-row class="border-bottom-1px form-ctrl">\n\n        <ion-col col-12>\n\n          <ion-input type="Tel" [(ngModel)]="tel" readonly></ion-input>\n\n        </ion-col>\n\n      </ion-row>\n\n      <form novalidate [formGroup]="FormGroup" autocomplete="off">\n\n        <ion-row class="border-bottom-1px form-ctrl">\n\n          <ion-col col-7>\n\n            <ion-input type="text" placeholder="请输入验证码" formControlName="VCode" required></ion-input>\n\n          </ion-col>\n\n          <ion-col col-5>\n\n            <button ion-button class="btn-no-shadow btn-form" (click)="GetTelCode()">\n\n              <span ion-text>{{VCodeText}}</span>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row class="border-bottom-1px form-ctrl">\n\n          <ion-col col-12>\n\n            <ion-input type="password" placeholder="请设置新密码"  formControlName="Password" required></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n      </form>\n\n      <ion-row m-t-30>\n\n        <ion-col col-12>\n\n          <button ion-button full color="primary" [class.btn-disabled]="ConfirmBtnIsDisabled" [disabled]="ConfirmBtnIsDisabled" (click)="ConfirmModify()">确认</button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n</ion-content>\n\n    \n\n    '/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\modifypassword\modifypassword.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_auth__["a" /* TAuthService */]])
@@ -2906,7 +2823,7 @@ var ModifyPasswordPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 286:
+/***/ 285:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2974,7 +2891,7 @@ var RegisterPage = /** @class */ (function () {
     };
     RegisterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-register',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\register\register.html"*/'<ion-content>\n\n  <div class=" register">\n\n    <ion-row class="bgc-grad-primary back-btn">\n\n      <ion-col col-12 f-1-6>\n\n        <span>注 册\n\n          <ion-icon f-2-0 p-r-15 [navPush]="App.RootPage.StartPage" float-right tappable>&#xf2c0;</ion-icon>\n\n        </span>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row justify-content-center>\n\n      <ion-col col-3 p-v-40 text-center>\n\n        <img src="assets/imgs/58icon.png">\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-grid text-center>\n\n      <form novalidate [formGroup]="formGroup" autocomplete="off">\n\n        <ion-row class="reg-line border-bottom-1px">\n\n          <ion-col col-12>\n\n            <ion-input type="Tel" placeholder="请输入手机号" formControlName="Tel" required></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row class="reg-line border-bottom-1px">\n\n          <ion-col col-7>\n\n            <ion-input type="text" placeholder="请输入手机验证码" formControlName="VCode" required></ion-input>\n\n          </ion-col>\n\n          <ion-col col-5>\n\n            <button ion-button outline [disabled]="Tel.invalid" (click)="GetVeriyCode()">{{VCodeText}}</button>\n\n          </ion-col>\n\n        </ion-row>\n\n       <ion-row m-t-30 m-b-10>\n\n          <ion-col col-12>\n\n            <button ion-button full color="primary" (click)="NextTable()" [class.btn-disabled]="Tel.invalid || VCode.invalid" [disabled]="Tel.invalid || VCode.invalid">下一步</button>\n\n          </ion-col>\n\n        </ion-row>\n\n        <span f-1-0>点击"下一步"即表示您同意</span><span ion-text color="primary">《5u卡贝用户使用协议》</span>\n\n      </form>\n\n    </ion-grid>\n\n  </div>\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\register\register.html"*/
+            selector: 'page-register',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\register\register.html"*/'<ion-content>\n\n  <div class=" register">\n\n    <ion-row class="bgc-grad-primary back-btn">\n\n      <ion-col col-12 f-1-6>\n\n        <span>注 册\n\n          <ion-icon f-2-0 p-r-15 [navPush]="App.RootPage.StartPage" float-right tappable>&#xf2c0;</ion-icon>\n\n        </span>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row justify-content-center>\n\n      <ion-col col-3 p-v-40 text-center>\n\n        <img src="assets/imgs/58icon.png">\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-grid text-center>\n\n      <form novalidate [formGroup]="formGroup" autocomplete="off">\n\n        <ion-row class="reg-line border-bottom-1px">\n\n          <ion-col col-12>\n\n            <ion-input type="Tel" placeholder="请输入手机号" formControlName="Tel" required></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row class="reg-line border-bottom-1px">\n\n          <ion-col col-7>\n\n            <ion-input type="text" placeholder="请输入手机验证码" formControlName="VCode" required></ion-input>\n\n          </ion-col>\n\n          <ion-col col-5>\n\n            <button ion-button outline [disabled]="Tel.invalid" (click)="GetVeriyCode()">{{VCodeText}}</button>\n\n          </ion-col>\n\n        </ion-row>\n\n       <ion-row m-t-30 m-b-10>\n\n          <ion-col col-12>\n\n            <button ion-button full color="primary" (click)="NextTable()" [class.btn-disabled]="Tel.invalid || VCode.invalid" [disabled]="Tel.invalid || VCode.invalid">下一步</button>\n\n          </ion-col>\n\n        </ion-row>\n\n        <span f-1-0>点击"下一步"即表示您同意</span><span ion-text color="primary">《5u卡贝用户使用协议》</span>\n\n      </form>\n\n    </ion-grid>\n\n  </div>\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\register\register.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_auth__["a" /* TAuthService */]])
@@ -2986,7 +2903,7 @@ var RegisterPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 287:
+/***/ 286:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3059,10 +2976,10 @@ var SetPasswordPage = /** @class */ (function () {
     };
     SetPasswordPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-setpwd',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\setpassword\setpassword.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <div class="page-content">\n\n    <ion-grid>\n\n      <form novalidate [formGroup]="formGroup" autocomplete="off">\n\n        <ion-row class="border-bottom-1px">\n\n          <ion-col cil-12>\n\n            <ion-input type="password" [attr.type]="PassWordType" placeholder="请设置密码" formControlName="Pass" required [(ngModel)]="PassWord"></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row class="border-bottom-1px">\n\n          <ion-col col-12>\n\n            <ion-input type="password" [attr.type]="PassWordType" placeholder="请确认密码"  formControlName="Pass" required [(ngModel)]="ConPassWord"></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row m-t-30>\n\n          <ion-col col-12>\n\n            <button ion-button full color="primary" [class.btn-disabled]="ResIsDisabled" (click)="OnRegister()" [disabled]="ResIsDisabled">注册</button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </form>\n\n    </ion-grid>\n\n  </div>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\setpassword\setpassword.html"*/
+            selector: 'page-setpwd',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\setpassword\setpassword.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <div class="page-content">\n\n    <ion-grid>\n\n      <form novalidate [formGroup]="formGroup" autocomplete="off">\n\n        <ion-row class="border-bottom-1px">\n\n          <ion-col cil-12>\n\n            <ion-input type="password" [attr.type]="PassWordType" placeholder="请设置密码" formControlName="Pass" required [(ngModel)]="PassWord"></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row class="border-bottom-1px">\n\n          <ion-col col-12>\n\n            <ion-input type="password" [attr.type]="PassWordType" placeholder="请确认密码"  formControlName="Pass" required [(ngModel)]="ConPassWord"></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row m-t-30>\n\n          <ion-col col-12>\n\n            <button ion-button full color="primary" [class.btn-disabled]="ResIsDisabled" (click)="OnRegister()" [disabled]="ResIsDisabled">注册</button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </form>\n\n    </ion-grid>\n\n  </div>\n\n</ion-content>'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\setpassword\setpassword.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */]])
     ], SetPasswordPage);
     return SetPasswordPage;
 }());
@@ -3071,7 +2988,7 @@ var SetPasswordPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 288:
+/***/ 287:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3093,7 +3010,7 @@ var StartPage = /** @class */ (function () {
     }
     StartPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-start',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\start\start.html"*/'<ion-content>\n\n  <div class="start-app">\n\n    <div class="wall" text-center>\n\n      <ion-row>\n\n        <ion-col><b>有资金需求，自己搞定</b></ion-col>\n\n      </ion-row>\n\n      <ion-row m-v-35>\n\n        <ion-col><img src="assets/imgs/start.png" alt="" width="70%"></ion-col>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col><p>信用卡可提现   超低手续费</p><p>资金秒到账   安全有保障</p></ion-col>\n\n      </ion-row>\n\n    </div>\n\n    <ion-row class="action-btn" justify-content-center>\n\n      <ion-col col-5>\n\n        <button [navPush]="App.RootPage.RegisterPage" ion-button full color="primary">注册</button>\n\n      </ion-col>\n\n      <ion-col col-5>\n\n        <button [navPush]="App.RootPage.LoginPage" class="active" ion-button full color="primary">登录</button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\start\start.html"*/
+            selector: 'page-start',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\start\start.html"*/'<ion-content>\n\n  <div class="start-app">\n\n    <div class="wall" text-center>\n\n      <ion-row>\n\n        <ion-col><b>有资金需求，自己搞定</b></ion-col>\n\n      </ion-row>\n\n      <ion-row m-v-35>\n\n        <ion-col><img src="assets/imgs/start.png" alt="" width="70%"></ion-col>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col><p>信用卡可提现   超低手续费</p><p>资金秒到账   安全有保障</p></ion-col>\n\n      </ion-row>\n\n    </div>\n\n    <ion-row class="action-btn" justify-content-center>\n\n      <ion-col col-5>\n\n        <button [navPush]="App.RootPage.RegisterPage" ion-button full color="primary">注册</button>\n\n      </ion-col>\n\n      <ion-col col-5>\n\n        <button [navPush]="App.RootPage.LoginPage" class="active" ion-button full color="primary">登录</button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\start\start.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], StartPage);
@@ -3104,7 +3021,7 @@ var StartPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 289:
+/***/ 288:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3131,7 +3048,7 @@ var TabsPage = /** @class */ (function () {
         this.tab4Root = 'UcenterPage';
     }
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\tabs\tabs.html"*/'<ion-tabs class="bottom-tabs">\n\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="tab-home" tabsHideOnSubPages="true"></ion-tab>\n\n  <ion-tab [root]="tab2Root" tabTitle="借贷" tabIcon="tab-dr" tabsHideOnSubPages="true"></ion-tab>\n\n  <ion-tab [root]="tab4Root" tabTitle="我的" tabIcon="tab-mine" tabsHideOnSubPages="true"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\tabs\tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\tabs\tabs.html"*/'<ion-tabs class="bottom-tabs">\n\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="tab-home" tabsHideOnSubPages="true"></ion-tab>\n\n  <ion-tab [root]="tab2Root" tabTitle="借贷" tabIcon="tab-dr" tabsHideOnSubPages="true"></ion-tab>\n\n  <ion-tab [root]="tab4Root" tabTitle="我的" tabIcon="tab-mine" tabsHideOnSubPages="true"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\tabs\tabs.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], TabsPage);
@@ -3142,7 +3059,7 @@ var TabsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 290:
+/***/ 289:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3270,7 +3187,7 @@ var MyCardPage = /** @class */ (function () {
     };
     MyCardPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-mycard',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\ucenter\mycard\mycard.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="u-mycard">\n\n  <ion-segment [(ngModel)]="CardSwitch">\n\n    <ion-segment-button value="{{CreditCard}}">信用卡</ion-segment-button>\n\n    <ion-segment-button value="{{DepositCard}}">储蓄卡</ion-segment-button>\n\n  </ion-segment>\n\n  <div [ngSwitch]="CardSwitch">\n\n    <!-- 信用卡 -->\n\n    <div *ngSwitchCase="CreditCard">\n\n      <!-- 已添加 -->\n\n      <ion-grid>\n\n        <ion-row m-t-10 *ngFor="let creditCard of CreditCards">\n\n          <ion-col col-12 class="card page-content" p-h-10>\n\n            <div class="d-flex justify-content-between border-bottom-1px" p-v-10>\n\n              <div class="flex-fill d-flex align-items-center justify-content-start">\n\n                <img src="assets/banklogo/bank_{{creditCard.code}}.png" width="30" height="30" alt="logo" />\n\n                <div class="d-flex flex-fill flex-column justify-content-center l-h-d" m-l-5>\n\n                  <p><label f-18>{{creditCard.bank}}</label></p>\n\n                  <p><span ion-text f-12>**** **** **** {{creditCard.cardNo}}</span></p>\n\n                </div>\n\n              </div>\n\n              <div class="flex-fill" text-right>\n\n                <button type="button" ion-only class="bg-transparent btn-change" no-padding no-margin (click)="DelCreditCard(creditCard.id)">\n\n                  <ion-icon f-26 name="trash"></ion-icon>\n\n                </button>\n\n              </div>\n\n            </div>\n\n            <div class="d-flex justify-content-between">\n\n              <ion-label class="flex-fill" ion-text text-left>{{creditCard.accountName}}</ion-label>\n\n              <button class="d-flex flex-fill align-items-center justify-content-end bg-white" (click)="SetPrimaryCard(creditCard.id)">\n\n                <ion-checkbox color="primary" [checked]="creditCard.primary == PrimaryCard"></ion-checkbox>\n\n                <span ion-text m-l-5>设为主卡</span>\n\n              </button>\n\n            </div>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n\n\n      <!-- 未添加 -->\n\n      <ion-grid>\n\n        <ion-row>\n\n          <ion-col col-12 text-center>\n\n            <button ion-button icon-center full (click)="AddCreditCard()">\n\n              <ion-icon name="add-circle"></ion-icon>\n\n              <span ion-text m-l-5>添加信用卡</span>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n\n\n    <!-- 储蓄卡 -->\n\n    <div *ngSwitchCase="DepositCard">\n\n      <!-- 已添加 -->\n\n      <ion-grid>\n\n        <ion-row m-t-10 *ngFor="let depositCard of DepositCards">\n\n          <ion-col col-12 class="card page-content" p-h-10>\n\n            <div class="d-flex justify-content-between border-bottom-1px" p-v-10>\n\n              <div class="flex-fill d-flex align-items-center justify-content-start">\n\n                <img src="assets/banklogo/bank_{{depositCard.code}}.png" width="30" height="30" alt="logo" />\n\n                <div class="d-flex flex-fill flex-column justify-content-center l-h-d" m-l-5>\n\n                  <p><label f-18>{{depositCard.bank}}</label></p>\n\n                  <p><span ion-text f-12>**** **** **** {{depositCard.cardNo}}</span></p>\n\n                </div>\n\n              </div>\n\n              <div class="flex-fill" text-right>\n\n                <button type="button" ion-only class="bg-transparent btn-change" no-padding no-margin (click)="DelDepositCard(depositCard.id)">\n\n                  <ion-icon f-26 name="trash"></ion-icon>\n\n                </button>\n\n              </div>\n\n            </div>\n\n            <div class="d-flex justify-content-between">\n\n              <ion-label class="flex-fill" ion-text text-left>{{depositCard.accountName}}</ion-label>\n\n              <button class="d-flex flex-fill align-items-center justify-content-end bg-white" (click)="SetPrimaryCard(depositCard.id)">\n\n                <ion-checkbox color="primary" [checked]="depositCard.primary == PrimaryCard"></ion-checkbox>\n\n                <span ion-text m-l-5>设为主卡</span>\n\n              </button>\n\n            </div>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n\n\n      <!-- 未添加 -->\n\n      <ion-grid>\n\n        <ion-row>\n\n          <ion-col col-12 text-center \n\n            (click)="AddDepositCard()">\n\n            <button ion-button icon-center full>\n\n              <ion-icon name="add-circle"></ion-icon>\n\n              <span ion-text m-l-5>添加储蓄卡</span>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\ucenter\mycard\mycard.html"*/
+            selector: 'page-mycard',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\ucenter\mycard\mycard.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="u-mycard">\n\n  <ion-segment [(ngModel)]="CardSwitch">\n\n    <ion-segment-button value="{{CreditCard}}">信用卡</ion-segment-button>\n\n    <ion-segment-button value="{{DepositCard}}">储蓄卡</ion-segment-button>\n\n  </ion-segment>\n\n  <div [ngSwitch]="CardSwitch">\n\n    <!-- 信用卡 -->\n\n    <div *ngSwitchCase="CreditCard">\n\n      <!-- 已添加 -->\n\n      <ion-grid>\n\n        <ion-row m-t-10 *ngFor="let creditCard of CreditCards">\n\n          <ion-col col-12 class="card page-content" p-h-10>\n\n            <div class="d-flex justify-content-between border-bottom-1px" p-v-10>\n\n              <div class="flex-fill d-flex align-items-center justify-content-start">\n\n                <img src="assets/banklogo/bank_{{creditCard.code}}.png" width="30" height="30" alt="logo" />\n\n                <div class="d-flex flex-fill flex-column justify-content-center l-h-d" m-l-5>\n\n                  <p><label f-18>{{creditCard.bank}}</label></p>\n\n                  <p><span ion-text f-12>**** **** **** {{creditCard.cardNo}}</span></p>\n\n                </div>\n\n              </div>\n\n              <div class="flex-fill" text-right>\n\n                <button type="button" ion-only class="bg-transparent btn-change" no-padding no-margin (click)="DelCreditCard(creditCard.id)">\n\n                  <ion-icon f-26 name="trash"></ion-icon>\n\n                </button>\n\n              </div>\n\n            </div>\n\n            <div class="d-flex justify-content-between">\n\n              <ion-label class="flex-fill" ion-text text-left>{{creditCard.accountName}}</ion-label>\n\n              <button class="d-flex flex-fill align-items-center justify-content-end bg-white" (click)="SetPrimaryCard(creditCard.id)">\n\n                <ion-checkbox color="primary" [checked]="creditCard.primary == PrimaryCard"></ion-checkbox>\n\n                <span ion-text m-l-5>设为主卡</span>\n\n              </button>\n\n            </div>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n\n\n      <!-- 未添加 -->\n\n      <ion-grid>\n\n        <ion-row>\n\n          <ion-col col-12 text-center>\n\n            <button ion-button icon-center full (click)="AddCreditCard()">\n\n              <ion-icon name="add-circle"></ion-icon>\n\n              <span ion-text m-l-5>添加信用卡</span>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n\n\n    <!-- 储蓄卡 -->\n\n    <div *ngSwitchCase="DepositCard">\n\n      <!-- 已添加 -->\n\n      <ion-grid>\n\n        <ion-row m-t-10 *ngFor="let depositCard of DepositCards">\n\n          <ion-col col-12 class="card page-content" p-h-10>\n\n            <div class="d-flex justify-content-between border-bottom-1px" p-v-10>\n\n              <div class="flex-fill d-flex align-items-center justify-content-start">\n\n                <img src="assets/banklogo/bank_{{depositCard.code}}.png" width="30" height="30" alt="logo" />\n\n                <div class="d-flex flex-fill flex-column justify-content-center l-h-d" m-l-5>\n\n                  <p><label f-18>{{depositCard.bank}}</label></p>\n\n                  <p><span ion-text f-12>**** **** **** {{depositCard.cardNo}}</span></p>\n\n                </div>\n\n              </div>\n\n              <div class="flex-fill" text-right>\n\n                <button type="button" ion-only class="bg-transparent btn-change" no-padding no-margin (click)="DelDepositCard(depositCard.id)">\n\n                  <ion-icon f-26 name="trash"></ion-icon>\n\n                </button>\n\n              </div>\n\n            </div>\n\n            <div class="d-flex justify-content-between">\n\n              <ion-label class="flex-fill" ion-text text-left>{{depositCard.accountName}}</ion-label>\n\n              <button class="d-flex flex-fill align-items-center justify-content-end bg-white" (click)="SetPrimaryCard(depositCard.id)">\n\n                <ion-checkbox color="primary" [checked]="depositCard.primary == PrimaryCard"></ion-checkbox>\n\n                <span ion-text m-l-5>设为主卡</span>\n\n              </button>\n\n            </div>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n\n\n      <!-- 未添加 -->\n\n      <ion-grid>\n\n        <ion-row>\n\n          <ion-col col-12 text-center \n\n            (click)="AddDepositCard()">\n\n            <button ion-button icon-center full>\n\n              <ion-icon name="add-circle"></ion-icon>\n\n              <span ion-text m-l-5>添加储蓄卡</span>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\ucenter\mycard\mycard.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_3__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_controller__["a" /* NavController */], __WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__["b" /* CardHelper */]])
@@ -3282,7 +3199,7 @@ var MyCardPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 291:
+/***/ 290:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3317,9 +3234,9 @@ var OrdersPage = /** @class */ (function () {
     };
     OrdersPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-orders',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\ucenter\orders\orders.html"*/'<ion-header no-border>\n\n    <ion-toolbar no-padding>\n\n        <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n    </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n    <ion-grid class="list-grid-default" m-b-10>\n\n        <ion-row padding-vertical>\n\n            <ion-col>\n\n                <ul class="list-row-inner">\n\n                    <li class="title" text-center>\n\n                        <div f-2-5 style="color:orange;font-weight:700;" [ngStyle]="{ \'color\': OrderDetail.status == 1 ? \'orange\' : \'red\'}"><span f-1-2>￥</span>{{OrderDetail.amount/100}}</div>\n\n                        <p class="text-gray-600">收款金额</p>\n\n                    </li>\n\n                    <!-- <li class="title slash" text-center><span></span></li> -->\n\n                    <li class="title" text-center>\n\n                        <div f-2-5 style="color:orange;font-weight:700;" [ngStyle]="{ \'color\': OrderDetail.status == 1 ? \'orange\' : \'red\'}"><span f-1-2>￥</span>{{OrderDetail.enterAmount/100}}</div>\n\n                        <p class="text-gray-600">到账金额</p>\n\n                    </li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n    </ion-grid>\n\n\n\n    <ion-grid class="list-grid-default no-border">\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner">\n\n                    <li class="title" text-left><span class="text-gray-600">订单编号：</span></li>\n\n                    <li class="title" text-right>{{OrderDetail.orderNo}}</li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner" [ngSwitch]="OrderDetail.status">\n\n                    <li class="title" text-left><span class="text-gray-600">订单状态：</span></li>\n\n                    <li class="title" text-right *ngSwitchCase="\'1\'"><span ion-text color="orange">成功</span></li>\n\n                    <li class="title" text-right *ngSwitchCase="\'0\'"><span ion-text color="danger">失败</span></li>\n\n                    <li class="title" text-right *ngSwitchCase="\'2\'"><span ion-text color="primary">处理中</span></li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner"  [ngSwitch]="OrderDetail.type">\n\n                    <li class="title" text-left><span class="text-gray-600">收款方式：</span></li>\n\n                    <li class="title" text-right *ngSwitchCase="\'card\'">信用卡收款</li>\n\n                    <li class="title" text-right *ngSwitchCase="\'alipay\'">支付宝收款</li>\n\n                    <li class="title" text-right *ngSwitchCase="\'wechat\'">微信收款</li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner">\n\n                    <li class="title" text-left><span class="text-gray-600">收款信用卡：</span></li>\n\n                    <li class="title" text-right>{{OrderDetail.payCard}}</li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner">\n\n                    <li class="title" text-left><span class="text-gray-600">到账储蓄卡：</span></li>\n\n                    <li class="title" text-right>{{OrderDetail.outCard}}</li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner">\n\n                    <li class="title" text-left><span class="text-gray-600">收款时间：</span></li>\n\n                    <li class="title" text-right>{{OrderDetail.time}}</li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n    </ion-grid>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\ucenter\orders\orders.html"*/
+            selector: 'page-orders',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\ucenter\orders\orders.html"*/'<ion-header no-border>\n\n    <ion-toolbar no-padding>\n\n        <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n    </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n    <ion-grid class="list-grid-default" m-b-10>\n\n        <ion-row padding-vertical>\n\n            <ion-col>\n\n                <ul class="list-row-inner">\n\n                    <li class="title" text-center>\n\n                        <div f-2-5 style="color:orange;font-weight:700;" [ngStyle]="{ \'color\': OrderDetail.status == 1 ? \'orange\' : \'red\'}"><span f-1-2>￥</span>{{OrderDetail.amount/100}}</div>\n\n                        <p class="text-gray-600">收款金额</p>\n\n                    </li>\n\n                    <!-- <li class="title slash" text-center><span></span></li> -->\n\n                    <li class="title" text-center>\n\n                        <div f-2-5 style="color:orange;font-weight:700;" [ngStyle]="{ \'color\': OrderDetail.status == 1 ? \'orange\' : \'red\'}"><span f-1-2>￥</span>{{OrderDetail.enterAmount/100}}</div>\n\n                        <p class="text-gray-600">到账金额</p>\n\n                    </li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n    </ion-grid>\n\n\n\n    <ion-grid class="list-grid-default no-border">\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner">\n\n                    <li class="title" text-left><span class="text-gray-600">订单编号：</span></li>\n\n                    <li class="title" text-right>{{OrderDetail.orderNo}}</li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner" [ngSwitch]="OrderDetail.status">\n\n                    <li class="title" text-left><span class="text-gray-600">订单状态：</span></li>\n\n                    <li class="title" text-right *ngSwitchCase="\'1\'"><span ion-text color="orange">成功</span></li>\n\n                    <li class="title" text-right *ngSwitchCase="\'0\'"><span ion-text color="danger">失败</span></li>\n\n                    <li class="title" text-right *ngSwitchCase="\'2\'"><span ion-text color="primary">处理中</span></li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner"  [ngSwitch]="OrderDetail.type">\n\n                    <li class="title" text-left><span class="text-gray-600">收款方式：</span></li>\n\n                    <li class="title" text-right *ngSwitchCase="\'card\'">信用卡收款</li>\n\n                    <li class="title" text-right *ngSwitchCase="\'alipay\'">支付宝收款</li>\n\n                    <li class="title" text-right *ngSwitchCase="\'wechat\'">微信收款</li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner">\n\n                    <li class="title" text-left><span class="text-gray-600">收款信用卡：</span></li>\n\n                    <li class="title" text-right>{{OrderDetail.payCard}}</li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner">\n\n                    <li class="title" text-left><span class="text-gray-600">到账储蓄卡：</span></li>\n\n                    <li class="title" text-right>{{OrderDetail.outCard}}</li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner">\n\n                    <li class="title" text-left><span class="text-gray-600">收款时间：</span></li>\n\n                    <li class="title" text-right>{{OrderDetail.time}}</li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n    </ion-grid>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\ucenter\orders\orders.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_mineservice__["a" /* MineService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_mineservice__["a" /* MineService */]])
     ], OrdersPage);
     return OrdersPage;
 }());
@@ -3328,7 +3245,7 @@ var OrdersPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 292:
+/***/ 291:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3395,7 +3312,7 @@ var RecordsPage = /** @class */ (function () {
     };
     RecordsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-records',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\ucenter\records\records.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ng-template [ngIf]="!DataEmpty">\n\n    <ion-grid class="bgc-light" no-padding>\n\n      <div *ngFor="let items of ListData">\n\n        <h5 p-h-10 p-v-5 [ngStyle]="{\'background\':\'aliceblue\',\'margin\':\'0\'}">\n\n          {{items.month}}成功收款\n\n          <span float-right>{{items.total/100}}元</span>\n\n        </h5>\n\n        <div *ngFor="let item of items.data">\n\n          <ion-row align-items-center p-h-5 [navPush]="App.RootPage.OrdersPage" [navParams]="item.id">\n\n            <ion-col col-1 text-center>\n\n              <img src="assets/imgs/vip.png">\n\n            </ion-col>\n\n            <ion-col col-5 [ngSwitch]="item.type">\n\n              <span *ngSwitchCase="\'card\'">信用卡收款</span>\n\n              <span *ngSwitchCase="\'alipay\'">支付宝收款</span>\n\n              <span *ngSwitchCase="\'wechat\'">微信收款</span>\n\n              <p no-margin ion-text color="light-dark">{{item.time}}</p>\n\n            </ion-col>\n\n            <ion-col col-3 [ngSwitch]="item.status">\n\n              <img *ngSwitchCase="\'0\'" src="assets/imgs/seal-3.png" style="max-width:none;width:60px;height:60px;">\n\n              <img *ngSwitchCase="\'1\'" src="assets/imgs/seal-1.png" style="max-width:none;width:60px;height:60px;">\n\n              <img *ngSwitchCase="\'2\'" src="assets/imgs/seal-2.png" style="max-width:none;width:60px;height:60px;">\n\n            </ion-col>\n\n            <ion-col col-3 text-nowrap>\n\n              <span f-1-0>￥</span>{{item.amount/100}}\n\n              <ion-icon [ngStyle]="{\'float\':\'right\',\'color\':\'#ccc\'}">&#xf3d1;</ion-icon>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n      </div>\n\n    </ion-grid>\n\n  </ng-template>\n\n  <ng-template [ngIf]="DataEmpty">\n\n    <div text-center p-t-50 p-b-50>\n\n      <img src="assets/imgs/nulldata.png" alt="" width="150px">\n\n      <p text-center text-gray-light f-1-6>你还没有收款记录哦</p>\n\n    </div>\n\n  </ng-template>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\ucenter\records\records.html"*/
+            selector: 'page-records',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\ucenter\records\records.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ng-template [ngIf]="!DataEmpty">\n\n    <ion-grid class="bgc-light" no-padding>\n\n      <div *ngFor="let items of ListData">\n\n        <h5 p-h-10 p-v-5 [ngStyle]="{\'background\':\'aliceblue\',\'margin\':\'0\'}">\n\n          {{items.month}}成功收款\n\n          <span float-right>{{items.total/100}}元</span>\n\n        </h5>\n\n        <div *ngFor="let item of items.data">\n\n          <ion-row align-items-center p-h-5 [navPush]="App.RootPage.OrdersPage" [navParams]="item.id">\n\n            <ion-col col-1 text-center>\n\n              <img src="assets/imgs/vip.png">\n\n            </ion-col>\n\n            <ion-col col-5 [ngSwitch]="item.type">\n\n              <span *ngSwitchCase="\'card\'">信用卡收款</span>\n\n              <span *ngSwitchCase="\'alipay\'">支付宝收款</span>\n\n              <span *ngSwitchCase="\'wechat\'">微信收款</span>\n\n              <p no-margin ion-text color="light-dark">{{item.time}}</p>\n\n            </ion-col>\n\n            <ion-col col-3 [ngSwitch]="item.status">\n\n              <img *ngSwitchCase="\'0\'" src="assets/imgs/seal-3.png" style="max-width:none;width:60px;height:60px;">\n\n              <img *ngSwitchCase="\'1\'" src="assets/imgs/seal-1.png" style="max-width:none;width:60px;height:60px;">\n\n              <img *ngSwitchCase="\'2\'" src="assets/imgs/seal-2.png" style="max-width:none;width:60px;height:60px;">\n\n            </ion-col>\n\n            <ion-col col-3 text-nowrap>\n\n              <span f-1-0>￥</span>{{item.amount/100}}\n\n              <ion-icon [ngStyle]="{\'float\':\'right\',\'color\':\'#ccc\'}">&#xf3d1;</ion-icon>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n      </div>\n\n    </ion-grid>\n\n  </ng-template>\n\n  <ng-template [ngIf]="DataEmpty">\n\n    <div text-center p-t-50 p-b-50>\n\n      <img src="assets/imgs/nulldata.png" alt="" width="150px">\n\n      <p text-center text-gray-light f-1-6>你还没有收款记录哦</p>\n\n    </div>\n\n  </ng-template>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\ucenter\records\records.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_mineservice__["a" /* MineService */]])
@@ -3407,7 +3324,7 @@ var RecordsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 293:
+/***/ 292:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3442,7 +3359,7 @@ var UcenterPage = /** @class */ (function () {
     };
     UcenterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-ucenter',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\ucenter\ucenter.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar [Title]="HeadTitle" AppIcon="true" BtnIcon="&#xf103;" (BtnIconEvent)="App.Nav.push(App.RootPage.UsetupPage)"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="ucenter-page">\n\n  <div m-b-10>\n\n    <ion-card no-margin p-v-10>\n\n      <ion-item>\n\n        <ion-avatar item-start>\n\n          <img src="assets/imgs/zfb.png">\n\n        </ion-avatar>\n\n        <h2>Marty McFly</h2>\n\n      </ion-item>\n\n    </ion-card>\n\n  </div>\n\n\n\n  <ion-card no-margin>\n\n    <ion-list>\n\n      <button ion-item class="border-bottom-1px">\n\n        <ion-icon name="cart" item-start></ion-icon>\n\n        <ion-label item-start f-14>收款记录</ion-label>\n\n        <!-- <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon> -->\n\n      </button>\n\n\n\n      <button ion-item>\n\n        <ion-icon name="medical" item-start></ion-icon>\n\n        <span ion-text item-start f-14>我的卡片</span>\n\n        <span ion-text item-end f-13 text-gray>0张信用卡，0张储蓄卡</span>\n\n        <!-- <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon> -->\n\n      </button>\n\n    </ion-list>\n\n  </ion-card>\n\n  <div m-t-10>\n\n    <ion-card no-margin>\n\n      <ion-list>\n\n        <button ion-item>\n\n          <ion-icon name="cart" item-start></ion-icon>\n\n          <ion-label item-start f-14>在线客服</ion-label>\n\n          <!-- <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon> -->\n\n        </button>\n\n      </ion-list>\n\n    </ion-card>\n\n  </div>\n\n</ion-content>\n\n\n\n<!--  个人中心 -->\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\ucenter\ucenter.html"*/
+            selector: 'page-ucenter',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\ucenter\ucenter.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar [Title]="HeadTitle" AppIcon="true" BtnIcon="&#xf103;" (BtnIconEvent)="App.Nav.push(App.RootPage.UsetupPage)"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="ucenter-page">\n\n  <div m-b-10>\n\n    <ion-card no-margin p-v-10>\n\n      <ion-item>\n\n        <ion-avatar item-start>\n\n          <img src="assets/imgs/zfb.png">\n\n        </ion-avatar>\n\n        <h2>Marty McFly</h2>\n\n      </ion-item>\n\n    </ion-card>\n\n  </div>\n\n\n\n  <ion-card no-margin>\n\n    <ion-list>\n\n      <button ion-item class="border-bottom-1px">\n\n        <ion-icon name="cart" item-start></ion-icon>\n\n        <ion-label item-start f-14>收款记录</ion-label>\n\n        <!-- <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon> -->\n\n      </button>\n\n\n\n      <button ion-item>\n\n        <ion-icon name="medical" item-start></ion-icon>\n\n        <span ion-text item-start f-14>我的卡片</span>\n\n        <span ion-text item-end f-13 text-gray>0张信用卡，0张储蓄卡</span>\n\n        <!-- <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon> -->\n\n      </button>\n\n    </ion-list>\n\n  </ion-card>\n\n  <div m-t-10>\n\n    <ion-card no-margin>\n\n      <ion-list>\n\n        <button ion-item>\n\n          <ion-icon name="cart" item-start></ion-icon>\n\n          <ion-label item-start f-14>在线客服</ion-label>\n\n          <!-- <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon> -->\n\n        </button>\n\n      </ion-list>\n\n    </ion-card>\n\n  </div>\n\n</ion-content>\n\n\n\n<!--  个人中心 -->\n\n'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\ucenter\ucenter.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], UcenterPage);
@@ -3453,7 +3370,7 @@ var UcenterPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 294:
+/***/ 293:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3531,7 +3448,7 @@ var UinfoPage = /** @class */ (function () {
     };
     UinfoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-uinfo',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\ucenter\uinfo\uinfo.html"*/'<ion-header no-border>\n\n    <ion-toolbar no-padding>\n\n        <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n    </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-grid class="list-grid-default">\n\n    <ion-row m-l-10>\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">头像</li>\n\n          <li text-right>                    \n\n            <span [class.face-sm-default]="App.IconFace" [class.face-sm-female]="!App.IconFace" text-gray-lighter></span>\n\n          </li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row m-l-10>\n\n      <ion-col>\n\n        <ul class="list-row-inner" (click)="ChangeNickName()">\n\n          <li class="title">昵称</li>\n\n          <li text-right class="text-gray-600">{{UserInfo.nickName}}</li>\n\n          <li class="icon-arrow"><ion-icon></ion-icon></li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row m-l-10>\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">用户ID</li>\n\n          <li text-right class="text-gray-600">{{UserInfo.userId}}</li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row m-l-10>\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">手机号</li>\n\n          <li text-right class="text-gray-600">{{ShowPhone}}</li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="list-grid-default" m-t-10>\n\n    <ion-row m-l-10>\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">姓名</li>\n\n          <li text-right class="text-gray-600">{{infoName}}</li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row m-l-10>\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">身份证</li>\n\n          <li text-right class="text-gray-600">{{ShowID}}</li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\ucenter\uinfo\uinfo.html"*/
+            selector: 'page-uinfo',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\ucenter\uinfo\uinfo.html"*/'<ion-header no-border>\n\n    <ion-toolbar no-padding>\n\n        <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n    </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-grid class="list-grid-default">\n\n    <ion-row m-l-10>\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">头像</li>\n\n          <li text-right>                    \n\n            <span [class.face-sm-default]="App.IconFace" [class.face-sm-female]="!App.IconFace" text-gray-lighter></span>\n\n          </li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row m-l-10>\n\n      <ion-col>\n\n        <ul class="list-row-inner" (click)="ChangeNickName()">\n\n          <li class="title">昵称</li>\n\n          <li text-right class="text-gray-600">{{UserInfo.nickName}}</li>\n\n          <li class="icon-arrow"><ion-icon></ion-icon></li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row m-l-10>\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">用户ID</li>\n\n          <li text-right class="text-gray-600">{{UserInfo.userId}}</li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row m-l-10>\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">手机号</li>\n\n          <li text-right class="text-gray-600">{{ShowPhone}}</li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="list-grid-default" m-t-10>\n\n    <ion-row m-l-10>\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">姓名</li>\n\n          <li text-right class="text-gray-600">{{infoName}}</li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row m-l-10>\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">身份证</li>\n\n          <li text-right class="text-gray-600">{{ShowID}}</li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\ucenter\uinfo\uinfo.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_auth__["a" /* TAuthService */]])
@@ -3543,7 +3460,7 @@ var UinfoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 295:
+/***/ 294:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3599,7 +3516,7 @@ var UsetupPage = /** @class */ (function () {
     };
     UsetupPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-usetup',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\ucenter\usetup\usetup.html"*/'<ion-header no-border>\n\n  <ion-toolbar>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-grid class="bgc-light">\n\n    <ion-row justify-content-center>\n\n      <ion-col col-3 text-center p-t-30>\n\n        <img src="assets/imgs/58icon.png">\n\n        <p no-margin p-t-10>v1.0.0</p>\n\n      </ion-col>\n\n    </ion-row>\n\n    <div padding-horizontal m-b-20>\n\n      <h5 text-center m-t-10>关于我们</h5>\n\n      <ng-template [ngIf]="App.CanTrade || App.IsIos">\n\n        <span text-left ion-text color="dark">\n\n          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 58付是一种基于信用卡的收款（收单）方式，应用于个人之间的资金往来，以及小微商户的收款（收单）场景。 公司专注用户体验、网络安全与个人隐私保护以及服务质量，打造精品，服务客户。\n\n        </span>\n\n      </ng-template>\n\n    </div>\n\n  </ion-grid>\n\n\n\n\n\n\n\n  <ion-grid class="list-grid-default" m-t-10>\n\n    <ion-row p-l-10 [navPush]="App.RootPage.ModifypwdPage">\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">登录密码</li>\n\n          <li class="icon-arrow">\n\n            <ion-icon></ion-icon>\n\n          </li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <!-- <ion-grid class="list-grid-default" m-t-10> -->\n\n    <!-- <ion-row p-l-10>\n\n      <ion-col>\n\n          <ul class="list-row-inner">\n\n            <li class="title">关于我们</li>\n\n            <li class="icon-arrow"><ion-icon></ion-icon></li>\n\n          </ul>\n\n      </ion-col>\n\n    </ion-row> -->\n\n    <!-- <ion-row p-l-10>\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">用户反馈</li>\n\n          <li class="icon-arrow">\n\n            <ion-icon></ion-icon>\n\n          </li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row> -->\n\n  <!-- </ion-grid> -->\n\n  <ion-row justify-content-center margin-vertical>\n\n    <ion-col col-5>\n\n      <button class="bgc-grad-primary" ion-button block (click)="Logout()">退出账号</button>\n\n    </ion-col>\n\n  </ion-row>\n\n  <ion-row text-center>\n\n    <ion-col ion-text color="light-dark" f-1-6>\n\n      <p no-margin>Copyright ©2016-2018</p>\n\n      <span>深圳前海微融科技有限公司</span>\n\n    </ion-col>\n\n  </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\ucenter\usetup\usetup.html"*/
+            selector: 'page-usetup',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\ucenter\usetup\usetup.html"*/'<ion-header no-border>\n\n  <ion-toolbar>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-grid class="bgc-light">\n\n    <ion-row justify-content-center>\n\n      <ion-col col-3 text-center p-t-30>\n\n        <img src="assets/imgs/58icon.png">\n\n        <p no-margin p-t-10>v1.0.0</p>\n\n      </ion-col>\n\n    </ion-row>\n\n    <div padding-horizontal m-b-20>\n\n      <h5 text-center m-t-10>关于我们</h5>\n\n      <ng-template [ngIf]="App.CanTrade || App.IsIos">\n\n        <span text-left ion-text color="dark">\n\n          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 58付是一种基于信用卡的收款（收单）方式，应用于个人之间的资金往来，以及小微商户的收款（收单）场景。 公司专注用户体验、网络安全与个人隐私保护以及服务质量，打造精品，服务客户。\n\n        </span>\n\n      </ng-template>\n\n    </div>\n\n  </ion-grid>\n\n\n\n\n\n\n\n  <ion-grid class="list-grid-default" m-t-10>\n\n    <ion-row p-l-10 [navPush]="App.RootPage.ModifypwdPage">\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">登录密码</li>\n\n          <li class="icon-arrow">\n\n            <ion-icon></ion-icon>\n\n          </li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <!-- <ion-grid class="list-grid-default" m-t-10> -->\n\n    <!-- <ion-row p-l-10>\n\n      <ion-col>\n\n          <ul class="list-row-inner">\n\n            <li class="title">关于我们</li>\n\n            <li class="icon-arrow"><ion-icon></ion-icon></li>\n\n          </ul>\n\n      </ion-col>\n\n    </ion-row> -->\n\n    <!-- <ion-row p-l-10>\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">用户反馈</li>\n\n          <li class="icon-arrow">\n\n            <ion-icon></ion-icon>\n\n          </li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row> -->\n\n  <!-- </ion-grid> -->\n\n  <ion-row justify-content-center margin-vertical>\n\n    <ion-col col-5>\n\n      <button class="bgc-grad-primary" ion-button block (click)="Logout()">退出账号</button>\n\n    </ion-col>\n\n  </ion-row>\n\n  <ion-row text-center>\n\n    <ion-col ion-text color="light-dark" f-1-6>\n\n      <p no-margin>Copyright ©2016-2018</p>\n\n      <span>深圳前海微融科技有限公司</span>\n\n    </ion-col>\n\n  </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\ucenter\usetup\usetup.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_auth__["a" /* TAuthService */]])
     ], UsetupPage);
@@ -3610,7 +3527,7 @@ var UsetupPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 296:
+/***/ 295:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3674,7 +3591,7 @@ var VIPmembersPage = /** @class */ (function () {
     };
     VIPmembersPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-VIPmembers',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\ucenter\VIPmembers\VIPmembers.html"*/'<ion-header no-border>\n\n    <ion-toolbar no-padding>\n\n        <app-toolbar HasBack="true"  [Title]="headTitle"></app-toolbar>\n\n    </ion-toolbar>\n\n</ion-header>\n\n<!-- <ion-header no-border class="bgc-gray-light">\n\n    <ion-toolbar no-padding>\n\n        <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n        <div class="vip-toolbar bgc-grad-primary"></div> -->\n\n    <!-- </ion-toolbar>\n\n    <ion-toolbar no-padding>\n\n        <ion-grid class="grid-mine-header bgc-grad-primary no-padding">\n\n            <ion-row justify-content-center>\n\n                <ion-col col-5 text-center *ngIf="App.IsVip">\n\n                    <img class="vipface" src="assets/imgs/hgvip.png">\n\n                    <span text-nowrap p-b-5>会员{{Deadline}}到期</span>\n\n                </ion-col>\n\n                <ion-col col-5 text-center *ngIf="!App.IsVip">\n\n                    <img class="vipface" src="assets/imgs/hgvip.png">\n\n                    <span text-nowrap p-b-5>你还不是VIP会员</span>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-grid>\n\n    </ion-toolbar>\n\n</ion-header> -->\n\n<!-- <ion-content>\n\n    <div m-h-15 m-v-15>\n\n        <ion-grid class="vip-list" no-padding \n\n        [ngClass]="{\'active\': VipIndex == i && item.name != App.UserInfo.rank}"\n\n        [ngClass]="{\'no-active\': item.name != App.UserInfo.rank}"\n\n        (click)="ChooseVIP(i)" *ngFor="let item of VipList; let i = index">\n\n            <ion-row class="vip-item">\n\n                <ion-col col-9 text-left>\n\n                    <h4>{{item.name}}</h4>\n\n                    <div m-b-10>\n\n                        <p>无积分{{item.rate}}%，有积分{{item.rate1}}%</p>\n\n                        <p>直推返利：{{item.profitRate1}}%，间推返利：{{item.profitRate2}}%</p>\n\n                        <p>间推返利：{{item.profitRate2}}%</p> -->\n\n                        <!-- <p>有效期\n\n                            <span *ngIf="item.days == \'-1\'; then Infinit; else Days"></span>\n\n                            <ng-template #Infinit>永久有效</ng-template>\n\n                            <ng-template #Days>{{item.days}}天</ng-template>\n\n                        </p>\n\n                    </div>\n\n                </ion-col>\n\n                <ion-col col-3 text-right>\n\n                    <b>￥{{item.price}}</b>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-grid>\n\n        <ion-grid class="vip-list pay list-grid-default" p-v-20 m-t-10>\n\n            <ion-row p-h-10>\n\n                <ion-col>\n\n                    <ul class="list-row-inner">\n\n                        <li class="note" text-left>\n\n                            <span class="bank-face"><img src="assets/imgs/zfb.png"></span>\n\n                            <span ion-text color="dark">支付宝支付</span>\n\n                        </li>\n\n                        <li class="title" text-right><i class="has-point active"></i></li>\n\n                    </ul>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-grid>\n\n    </div> -->\n\n    <!-- <div [ngStyle]="{width: \'100%\', height: \'8%\', \'margin-top\': \'2%\'}"></div>\n\n    <div p-h-15>\n\n        <ion-grid class="grid-vip-cont grid-header-bar" p-v-20>\n\n            <div class="foor-face"><img src="assets/imgs/yyy.png" alt=""></div>\n\n            <ion-row class="face-cont face-cont-vip"\n\n                [ngClass]="{\'active\': VipIndex == i && item.name != App.UserInfo.rank}"\n\n                [ngClass]="{\'no-active\': item.name != App.UserInfo.rank}"\n\n                (click)="ChooseVIP(i)" *ngFor="let item of VipList; let i = index">\n\n                <ion-col>\n\n                    <b class="face-tab" [ngClass]="{\'face-active\': VipIndex == i}">\n\n                        <img class="face-nav" src="assets/imgs/zs{{item.id}}.png">\n\n                    </b>\n\n                </ion-col>\n\n                <ion-col col-2>\n\n                    <h5>{{item.Tname}}</h5>\n\n                    <h5>会员</h5>\n\n                </ion-col>\n\n                <ion-col col-2 class="border">\n\n                    <h6>费率</h6>\n\n                    <b>{{item.rate}}%</b>\n\n                </ion-col>\n\n                <ion-col col-2>\n\n                    <h6>有效期</h6>\n\n                    <b *ngIf="item.days == \'-1\'; then Infinit; else Days"></b>\n\n                    <ng-template #Infinit>永久有效</ng-template>\n\n                    <ng-template #Days>{{item.days}}天</ng-template>\n\n                </ion-col>\n\n                <ion-col col-3 ion-text color="red-dark">\n\n                    ￥<b f-2-5>{{item.price}}</b>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-grid>\n\n        <ion-grid class="grid-vip-cont list-grid-default" p-v-20 m-t-10>\n\n            <span>选择支付方式</span>\n\n            <ion-row>\n\n                <ion-col text-center>收款方式</ion-col>\n\n                <ion-col>\n\n                    <ul class="list-row-inner">\n\n                        <li class="note" text-left>\n\n                            <span class="bank-face"><img src="assets/imgs/zfb.png"></span>\n\n                            <span ion-text color="dark">支付宝支付</span>\n\n                        </li>\n\n                        <li class="title" text-right><i class="has-point active"></i></li>\n\n                    </ul>\n\n                </ion-col>\n\n                <ion-col>\n\n                    <ul class="list-row-inner">\n\n                        <li class="title" text-right><i class="has-point"></i></li>\n\n                        <li class="note" text-left>\n\n                            <span class="bank-face"><img src="assets/imgs/wx.png"></span>\n\n                            <span ion-text color="dark" >微信</span>\n\n                        </li>\n\n                    </ul>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-grid>\n\n    </div> -->\n\n\n\n<!-- </ion-content>\n\n<ion-footer class="bgc-gray-light">\n\n    <ion-row justify-content-center m-h-10>\n\n        <ion-col>\n\n            <button ion-button block round class="bgc-grad-primary" (click)="Submit()">应付金额{{PayAmount}}元，去提交</button>\n\n        </ion-col>\n\n    </ion-row>\n\n</ion-footer> -->\n\n<ion-content>\n\n    <ion-grid class="list-grid-default">\n\n        <ion-row>\n\n            <ion-col col-12>\n\n                <h3>费率：</h3>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row align-items-center justify-content-center>\n\n            <ion-row col-12>\n\n                <ion-col col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8>\n\n                    <p ion-text color="red">{{App.UserInfo.rate}}%+2元/笔</p>\n\n                </ion-col>\n\n                <ion-col col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4>\n\n                    <p ion-text>无积分</p>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col col-12>\n\n                <p ion-text>即时到账，单笔上2万，交易时间8:00 - 22：00点</p>\n\n            </ion-col>\n\n        </ion-row>\n\n    </ion-grid>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\ucenter\VIPmembers\VIPmembers.html"*/
+            selector: 'page-VIPmembers',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\ucenter\VIPmembers\VIPmembers.html"*/'<ion-header no-border>\n\n    <ion-toolbar no-padding>\n\n        <app-toolbar HasBack="true"  [Title]="headTitle"></app-toolbar>\n\n    </ion-toolbar>\n\n</ion-header>\n\n<!-- <ion-header no-border class="bgc-gray-light">\n\n    <ion-toolbar no-padding>\n\n        <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n        <div class="vip-toolbar bgc-grad-primary"></div> -->\n\n    <!-- </ion-toolbar>\n\n    <ion-toolbar no-padding>\n\n        <ion-grid class="grid-mine-header bgc-grad-primary no-padding">\n\n            <ion-row justify-content-center>\n\n                <ion-col col-5 text-center *ngIf="App.IsVip">\n\n                    <img class="vipface" src="assets/imgs/hgvip.png">\n\n                    <span text-nowrap p-b-5>会员{{Deadline}}到期</span>\n\n                </ion-col>\n\n                <ion-col col-5 text-center *ngIf="!App.IsVip">\n\n                    <img class="vipface" src="assets/imgs/hgvip.png">\n\n                    <span text-nowrap p-b-5>你还不是VIP会员</span>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-grid>\n\n    </ion-toolbar>\n\n</ion-header> -->\n\n<!-- <ion-content>\n\n    <div m-h-15 m-v-15>\n\n        <ion-grid class="vip-list" no-padding \n\n        [ngClass]="{\'active\': VipIndex == i && item.name != App.UserInfo.rank}"\n\n        [ngClass]="{\'no-active\': item.name != App.UserInfo.rank}"\n\n        (click)="ChooseVIP(i)" *ngFor="let item of VipList; let i = index">\n\n            <ion-row class="vip-item">\n\n                <ion-col col-9 text-left>\n\n                    <h4>{{item.name}}</h4>\n\n                    <div m-b-10>\n\n                        <p>无积分{{item.rate}}%，有积分{{item.rate1}}%</p>\n\n                        <p>直推返利：{{item.profitRate1}}%，间推返利：{{item.profitRate2}}%</p>\n\n                        <p>间推返利：{{item.profitRate2}}%</p> -->\n\n                        <!-- <p>有效期\n\n                            <span *ngIf="item.days == \'-1\'; then Infinit; else Days"></span>\n\n                            <ng-template #Infinit>永久有效</ng-template>\n\n                            <ng-template #Days>{{item.days}}天</ng-template>\n\n                        </p>\n\n                    </div>\n\n                </ion-col>\n\n                <ion-col col-3 text-right>\n\n                    <b>￥{{item.price}}</b>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-grid>\n\n        <ion-grid class="vip-list pay list-grid-default" p-v-20 m-t-10>\n\n            <ion-row p-h-10>\n\n                <ion-col>\n\n                    <ul class="list-row-inner">\n\n                        <li class="note" text-left>\n\n                            <span class="bank-face"><img src="assets/imgs/zfb.png"></span>\n\n                            <span ion-text color="dark">支付宝支付</span>\n\n                        </li>\n\n                        <li class="title" text-right><i class="has-point active"></i></li>\n\n                    </ul>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-grid>\n\n    </div> -->\n\n    <!-- <div [ngStyle]="{width: \'100%\', height: \'8%\', \'margin-top\': \'2%\'}"></div>\n\n    <div p-h-15>\n\n        <ion-grid class="grid-vip-cont grid-header-bar" p-v-20>\n\n            <div class="foor-face"><img src="assets/imgs/yyy.png" alt=""></div>\n\n            <ion-row class="face-cont face-cont-vip"\n\n                [ngClass]="{\'active\': VipIndex == i && item.name != App.UserInfo.rank}"\n\n                [ngClass]="{\'no-active\': item.name != App.UserInfo.rank}"\n\n                (click)="ChooseVIP(i)" *ngFor="let item of VipList; let i = index">\n\n                <ion-col>\n\n                    <b class="face-tab" [ngClass]="{\'face-active\': VipIndex == i}">\n\n                        <img class="face-nav" src="assets/imgs/zs{{item.id}}.png">\n\n                    </b>\n\n                </ion-col>\n\n                <ion-col col-2>\n\n                    <h5>{{item.Tname}}</h5>\n\n                    <h5>会员</h5>\n\n                </ion-col>\n\n                <ion-col col-2 class="border">\n\n                    <h6>费率</h6>\n\n                    <b>{{item.rate}}%</b>\n\n                </ion-col>\n\n                <ion-col col-2>\n\n                    <h6>有效期</h6>\n\n                    <b *ngIf="item.days == \'-1\'; then Infinit; else Days"></b>\n\n                    <ng-template #Infinit>永久有效</ng-template>\n\n                    <ng-template #Days>{{item.days}}天</ng-template>\n\n                </ion-col>\n\n                <ion-col col-3 ion-text color="red-dark">\n\n                    ￥<b f-2-5>{{item.price}}</b>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-grid>\n\n        <ion-grid class="grid-vip-cont list-grid-default" p-v-20 m-t-10>\n\n            <span>选择支付方式</span>\n\n            <ion-row>\n\n                <ion-col text-center>收款方式</ion-col>\n\n                <ion-col>\n\n                    <ul class="list-row-inner">\n\n                        <li class="note" text-left>\n\n                            <span class="bank-face"><img src="assets/imgs/zfb.png"></span>\n\n                            <span ion-text color="dark">支付宝支付</span>\n\n                        </li>\n\n                        <li class="title" text-right><i class="has-point active"></i></li>\n\n                    </ul>\n\n                </ion-col>\n\n                <ion-col>\n\n                    <ul class="list-row-inner">\n\n                        <li class="title" text-right><i class="has-point"></i></li>\n\n                        <li class="note" text-left>\n\n                            <span class="bank-face"><img src="assets/imgs/wx.png"></span>\n\n                            <span ion-text color="dark" >微信</span>\n\n                        </li>\n\n                    </ul>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-grid>\n\n    </div> -->\n\n\n\n<!-- </ion-content>\n\n<ion-footer class="bgc-gray-light">\n\n    <ion-row justify-content-center m-h-10>\n\n        <ion-col>\n\n            <button ion-button block round class="bgc-grad-primary" (click)="Submit()">应付金额{{PayAmount}}元，去提交</button>\n\n        </ion-col>\n\n    </ion-row>\n\n</ion-footer> -->\n\n<ion-content>\n\n    <ion-grid class="list-grid-default">\n\n        <ion-row>\n\n            <ion-col col-12>\n\n                <h3>费率：</h3>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row align-items-center justify-content-center>\n\n            <ion-row col-12>\n\n                <ion-col col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8>\n\n                    <p ion-text color="red">{{App.UserInfo.rate}}%+2元/笔</p>\n\n                </ion-col>\n\n                <ion-col col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4>\n\n                    <p ion-text>无积分</p>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col col-12>\n\n                <p ion-text>即时到账，单笔上2万，交易时间8:00 - 22：00点</p>\n\n            </ion-col>\n\n        </ion-row>\n\n    </ion-grid>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\ucenter\VIPmembers\VIPmembers.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_mineservice__["a" /* MineService */]])
     ], VIPmembersPage);
@@ -3685,13 +3602,13 @@ var VIPmembersPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 297:
+/***/ 296:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(298);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(305);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(297);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(304);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -3699,7 +3616,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 305:
+/***/ 304:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3707,15 +3624,15 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(360);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(377);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(376);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_app_version__ = __webpack_require__(254);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_camera__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_device__ = __webpack_require__(255);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_component__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_component__ = __webpack_require__(380);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers__ = __webpack_require__(385);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__UltraCreation_Native_StatusBar__ = __webpack_require__(257);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__UltraCreation_Native_SplashScreen__ = __webpack_require__(256);
@@ -3766,7 +3683,7 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/home/addcreditcard/addcreditcard.module#AddCreditCardPageModule', name: 'AddCreditCardPage', segment: 'addcreditcard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/adddeposit/adddeposit.module#AddDepositPageModule', name: 'AddDepositPage', segment: 'adddeposit', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/branchcard/branchcard.module#BranchcardPageModule', name: 'BranchcardPage', segment: 'branchcard', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/cardinfor/cardinfor.module#CardInforPageModule', name: 'CardInforPage', segment: 'cardinfor', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/cardInfor/cardInfor.module#CardInforPageModule', name: 'CardInforPage', segment: 'cardInfor', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/changecards/changecards.module#ChangecardsPageModule', name: 'ChangecardsPage', segment: 'changecards', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/checkout/checkout.module#CheckoutPageModule', name: 'CheckoutPage', segment: 'checkout', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/confirminfo/confirminfo.module#ConfirminfoPageModule', name: 'ConfirminfoPage', segment: 'confirminfo', priority: 'low', defaultHistory: [] },
@@ -3821,7 +3738,7 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 339:
+/***/ 338:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3857,7 +3774,7 @@ var CredentialHelper = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 381:
+/***/ 380:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3909,7 +3826,7 @@ var MyApp = /** @class */ (function () {
     }
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('rootNavController'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */])
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
@@ -3925,7 +3842,7 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 382:
+/***/ 381:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3940,7 +3857,7 @@ var MyApp = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular_components_action_sheet_action_sheet_controller__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic_angular_components_popover_popover_controller__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Core_Exception__ = __webpack_require__(383);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Core_Exception__ = __webpack_require__(382);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4313,7 +4230,7 @@ var TAppController = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 383:
+/***/ 382:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4453,66 +4370,66 @@ var EUsage = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 384:
+/***/ 383:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_tabs_tabs__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_tabs_tabs__ = __webpack_require__(288);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "TabsPage", function() { return __WEBPACK_IMPORTED_MODULE_0__pages_tabs_tabs__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_home_home__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_home_home__ = __webpack_require__(279);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "HomePage", function() { return __WEBPACK_IMPORTED_MODULE_1__pages_home_home__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_home_creditcard_creditcard__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_home_creditcard_creditcard__ = __webpack_require__(277);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CreditCardPage", function() { return __WEBPACK_IMPORTED_MODULE_2__pages_home_creditcard_creditcard__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_cardinfor_cardinfor__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_cardinfor_cardinfor__ = __webpack_require__(384);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CardInforPage", function() { return __WEBPACK_IMPORTED_MODULE_3__pages_home_cardinfor_cardinfor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_finalpay_finalpay__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_finalpay_finalpay__ = __webpack_require__(278);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FinalpayPage", function() { return __WEBPACK_IMPORTED_MODULE_4__pages_home_finalpay_finalpay__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_confirminfo_confirminfo__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_confirminfo_confirminfo__ = __webpack_require__(276);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirminfoPage", function() { return __WEBPACK_IMPORTED_MODULE_5__pages_home_confirminfo_confirminfo__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_addcreditcard_addcreditcard__ = __webpack_require__(271);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AddCreditCardPage", function() { return __WEBPACK_IMPORTED_MODULE_6__pages_home_addcreditcard_addcreditcard__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_changecards_changecards__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_changecards_changecards__ = __webpack_require__(274);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ChangecardsPage", function() { return __WEBPACK_IMPORTED_MODULE_7__pages_home_changecards_changecards__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_adddeposit_adddeposit__ = __webpack_require__(272);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AddDepositPage", function() { return __WEBPACK_IMPORTED_MODULE_8__pages_home_adddeposit_adddeposit__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_listofbank_listofbank__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_listofbank_listofbank__ = __webpack_require__(280);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ListofbankPage", function() { return __WEBPACK_IMPORTED_MODULE_9__pages_home_listofbank_listofbank__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_branchcard_branchcard__ = __webpack_require__(273);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "BranchcardPage", function() { return __WEBPACK_IMPORTED_MODULE_10__pages_home_branchcard_branchcard__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_start_start__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_start_start__ = __webpack_require__(287);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "StartPage", function() { return __WEBPACK_IMPORTED_MODULE_11__pages_start_start__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_modifypassword_modifypassword__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_modifypassword_modifypassword__ = __webpack_require__(284);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ModifyPasswordPage", function() { return __WEBPACK_IMPORTED_MODULE_12__pages_modifypassword_modifypassword__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_findpassword_findpassword__ = __webpack_require__(270);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FindPasswordPage", function() { return __WEBPACK_IMPORTED_MODULE_13__pages_findpassword_findpassword__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_home_resetpassword_resetpassword__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_home_resetpassword_resetpassword__ = __webpack_require__(281);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ResetPasswordPage", function() { return __WEBPACK_IMPORTED_MODULE_14__pages_home_resetpassword_resetpassword__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_home_checkout_checkout__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_home_checkout_checkout__ = __webpack_require__(275);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CheckoutPage", function() { return __WEBPACK_IMPORTED_MODULE_15__pages_home_checkout_checkout__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_ucenter_ucenter__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_ucenter_ucenter__ = __webpack_require__(292);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "UcenterPage", function() { return __WEBPACK_IMPORTED_MODULE_16__pages_ucenter_ucenter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_login_login__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_login_login__ = __webpack_require__(283);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPage", function() { return __WEBPACK_IMPORTED_MODULE_17__pages_login_login__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_loan_loan__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_loan_loan__ = __webpack_require__(282);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "LoanPage", function() { return __WEBPACK_IMPORTED_MODULE_18__pages_loan_loan__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_setpassword_setpassword__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_setpassword_setpassword__ = __webpack_require__(286);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "SetPasswordPage", function() { return __WEBPACK_IMPORTED_MODULE_19__pages_setpassword_setpassword__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_auth_auth__ = __webpack_require__(269);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AuthPage", function() { return __WEBPACK_IMPORTED_MODULE_20__pages_auth_auth__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_ucenter_orders_orders__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_ucenter_orders_orders__ = __webpack_require__(290);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "OrdersPage", function() { return __WEBPACK_IMPORTED_MODULE_21__pages_ucenter_orders_orders__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_ucenter_records_records__ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_ucenter_records_records__ = __webpack_require__(291);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "RecordsPage", function() { return __WEBPACK_IMPORTED_MODULE_22__pages_ucenter_records_records__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_ucenter_uinfo_uinfo__ = __webpack_require__(294);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_ucenter_uinfo_uinfo__ = __webpack_require__(293);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "UinfoPage", function() { return __WEBPACK_IMPORTED_MODULE_23__pages_ucenter_uinfo_uinfo__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_ucenter_usetup_usetup__ = __webpack_require__(295);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_ucenter_usetup_usetup__ = __webpack_require__(294);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "UsetupPage", function() { return __WEBPACK_IMPORTED_MODULE_24__pages_ucenter_usetup_usetup__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_ucenter_VIPmembers_VIPmembers__ = __webpack_require__(296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_ucenter_VIPmembers_VIPmembers__ = __webpack_require__(295);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "VIPmembersPage", function() { return __WEBPACK_IMPORTED_MODULE_25__pages_ucenter_VIPmembers_VIPmembers__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_ucenter_mycard_mycard__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_ucenter_mycard_mycard__ = __webpack_require__(289);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MyCardPage", function() { return __WEBPACK_IMPORTED_MODULE_26__pages_ucenter_mycard_mycard__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_register_register__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_register_register__ = __webpack_require__(285);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterPage", function() { return __WEBPACK_IMPORTED_MODULE_27__pages_register_register__["a"]; });
 // import { from } from 'rxjs/observable/from';
 
@@ -4544,6 +4461,161 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 //# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 384:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CardInforPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__ = __webpack_require__(22);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var CardInforPage = /** @class */ (function () {
+    function CardInforPage(navParams, Service) {
+        this.navParams = navParams;
+        this.Service = Service;
+        this.App = window.App;
+        this.HeadTitle = "确认信息";
+        this.VCodeText = '获取验证码';
+        this.State = 0;
+        this.ShowFront = false;
+        this.ShowBack = false;
+        this.Voucher = [];
+        this.Params = {
+            InputAmount: this.navParams.get('OutAmount'),
+            OutputAmount: this.navParams.get('InAmount'),
+            CreditCard: this.navParams.get('CreditCard'),
+            DepositCard: this.navParams.get('DepositCard'),
+            Code: this.navParams.get('Code'),
+            CreditCode: this.navParams.get('CreditCode'),
+            DepositCode: this.navParams.get('DepositCode'),
+            Mobile: this.navParams.get('Mobile')
+        };
+    }
+    CardInforPage.prototype.ngOnInit = function () {
+        this.Form_Group_Info = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormGroup */]({
+            CVN: this.CVN = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]('', [
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required,
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].minLength(3)
+            ]),
+            CardDate: this.CardDate = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]('', [
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required,
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].minLength(4)
+            ]),
+            VerifyCode: this.VerifyCode = new __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormControl */]('', [
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].required,
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["g" /* Validators */].minLength(6)
+            ]),
+        });
+        this.GetAvaCash();
+    };
+    // 倒计时
+    CardInforPage.prototype.times = function () {
+        var _this = this;
+        var count = 60;
+        var timer = setInterval(function () {
+            if (count > 0) {
+                count--;
+                _this.VCodeText = '已发送' + count + 's';
+                if (count === 0) {
+                    _this.VCodeText = '重新获取';
+                    _this.State = 0;
+                    clearInterval(timer);
+                }
+            }
+        }, 1000);
+    };
+    // 获取可用优惠券
+    CardInforPage.prototype.GetAvaCash = function () {
+        this.Service.GetAvaCash(this.Params.OutputAmount).subscribe(function (res) {
+            // this.Voucher = res;
+        });
+    };
+    Object.defineProperty(CardInforPage.prototype, "VCodeBtnIsDisabled", {
+        get: function () {
+            if (this.CVN.invalid || this.CardDate.invalid) {
+                return true;
+            }
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CardInforPage.prototype, "CompleteBtnIsDisabled", {
+        get: function () {
+            if (this.CVN.invalid || this.CardDate.invalid || this.VerifyCode.invalid)
+                return true;
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    CardInforPage.prototype.GetVerifyCode = function () {
+        var _this = this;
+        if (this.VoucherId) {
+            this.Service.GetVerifyode(this.Params.Code, this.Form_Group_Info.value.CVN, this.Form_Group_Info.value.CardDate, this.Params.Mobile, this.Params.OutputAmount, this.VoucherId)
+                .subscribe(function (res) {
+                _this.times();
+            });
+        }
+        else {
+            this.Service.GetVerifyode(this.Params.Code, this.Form_Group_Info.value.CVN, this.Form_Group_Info.value.CardDate, this.Params.Mobile, this.Params.OutputAmount)
+                .subscribe(function (res) {
+                _this.times();
+            });
+        }
+    };
+    CardInforPage.prototype.ConfirmCode = function () {
+        var _this = this;
+        if (!this.OrderNo) {
+            App.ShowError('验证码输入不正确');
+            return;
+        }
+        this.Service.ConfirmResult(this.OrderNo, this.Form_Group_Info.value.VerifyCode).subscribe(function (res) {
+            App.Nav.push(App.RootPage.ConfirminfoPage, { InCard: _this.Params.DepositCard, FinalAmount: _this.Params.InputAmount, CardCode: _this.Params.DepositCode });
+        });
+    };
+    CardInforPage.prototype.ShowBackEmp = function () {
+        this.ShowBack = true;
+    };
+    CardInforPage.prototype.ShowFrontEmp = function () {
+        this.ShowFront = true;
+    };
+    CardInforPage.prototype.CloseCard = function () {
+        this.ShowBack = this.ShowFront = false;
+    };
+    CardInforPage.prototype.ClickUserVoucher = function () {
+    };
+    CardInforPage.prototype.ClickUserChosen = function () {
+    };
+    CardInforPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-cardInfor',template:/*ion-inline-start:"D:\xampp\htdocs\myapp\src\pages\home\cardinfor\cardinfor.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n  <ion-toolbar no-padding>\n\n    <ion-grid class="list-grid-default bgc-grad-primary">\n\n      <ion-row padding-vertical>\n\n        <ion-col>\n\n          <ul class="list-row-inner">\n\n            <li class="title" text-center>\n\n              <div class="bold" f-2-5 ion-text color="light"><span f-1-2>￥</span>{{Params.OutputAmount}}</div>\n\n              <p class="color-fopacity-7">收款金额</p>\n\n            </li>\n\n            <li class="title" text-center>\n\n              <div class="bold" f-2-5 ion-text color="light"><span f-1-2>￥</span>{{Params.InputAmount}}</div>\n\n              <p class="color-fopacity-7">到账金额</p>\n\n            </li>\n\n          </ul>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-grid class="grid-inforlist-default" m-b-10>\n\n    <ion-row class="border-last">\n\n      <ion-col col-4>收款储蓄卡</ion-col>\n\n      <ion-col>\n\n        <span class="bank-face"><img src="assets/banklogo/bank_{{Params.DepositCode}}.png"></span>\n\n        <span>{{Params.DepositCard}}</span>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <form novalidate [formGroup]="Form_Group_Info">\n\n    <ion-grid class="grid-inforlist-default" m-b-10>\n\n      <ion-row>\n\n        <ion-col col-4>付款信用卡</ion-col>\n\n        <ion-col>\n\n          <span class="bank-face"><img src="assets/banklogo/bank_{{Params.CreditCode}}.png"></span>\n\n          <span>{{Params.CreditCard}}</span>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row>\n\n        <ion-col col-4>CVN2</ion-col>\n\n        <ion-col col-6><ion-input type=\'number\' placeholder="卡片背面末三位数" formControlName="CVN"></ion-input></ion-col>\n\n        <ion-col (click)="ShowBackEmp()" text-right text-nowrap><span ion-text color="orange">示例</span></ion-col>\n\n      </ion-row>\n\n      <ion-row class="border-last">\n\n        <ion-col col-4>有效期</ion-col>\n\n        <ion-col col-6><ion-input type=\'number\' placeholder="卡片正面有效期" formControlName="CardDate"></ion-input></ion-col>\n\n        <ion-col (click)="ShowFrontEmp()" text-right text-nowrap><span ion-text color="orange">示例</span></ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n    <ion-grid class="grid-inforlist-default" m-b-10 *ngIf="Voucher.length > 0">\n\n      <ion-row class="border-last" (click)="ClickUserVoucher()">\n\n        <ion-col col-4>抵扣券</ion-col>\n\n        <ion-col col-5><span ion-text color="orange">{{Voucher.length}}张可用</span></ion-col>\n\n        <ion-col text-right col-2>去使用</ion-col>\n\n        <ion-col text-right><ion-icon>&#xf3d1;</ion-icon></ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n    <ion-grid class="grid-inforlist-default" m-b-10>\n\n      <ion-row [ngStyle]="{\'padding\':\'6px 12px 5px 0\'}">\n\n        <ion-col col-4>手机号</ion-col>\n\n        <ion-col col-4>{{Params.Mobile}}</ion-col>\n\n        <ion-col text-right>\n\n          <button class="btn" ion-button p-l-5 p-r-5 f-1-5 [disabled]="VCodeBtnIsDisabled" (click)="GetVerifyCode()" tappable>{{VCodeText}}</button>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row class="border-last">\n\n        <ion-col col-4>验证码</ion-col>\n\n        <ion-col><ion-input type=\'text\' placeholder="请输入验证码" formControlName="VerifyCode"></ion-input></ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </form>\n\n  <ion-row justify-content-center m-t-10>\n\n    <ion-col col-11>\n\n      <button class="bgc-grad-primary bgc-header" ion-button block round f-1-6 [disabled]="CompleteBtnIsDisabled" (click)="ConfirmCode()" tappable>确认</button>\n\n    </ion-col>\n\n  </ion-row>\n\n</ion-content>\n\n\n\n<!-- 确认信息阴影弹框正面 样式在grid.scss-->\n\n<div *ngIf="ShowFront">\n\n  <div class="shadow-bgc"></div>\n\n  <div class="shadow-cont">\n\n    <ion-grid>\n\n      <ion-row justify-content-center>\n\n        <ion-col col-10 text-center>\n\n          <img src="assets/imgs/main1.png">\n\n          <div m-t-10 ion-text color="light">\n\n            <p no-margin>有效期为信用卡正面"VALID THRU"右侧日期</p>\n\n            <p no-margin>如输入"1210"</p>\n\n          </div>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row  justify-content-center class="banks-contC">\n\n        <ion-col col-5>\n\n          <button class="small" ion-button block (click)="CloseCard()">知道了</button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n</div>\n\n\n\n<div *ngIf="ShowBack">\n\n  <div class="shadow-bgc"></div>\n\n  <!-- 确认信息阴影弹框反面 -->\n\n  <div class="shadow-cont">\n\n    <ion-grid>\n\n      <ion-row justify-content-center>\n\n        <ion-col col-10 text-center>\n\n          <img src="assets/imgs/main2.png">\n\n          <div m-t-10 ion-text color="light">\n\n            <p no-margin>CVN2为信用卡背面末三位数字</p>\n\n            <p no-margin>如输入"267"</p>\n\n          </div>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row  justify-content-center class="banks-contC">\n\n        <ion-col col-5>\n\n          <button class="small" ion-button block (click)="CloseCard()">知道了</button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n</div>\n\n'/*ion-inline-end:"D:\xampp\htdocs\myapp\src\pages\home\cardinfor\cardinfor.html"*/
+        }),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */]])
+    ], CardInforPage);
+    return CardInforPage;
+}());
+
+//# sourceMappingURL=cardinfor.js.map
 
 /***/ }),
 
@@ -4888,7 +4960,7 @@ var NoopInterceptor = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TBaseService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__ = __webpack_require__(337);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(27);
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -5037,7 +5109,7 @@ var TBaseService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz__ = __webpack_require__(337);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz__ = __webpack_require__(336);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_lrz__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_pub_service__ = __webpack_require__(58);
 var __extends = (this && this.__extends) || (function () {
@@ -5486,5 +5558,5 @@ var MineService = /** @class */ (function (_super) {
 
 /***/ })
 
-},[297]);
+},[296]);
 //# sourceMappingURL=main.js.map

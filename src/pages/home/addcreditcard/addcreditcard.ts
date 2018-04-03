@@ -14,7 +14,7 @@ import { FileService, BANKCARD_FRONT } from '../../../providers/fileservice';
 })
 export class AddCreditCardPage implements OnInit
 {
-  App = window.App;
+  App: any = <any>window.App;
 
   PrePage: string;
 
@@ -52,6 +52,30 @@ export class AddCreditCardPage implements OnInit
         Validators.pattern(/^1[3|4|5|7|8][0-9]{9}$/)
       ])
     });
+
+    if (!App.IsIdAuthed) {
+      let alertOpts = {
+        title: '温馨提示',
+        message: '为了您的资金安全，首次刷卡需先完成身份认证',
+        cssClass: 'text-left',
+        buttons: [
+          {
+            text: '取消',
+            role: 'cancel',
+            handler: () => {
+              App.Nav.push('HomePage');
+            }
+          },
+          {
+            text: '确认',
+            handler: () => {
+              App.Nav.push('AuthPage');
+            }
+          }
+        ]
+      };
+      App.ShowAlert(alertOpts);
+    }
   }
 
   get CompleteBtnIsDisabled(): boolean {

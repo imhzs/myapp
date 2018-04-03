@@ -12,9 +12,9 @@ import { FileService } from '../../providers/fileservice';
 @Injectable()
 export class AuthPage implements OnInit
 {
-	CardFront: string = 'front';
+	CardFront: string = 'idcard_front';
 
-	CardBack: string = 'back';
+	CardBack: string = 'idcard_back';
 
 	ExampleFront: string = '';
 
@@ -71,9 +71,6 @@ export class AuthPage implements OnInit
   async ouploadFile(cType: string, file: any)
   {
     let res = await this.fileService.IdentityAuth(file, cType);
-    if (false === res && cType == this.CardFront) {
-      App.ShowError('识别身份证失败，请手动输入');
-    }
     if (false !== res && cType == this.CardFront) {
       this.idCardNo.setValue(res.idno);
       this.username.setValue(res.name);

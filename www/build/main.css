@@ -28069,6 +28069,10 @@ body {
   }
 }
 
+.header:after {
+  background-image: none;
+}
+
 .border-none:before {
   display: none;
 }

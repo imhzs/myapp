@@ -41,7 +41,7 @@ export class AddDepositPage implements OnInit
 
   BankCardFront: string = BANKCARD_FRONT;
 
-  App = window.App;
+  App: any = <any>window.App;
 
   constructor(public Service: HomeService, public navParams: NavParams, private Auth: TAuthService, private fileService: FileService) {
   }
@@ -63,6 +63,30 @@ export class AddDepositPage implements OnInit
         Validators.pattern(/^1[3|4|5|7|8][0-9]{9}$/)
       ])
     });
+
+    if (!App.IsIdAuthed) {
+      let alertOpts = {
+        title: '温馨提示',
+        message: '为了您的资金安全，首次刷卡需先完成身份认证',
+        cssClass: 'text-left',
+        buttons: [
+          {
+            text: '取消',
+            role: 'cancel',
+            handler: () => {
+              App.Nav.push('HomePage');
+            }
+          },
+          {
+            text: '确认',
+            handler: () => {
+              App.Nav.push('AuthPage');
+            }
+          }
+        ]
+      };
+      App.ShowAlert(alertOpts);
+    }
   }
 
   // 卡号是否符合规则
