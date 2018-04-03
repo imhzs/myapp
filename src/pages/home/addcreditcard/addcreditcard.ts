@@ -26,7 +26,7 @@ export class AddCreditCardPage implements OnInit
 
   WrongMsg: string = '';
 
-  Form_Group_Card: FormGroup;
+  formGroup: FormGroup;
 
   CardNo: FormControl;
 
@@ -37,11 +37,11 @@ export class AddCreditCardPage implements OnInit
   BankCardFront: string = BANKCARD_FRONT;
 
   constructor(public Service: HomeService, public navParams: NavParams, private Auth: TAuthService, private fileService: FileService) {
-    this.GetIdCard(App.UserInfo.idCardNo);
+    console.log(App.UserInfo);
   }
 
   ngOnInit() {
-    this.Form_Group_Card = new FormGroup({
+    this.formGroup = new FormGroup({
       CardNo: this.CardNo = new FormControl('', [
         Validators.required,
         Validators.minLength(16)
@@ -55,6 +55,7 @@ export class AddCreditCardPage implements OnInit
   }
 
   ionViewDidEnter() {
+    this.GetIdCard(App.UserInfo.idCardNo);
     if (!App.IsIdAuthed) {
       let alertOpts = {
         title: '温馨提示',
@@ -99,7 +100,7 @@ export class AddCreditCardPage implements OnInit
 
   // 提交数据
   AddCard() {
-    this.Service.AddCreditCard(this.Form_Group_Card.value.CardNo, this.Form_Group_Card.value.Mobile).subscribe(res => {
+    this.Service.AddCreditCard(this.formGroup.value.CardNo, this.formGroup.value.Mobile).subscribe(res => {
       this.Auth.currentUser.subscribe(()=>App.Nav.push(App.RootPage[this.navParams.data]));
     });
   }

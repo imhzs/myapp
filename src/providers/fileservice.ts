@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FileTransfer, FileUploadOptions } from '@ionic-native/file-transfer';
 import lrz from 'lrz';
@@ -63,7 +63,7 @@ export class FileService extends TBaseService
             App.ShowToast(error);
           });
       } else {
-        resp = await this.PostByXMLHttpReq(uri, fileKey, file)
+        resp = await this.PostByXMLHttpReq(uri, fileKey, file, params)
         .then((resp) => resp)
         .catch(error => {
           App.ShowToast(error);
@@ -238,53 +238,25 @@ export class FileService extends TBaseService
     });
   }
 
-  async PostByXMLHttpReq(uri: string, fileKey?: string, file?: any) {
+  async PostByXMLHttpReq(uri: string, fileKey?: string, file?: any, params?: {}) {
     return new Promise((resolve, reject) => {
       let BaseUrl = this.BaseUrl;
       let url = `${BaseUrl}/${uri}`;
-      
-      if (fileKey && file) {
-        this.SetParam(fileKey, file);
+      const formData: FormData = new FormData();
+      formData.append(fileKey, file, file.name);
+      for (let k in params) {
+        formData.append(k, params[k]);
       }
 
-      if (window.fetch) {
-        let opts: RequestInit = {
-            method: 'POST',
-            headers: {
-              'Authorization': this.getToken
-            },
-            body: this.params
-        };
-        fetch(url, opts)
-        .then(resp => {
-          App.HideLoading();
-          resolve(resp.json());
-        })
-        .catch (error => {
-          App.HideLoading();
+      const req = new HttpRequest('POST', url, formData);
+      this.http.request(req).subscribe(
+        data => {
+          resolve(data);
+        },
+        error => {
           reject(error);
-        });
-      } else {
-        let xhr: XMLHttpRequest = new XMLHttpRequest();
-
-        xhr.onreadystatechange = () => {
-          if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-              resolve(JSON.parse(xhr.response));
-            } else {
-              reject(xhr);
-            }
-          }
-        };
-
-        xhr.onloadend = () => {
-          App.HideLoading();
-        };
-
-        xhr.open('POST', url, true);
-        xhr.setRequestHeader('Authorization', this.getToken);
-        xhr.send(this.params);
-      }
+        }
+      );
     });
   }
 }

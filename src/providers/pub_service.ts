@@ -4,6 +4,7 @@ import { Md5 } from "ts-md5/dist/md5";
 import { Observable } from 'rxjs/Observable';
 
 import { TypeInfo } from '../UltraCreation/Core/TypeInfo';
+import { CredentialHelper } from '../shared/helper/credential-helper';
 
 const API_URL = 'http://39.104.113.132';
 
@@ -32,7 +33,7 @@ export class TBaseService
   }
 
   get getToken() {
-    let token = localStorage.getItem('token');
+    let token = CredentialHelper.getToken();
     if (TypeInfo.Assigned(token)) {
       return `Bearer ${token}`;
     }
