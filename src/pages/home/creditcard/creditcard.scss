@@ -4,7 +4,6 @@
 			color: $color-light-grey-s;
 		}
 		.card {
-			height: 6rem;
 			border-radius: 6px;
 			&.has-card {
 				@include gradient-x(#ff8351, #ff5f4b, 20%);

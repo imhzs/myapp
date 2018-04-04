@@ -19,14 +19,14 @@
             <div class="d-flex justify-content-between border-bottom-1px" p-v-10>
               <div class="flex-fill d-flex align-items-center justify-content-start">
                 <img src="assets/banklogo/bank_{{creditCard.code}}.png" width="30" height="30" alt="logo" />
-                <div class="d-flex flex-fill flex-column justify-content-center l-h-d" m-l-5>
-                  <p><label f-18>{{creditCard.bank}}</label></p>
-                  <p><span ion-text f-12>**** **** **** {{creditCard.cardNo}}</span></p>
+                <div class="d-flex flex-fill flex-column justify-content-center" m-l-10>
+                  <p><label f-16>{{creditCard.bank}}</label></p>
+                  <p m-t-5><span ion-text f-12>**** **** **** {{creditCard.cardNo}}</span></p>
                 </div>
               </div>
               <div class="flex-fill" text-right>
                 <button type="button" ion-only class="bg-transparent btn-change" no-padding no-margin (click)="DelCreditCard(creditCard.id)">
-                  <ion-icon f-26 name="trash"></ion-icon>
+                  <ion-icon f-22 name="trash" class="trash"></ion-icon>
                 </button>
               </div>
             </div>
@@ -63,14 +63,14 @@
             <div class="d-flex justify-content-between border-bottom-1px" p-v-10>
               <div class="flex-fill d-flex align-items-center justify-content-start">
                 <img src="assets/banklogo/bank_{{depositCard.code}}.png" width="30" height="30" alt="logo" />
-                <div class="d-flex flex-fill flex-column justify-content-center l-h-d" m-l-5>
-                  <p><label f-18>{{depositCard.bank}}</label></p>
-                  <p><span ion-text f-12>**** **** **** {{depositCard.cardNo}}</span></p>
+                <div class="d-flex flex-fill flex-column justify-content-center" m-l-10>
+                  <p><label f-16>{{depositCard.bank}}</label></p>
+                  <p m-t-5><span ion-text f-12>**** **** **** {{depositCard.cardNo}}</span></p>
                 </div>
               </div>
               <div class="flex-fill" text-right>
                 <button type="button" ion-only class="bg-transparent btn-change" no-padding no-margin (click)="DelDepositCard(depositCard.id)">
-                  <ion-icon f-26 name="trash"></ion-icon>
+                  <ion-icon f-22 name="trash" class="trash"></ion-icon>
                 </button>
               </div>
             </div>

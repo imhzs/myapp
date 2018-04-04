@@ -24,5 +24,3 @@ export class PageToolbarComponent
     this.navCtrl.push('UcenterPage');
   }
 }
-
-

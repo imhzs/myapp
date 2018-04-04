@@ -28827,7 +28827,6 @@ ion-icon.app-icon, ion-icon[app-icon] {
 }
 
 .h-creditcard-page .page-content .card {
-  height: 6rem;
   border-radius: 6px;
 }
 
@@ -28875,4 +28874,8 @@ ion-icon.app-icon, ion-icon[app-icon] {
 .u-mycard .segment .segment-button.segment-activated {
   background-color: #fff;
   border-bottom: 1px solid #569af3;
+}
+
+.u-mycard .trash {
+  color: #bd2630;
 }

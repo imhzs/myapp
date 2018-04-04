@@ -8,6 +8,7 @@ const _ = require('lodash');
 
 import { TBaseService } from '../providers/pub_service';
 import { CardModel } from '../models/card-model';
+import { CredentialHelper } from '../shared/helper/credential-helper';
 
 @Injectable()
 export class HomeService extends TBaseService
@@ -110,7 +111,7 @@ export class HomeService extends TBaseService
     this.SetParam('cardId', cardId);
     this.SetParam('enterCardId', enterCardId);
     this.SetParam('amount', Math.round(amount * 100));
-    this.SetParam('token', localStorage.getItem('token'));
+    this.SetParam('token', CredentialHelper.getToken());
     if (cashbackId) {
       this.SetParam('cashbackId', cashbackId);
     }
@@ -129,7 +130,6 @@ export class HomeService extends TBaseService
     if (cashbackId) {
       this.SetParam('cashbackId', cashbackId);    
     }
-    App.ShowLoading('验证中...');
 
     return this.Post('kpay/api/trade/quickPay/sendVericode');
   }

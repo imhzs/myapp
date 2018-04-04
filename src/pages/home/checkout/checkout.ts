@@ -2,6 +2,7 @@ import { Component, Injectable } from '@angular/core';
 import { NavParams, IonicPage } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
+import { TypeInfo } from '../../../UltraCreation/Core/TypeInfo';
 import { CardModel } from '../../../models/card-model';
 import { HomeService } from '../../../providers/homeservice';
 import { AmountOptions } from '../creditcard/creditcard';
@@ -14,17 +15,14 @@ import { AmountOptions } from '../creditcard/creditcard';
 @Injectable()
 export class CheckoutPage
 {
-	// 支付金额
-	PayAmount: number;
-
-	// 到账金额
-	ReceiveAmount: number;
-
 	// 信用卡
 	CreditCard: CardModel;
 
 	// 储蓄卡
 	DepositCard: CardModel;
+
+	// 金额
+	Amount: AmountOptions;
 
 	// 标题
 	HeadTitle: string = '确认收款';
@@ -33,9 +31,10 @@ export class CheckoutPage
 	CanSubmited: boolean = true;
 
 	constructor (private navParams: NavParams, private service: HomeService) {
-		let amount = <AmountOptions>this.navParams.get('amount');
-		this.PayAmount = amount.inputAmount;
-		this.ReceiveAmount = amount.outputAmount;
+		this.Amount = <AmountOptions>this.navParams.get('amount');
+		if (!TypeInfo.Assigned(this.Amount) && !TypeInfo.IsObject(this.Amount)) {
+			App.Nav.push('CreditCardPage');
+		}
 		this.CreditCard = this.navParams.get('creditCard');
 		this.DepositCard = this.navParams.get('depositCard');
 	}
@@ -47,7 +46,7 @@ export class CheckoutPage
 	// 确认付款
 	Pay() {
     this.CanSubmited = false;
-    this.service.GetBankPage(this.CreditCard.id, this.DepositCard.id, this.PayAmount).subscribe(
+    this.service.GetBankPage(this.CreditCard.id, this.DepositCard.id, this.Amount.inputAmount).subscribe(
 			data => {
 				// 跳转银联页面
 				if (/^[http:\/\/|https:\/\/](.*)?/.test(data)) {

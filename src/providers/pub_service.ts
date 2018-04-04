@@ -60,6 +60,7 @@ export class TBaseService
   Post(Uri: string, Data?: any): Observable<any> {
     let url = `${API_URL}/${Uri}`;
     let params = this.params.toString();
+    console.log(params);
     this.setNewParams();
     return this.http.post(url, params, {headers: this.headers});
   }
