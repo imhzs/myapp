@@ -1,8 +1,9 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { NavParams, IonicPage, ViewController } from 'ionic-angular';
 
 import { CardModel } from '../../../models/card-model';
 import { HomeService } from '../../../providers/homeservice';
+import { CREDIT_CARD, DEPOSIT_CARD } from '../../../shared/helper/card-helper';
 
 @IonicPage()
 @Component({
@@ -10,45 +11,39 @@ import { HomeService } from '../../../providers/homeservice';
   templateUrl: 'changecards.html'
 })
 @Injectable()
-export class ChangecardsPage implements OnInit
+export class ChangecardsPage
 {
-  autoManufacturers: string;
+  // 当前选中的卡片
+  CheckedCardId: number;
 
-  constructor(public Service: HomeService, public navParams: NavParams, public viewCtrl: ViewController) {
-  }
-
-  ngOnInit() {
-    console.log(this.navParams.get('id'));
-    this.BankList = [];
-    for (let item of this.navParams.data) {
-      if (item.primary === '1') item.chose = true;
-      this.BankList.push(item);
-    }
-  }
-
-  AddCards() {
-    App.Nav.push(App.RootPage.AddCreditPage);
-  }
-
-  SelectedCard(item) {
-    if (item.chose) {
-      return;
-    }
-    for (let i of this.BankList) i.chose = false;
-    item.chose = !item.chose;
-
-    this.Service.SetPrimCard(item.id).subscribe(data => {
-      App.ActiveView.dismiss(item);
-    });
-  }
-
-  public confirmCard() {
-    console.log(this.autoManufacturers);
-    let data = {id: this.autoManufacturers};
-    this.viewCtrl.dismiss(data);
-  }
-
+  // 页面标题
   HeadTitle: string = "我的信用卡";
 
-  private BankList: Array<CardModel> = new Array<CardModel>();
+  // 卡片数据
+  Cards: Array<CardModel> = new Array<CardModel>();
+
+  // 卡类型
+  CardType: number;
+
+  constructor(public Service: HomeService, public navParams: NavParams, public viewCtrl: ViewController) {
+    console.log(this.navParams.get('curCardId'));
+    this.CheckedCardId = this.navParams.get('curCardId');
+    this.Cards = this.navParams.get('data');
+    this.CardType = this.navParams.get('t');
+  }
+
+  // 新增卡片
+  AddCards() {
+    if (this.CardType === CREDIT_CARD) {
+      App.Nav.push('AddCreditCardPage', {page: 'CreditCardPage'});
+    } else if (this.CardType === DEPOSIT_CARD) {
+      App.Nav.push('AddDepositPage', {page: 'CreditCardPage'});
+    }
+  }
+
+  OnConfirmCard() {
+    console.log(this.CheckedCardId);
+    let data = {id: this.CheckedCardId};
+    this.viewCtrl.dismiss(data);
+  }
 }

@@ -31,45 +31,52 @@ export class CreditCardPage implements OnInit
   HeadTitle: string = "刷卡提现";
 
   // 金额
-  Amount: AmountOptions = {
-    InputAmount: undefined,
-    OutputAmount: undefined
+  amount: AmountOptions = {
+    inputAmount: undefined,
+    outputAmount: undefined
   };
 
   constructor(public navCtrl: NavController, public cardHelper: CardHelper, private auth: TAuthService, private homeService: HomeService) {
-    this.homeService.GetCardList();
-    this.auth.currentUser.subscribe((data) => {
-      this.InitData();
-    })
+    this.Rate = App.UserInfo.rate;
+    this.homeService.currentCards.subscribe(
+      (cards) => {
+        this.InitData();
+      }
+    );
   }
 
   ngOnInit() {
   }
 
   ionViewDidEnter() {
-    if (!App.IsIdAuthed) {
-      let alertOpts = {
-        title: '温馨提示',
-        message: '为了您的资金安全，首次刷卡需先完成身份认证',
-        cssClass: 'text-left',
-        buttons: [
-          {
-            text: '取消',
-            role: 'cancel',
-            handler: () => {
-              App.Nav.push('HomePage');
-            }
-          },
-          {
-            text: '确认',
-            handler: () => {
-              App.Nav.push('AuthPage');
-            }
-          }
-        ]
-      };
-      App.ShowAlert(alertOpts);
-    }
+    this.auth.currentUser.subscribe(
+      (data) => {
+        this.Rate = data.rate;
+        if (!App.IsIdAuthed) {
+          let alertOpts = {
+            title: '温馨提示',
+            message: '为了您的资金安全，首次刷卡需先完成身份认证',
+            cssClass: 'text-left',
+            buttons: [
+              {
+                text: '取消',
+                role: 'cancel',
+                handler: () => {
+                  App.Nav.push('HomePage');
+                }
+              },
+              {
+                text: '确认',
+                handler: () => {
+                  App.Nav.push('AuthPage');
+                }
+              }
+            ]
+          };
+          App.ShowAlert(alertOpts);
+        }
+      }
+    );
   }
 
   // 初始化数据
@@ -78,8 +85,6 @@ export class CreditCardPage implements OnInit
     this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
     this.CurrentCreditCard = this.cardHelper.getPrimaryCard(CREDIT_CARD);
     this.CurrentDepositCard = this.cardHelper.getPrimaryCard(DEPOSIT_CARD);
-
-    console.log('CurrentCreditCard', this.CurrentCreditCard);
 
     if (!TypeInfo.Assigned(this.CurrentCreditCard) && this.CreditCards.length > 0) {
       this.CurrentCreditCard = this.CreditCards[0];
@@ -92,11 +97,11 @@ export class CreditCardPage implements OnInit
 
   // 计算到账金额
   InputAmount() {
-    if (!this.Amount.InputAmount) {
-      this.Amount.OutputAmount = undefined;
+    if (!this.amount.inputAmount) {
+      this.amount.outputAmount = undefined;
       return;
     }
-    this.Amount.OutputAmount = Math.floor((this.Amount.InputAmount * (1 - this.Rate / 100)) * 10) / 10;
+    this.amount.outputAmount = Math.floor((this.amount.inputAmount * (1 - this.Rate / 100)) * 10) / 10;
   }
 
   // 确认提交
@@ -108,31 +113,39 @@ export class CreditCardPage implements OnInit
       return;
     }
 
-    if ( this.CreditCards.length == 0 || this.DepositCards.length == 0 ) {
+    if (this.CreditCards.length == 0 || this.DepositCards.length == 0) {
       App.ShowError('请先添加银行卡和储蓄卡');
       return;
     }
 
     this.InputAmount();
-    this.navCtrl.push('CheckoutPage', {creditCard: this.CurrentCreditCard, depositCard: this.CurrentDepositCard, amount: this.Amount});
+    this.navCtrl.push('CheckoutPage', {creditCard: this.CurrentCreditCard, depositCard: this.CurrentDepositCard, amount: this.amount});
   }
 
   // 更换信用卡
   ChangeCreditCard() {
-    App.ShowModal('ChangecardsPage', {data: this.CreditCards, t: CREDIT_CARD}).then((modal) => {
-      modal.onDidDismiss((data) => {
-        this.CurrentCreditCard = this.cardHelper.getCardById(data.id);
-      })
-    });
+    App.ShowModal('ChangecardsPage', {data: this.CreditCards, t: CREDIT_CARD, curCardId: this.CurrentCreditCard.id}).then(
+      (modal) => {
+        modal.onDidDismiss((data) => {
+          if (TypeInfo.Assigned(data) && TypeInfo.IsObject(data)) {
+            this.CurrentCreditCard = this.cardHelper.getCardById(data.id);
+          }
+        });
+      }
+    );
   }
 
   // 更换储蓄卡
   ChangeDepositCard() {
-    App.ShowModal('ChangecardsPage', {data: this.DepositCards, t: DEPOSIT_CARD}).then((modal) => {
-      modal.onDidDismiss((data) => {
-        this.CurrentDepositCard = this.cardHelper.getCardById(data.id);
-      })
-    });
+    App.ShowModal('ChangecardsPage', {data: this.DepositCards, t: DEPOSIT_CARD, curCardId: this.CurrentDepositCard.id}).then(
+      (modal) => {
+        modal.onDidDismiss((data) => {
+          if (TypeInfo.Assigned(data) && TypeInfo.IsObject(data)) {
+            this.CurrentDepositCard = this.cardHelper.getCardById(data.id);
+          }
+        });
+      }
+    );
   }
 
   // 添加信用卡
@@ -147,12 +160,13 @@ export class CreditCardPage implements OnInit
 
   // 是否可以点击下一步
   get CanGoNext() {
-    return TypeInfo.IsObject(this.CurrentCreditCard) && TypeInfo.IsObject(this.CurrentDepositCard) && this.Amount.InputAmount > 100;
+    console.log(this.amount.inputAmount);
+    return TypeInfo.IsObject(this.CurrentCreditCard) && TypeInfo.IsObject(this.CurrentDepositCard) && this.amount.inputAmount > 100;
   }
 }
 
 export interface AmountOptions
 {
-  InputAmount: number;
-  OutputAmount: number;
+  inputAmount: number;
+  outputAmount: number;
 }

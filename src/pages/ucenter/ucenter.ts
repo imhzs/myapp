@@ -12,6 +12,8 @@ import { UserModel } from '../../models/user-model';
 @Injectable()
 export class UcenterPage implements OnInit
 {
+  App: any = <any>window.App;
+
   // 用户数据
   User: UserModel = <UserModel>{};
   

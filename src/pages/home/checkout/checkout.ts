@@ -34,8 +34,8 @@ export class CheckoutPage
 
 	constructor (private navParams: NavParams, private service: HomeService) {
 		let amount = <AmountOptions>this.navParams.get('amount');
-		this.PayAmount = amount.InputAmount;
-		this.ReceiveAmount = amount.OutputAmount;
+		this.PayAmount = amount.inputAmount;
+		this.ReceiveAmount = amount.outputAmount;
 		this.CreditCard = this.navParams.get('creditCard');
 		this.DepositCard = this.navParams.get('depositCard');
 	}
