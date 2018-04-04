@@ -72,7 +72,7 @@
         <ion-label>收款金额(元)</ion-label>
       </ion-col>
       <ion-col col-12>
-        <ion-input type="number" name="amount" ([ngModel])="amount.inputAmount" no-margin f-30 placeholder="500-20000" p-l-5></ion-input>
+        <ion-input type="number" name="amount" ([ngModel])="amount.inputAmount" (ngModelChange)="OnCahngeInputAmount($event)" no-margin f-30 placeholder="500-20000" p-l-5></ion-input>
       </ion-col>
     </ion-row>
     <ion-row p-t-5>

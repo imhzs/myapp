@@ -96,7 +96,7 @@ export class CreditCardPage implements OnInit
   }
 
   // 计算到账金额
-  InputAmount() {
+  OnCahngeInputAmount() {
     if (!this.amount.inputAmount) {
       this.amount.outputAmount = undefined;
       return;
@@ -118,7 +118,7 @@ export class CreditCardPage implements OnInit
       return;
     }
 
-    this.InputAmount();
+    this.OnCahngeInputAmount();
     this.navCtrl.push('CheckoutPage', {creditCard: this.CurrentCreditCard, depositCard: this.CurrentDepositCard, amount: this.amount});
   }
 
