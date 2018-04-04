@@ -46,7 +46,6 @@ export class CheckoutPage
 
 	// 确认付款
 	Pay() {
-		console.log('Pay');
     this.CanSubmited = false;
     this.service.GetBankPage(this.CreditCard.id, this.DepositCard.id, this.PayAmount).subscribe(
 			data => {
@@ -58,6 +57,9 @@ export class CheckoutPage
 				} else {
 					App.Nav.push(App.RootPage.FinalpayPage, {innerHtml: data});
 				}
+			},
+			error => {
+				this.CanSubmited = true;
 			}
 		);
 	}

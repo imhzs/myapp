@@ -75,7 +75,7 @@ export class MyCardPage implements OnInit
 
   // 设置主卡
   async SetPrimaryCard(t: number, id: number) {
-    let res = this.Servie.SetPrimCard(id).subscribe(
+    this.Servie.SetPrimCard(id).subscribe(
       data => {
         this.cardHelper.setPrimary(t, id);
         this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);

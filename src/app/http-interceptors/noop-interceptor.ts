@@ -4,9 +4,7 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, Htt
 import { Observable } from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/Observable/ErrorObservable';
 import { catchError, tap } from 'rxjs/operators';
-import { PartialObserver } from 'rxjs/Observer';
 
-import { CredentialHelper } from '../../shared/helper/credential-helper';
 import { TBaseService } from '../../providers/pub_service';
 import { TypeInfo } from '../../UltraCreation/Core/TypeInfo';
 

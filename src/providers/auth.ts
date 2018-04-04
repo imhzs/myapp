@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Observable';
 
 import { TypeInfo } from '../UltraCreation/Core/TypeInfo';
 import { TBaseService } from './pub_service';
-import { Network } from '../UltraCreation/Native/Network'
 import { CredentialHelper } from '../shared/helper/credential-helper';
 import { UserModel } from '../models/user-model';
 

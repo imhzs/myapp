@@ -12,14 +12,14 @@
 <ion-content class="home-page">
   <ion-grid class="page-content">
     <ion-row align-items-center justify-content-center class="border-bottom-1px" p-b-10>
-      <ion-col col-10 col-xs-8 col-md-6 col-lg-4>
-        <button type="button" class="btn-home-pay" ion-button full>刷卡收款</button>
+      <ion-col col-10 col-sm-10 col-md-10 col-lg-4 col-xs-2>
+        <button type="button" class="btn-home-pay" ion-button full (click)="App.Nav.push('CreditCardPage')">刷卡收款</button>
       </ion-col>
     </ion-row>
     <ion-row p-t-15>
       <ion-col col-4>
         <a href="javascript:void(0)" (click)="App.Nav.push('AuthPage')" class="d-flex flex-column align-items-center">
-          <img src="assets/imgs/a-credit.png" alt="办信用卡" width="60" height="60" />
+          <img src="assets/imgs/creditcard.png" alt="办信用卡" width="60" height="60" />
           <label text-center>办信用卡</label>
         </a>
       </ion-col>
@@ -66,19 +66,19 @@
     <ion-row>
       <ion-col col-4>
         <a href="#" class="d-flex flex-column align-items-center">
-          <img src="assets/imgs/ca_per.png" alt="办信用卡" width="60" height="60" />
+          <img src="assets/imgs/creditcard.png" alt="办信用卡" width="60" height="60" />
           <label text-center>办信用卡</label>
         </a>
       </ion-col>
       <ion-col col-4>
         <a href="#" class="d-flex flex-column align-items-center">
-          <img src="assets/imgs/ca_per.png" alt="身份认证" width="60" height="60" />
+          <img src="assets/imgs/cards.png" alt="身份认证" width="60" height="60" />
           <label text-center>身份认证</label>
         </a>
       </ion-col>
       <ion-col col-4>
         <a href="#" class="d-flex flex-column align-items-center">
-          <img src="assets/imgs/ca_per.png" alt="会员福利" width="60" height="60" />
+          <img src="assets/imgs/welfare.png" alt="会员福利" width="60" height="60" />
           <label text-center>会员福利</label>
         </a>
       </ion-col>

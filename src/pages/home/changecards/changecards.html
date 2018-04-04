@@ -6,7 +6,10 @@
 <ion-content>
   <ion-list radio-group [(ngModel)]="CheckedCardId">
     <ion-item *ngFor="let card of Cards">
-      <ion-label>{{card.bank}}({{card.cardNo}})</ion-label>
+      <ion-label class="d-flex align-items-center">
+        <ion-img src="assets/banklogo/bank_{{card.code}}.png" m-r-5></ion-img>
+        <span ion-text>{{card.bank}}({{card.cardNo}})</span>
+      </ion-label>
       <ion-radio value="{{card.id}}"></ion-radio>
     </ion-item>
   </ion-list>

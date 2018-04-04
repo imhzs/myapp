@@ -53,6 +53,7 @@ export class CreditCardPage
   }
 
   ionViewDidEnter() {
+    this.InitData();
     this.auth.currentUser.subscribe(
       (data) => {
         if (!App.IsIdAuthed) {

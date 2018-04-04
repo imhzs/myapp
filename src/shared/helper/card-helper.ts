@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 
 import { HomeService } from '../../providers/homeservice';
 import { CardModel } from '../../models/card-model';
-import { TypeInfo } from '../../UltraCreation/Core/TypeInfo';
 
 @Injectable()
 export class CardHelper

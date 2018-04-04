@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FileTransfer, FileUploadOptions } from '@ionic-native/file-transfer';
 import lrz from 'lrz';
@@ -39,7 +39,7 @@ export class FileService extends TBaseService
    }
 
    async PostFiles(uri: string) {
-      let resp: ResponseModel = await this.PostByXMLHttpReq(uri).then((resp) => resp);
+      let resp = <ResponseModel>await this.PostByXMLHttpReq(uri).then((resp) => resp);
       if (resp.code === 1) {
         return resp.data;
       }
