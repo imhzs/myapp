@@ -13,6 +13,7 @@ import { CredentialHelper } from '../../shared/helper/credential-helper';
   selector: 'page-thirdparty',
   templateUrl: './thirdparty.html'
 })
+@Injectable()
 export class ThirdPartyPage
 {
   App: any = <any>window.App;

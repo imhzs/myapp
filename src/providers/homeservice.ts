@@ -49,7 +49,7 @@ export class HomeService extends TBaseService
   }
 
   // 用户当前卡片
-  get currentCards() {
+  get currentCards(): Observable<Array<CardModel>> {
     return this.subject.asObservable();
   }
 
@@ -96,7 +96,7 @@ export class HomeService extends TBaseService
   //获取银行支行信息
   GetBranchBanks(massage) {
     this.SetParam('name', massage)
-    return this.PostNoLoading('kpay/api/bank/list');
+    return this.Post('kpay/api/bank/list');
   }
 
   // 取现可用返现券

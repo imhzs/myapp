@@ -64,13 +64,6 @@ export class TBaseService
     return this.http.post(url, params, {headers: this.headers});
   }
 
-  async PostNoLoading(Uri: string, Data?: any) {
-    let url = API_URL + '/' + Uri;
-    let params = this.params.toString();
-    this.setNewParams();
-    return await this.http.post(url, params, {headers: this.headers});
-  }
-
   // 设置参数
   public SetParam(key: string, value: any) {
     if (this.params.has(key)) {

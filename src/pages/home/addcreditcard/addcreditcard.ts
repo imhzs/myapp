@@ -37,7 +37,6 @@ export class AddCreditCardPage implements OnInit
   BankCardFront: string = BANKCARD_FRONT;
 
   constructor(public Service: HomeService, public navParams: NavParams, private Auth: TAuthService, private fileService: FileService) {
-    console.log(App.UserInfo);
   }
 
   ngOnInit() {
@@ -100,9 +99,21 @@ export class AddCreditCardPage implements OnInit
 
   // 提交数据
   AddCard() {
-    this.Service.AddCreditCard(this.formGroup.value.CardNo, this.formGroup.value.Mobile).subscribe(res => {
-      this.Auth.currentUser.subscribe(()=>App.Nav.push(App.RootPage[this.navParams.data]));
-    });
+    this.Service.AddCreditCard(this.formGroup.value.CardNo, this.formGroup.value.Mobile).subscribe(
+      data => {
+        this.Service.GetCardList();
+        this.Auth.GetUserData();
+        this.Auth.currentUser.subscribe(
+          (data)=> {
+            if (this.navParams.get('page')) {
+              App.Nav.push(this.navParams.get('page'));
+            } else {
+              App.Nav.push('MyCardPage');
+            }
+          }
+        );
+      }
+    );
   }
 
   // 选择文件

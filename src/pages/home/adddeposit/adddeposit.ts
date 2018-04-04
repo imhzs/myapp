@@ -6,6 +6,8 @@ import { HomeService } from '../../../providers/homeservice';
 import { TypeInfo } from '../../../UltraCreation/Core/TypeInfo';
 import { TAuthService } from '../../../providers/auth';
 import { FileService, BANKCARD_FRONT } from '../../../providers/fileservice';
+import { ListofbankPage } from '../listofbank/listofbank';
+import { BranchcardPage } from '../branchcard/branchcard';
 
 @IonicPage()
 @Component({
@@ -31,7 +33,7 @@ export class AddDepositPage implements OnInit
 
   BranchList: Array<any> = [];
 
-  Form_Group: FormGroup;
+  formGroup: FormGroup;
 
   BankCode: string = '';
 
@@ -46,13 +48,8 @@ export class AddDepositPage implements OnInit
   constructor(public Service: HomeService, public navParams: NavParams, private Auth: TAuthService, private fileService: FileService) {
   }
 
-  ngOnInit() {
-    if(!TypeInfo.Assigned(App.UserInfo)) {
-      return;
-    }
-    
-    this.GetIdCard(App.UserInfo['idCardNo']);
-    this.Form_Group = new FormGroup({
+  ngOnInit() {    
+    this.formGroup = new FormGroup({
       CardNo: this.CardNo = new FormControl('', [
         Validators.required,
         Validators.minLength(16)
@@ -66,6 +63,7 @@ export class AddDepositPage implements OnInit
   }
 
   ionViewDidEnter() {
+    this.GetIdCard(App.UserInfo['idCardNo']);
     if (!App.IsIdAuthed) {
       let alertOpts = {
         title: '温馨提示',
@@ -116,7 +114,7 @@ export class AddDepositPage implements OnInit
     if (this.CardNo.invalid) {
       return App.ShowError('请先输入银行卡卡号');
     }
-    App.ShowModal(App.RootPage.ListofbankPage).then((modal) => {
+    App.ShowModal(ListofbankPage).then((modal) => {
       modal.onDidDismiss(data => {
         if (data) {
           this.BankName = data.name;
@@ -134,7 +132,7 @@ export class AddDepositPage implements OnInit
       return App.ShowError('请先选择开户银行');
     }
 
-    App.ShowModal(App.RootPage.BranchcardPage, {Bank: this.BankName, Code: this.BankCode}).then((modal) => {
+    App.ShowModal(BranchcardPage, {Bank: this.BankName, Code: this.BankCode}).then((modal) => {
       modal.onDidDismiss(data => {
         if (data) {
           this.BranchName = data.name;
@@ -147,35 +145,36 @@ export class AddDepositPage implements OnInit
 
   // 完成添加
   Finish() {
-    this.Service.AddDeposiCard(this.Form_Group.value.CardNo, this.BankName,
-      this.TranCode, this.BranchName, this.Form_Group.value.Mobile).subscribe(res => {
+    this.Service.AddDeposiCard(this.formGroup.value.CardNo, this.BankName,
+      this.TranCode, this.BranchName, this.formGroup.value.Mobile).subscribe(res => {
+        this.Service.GetCardList();
+        this.Auth.GetUserData();
         this.Auth.currentUser.subscribe(data => {
-          App.Nav.push(App.RootPage[this.navParams.data]);
+          if (this.navParams.get('page')) {
+            App.Nav.push(this.navParams.get('page'));
+          } else {
+            App.Nav.push('MyCardPage');
+          }
         });
       });
   }
 
   // 选择文件
   onChangeFile(cType: string, e: any) {
-    console.log(cType);
     this.fileService.showAddImage().then((rst: any) => {
-        console.log(rst);
-        console.log(rst.file);
-        this.uploadFile(rst.file, cType);
+      this.uploadFile(rst.file, cType);
     }).catch (error => {
-        console.log(error);
+      console.log(error);
     });
   }
 
   // 上传文件
   async uploadFile(file: File, cType: string) {
     let res = await this.fileService.OcrUpload('file', file, cType);
-    if (false === res) {
-      return;
+    if (TypeInfo.Assigned(res) && TypeInfo.IsObject(res)) {
+      this.CardNo.setValue(res.cardNo.replace(/\s*/g, ''));
+      this.BankName = res.bank;
+      this.BankCode = '105';
     }
-
-    this.CardNo.setValue(res.cardNo.replace(/\s*/g, ''));
-    this.BankName = res.bank;
-    this.BankCode = '105';
   }
 }

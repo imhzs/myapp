@@ -1,8 +1,10 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { NavParams, IonicPage } from 'ionic-angular';
 
-import { HomeService } from '../../../providers/homeservice';
 const _ = require('lodash');
+
+import { BranchBankModel } from '../../../models/branch-bank-model';
+import { HomeService } from '../../../providers/homeservice';
 
 @IonicPage()
 @Component({
@@ -14,6 +16,16 @@ export class BranchcardPage implements OnInit
 {
   App = window.App;
 
+  HeadTitle: string = "选择开户支行";
+
+  BankName: string;
+
+  BankCode: string;
+
+  BranchList: Array<BranchBankModel> = new Array<BranchBankModel>();
+
+  KeyWord: string;
+
   private debounced: any;
 
   constructor(public navParams: NavParams, public Service: HomeService ) {
@@ -22,17 +34,21 @@ export class BranchcardPage implements OnInit
   ngOnInit() {
     this.BankName = this.navParams.get('Bank');
     this.BankCode = this.navParams.get('Code');
-    this.Service.GetBranchBanks(this.BankName).then(res => {
-      // this.BranchList = res;
-    });
+    this.Service.GetBranchBanks(this.BankName).subscribe(
+      data => {
+        this.BranchList = data.data;
+      }
+    );
     this.debounced = _.debounce(this.GetKey, 500);
   }
 
-  async GetKey() {
+  GetKey() {
     let params = this.BankName + ',' + this.KeyWord;
-    this.Service.GetBranchBanks(params).then(res => {
-      // this.BranchList = res;
-    })
+    this.Service.GetBranchBanks(params).subscribe(
+      data => {
+        this.BranchList = data.data;
+      }
+    )
   }
 
   SearchBank() {
@@ -42,10 +58,4 @@ export class BranchcardPage implements OnInit
   SelectedBranch(item) {
     App.ActiveView.dismiss({name: item.bankName, bankCode: item.bankCode});
   }
-
-  HeadTitle: string = "选择开户支行";
-  BankName: string;
-  BankCode: string;
-  BranchList: Array<any> = [];
-  KeyWord: string;
 }

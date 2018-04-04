@@ -1,6 +1,6 @@
 export interface ResponseModel
 {
-  code: number,
+  code?: number,
   msg?: string,
-  data?: string | Array<any> | Object
+  data?: any
 }

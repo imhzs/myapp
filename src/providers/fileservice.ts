@@ -3,8 +3,10 @@ import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FileTransfer, FileUploadOptions } from '@ionic-native/file-transfer';
 import lrz from 'lrz';
+const lodash = require('lodash');
 
 import { TBaseService } from '../providers/pub_service';
+import { ResponseModel } from '../models/response-model';
 
 // 附件类型-手持身份证
 export const IDCARD_HAND = 'idcard_hand';
@@ -18,15 +20,12 @@ export const BANKCARD_BACK = 'bankcard_back';
 @Injectable()
 export class FileService extends TBaseService
 {
-  protected params: any;
+  protected targetWidth: number = 800;
 
-  protected targetWidth: number = 532;
-
-  protected targetHeight: number = 292;
+  protected targetHeight: number = 600;
 
   constructor(public http: HttpClient, private camera: Camera, private fileTransfer: FileTransfer) {
     super(http);
-    this.params = new FormData();
   }
 
   // 附件上传
@@ -40,8 +39,7 @@ export class FileService extends TBaseService
    }
 
    async PostFiles(uri: string) {
-      let resp;
-      resp = await this.PostByXMLHttpReq(uri).then((resp) => resp);
+      let resp: ResponseModel = await this.PostByXMLHttpReq(uri).then((resp) => resp);
       if (resp.code === 1) {
         return resp.data;
       }
@@ -88,29 +86,28 @@ export class FileService extends TBaseService
             console.log(input.files[0]);
             App.ShowLoading('处理中');
             lrz(input.files[0], {
-                quality: 0.5,
-                width: this.targetWidth,
-                height: this.targetHeight
+              quality: 0.6,
+              width: this.targetWidth,
+              height: this.targetHeight
             })
             .then((rst) => {
-                // 处理成功会执行
-                console.log(rst);
-                let file = this.dataURLtoFile(rst.base64, input.files[0].name);
-                let result = {
-                    'file': file,
-                    'base64': rst.base64,
-                    'blob': window.URL.createObjectURL(file)
-                };
-                resolve(result);
+              // 处理成功会执行
+              let file = this.dataURLtoFile(rst.base64, input.files[0].name);
+              let result = {
+                'file': file,
+                'base64': rst.base64,
+                'blob': window.URL.createObjectURL(file)
+              };
+              resolve(result);
             })
             .catch((err) => {
-                // 处理失败会执行
-                console.log('LRZ: Compress image failed.');
-                console.log(err);
+              // 处理失败会执行
+              console.log('LRZ: Compress image failed.');
+              console.log(err);
             })
             .always(() => {
-                // 不管是成功失败，都会执行
-                App.HideLoading();
+              // 不管是成功失败，都会执行
+              App.HideLoading();
             });
         }
       } else {
@@ -154,24 +151,24 @@ export class FileService extends TBaseService
                 targetHeight: this.targetHeight
             };
             this.camera.getPicture(options).then((imageData) => {
-                if (imageData.indexOf('?') > -1) {
-                    let arr = imageData.match(new RegExp(/[^?]+/, 'ig'));
-                    if (arr.length > 0) {
-                      imageData = arr[0];
-                    }
+              if (imageData.indexOf('?') > -1) {
+                let arr = imageData.match(new RegExp(/[^?]+/, 'ig'));
+                if (arr.length > 0) {
+                  imageData = arr[0];
                 }
+              }
 
-                let result = {
-                    'file': imageData,
-                    'base64': imageData,
-                    'blob': imageData
-                };
-                resolve(result);
+              let result = {
+                  'file': imageData,
+                  'base64': imageData,
+                  'blob': imageData
+              };
+              resolve(result);
             });
         }).catch((error) => {
-            console.log('Camera failed.');
-            App.ShowToast('获取图片失败');
-            reject(error);
+          console.log('Camera failed.');
+          App.ShowToast('获取图片失败');
+          reject(error);
         });
       }
     });
@@ -224,7 +221,6 @@ export class FileService extends TBaseService
         }
 
         const fileTransfer = this.fileTransfer.create();
-        // url = 'http://agent.hzspro.com/test.php';
 
         fileTransfer.upload(file, url, options)
         .then(data => {
@@ -240,23 +236,55 @@ export class FileService extends TBaseService
 
   async PostByXMLHttpReq(uri: string, fileKey?: string, file?: any, params?: {}) {
     return new Promise((resolve, reject) => {
-      let BaseUrl = this.BaseUrl;
-      let url = `${BaseUrl}/${uri}`;
-      const formData: FormData = new FormData();
-      formData.append(fileKey, file, file.name);
-      for (let k in params) {
-        formData.append(k, params[k]);
+      let formData: FormData = new FormData();
+      if (lodash.keys(params).length > 0) {
+        lodash.forEach(params, (v, k) => {
+          formData.append(k, v);
+        });
       }
+      let BaseUrl = this.BaseUrl;
+      let url = encodeURI(`${BaseUrl}/${uri}`);
 
-      const req = new HttpRequest('POST', url, formData);
-      this.http.request(req).subscribe(
-        data => {
-          resolve(data);
-        },
-        error => {
-          reject(error);
+      App.ShowLoading();
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', window.URL.createObjectURL(file), true);
+      xhr.responseType = 'blob';
+      xhr.onload = (e) => {
+        if (xhr['status'] != 200) {
+          App.ShowError('您的浏览器不支持Blob');
+          console.error(e, xhr);
+          reject(e);
+        } else {
+          const blob = xhr['response'];
+          let xhr2: XMLHttpRequest = new XMLHttpRequest();
+          let suffix = file.type.split('/')[1];
+          let filename = (new Date()).getTime() + '.' + suffix;
+
+          formData.append(fileKey, blob, filename);
+
+          xhr2.onloadend = () => {
+            App.HideLoading();
+          };
+          xhr2.ontimeout = () => {
+            App.HideLoading();
+          };
+
+          xhr2.onreadystatechange = () => {
+            if (xhr2.readyState === 4) {
+              if (xhr2.status === 200) {
+                resolve(JSON.parse(xhr2.response));
+              } else {
+                reject(xhr2);
+              }
+            }
+          };
+
+          xhr2.open('POST', url, true);
+          xhr2.setRequestHeader('Authorization', this.getToken);
+          xhr2.send(formData);
         }
-      );
+      };
+      xhr.send();
     });
   }
 }
