@@ -14,7 +14,7 @@ import { FileService, BANKCARD_FRONT } from '../../../providers/fileservice';
 })
 export class AddCreditCardPage implements OnInit
 {
-  App = window.App;
+  App: any = <any>window.App;
 
   PrePage: string;
 
@@ -26,7 +26,7 @@ export class AddCreditCardPage implements OnInit
 
   WrongMsg: string = '';
 
-  Form_Group_Card: FormGroup;
+  formGroup: FormGroup;
 
   CardNo: FormControl;
 
@@ -37,11 +37,10 @@ export class AddCreditCardPage implements OnInit
   BankCardFront: string = BANKCARD_FRONT;
 
   constructor(public Service: HomeService, public navParams: NavParams, private Auth: TAuthService, private fileService: FileService) {
-    this.GetIdCard(App.UserInfo.idCardNo);
   }
 
   ngOnInit() {
-    this.Form_Group_Card = new FormGroup({
+    this.formGroup = new FormGroup({
       CardNo: this.CardNo = new FormControl('', [
         Validators.required,
         Validators.minLength(16)
@@ -52,6 +51,33 @@ export class AddCreditCardPage implements OnInit
         Validators.pattern(/^1[3|4|5|7|8][0-9]{9}$/)
       ])
     });
+  }
+
+  ionViewDidEnter() {
+    this.GetIdCard(App.UserInfo.idCardNo);
+    if (!App.IsIdAuthed) {
+      let alertOpts = {
+        title: '温馨提示',
+        message: '为了您的资金安全，首次刷卡需先完成身份认证',
+        cssClass: 'text-left',
+        buttons: [
+          {
+            text: '取消',
+            role: 'cancel',
+            handler: () => {
+              App.Nav.push('HomePage');
+            }
+          },
+          {
+            text: '确认',
+            handler: () => {
+              App.Nav.push('AuthPage');
+            }
+          }
+        ]
+      };
+      App.ShowAlert(alertOpts);
+    }
   }
 
   get CompleteBtnIsDisabled(): boolean {
@@ -73,9 +99,21 @@ export class AddCreditCardPage implements OnInit
 
   // 提交数据
   AddCard() {
-    this.Service.AddCreditCard(this.Form_Group_Card.value.CardNo, this.Form_Group_Card.value.Mobile).subscribe(res => {
-      this.Auth.currentUser.subscribe(()=>App.Nav.push(App.RootPage[this.navParams.data]));
-    });
+    this.Service.AddCreditCard(this.formGroup.value.CardNo, this.formGroup.value.Mobile).subscribe(
+      data => {
+        this.Service.GetCardList();
+        this.Auth.GetUserData();
+        this.Auth.currentUser.subscribe(
+          (data)=> {
+            if (this.navParams.get('page')) {
+              App.Nav.push(this.navParams.get('page'));
+            } else {
+              App.Nav.push('MyCardPage');
+            }
+          }
+        );
+      }
+    );
   }
 
   // 选择文件

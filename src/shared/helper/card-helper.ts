@@ -10,8 +10,10 @@ export class CardHelper
 	private cards: Array<CardModel> = new Array<CardModel>();
 
 	constructor(private service: HomeService) {
+		this.service.GetCardList();
 		this.service.currentCards.subscribe(
 			data => {
+				console.log('User card data: ', data);
 				this.cards = data;
 			}
 		);
@@ -45,10 +47,10 @@ export class CardHelper
 	public filterCard(t: number): Array<CardModel> {
 		let cards = this.cards;
 
-		cards.filter((card) => {
+		return cards.filter((card) => {
+			console.log(t);
 			return parseInt(card.type) === t;
 		});
-		return cards;
 	}
 
 	// 设置主卡

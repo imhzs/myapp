@@ -38,14 +38,17 @@ export class MyCardPage implements OnInit
   PrimaryCard: number = PRIMARY_CARD;
 
   constructor(public Servie: HomeService, private Auth: TAuthService, public navCtrl: NavController, public cardHelper: CardHelper) {
-  }
-
-  ionViewDidEnter() {
     this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
     this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
   }
 
   ngOnInit() {
+    this.Servie.currentCards.subscribe(
+      data => {
+        this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
+        this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
+      }
+    );
   }
 
   // 删除信用卡
@@ -55,7 +58,6 @@ export class MyCardPage implements OnInit
       this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
       
       App.ShowToast('信用卡删除成功');
-      App.CurrentCreditCards = {};
       this.Auth.GetUserData();
     })
   }
@@ -67,28 +69,28 @@ export class MyCardPage implements OnInit
       this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
 
       App.ShowToast('储蓄卡删除成功');
-      App.CurrentDepositCard = {};
       this.Auth.GetUserData();
     })
   }
 
   // 设置主卡
   async SetPrimaryCard(t: number, id: number) {
-    let res = this.Servie.SetPrimCard(id);
-    // if (false !== res) {
-    //   this.cardHelper.setPrimary(t, id);
-    //   this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
-    //   this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
-    // }
+    let res = this.Servie.SetPrimCard(id).subscribe(
+      data => {
+        this.cardHelper.setPrimary(t, id);
+        this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
+        this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);    
+      }
+    );
   }
 
   // 添加信用卡
   AddCreditCard() {
-    App.Nav.push('AddCreditCardPage');
+    App.Nav.push('AddCreditCardPage', {page: 'MyCardPage'});
   }
 
   // 添加储蓄卡
   AddDepositCard() {
-    App.Nav.push('AddDepositPage', 'MyCardPage');
+    App.Nav.push('AddDepositPage', {page: 'MyCardPage'});
   }
 }

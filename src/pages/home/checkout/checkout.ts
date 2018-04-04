@@ -34,8 +34,8 @@ export class CheckoutPage
 
 	constructor (private navParams: NavParams, private service: HomeService) {
 		let amount = <AmountOptions>this.navParams.get('amount');
-		this.PayAmount = amount.InputAmount;
-		this.ReceiveAmount = amount.OutputAmount;
+		this.PayAmount = amount.inputAmount;
+		this.ReceiveAmount = amount.outputAmount;
 		this.CreditCard = this.navParams.get('creditCard');
 		this.DepositCard = this.navParams.get('depositCard');
 	}
@@ -46,23 +46,19 @@ export class CheckoutPage
 
 	// 确认付款
 	Pay() {
-		let date = new Date();
-    let hour = date.getHours();
-    if (hour < 9 || hour > 21) {
-      App.ShowError('交易时间为9:00-21:00');
-      return;
-    }
-
+		console.log('Pay');
     this.CanSubmited = false;
-    this.service.GetBankPage(this.CreditCard.id, this.DepositCard.id,this.PayAmount).subscribe(data => {
-      // 跳转银联页面
-      if (/^[http:\/\/|https:\/\/](.*)?/.test(data)) {
-				(new InAppBrowser()).create(encodeURI(data));
-			} else if(data.indexOf('<html>') == -1) {
-				App.ShowError(data.respMsg);
-			} else {
-				App.Nav.push(App.RootPage.FinalpayPage, {innerHtml: data});
+    this.service.GetBankPage(this.CreditCard.id, this.DepositCard.id, this.PayAmount).subscribe(
+			data => {
+				// 跳转银联页面
+				if (/^[http:\/\/|https:\/\/](.*)?/.test(data)) {
+					(new InAppBrowser()).create(encodeURI(data));
+				} else if(data.indexOf('<html>') == -1) {
+					App.ShowError(data.respMsg);
+				} else {
+					App.Nav.push(App.RootPage.FinalpayPage, {innerHtml: data});
+				}
 			}
-    });
+		);
 	}
 }

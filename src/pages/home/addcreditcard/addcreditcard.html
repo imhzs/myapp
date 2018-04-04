@@ -25,13 +25,13 @@
   </ion-grid>
 
   <div class="page-content" m-t-15>
-    <form novalidate [formGroup]="Form_Group_Card">
+    <form novalidate [formGroup]="formGroup">
       <ion-grid>
         <ion-row class="d-flex align-items-center form-ctrl border-bottom-1px">
           <ion-col col-3>卡号</ion-col>
           <ion-col col-7><ion-input type='number' placeholder="请输信用卡卡号" formControlName="CardNo"></ion-input></ion-col>
           <ion-col col-2>
-            <button ion-button icon-only class="bg-transparent btn-h-auto btn-no-shadow" (click)="onChangeFile(BankCardFront)">
+            <button ion-button icon-only class="bg-transparent btn-h-auto btn-no-shadow" (click)="OnChangeFile(BankCardFront)">
               <ion-icon name="qr-scanner" text-black-light></ion-icon>
             </button>
           </ion-col>

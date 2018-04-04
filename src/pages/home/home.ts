@@ -13,7 +13,7 @@ import { HomeService } from '../../providers/homeservice';
 @Injectable()
 export class HomePage implements OnInit
 {
-  App = window.App;
+  App: any = <any>window.App;
 
   @ViewChild(Content) content: Content;
 

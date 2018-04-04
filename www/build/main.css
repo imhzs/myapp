@@ -28069,6 +28069,10 @@ body {
   }
 }
 
+.header:after {
+  background-image: none;
+}
+
 .border-none:before {
   display: none;
 }
@@ -28721,6 +28725,7 @@ ion-toolbar.search-bar .searchbar .searchbar-search-icon {
 
 .h-checkout-page .receive-amount {
   line-height: 30px;
+  color: #568af3;
 }
 
 .h-checkout-page .bank-wrp .img {
