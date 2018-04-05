@@ -131,6 +131,10 @@
   line-height: 22px;
 }
 
+.scroll-content {
+  overflow-y: scroll;
+}
+
 .page-content {
   background-color: $color-white;
 }

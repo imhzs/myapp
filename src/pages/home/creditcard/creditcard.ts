@@ -145,6 +145,7 @@ export class CreditCardPage
       (modal) => {
         modal.onDidDismiss((data) => {
           if (TypeInfo.Assigned(data) && TypeInfo.IsObject(data)) {
+            console.log(data.id);
             this.CurrentDepositCard = this.cardHelper.getCardById(data.id);
           }
         });

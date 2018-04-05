@@ -129,10 +129,9 @@ export class TAuthService extends TBaseService
     return this.Post('kpay/api/user/info').map((resp: any) => {
       let userData: UserModel = resp.data;
       this.updateUser(userData);
-    })
-    .subscribe(
+    }).subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
       },
       error => {
         console.log(error);

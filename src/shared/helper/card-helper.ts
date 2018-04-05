@@ -32,14 +32,10 @@ export class CardHelper
 
 	// 获取一张卡片
 	public getCardById(id: number): CardModel {
-		let c: CardModel;
-
-		this.cards.forEach((card) => {
-			if (card.id === id) {
-				c = card;
-			}
+		let cards = this.cards.filter((card) => {
+			return card.id == id;
 		});
-		return c;
+		return cards.length > 0 ? cards[0] : <CardModel>{};
 	}
 
 	// 根据类型刷选卡片
@@ -47,7 +43,6 @@ export class CardHelper
 		let cards = this.cards;
 
 		return cards.filter((card) => {
-			console.log(t);
 			return parseInt(card.type) === t;
 		});
 	}
@@ -56,7 +51,7 @@ export class CardHelper
 	public setPrimary(t: number, id: number): void {
 		this.cards.forEach((card, k) => {
 			if (parseInt(card.type) === t) {
-				if (card.id === id) {
+				if (card.id == id) {
 					this.cards[k].primary = PRIMARY_CARD.toString();
 				} else {
 					this.cards[k].primary = NOT_PRI_CARD.toString();

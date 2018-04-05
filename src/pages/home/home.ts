@@ -1,7 +1,5 @@
-import { Component, ViewChild, NgZone, OnInit, Injectable } from '@angular/core';
-import { Content, IonicPage, NavController } from 'ionic-angular';
-
-import { HomeService } from '../../providers/homeservice';
+import { Component, ViewChild, Injectable } from '@angular/core';
+import { Content, IonicPage } from 'ionic-angular';
 
 @IonicPage({
   segment: 'home'
@@ -11,17 +9,12 @@ import { HomeService } from '../../providers/homeservice';
   templateUrl: 'home.html'
 })
 @Injectable()
-export class HomePage implements OnInit
+export class HomePage
 {
   App: any = <any>window.App;
 
   @ViewChild(Content) content: Content;
 
-  searchParams: URLSearchParams;
-
-  constructor(public zone: NgZone, public Service: HomeService, public nav: NavController) {
-  }
-
-  ngOnInit() {
+  constructor() {
   }
 }

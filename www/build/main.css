@@ -25622,11 +25622,6 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
-* {
-  -ms-touch-action: none;
-  touch-action: none;
-}
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -28091,6 +28086,10 @@ body {
 
 .l-h-d {
   line-height: 22px;
+}
+
+.scroll-content {
+  overflow-y: scroll;
 }
 
 .page-content {
