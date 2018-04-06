@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { IonicPage } from 'ionic-angular';
 
@@ -13,7 +13,7 @@ import { CardHelper, PRIMARY_CARD, CREDIT_CARD, DEPOSIT_CARD } from '../../../sh
   templateUrl: 'mycard.html'
 })
 @Injectable()
-export class MyCardPage implements OnInit
+export class MyCardPage
 {
   App = window.App;
 
@@ -40,9 +40,7 @@ export class MyCardPage implements OnInit
   constructor(public Servie: HomeService, private auth: TAuthService, public navCtrl: NavController, public cardHelper: CardHelper) {
     this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
     this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
-  }
 
-  ngOnInit() {
     this.Servie.currentCards.subscribe(
       data => {
         this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);

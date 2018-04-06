@@ -124,6 +124,17 @@ export namespace TypeInfo
         return typeof value === OBJECT && (allowNull || value !== null);
     }
 
+    /**
+     * Returns true if the value parameter is an empty object.
+     * @param value
+     * @param allowNull If false (default) null is not considered an object.
+     * @returns {boolean}
+     */
+    export function IsEmptyObject(value: any, allowNull: boolean = false): boolean
+    {
+        return this.IsObject(value, allowNull) && JSON.stringify(value) === '{}';
+    }
+
     export function IsArrayLike(instance: any): boolean
     {
         /*

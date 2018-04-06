@@ -6,6 +6,7 @@ import { HomeService } from '../../../providers/homeservice';
 import { TypeInfo } from '../../../UltraCreation/Core/TypeInfo';
 import { TAuthService } from '../../../providers/auth';
 import { FileService, BANKCARD_FRONT } from '../../../providers/fileservice';
+import { AuthHelper } from '../../../shared/helper/auth-helper';
 
 @IonicPage()
 @Component({
@@ -37,6 +38,9 @@ export class AddCreditCardPage implements OnInit
   BankCardFront: string = BANKCARD_FRONT;
 
   constructor(public Service: HomeService, public navParams: NavParams, private auth: TAuthService, private fileService: FileService) {
+    if (TypeInfo.Assigned(App.UserInfo) && !TypeInfo.IsEmptyObject(App.UserInfo)) {
+      this.GetIdCard(App.UserInfo.idCardNo);
+    }
   }
 
   ngOnInit() {
@@ -54,30 +58,7 @@ export class AddCreditCardPage implements OnInit
   }
 
   ionViewDidEnter() {
-    this.GetIdCard(App.UserInfo.idCardNo);
-    if (!App.IsIdAuthed) {
-      let alertOpts = {
-        title: '温馨提示',
-        message: '为了您的资金安全，首次刷卡需先完成身份认证',
-        cssClass: 'text-left',
-        buttons: [
-          {
-            text: '取消',
-            role: 'cancel',
-            handler: () => {
-              App.Nav.push('HomePage');
-            }
-          },
-          {
-            text: '确认',
-            handler: () => {
-              App.Nav.push('AuthPage');
-            }
-          }
-        ]
-      };
-      App.ShowAlert(alertOpts);
-    }
+    AuthHelper.check();
   }
 
   get CompleteBtnIsDisabled(): boolean {

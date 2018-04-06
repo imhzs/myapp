@@ -38,8 +38,10 @@ export class CreditCardPage
   };
 
   constructor(public navCtrl: NavController, public cardHelper: CardHelper, private auth: TAuthService, private homeService: HomeService) {
-    console.log('CreditCardPage');
-    this.Rate = App.UserInfo.rate;
+    if (TypeInfo.Assigned(App.UserInfo) && !TypeInfo.IsEmptyObject(App.UserInfo)) {
+      this.Rate = App.UserInfo.rate;
+    }
+    
     this.homeService.currentCards.subscribe(
       (cards) => {
         this.InitData();
@@ -55,33 +57,6 @@ export class CreditCardPage
 
   ionViewDidEnter() {
     this.InitData();
-    this.auth.currentUser.subscribe(
-      (data) => {
-        if (!App.IsIdAuthed) {
-          let alertOpts = {
-            title: '温馨提示',
-            message: '为了您的资金安全，首次刷卡需先完成身份认证',
-            cssClass: 'text-left',
-            buttons: [
-              {
-                text: '取消',
-                role: 'cancel',
-                handler: () => {
-                  App.Nav.push('HomePage');
-                }
-              },
-              {
-                text: '确认',
-                handler: () => {
-                  App.Nav.push('AuthPage');
-                }
-              }
-            ]
-          };
-          App.ShowAlert(alertOpts);
-        }
-      }
-    );
   }
 
   ionViewCanEnter() {

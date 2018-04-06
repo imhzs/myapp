@@ -2,6 +2,7 @@ import { Component, Injectable } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
 import { TAuthService } from '../../../providers/auth';
+import { TypeInfo } from '../../../UltraCreation/Core/TypeInfo';
 
 @IonicPage()
 @Component({
@@ -28,13 +29,19 @@ export class UinfoPage
   infoName: string = " ";
 
   constructor(public auth: TAuthService) {
-    this.InitUserInfo();
+    if (TypeInfo.Assigned(App.UserInfo) && !TypeInfo.IsEmptyObject(App.UserInfo)) {
+      this.InitUserInfo();
+    }
+    
+    this.auth.currentUser.subscribe(
+      data => {
+        this.InitUserInfo();
+      }
+    );
   }
 
   InitUserInfo() {
     this.UserInfo = App.UserInfo;
-    console.log(this.UserInfo);
-
     if(this.UserInfo.mobile !== null) this.ShowPhone = this.UserInfo.mobile.substr(0,3) + this.ShowPhone + this.UserInfo.mobile.substr(-4);
     if(this.UserInfo.idCardNo !== null) this.ShowID = this.UserInfo.idCardNo.substr(0,6) + this.ShowID + this.UserInfo.idCardNo.substr(-4);
 

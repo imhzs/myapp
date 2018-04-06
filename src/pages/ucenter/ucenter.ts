@@ -28,10 +28,11 @@ export class UcenterPage
   ImgData = { ImgSrc: void 0 };
 
   constructor (private auth: TAuthService) {
-    if (TypeInfo.Assigned(App.UserInfo) && TypeInfo.IsObject(App.UserInfo)) {
+    if (TypeInfo.Assigned(App.UserInfo) && !TypeInfo.IsEmptyObject(App.UserInfo)) {
       this.User = App.UserInfo;
       this.formatMobile();
     }
+    
     this.auth.currentUser.subscribe(
       data => {
         this.User = data;

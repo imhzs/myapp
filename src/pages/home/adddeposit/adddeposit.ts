@@ -8,6 +8,7 @@ import { TAuthService } from '../../../providers/auth';
 import { FileService, BANKCARD_FRONT } from '../../../providers/fileservice';
 import { ListofbankPage } from '../listofbank/listofbank';
 import { BranchcardPage } from '../branchcard/branchcard';
+import { AuthHelper } from '../../../shared/helper/auth-helper';
 
 @IonicPage()
 @Component({
@@ -46,9 +47,15 @@ export class AddDepositPage implements OnInit
   App: any = <any>window.App;
 
   constructor(public Service: HomeService, public navParams: NavParams, private auth: TAuthService, private fileService: FileService) {
+    this.GetIdCard(App.UserInfo['idCardNo']);
+    this.auth.currentUser.subscribe(
+      data => {
+        this.GetIdCard(App.UserInfo['idCardNo']);
+      }
+    );
   }
 
-  ngOnInit() {    
+  ngOnInit() { 
     this.formGroup = new FormGroup({
       CardNo: this.CardNo = new FormControl('', [
         Validators.required,
@@ -63,30 +70,7 @@ export class AddDepositPage implements OnInit
   }
 
   ionViewDidEnter() {
-    this.GetIdCard(App.UserInfo['idCardNo']);
-    if (!App.IsIdAuthed) {
-      let alertOpts = {
-        title: '温馨提示',
-        message: '为了您的资金安全，首次刷卡需先完成身份认证',
-        cssClass: 'text-left',
-        buttons: [
-          {
-            text: '取消',
-            role: 'cancel',
-            handler: () => {
-              App.Nav.push('HomePage');
-            }
-          },
-          {
-            text: '确认',
-            handler: () => {
-              App.Nav.push('AuthPage');
-            }
-          }
-        ]
-      };
-      App.ShowAlert(alertOpts);
-    }
+    AuthHelper.check();
   }
 
   // 卡号是否符合规则
