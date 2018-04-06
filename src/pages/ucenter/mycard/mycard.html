@@ -6,8 +6,12 @@
 
 <ion-content class="u-mycard">
   <ion-segment [(ngModel)]="CardSwitch">
-    <ion-segment-button value="{{CreditCard}}" f-16>信用卡</ion-segment-button>
-    <ion-segment-button value="{{DepositCard}}" f-16>储蓄卡</ion-segment-button>
+    <ion-segment-button value="{{CreditCard}}">
+      <span ion-text f-16>信用卡</span>
+    </ion-segment-button>
+    <ion-segment-button value="{{DepositCard}}">
+      <span ion-text f-16>储蓄卡</span>
+    </ion-segment-button>
   </ion-segment>
   <div [ngSwitch]="CardSwitch">
     <!-- 信用卡 -->
@@ -32,8 +36,8 @@
             </div>
             <div class="d-flex justify-content-between">
               <ion-label class="flex-fill" ion-text text-left>{{creditCard.accountName}}</ion-label>
-              <button class="d-flex flex-fill align-items-center justify-content-end bg-white" (click)="SetPrimaryCard(creditCard.id)">
-                <ion-checkbox color="primary" [checked]="creditCard.primary == PrimaryCard"></ion-checkbox>
+              <button class="d-flex flex-fill align-items-center justify-content-end bg-white">
+                <ion-checkbox color="primary" [disabled]="creditCard.primary == PrimaryCard" [checked]="creditCard.primary == PrimaryCard" (ionChange)="SetPrimaryCard(CreditCard, creditCard.id)"></ion-checkbox>
                 <span ion-text m-l-5>设为主卡</span>
               </button>
             </div>
@@ -76,8 +80,10 @@
             </div>
             <div class="d-flex justify-content-between">
               <ion-label class="flex-fill" ion-text text-left>{{depositCard.accountName}}</ion-label>
-              <button class="d-flex flex-fill align-items-center justify-content-end bg-white" (click)="SetPrimaryCard(depositCard.id)">
-                <ion-checkbox color="primary" [checked]="depositCard.primary == PrimaryCard"></ion-checkbox>
+              <button class="d-flex flex-fill align-items-center justify-content-end bg-white">
+                <ion-checkbox color="primary" [checked]="depositCard.primary == PrimaryCard" 
+                  (ionChange)="SetPrimaryCard(DepositCard, depositCard.id)"
+                  [disabled]="depositCard.primary == PrimaryCard"></ion-checkbox>
                 <span ion-text m-l-5>设为主卡</span>
               </button>
             </div>

@@ -72,7 +72,7 @@ export class MyCardPage
   }
 
   // 设置主卡
-  async SetPrimaryCard(t: number, id: number) {
+  SetPrimaryCard(t: number, id: number) {
     this.Servie.SetPrimCard(id).subscribe(
       data => {
         this.cardHelper.setPrimary(t, id);
