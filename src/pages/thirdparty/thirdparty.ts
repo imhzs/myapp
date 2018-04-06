@@ -3,7 +3,6 @@ import { Component, Injectable } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 
 import { TAuthService } from '../../providers/auth';
-import { CredentialHelper } from '../../shared/helper/credential-helper';
 
 @IonicPage({
   segment: 'thirdLogin/:mobile/:key'

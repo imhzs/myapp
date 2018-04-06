@@ -4,7 +4,7 @@ export class AuthHelper
     if (!App.IsIdAuthed) {
       let alertOpts = {
         title: '温馨提示',
-        message: '为了您的资金安全，首次刷卡需先完成身份认证',
+        message: '为了您的资金安全，首次刷卡收款时需要进行身份认证',
         cssClass: 'text-left',
         buttons: [
           {
@@ -15,7 +15,7 @@ export class AuthHelper
             }
           },
           {
-            text: '确认',
+            text: '去认证',
             handler: () => {
               App.Nav.push('AuthPage');
             }

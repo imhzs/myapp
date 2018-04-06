@@ -103,4 +103,16 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-grid class="popup" no-padding *ngIf="ShowFlow">
+    <ion-row class="mask" no-padding>
+      <ion-col col-12 text-center>
+        <img class="flow" src="assets/imgs/flow.png" alt="刷卡流程" />
+      </ion-col>
+      <ion-col col-12 text-center>
+        <button class="bg-transparent" (click)="OnCloseFlow()">
+          <img class="close" src="assets/imgs/close.png" alt="关闭" />
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

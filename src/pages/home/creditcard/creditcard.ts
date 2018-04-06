@@ -31,6 +31,9 @@ export class CreditCardPage
   // 页面标题
   HeadTitle: string = "刷卡提现";
 
+  // 是否显示刷卡流程
+  ShowFlow: boolean = false;
+
   // 金额
   amount: AmountOptions = {
     inputAmount: undefined,
@@ -40,6 +43,9 @@ export class CreditCardPage
   constructor(public navCtrl: NavController, public cardHelper: CardHelper, private auth: TAuthService, private homeService: HomeService) {
     if (TypeInfo.Assigned(App.UserInfo) && !TypeInfo.IsEmptyObject(App.UserInfo)) {
       this.Rate = App.UserInfo.rate;
+      if (!App.IsIdAuthed) {
+        this.ShowFlow = true;
+      }
     }
     
     this.homeService.currentCards.subscribe(
@@ -51,6 +57,9 @@ export class CreditCardPage
     this.auth.currentUser.subscribe(
       (user) => {
         this.Rate = user.rate;
+        if (!App.IsIdAuthed) {
+          this.ShowFlow = true;
+        }
       }
     );
   }
@@ -141,6 +150,11 @@ export class CreditCardPage
   // 添加储蓄卡
   AddDepositCard() {
     this.navCtrl.push('AddDepositPage');
+  }
+
+  // 关闭刷卡流程提醒
+  OnCloseFlow() {
+    this.ShowFlow = false;
   }
 
   // 是否可以点击下一步

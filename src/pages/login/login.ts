@@ -4,7 +4,9 @@ import { IonicPage, NavParams } from 'ionic-angular';
 
 import { TAuthService } from '../../providers/auth';
 
-@IonicPage()
+@IonicPage({
+  segment: 'login'
+})
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
@@ -22,7 +24,8 @@ export class LoginPage implements OnInit
 
   findPasswordPage: any;
 
-  constructor(private Auth: TAuthService, public navParams: NavParams) {
+  constructor(private auth: TAuthService, public navParams: NavParams) {
+    this.auth.thirdPartyLogin(this.navParams.get('mobile'), this.navParams.get('key'));
   }
 
   ngOnInit() {
@@ -47,6 +50,6 @@ export class LoginPage implements OnInit
   }
 
   Login() {
-    this.Auth.Login(this.formGroup.value.Tel, this.formGroup.value.Pass);
+    this.auth.Login(this.formGroup.value.Tel, this.formGroup.value.Pass);
   }
 }

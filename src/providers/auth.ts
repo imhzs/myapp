@@ -159,11 +159,18 @@ export class TAuthService extends TBaseService
       data => {
         CredentialHelper.setToken(data.data.token);
         this.GetUserData();
-        App.Nav.push('CreditCardPage');
+        App.Nav.setPages([{page: 'TabsPage'}, {page: 'CreditCardPage'}]);
       },
       error => {
         console.error(error);  
       }
     );
+  }
+
+  // 重新登录
+  thirdPartyReLogin() {
+    let mobile = CredentialHelper.getMobile();
+    let secret = CredentialHelper.getSecret();
+    this.thirdPartyLogin(mobile, secret);
   }
 }

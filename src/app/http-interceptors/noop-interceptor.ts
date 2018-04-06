@@ -23,7 +23,14 @@ export class NoopInterceptor implements HttpInterceptor
     return next.handle(jwtReq).pipe(catchError(this.handleError)).pipe(tap((event) => {
       if (event instanceof HttpResponse) {
         if (event.body.code === TBaseService.SESSION_TIMEOUT) {
-          location.href = '/#/login';
+          let mobile = CredentialHelper.getMobile();
+          let secret = CredentialHelper.getSecret();
+          if (TypeInfo.Assigned(mobile) && TypeInfo.Assigned(secret)) {
+            location.href = `/#/thirdLogin/${mobile}/${secret}`;
+          } else {
+            location.href = '/#/login';
+          }
+
           return new ErrorObservable('登录超时');
         } else if (event.body.code === TBaseService.REQ_FAIL) {
           if (TypeInfo.Assigned(event.body.msg)) {
