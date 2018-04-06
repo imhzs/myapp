@@ -3,6 +3,7 @@ import { NavParams, IonicPage, ViewController } from 'ionic-angular';
 
 import { CardModel } from '../../../models/card-model';
 import { HomeService } from '../../../providers/homeservice';
+import { TAuthService } from '../../../providers/auth';
 import { CREDIT_CARD, DEPOSIT_CARD } from '../../../shared/helper/card-helper';
 
 @IonicPage()
@@ -25,7 +26,7 @@ export class ChangecardsPage
   // 卡类型
   CardType: number;
 
-  constructor(public Service: HomeService, public navParams: NavParams, public viewCtrl: ViewController) {
+  constructor(public Service: HomeService, public navParams: NavParams, public viewCtrl: ViewController, private auth: TAuthService) {
     console.log(this.navParams.get('curCardId'));
     this.CheckedCardId = this.navParams.get('curCardId');
     this.Cards = this.navParams.get('data');
@@ -45,5 +46,9 @@ export class ChangecardsPage
     console.log(this.CheckedCardId);
     let data = {id: this.CheckedCardId};
     this.viewCtrl.dismiss(data);
+  }
+
+  ionViewCanEnter() {
+    this.auth.CheckToken();
   }
 }

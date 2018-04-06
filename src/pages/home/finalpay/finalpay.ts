@@ -3,6 +3,8 @@ import { NavParams, IonicPage } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { setTimeout, clearTimeout } from 'timers';
 
+import { TAuthService } from '../../../providers/auth';
+
 @IonicPage()
 @Component({
   selector: 'page-finalpay',
@@ -42,7 +44,7 @@ export class FinalpayPage implements OnInit
     isShow: false
   };
 
-  constructor(public navParams: NavParams, private sanitizer: DomSanitizer) {
+  constructor(public navParams: NavParams, private sanitizer: DomSanitizer, private auth: TAuthService) {
   }
 
   ngOnInit() {
@@ -148,5 +150,9 @@ export class FinalpayPage implements OnInit
       return arr[1];
     }
     return '';
+  }
+
+  ionViewCanEnter() {
+    this.auth.CheckToken();
   }
 }

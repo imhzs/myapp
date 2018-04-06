@@ -32,10 +32,20 @@ export class UcenterPage
       this.User = App.UserInfo;
       this.formatMobile();
     }
+    this.auth.currentUser.subscribe(
+      data => {
+        this.User = data;
+        this.formatMobile();
+      }
+    );
   }
 
   private formatMobile() {
     this.Mobile = App.UserInfo.mobile.toString().substr(0, 3) + this.Mobile + App.UserInfo.mobile.toString().substr(-4);
+  }
+
+  ionViewCanEnter() {
+    this.auth.CheckToken();
   }
 }
 

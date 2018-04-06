@@ -7,6 +7,7 @@ import { catchError, tap } from 'rxjs/operators';
 
 import { TBaseService } from '../../providers/pub_service';
 import { TypeInfo } from '../../UltraCreation/Core/TypeInfo';
+import { CredentialHelper } from '../../shared/helper/credential-helper';
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()
@@ -15,15 +16,14 @@ export class NoopInterceptor implements HttpInterceptor
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let jwtReq: HttpRequest<any> = req;
     if (!req.headers.has('Authorization')) {
-      let token = localStorage.getItem('token');
+      let token = CredentialHelper.getToken();
       jwtReq = req.clone({ headers: req.headers.set('Authorization', `Bearer ${token}`) });
     }
 
     return next.handle(jwtReq).pipe(catchError(this.handleError)).pipe(tap((event) => {
-      console.log('response');
       if (event instanceof HttpResponse) {
         if (event.body.code === TBaseService.SESSION_TIMEOUT) {
-          App.Nav.push('LoginPage');
+          location.href = '/#/login';
           return new ErrorObservable('登录超时');
         } else if (event.body.code === TBaseService.REQ_FAIL) {
           if (TypeInfo.Assigned(event.body.msg)) {

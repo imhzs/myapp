@@ -2,6 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
 import { HomeService } from '../../../providers/homeservice';
+import { TAuthService } from '../../../providers/auth';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,7 @@ export class ListofbankPage implements OnInit
 
   BankList: Array<any>
 
-  constructor(public Service: HomeService) {
+  constructor(public Service: HomeService, private auth: TAuthService) {
   }
 
   ngOnInit() {
@@ -28,5 +29,9 @@ export class ListofbankPage implements OnInit
 
   SelectedBank(item) {
    App.ActiveView.dismiss({name: item.bankName, code: item.id});
+  }
+
+  ionViewCanEnter() {
+    this.auth.CheckToken();
   }
 }

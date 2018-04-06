@@ -41,7 +41,7 @@ export class HomeService extends TBaseService
       this.updateCards(cards);
     }).subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
       },
       error => {
         console.log(error);

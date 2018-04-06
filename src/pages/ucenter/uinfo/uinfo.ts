@@ -27,7 +27,7 @@ export class UinfoPage
 
   infoName: string = " ";
 
-  constructor(public Auth: TAuthService) {
+  constructor(public auth: TAuthService) {
     this.InitUserInfo();
   }
 
@@ -69,7 +69,7 @@ export class UinfoPage
           handler: data => {
             // 请求接口保存新昵称
             this.UserInfo.nickName = data.nickName;
-            this.Auth.ModifyUserInfo({nickName: data.nickName});
+            this.auth.ModifyUserInfo({nickName: data.nickName});
           }
         }
       ]
@@ -79,5 +79,9 @@ export class UinfoPage
       modal.onDidDismiss(() => {
       })
     );
+  }
+
+  ionViewCanEnter() {
+    this.auth.CheckToken();
   }
 }

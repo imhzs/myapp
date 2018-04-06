@@ -15,7 +15,7 @@ import { MyApp } from './app.component';
 import { ProviderModule } from '../providers';
 import { StatusBar } from '../UltraCreation/Native/StatusBar';
 import { SplashScreen } from '../UltraCreation/Native/SplashScreen';
-import { InterceptorModule } from './http-interceptors';
+import { httpInterceptorProviders } from './http-interceptors';
 
 enableProdMode();
 
@@ -30,7 +30,6 @@ let config = {
   imports: [
     BrowserModule,
     HttpClientModule,
-    InterceptorModule,
     ProviderModule,
     IonicModule.forRoot(MyApp, config),
     TranslateModule.forRoot(),
@@ -51,6 +50,7 @@ let config = {
     StatusBar,
     SplashScreen,
     InAppBrowser,
+    httpInterceptorProviders,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

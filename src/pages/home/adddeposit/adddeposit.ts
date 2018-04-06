@@ -45,7 +45,7 @@ export class AddDepositPage implements OnInit
 
   App: any = <any>window.App;
 
-  constructor(public Service: HomeService, public navParams: NavParams, private Auth: TAuthService, private fileService: FileService) {
+  constructor(public Service: HomeService, public navParams: NavParams, private auth: TAuthService, private fileService: FileService) {
   }
 
   ngOnInit() {    
@@ -148,8 +148,8 @@ export class AddDepositPage implements OnInit
     this.Service.AddDeposiCard(this.formGroup.value.CardNo, this.BankName,
       this.TranCode, this.BranchName, this.formGroup.value.Mobile).subscribe(res => {
         this.Service.GetCardList();
-        this.Auth.GetUserData();
-        this.Auth.currentUser.subscribe(data => {
+        this.auth.GetUserData();
+        this.auth.currentUser.subscribe(data => {
           if (this.navParams.get('page')) {
             App.Nav.push(this.navParams.get('page'));
           } else {
@@ -176,5 +176,9 @@ export class AddDepositPage implements OnInit
       this.BankName = res.bank;
       this.BankCode = '105';
     }
+  }
+
+  ionViewCanEnter() {
+    this.auth.CheckToken();
   }
 }

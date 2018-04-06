@@ -22,6 +22,10 @@ export class CredentialHelper
     return localStorage.getItem(CredentialHelper.tokenKey);
   }
 
+  public static removeToken() {
+    return localStorage.removeItem(CredentialHelper.tokenKey);
+  }
+
   public static getMobile() {
     return localStorage.getItem(CredentialHelper.mobileKey);
   }

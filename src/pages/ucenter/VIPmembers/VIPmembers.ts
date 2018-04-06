@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { IonicPage } from 'ionic-angular';
 
+import { TAuthService } from '../../../providers/auth';
 import { MineService } from '../../../providers/mineservice';
 
 @IonicPage()
@@ -12,7 +13,20 @@ import { MineService } from '../../../providers/mineservice';
 export class VIPmembersPage implements OnInit
 {
   App = window.App;
-  constructor(private Service: MineService) {
+
+  HeadTitle: string = "我的费率";
+
+  VipIndex: number = 0;
+
+  VipList: Array<any>;
+
+  PayAmount: number;
+
+  Deadline: string;
+  
+  VipId: number;
+
+  constructor(private Service: MineService, private auth: TAuthService) {
     this.GetVipDeadLine(10);
   }
 
@@ -54,10 +68,7 @@ export class VIPmembersPage implements OnInit
     this.Deadline = Year + '-' + Month + '-' + Day;
   }
 
-  HeadTitle: string = "我的费率";
-  VipIndex: number = 0;
-  VipList: Array<any>;
-  PayAmount: number;
-  Deadline: string;
-  VipId: number;
+  ionViewCanEnter() {
+    this.auth.CheckToken();
+  }
 }

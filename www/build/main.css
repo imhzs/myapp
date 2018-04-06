@@ -28623,6 +28623,10 @@ ion-toolbar.search-bar .searchbar .searchbar-search-icon {
   background-color: #999;
 }
 
+.btn-default {
+  min-height: 5rem;
+}
+
 .btn-h-auto {
   height: auto;
 }

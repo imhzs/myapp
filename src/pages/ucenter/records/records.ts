@@ -1,6 +1,7 @@
 import { Component, Injectable } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
+import { TAuthService } from '../../../providers/auth';
 import { MineService } from '../../../providers/mineservice';
 
 @IonicPage()
@@ -19,7 +20,7 @@ export class RecordsPage
 
   DataEmpty: boolean;
 
-  constructor(public Service: MineService) {
+  constructor(public Service: MineService, private auth: TAuthService) {
     this.GetCashList();
   }
 
@@ -60,5 +61,9 @@ export class RecordsPage
         });
       }
     }
+  }
+  
+  ionViewCanEnter() {
+    this.auth.CheckToken();
   }
 }

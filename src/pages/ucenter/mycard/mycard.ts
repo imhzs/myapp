@@ -37,7 +37,7 @@ export class MyCardPage implements OnInit
   // 主卡表示
   PrimaryCard: number = PRIMARY_CARD;
 
-  constructor(public Servie: HomeService, private Auth: TAuthService, public navCtrl: NavController, public cardHelper: CardHelper) {
+  constructor(public Servie: HomeService, private auth: TAuthService, public navCtrl: NavController, public cardHelper: CardHelper) {
     this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
     this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
   }
@@ -58,7 +58,7 @@ export class MyCardPage implements OnInit
       this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
       
       App.ShowToast('信用卡删除成功');
-      this.Auth.GetUserData();
+      this.auth.GetUserData();
     })
   }
 
@@ -69,7 +69,7 @@ export class MyCardPage implements OnInit
       this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
 
       App.ShowToast('储蓄卡删除成功');
-      this.Auth.GetUserData();
+      this.auth.GetUserData();
     })
   }
 
@@ -92,5 +92,9 @@ export class MyCardPage implements OnInit
   // 添加储蓄卡
   AddDepositCard() {
     App.Nav.push('AddDepositPage', {page: 'MyCardPage'});
+  }
+
+  ionViewCanEnter() {
+    this.auth.CheckToken();
   }
 }

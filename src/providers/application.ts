@@ -79,8 +79,6 @@ export class TApplication extends TAppController
       }
 
       this.auth.currentUser.subscribe(data => {
-        console.log('User Data');
-        console.log(data);
         this.UserInfo = data;
       });
     });

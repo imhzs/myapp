@@ -11,13 +11,13 @@ import { TAuthService } from '../../../providers/auth';
 export class UsetupPage
 {
   App = window.App;
-  constructor(public Service: TAuthService)
-  {
 
+  HeadTitle: string = "设 置";
+
+  constructor(public auth: TAuthService) {
   }
 
-  ChangeNickName()
-  {
+  ChangeNickName() {
     let _alertOption =
     {
       title: '密码',
@@ -36,7 +36,7 @@ export class UsetupPage
           handler: data => {
             // 请求接口保存新昵称
             // this.UserInfo.nickName = data.nickName;
-            // this.Auth.ModifyUserInfo({nickName: data.nickName});
+            // this.auth.ModifyUserInfo({nickName: data.nickName});
           }
         }
       ]
@@ -50,10 +50,11 @@ export class UsetupPage
     );
   }
 
-  Logout()
-  {
-    this.Service.Logout();
+  Logout() {
+    this.auth.Logout();
   }
 
-  HeadTitle:string = "设 置";
+  ionViewCanEnter() {
+    this.auth.CheckToken();
+  }
 }

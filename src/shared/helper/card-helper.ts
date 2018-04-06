@@ -12,7 +12,6 @@ export class CardHelper
 		this.service.GetCardList();
 		this.service.currentCards.subscribe(
 			data => {
-				console.log('User card data: ', data);
 				this.cards = data;
 			}
 		);

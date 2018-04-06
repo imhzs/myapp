@@ -35,7 +35,15 @@ export class TAuthService extends TBaseService
     this.SetParam('mobile', Tel.toString());
     this.SetParam('password', this.Md5T(Password).toString());
 
-    this.Post('kpay/api/login');
+    this.Post('kpay/api/login').subscribe(
+      data => {
+        this.GetUserData();
+        App.Nav.push('TabsPage');
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   // 校验找回密码短信验证码
@@ -96,7 +104,7 @@ export class TAuthService extends TBaseService
 
   // 退出登陆
   Logout() {
-    localStorage.removeItem('token');
+    CredentialHelper.removeToken();
     App.UserInfo = null;
     App.DisableHardwareBackButton();
     App.Nav.push(App.RootPage.StartPage);
@@ -104,12 +112,12 @@ export class TAuthService extends TBaseService
 
   // 判断登录
   get IsLogin() {
-    return TypeInfo.Assigned(localStorage.getItem('token'));
+    return TypeInfo.Assigned(CredentialHelper.getToken());
   }
 
   // 校验token有效性
-  CheckToken() {
-    return this.Post('kpay/api/checkToken');
+  async CheckToken() {
+    return await this.Post('kpay/api/checkToken').toPromise();
   }
 
   // 修改用户信息

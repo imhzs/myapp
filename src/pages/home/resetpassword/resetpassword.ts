@@ -26,7 +26,7 @@ export class ResetPasswordPage implements OnInit
 
   private pwd: FormControl;
 
-  constructor(public Service: TAuthService, public navParams: NavParams) {
+  constructor(public auth: TAuthService, public navParams: NavParams) {
     this.tel = this.navParams.get('mobile');
     this.VCode = this.navParams.get('code');
   }
@@ -42,9 +42,13 @@ export class ResetPasswordPage implements OnInit
 
   clickgetlogin() {
     if(this.conpwd === this.formGroup.value.pwd ) {
-      this.Service.GetchangePsdData(this.tel,this.formGroup.value.pwd, this.VCode);
+      this.auth.GetchangePsdData(this.tel,this.formGroup.value.pwd, this.VCode);
     } else {
       App.ShowError('两次输入密码不一致')
     }
+  }
+
+  ionViewCanEnter() {
+    this.auth.CheckToken();
   }
 }

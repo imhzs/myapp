@@ -38,6 +38,7 @@ export class CreditCardPage
   };
 
   constructor(public navCtrl: NavController, public cardHelper: CardHelper, private auth: TAuthService, private homeService: HomeService) {
+    console.log('CreditCardPage');
     this.Rate = App.UserInfo.rate;
     this.homeService.currentCards.subscribe(
       (cards) => {
@@ -81,6 +82,10 @@ export class CreditCardPage
         }
       }
     );
+  }
+
+  ionViewCanEnter() {
+    this.auth.CheckToken();
   }
 
   // 初始化数据

@@ -36,7 +36,7 @@ export class AddCreditCardPage implements OnInit
 
   BankCardFront: string = BANKCARD_FRONT;
 
-  constructor(public Service: HomeService, public navParams: NavParams, private Auth: TAuthService, private fileService: FileService) {
+  constructor(public Service: HomeService, public navParams: NavParams, private auth: TAuthService, private fileService: FileService) {
   }
 
   ngOnInit() {
@@ -102,8 +102,8 @@ export class AddCreditCardPage implements OnInit
     this.Service.AddCreditCard(this.formGroup.value.CardNo, this.formGroup.value.Mobile).subscribe(
       data => {
         this.Service.GetCardList();
-        this.Auth.GetUserData();
-        this.Auth.currentUser.subscribe(
+        this.auth.GetUserData();
+        this.auth.currentUser.subscribe(
           (data)=> {
             if (this.navParams.get('page')) {
               App.Nav.push(this.navParams.get('page'));
@@ -132,5 +132,9 @@ export class AddCreditCardPage implements OnInit
     if (false !== res) {
       this.CardNo.setValue(res.cardNo.replace(/\s*/g, ''));
     }
+  }
+
+  ionViewCanEnter() {
+    this.auth.CheckToken();
   }
 }
