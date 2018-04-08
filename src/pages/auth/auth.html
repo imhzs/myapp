@@ -17,7 +17,7 @@
 					<button class="bg-transparent" icon-only *ngIf="PreviewFiles[CardFront] == DefaultImg">
 						<ion-icon name="ios-add-circle-outline" color="primary"></ion-icon>
 					</button>
-					<ion-label class="desc" *ngIf="PreviewFiles[CardFront] == DefaultImg">身份证反面照片</ion-label>
+					<ion-label class="desc" *ngIf="PreviewFiles[CardFront] == DefaultImg">身份证正面照片</ion-label>
 				</div>
 			</ion-col>
 			<ion-col col-6 (click)="OnChangeFile(CardBack, $event)">
@@ -35,13 +35,13 @@
 			<ion-col col-6>
 				<div class="d-flex justify-content-start align-items-start card example border-1px">
 					<ion-badge color="primary" class="badge">示例</ion-badge>
-					<img class="img" src="assets/imgs/zhengm.png" />
+					<img class="img" src="assets/imgs/idcard_front.png" />
 				</div>
 			</ion-col>
 			<ion-col col-6>
 				<div class="d-flex justify-content-start align-items-start card example border-1px">
 					<ion-badge color="primary" class="badge">示例</ion-badge>
-					<img class="img" src="assets/imgs/zhengm.png" />
+					<img class="img" src="assets/imgs/idcard_back.png" />
 				</div>
 			</ion-col>
 		</ion-row>

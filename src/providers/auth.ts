@@ -107,7 +107,7 @@ export class TAuthService extends TBaseService
     CredentialHelper.removeToken();
     App.UserInfo = null;
     App.DisableHardwareBackButton();
-    App.Nav.push(App.RootPage.StartPage);
+    App.NavGo('login');
   }
 
   // 判断登录

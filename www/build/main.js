@@ -1,239 +1,6 @@
 webpackJsonp([29],{
 
-/***/ 10:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TAuthService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pub_service__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__ = __webpack_require__(68);
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-var TAuthService = /** @class */ (function (_super) {
-    __extends(TAuthService, _super);
-    function TAuthService(http) {
-        var _this = _super.call(this, http) || this;
-        _this.http = http;
-        _this.App = window.App;
-        _this.subject = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
-        return _this;
-    }
-    Object.defineProperty(TAuthService.prototype, "currentUser", {
-        // 获取当前登录用户
-        get: function () {
-            return this.subject.asObservable();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    // 更新用户数据
-    TAuthService.prototype.updateUser = function (user) {
-        this.subject.next(Object.assign({}, user));
-    };
-    // 登录
-    TAuthService.prototype.Login = function (Tel, Password) {
-        var _this = this;
-        this.SetParam('mobile', Tel.toString());
-        this.SetParam('password', this.Md5T(Password).toString());
-        this.Post('kpay/api/login').subscribe(function (data) {
-            _this.GetUserData();
-            App.Nav.push('TabsPage');
-        }, function (error) {
-            console.log(error);
-        });
-    };
-    // 校验找回密码短信验证码
-    TAuthService.prototype.GetFindPwdData = function (tel, VCode) {
-        this.SetParam('mobile', tel.toString());
-        this.SetParam('veriCode', VCode);
-        return this.Post('kpay/api/checkPwdVeriCode');
-    };
-    // 获取找回密码短信验证码
-    TAuthService.prototype.GetResetPwdData = function (tel) {
-        this.SetParam('mobile', tel.toString());
-        return this.Post('kpay/api/getPwdVericode');
-    };
-    // 修改用户密码
-    TAuthService.prototype.GetchangePsdData = function (tel, pwd, VCode) {
-        this.SetParam('mobile', tel.toString());
-        this.SetParam('password', this.Md5T(pwd).toString());
-        this.SetParam('veriCode', VCode);
-        return this.Post('kpay/api/user/changePassword');
-    };
-    // 获取修改密码验证码
-    TAuthService.prototype.getPwdVericode = function (mobile) {
-        this.SetParam('mobile', mobile);
-        return this.Post('kpay/api/getPwdVericode');
-    };
-    // 注册
-    TAuthService.prototype.SignIn = function (Tel, Password, Code, Recommend) {
-        this.SetParam('mobile', Tel.toString());
-        this.SetParam('password', this.Md5T(Password).toString());
-        this.SetParam('veriCode', Code);
-        if (Recommend) {
-            this.SetParam('referee', Recommend);
-        }
-        return this.Post('kpay/api/register');
-    };
-    // 获取注册验证码
-    TAuthService.prototype.GetVerifyCode = function (Tel) {
-        this.SetParam('mobile', Tel.toString());
-        return this.Post('kpay/api/getVericode');
-    };
-    // 验证注册验证码
-    TAuthService.prototype.CheckVerifyCode = function (Tel, VCode) {
-        this.SetParam('mobile', Tel.toString());
-        this.SetParam('veriCode', VCode);
-        return this.Post('kpay/api/checkRegVeriCode');
-    };
-    // 退出登陆
-    TAuthService.prototype.Logout = function () {
-        __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].removeToken();
-        App.UserInfo = null;
-        App.DisableHardwareBackButton();
-        App.Nav.push(App.RootPage.StartPage);
-    };
-    Object.defineProperty(TAuthService.prototype, "IsLogin", {
-        // 判断登录
-        get: function () {
-            return __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(__WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].getToken());
-        },
-        enumerable: true,
-        configurable: true
-    });
-    // 校验token有效性
-    TAuthService.prototype.CheckToken = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.Post('kpay/api/checkToken').toPromise()];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    // 修改用户信息
-    TAuthService.prototype.ModifyUserInfo = function (json) {
-        for (var k in json) {
-            this.SetParam(k, json[k]);
-        }
-        this.Post('kpay/api/user/modify').subscribe(function (data) {
-            console.log(data);
-        });
-    };
-    // 获取用户信息
-    TAuthService.prototype.GetUserData = function () {
-        var _this = this;
-        return this.Post('kpay/api/user/info').map(function (resp) {
-            var userData = resp.data;
-            _this.updateUser(userData);
-        }).subscribe(function (data) {
-            // console.log(data);
-        }, function (error) {
-            console.log(error);
-        });
-    };
-    // 第三方登录
-    TAuthService.prototype.thirdPartyLogin = function (mobile, key) {
-        var _this = this;
-        __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].setMobile(mobile);
-        __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].setSecret(key);
-        this.SetParam('mobile', mobile);
-        this.SetParam('key', key);
-        return this.Post('kpay/api/login/partner').subscribe(function (data) {
-            if (__WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(data.data) && !__WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].IsEmptyObject(data.data)) {
-                __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].setToken(data.data.token);
-                _this.GetUserData();
-                App.Nav.setPages([{ page: 'TabsPage' }, { page: 'CreditCardPage' }]);
-            }
-            else {
-                App.Nav.setRoot('LoginPage');
-            }
-        }, function (error) {
-            console.error(error);
-        });
-    };
-    // 重新登录
-    TAuthService.prototype.thirdPartyReLogin = function () {
-        var mobile = __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].getMobile();
-        var secret = __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].getSecret();
-        this.thirdPartyLogin(mobile, secret);
-    };
-    TAuthService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]])
-    ], TAuthService);
-    return TAuthService;
-}(__WEBPACK_IMPORTED_MODULE_4__pub_service__["a" /* TBaseService */]));
-
-//# sourceMappingURL=auth.js.map
-
-/***/ }),
-
-/***/ 164:
+/***/ 158:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -246,359 +13,129 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 164;
+webpackEmptyAsyncContext.id = 158;
 
 /***/ }),
 
-/***/ 19:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TypeInfo; });
-/* TypeInfo namespace */
-var TypeInfo;
-(function (TypeInfo) {
-    TypeInfo.UNDEFINED = typeof (void 0);
-    TypeInfo.BOOLEAN = typeof true;
-    TypeInfo.NUMBER = typeof 0;
-    TypeInfo.STRING = typeof '';
-    TypeInfo.OBJECT = typeof {};
-    TypeInfo.FUNCTION = typeof function () { };
-    /**
-     * Returns true if the value Assigned (defined and not null)
-     * @param value
-     * @returns {boolean}
-     */
-    function Assigned(value) {
-        return (typeof value !== TypeInfo.UNDEFINED) && (value !== null);
-    }
-    TypeInfo.Assigned = Assigned;
-    /**
-     * Returns true if the value defined
-     * @param value
-     * @returns {boolean}
-     */
-    function Defined(value) {
-        return (typeof value !== TypeInfo.UNDEFINED);
-    }
-    TypeInfo.Defined = Defined;
-    /**
-     * Returns true if the value is ture null
-     * @param value
-     * @returns {boolean}
-     */
-    function IsNull(value) {
-        return (typeof value !== TypeInfo.UNDEFINED) && (value === null);
-    }
-    TypeInfo.IsNull = IsNull;
-    /**
-     * Returns true if the value parameter is a true/false
-     * @param value
-     * @returns {boolean}
-     */
-    function IsBoolean(value) {
-        return typeof value === TypeInfo.BOOLEAN;
-    }
-    TypeInfo.IsBoolean = IsBoolean;
-    /**
-     * Returns true if the value parameter is a number.
-     * @param value
-     * @param allowNaN Default is true.
-     * @returns {boolean}
-     */
-    function IsNumber(value, allowNaN) {
-        if (allowNaN === void 0) { allowNaN = true; }
-        return typeof value === TypeInfo.NUMBER && (allowNaN || !isNaN(value));
-    }
-    TypeInfo.IsNumber = IsNumber;
-    /**
-     * Returns true if is a number and is NaN.
-     * @param value
-     * @returns {boolean}
-     */
-    function IsTrueNaN(value) {
-        return typeof value === TypeInfo.NUMBER && isNaN(value);
-    }
-    TypeInfo.IsTrueNaN = IsTrueNaN;
-    /**
-     * Returns true if the value parameter is a string.
-     * @param value
-     * @returns {boolean}
-     */
-    function IsString(value) {
-        return typeof value === TypeInfo.STRING;
-    }
-    TypeInfo.IsString = IsString;
-    /**
-     * Returns true if the value is a boolean, string, number, null, or undefined.
-     * @param value
-     * @returns {boolean}
-     */
-    function IsPrimitive(value) {
-        var t = typeof value;
-        switch (t) {
-            case TypeInfo.BOOLEAN:
-            case TypeInfo.STRING:
-            case TypeInfo.NUMBER:
-            case TypeInfo.UNDEFINED:
-                return true;
-            case TypeInfo.OBJECT:
-                return value === null;
-        }
-        return false;
-    }
-    TypeInfo.IsPrimitive = IsPrimitive;
-    /**
-     * Returns true if the value parameter is a function.
-     * @param value
-     * @returns {boolean}
-     */
-    function IsFunction(value) {
-        return typeof value === TypeInfo.FUNCTION;
-    }
-    TypeInfo.IsFunction = IsFunction;
-    /**
-     * Returns true if the value parameter is an object.
-     * @param value
-     * @param allowNull If false (default) null is not considered an object.
-     * @returns {boolean}
-     */
-    function IsObject(value, allowNull) {
-        if (allowNull === void 0) { allowNull = false; }
-        return typeof value === TypeInfo.OBJECT && (allowNull || value !== null);
-    }
-    TypeInfo.IsObject = IsObject;
-    /**
-     * Returns true if the value parameter is an empty object.
-     * @param value
-     * @param allowNull If false (default) null is not considered an object.
-     * @returns {boolean}
-     */
-    function IsEmptyObject(value, allowNull) {
-        if (allowNull === void 0) { allowNull = false; }
-        return this.IsObject(value, allowNull) && JSON.stringify(value) === '{}';
-    }
-    TypeInfo.IsEmptyObject = IsEmptyObject;
-    function IsArrayLike(instance) {
-        /*
-        * NOTE:
-        *
-        * Functions:
-        * Enumerating a function although it has a .length property will yield nothing or unexpected results.
-        * Effectively, a function is not like an array.
-        *
-        * Strings:
-        * Behave like arrays but don't have the same exact methods.
-        */
-        return Assigned(instance) && ((instance instanceof Array) ||
-            IsString(instance) ||
-            (!IsFunction(instance) && HasMember(instance, 'length')));
-    }
-    TypeInfo.IsArrayLike = IsArrayLike;
-    function ZeroArray(ary) {
-        if (ary.fill) {
-            ary.fill(0);
-        }
-        else {
-            for (var I = 0; I < ary.length; I++)
-                ary[I] = 0;
-        }
-    }
-    TypeInfo.ZeroArray = ZeroArray;
-    function ArrayCopy(Dst, Src, SrcOffset, Count, DstOffset) {
-        if (DstOffset === void 0) { DstOffset = 0; }
-        if (Src.subarray && Dst.subarray) {
-            Dst.set(Src.subarray(SrcOffset, SrcOffset + Count), DstOffset);
-        }
-        else {
-            for (var i = 0; i < Count; i++)
-                Dst[DstOffset + i] = Src[SrcOffset + i];
-        }
-    }
-    TypeInfo.ArrayCopy = ArrayCopy;
-    /**
-     *  Guarantees a number value or NaN instead.
-     *  @param value
-     *  @returns {number}
-     */
-    function NumberOrNaN(value) {
-        return isNaN(value) ? NaN : value;
-    }
-    TypeInfo.NumberOrNaN = NumberOrNaN;
-    /**
-     */
-    function HasMember(value, property) {
-        return Assigned(value) && !IsPrimitive(value) && (property in value);
-    }
-    TypeInfo.HasMember = HasMember;
-    /**
-     */
-    function HasMemberOfType(instance, property, type) {
-        return HasMember(instance, property) && typeof (instance[property]) === type;
-    }
-    TypeInfo.HasMemberOfType = HasMemberOfType;
-    function Create(Creater) {
-        var args = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            args[_i - 1] = arguments[_i];
-        }
-        return new Creater(args);
-    }
-    TypeInfo.Create = Create;
-    /* Decorator */
-    /** Class Decorator:
-     *      seal class for futher extendion or add properties
-     */
-    function Sealed() {
-        return function (Cls) {
-            Object.seal(Cls);
-            Object.seal(Cls.prototype);
-        };
-    }
-    TypeInfo.Sealed = Sealed;
-    /** Class Decorator:
-     *      static implements decorator
-     *
-     *      interface FooStatic
-     *      {
-     *          function bar();
-     *      }
-     *
-     *      @StaticImplements<FooStatic>
-     *      class Foo
-     *      {
-     *          static function bar() {};   // shows error if not implements this
-     *      }
-     */
-    function StaticImplements() {
-        return function (constructor) { };
-    }
-    TypeInfo.StaticImplements = StaticImplements;
-})(TypeInfo || (TypeInfo = {}));
-Object.freeze(TypeInfo);
-//# sourceMappingURL=TypeInfo.js.map
-
-/***/ }),
-
-/***/ 204:
+/***/ 198:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/auth/auth.module": [
-		484,
+		450,
 		25
 	],
 	"../pages/findpassword/findpassword.module": [
-		485,
+		451,
 		24
 	],
 	"../pages/home/addcreditcard/addcreditcard.module": [
-		486,
-		23
+		452,
+		7
 	],
 	"../pages/home/adddeposit/adddeposit.module": [
-		487,
-		22
+		453,
+		1
 	],
 	"../pages/home/branchcard/branchcard.module": [
-		488,
-		21
+		454,
+		23
 	],
 	"../pages/home/cardinfor/cardinfor.module": [
-		489,
-		20
+		455,
+		22
 	],
 	"../pages/home/changecards/changecards.module": [
-		490,
-		19
+		456,
+		6
 	],
 	"../pages/home/checkout/checkout.module": [
-		491,
-		18
+		457,
+		21
 	],
 	"../pages/home/confirminfo/confirminfo.module": [
-		492,
-		17
+		458,
+		20
 	],
 	"../pages/home/creditcard/creditcard.module": [
-		493,
-		16
+		459,
+		5
 	],
 	"../pages/home/finalpay/finalpay.module": [
-		494,
-		15
+		460,
+		0
 	],
 	"../pages/home/home.module": [
-		495,
+		461,
 		28
 	],
 	"../pages/home/listofbank/listofbank.module": [
-		497,
-		14
+		462,
+		19
 	],
 	"../pages/home/resetpassword/resetpassword.module": [
-		496,
-		13
+		463,
+		18
 	],
 	"../pages/loan/loan.module": [
-		498,
-		12
+		464,
+		17
 	],
 	"../pages/login/login.module": [
-		499,
-		11
+		465,
+		16
 	],
 	"../pages/modifypassword/modifypassword.module": [
-		500,
-		10
+		466,
+		15
 	],
 	"../pages/register/register.module": [
-		501,
+		467,
 		27
 	],
 	"../pages/setpassword/setpassword.module": [
-		502,
-		9
+		468,
+		14
 	],
 	"../pages/start/start.module": [
-		503,
-		8
+		469,
+		13
 	],
 	"../pages/tabs/tabs.module": [
-		504,
-		7
+		470,
+		12
 	],
 	"../pages/thirdparty/thirdparty.module": [
-		505,
+		471,
 		26
 	],
 	"../pages/ucenter/VIPmembers/VIPmembers.module": [
-		512,
-		6
+		478,
+		11
 	],
 	"../pages/ucenter/mycard/mycard.module": [
-		506,
-		5
-	],
-	"../pages/ucenter/records/detail/recorddetail.module": [
-		507,
-		0
-	],
-	"../pages/ucenter/records/records.module": [
-		508,
+		472,
 		4
 	],
-	"../pages/ucenter/ucenter.module": [
-		509,
+	"../pages/ucenter/records/detail/recorddetail.module": [
+		473,
 		3
 	],
-	"../pages/ucenter/uinfo/uinfo.module": [
-		510,
+	"../pages/ucenter/records/records.module": [
+		474,
 		2
 	],
+	"../pages/ucenter/ucenter.module": [
+		475,
+		10
+	],
+	"../pages/ucenter/uinfo/uinfo.module": [
+		476,
+		9
+	],
 	"../pages/ucenter/usetup/usetup.module": [
-		511,
-		1
+		477,
+		8
 	]
 };
 function webpackAsyncContext(req) {
@@ -612,177 +149,17 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 204;
+webpackAsyncContext.id = 198;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 23:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_pub_service__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__ = __webpack_require__(68);
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var _ = __webpack_require__(118);
-
-
-var HomeService = /** @class */ (function (_super) {
-    __extends(HomeService, _super);
-    function HomeService(http) {
-        var _this = _super.call(this, http) || this;
-        _this.http = http;
-        _this.subject = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
-        return _this;
-    }
-    // 身份证认证
-    HomeService.prototype.VerifyId = function (idcardNo, name, mobile) {
-        this.SetParam('idcardNo', idcardNo);
-        this.SetParam('name', name);
-        if (mobile) {
-            this.SetParam('mobile', mobile);
-        }
-        return this.Post('kpay/api/idcard/auth');
-    };
-    // 获取当日分润明细
-    HomeService.prototype.GetProfitToday = function () {
-        return this.Post('kpay/api/user/myprofit/today');
-    };
-    // 获取银行卡列表
-    HomeService.prototype.GetCardList = function () {
-        var _this = this;
-        return this.Post('kpay/api/bankcard/list').map(function (resp) {
-            var cards = resp.data;
-            _this.updateCards(cards);
-        }).subscribe(function (data) {
-            // console.log(data);
-        }, function (error) {
-            console.log(error);
-        });
-    };
-    Object.defineProperty(HomeService.prototype, "currentCards", {
-        // 用户当前卡片
-        get: function () {
-            return this.subject.asObservable();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    // 更新卡片数据
-    HomeService.prototype.updateCards = function (cards) {
-        this.subject.next(_.concat(new Array(), cards));
-    };
-    // 设置银行卡主卡
-    HomeService.prototype.SetPrimCard = function (cardId) {
-        this.SetParam('cardId', cardId);
-        return this.Post('kpay/api/bankcard/setPrimary');
-    };
-    // 添加信用卡
-    HomeService.prototype.AddCreditCard = function (cardNo, mobile) {
-        this.SetParam('cardNo', cardNo);
-        this.SetParam('mobile', mobile);
-        return this.Post('kpay/api/bankcard/addCredit');
-    };
-    // 添加储蓄卡
-    HomeService.prototype.AddDeposiCard = function (cardNo, bankName, bankNo, branchName, mobile) {
-        this.SetParam('cardNo', cardNo);
-        this.SetParam('bankName', bankName);
-        this.SetParam('bankNo', bankNo);
-        this.SetParam('branchName', branchName);
-        this.SetParam('mobile', mobile);
-        return this.Post('kpay/api/bankcard/addDeposit');
-    };
-    // 删除银行卡
-    HomeService.prototype.DelCard = function (cardId) {
-        this.SetParam('cardId', cardId);
-        return this.Post('kpay/api/bankcard/del');
-    };
-    // 获取银行总行信息
-    HomeService.prototype.GetTolBanks = function () {
-        return this.Post('kpay/api/bank/info');
-    };
-    //获取银行支行信息
-    HomeService.prototype.GetBranchBanks = function (massage) {
-        this.SetParam('name', massage);
-        return this.Post('kpay/api/bank/list');
-    };
-    // 取现可用返现券
-    HomeService.prototype.GetAvaCash = function (amount) {
-        this.SetParam('amount', amount);
-        return this.Post('kpay/api/cash/cashback/available');
-    };
-    // 获取银行取现列表
-    HomeService.prototype.GetBankPage = function (cardId, enterCardId, amount, cashbackId) {
-        this.SetParam('cardId', cardId);
-        this.SetParam('enterCardId', enterCardId);
-        this.SetParam('amount', Math.round(amount * 100));
-        this.SetParam('token', __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__["a" /* CredentialHelper */].getToken());
-        if (cashbackId) {
-            this.SetParam('cashbackId', cashbackId);
-        }
-        return this.Post('kpay/api/trade/quickPay/request');
-    };
-    // 快捷取现获取验证码
-    HomeService.prototype.GetVerifyode = function (acctNo, cvn2, expDate, mobile, amount, cashbackId) {
-        this.SetParam('acctNo', acctNo);
-        this.SetParam('cvn2', cvn2);
-        this.SetParam('amount', Math.round(amount * 100));
-        this.SetParam('mobile', mobile);
-        this.SetParam('expDate', expDate);
-        if (cashbackId) {
-            this.SetParam('cashbackId', cashbackId);
-        }
-        return this.Post('kpay/api/trade/quickPay/sendVericode');
-    };
-    // 快捷取现确认
-    HomeService.prototype.ConfirmResult = function (orderNo, smsCode) {
-        this.SetParam('orderNo', orderNo);
-        this.SetParam('smsCode', smsCode);
-        return this.Post('kpay/api/trade/quickPay/confirm');
-    };
-    HomeService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]])
-    ], HomeService);
-    return HomeService;
-}(__WEBPACK_IMPORTED_MODULE_3__providers_pub_service__["a" /* TBaseService */]));
-
-//# sourceMappingURL=homeservice.js.map
-
-/***/ }),
-
-/***/ 260:
+/***/ 252:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SplashScreen; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__ = __webpack_require__(36);
 /**
  *  https://github.com/apache/cordova-plugin-splashscreen
  *      cordova plugin add cordova-plugin-splashscreen --save
@@ -812,12 +189,12 @@ var SplashScreen = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 261:
+/***/ 253:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StatusBar; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__ = __webpack_require__(36);
 /**
  *  https://github.com/apache/cordova-plugin-statusbar
  *      cordova plugin add cordova-plugin-statusbar --save
@@ -914,15 +291,15 @@ var StatusBar = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 262:
+/***/ 254:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TApplication; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UltraCreation_ng_ion_appcontroller__ = __webpack_require__(383);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Core_TypeInfo__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UltraCreation_ng_ion_appcontroller__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Core_TypeInfo__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth__ = __webpack_require__(73);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -1100,23 +477,645 @@ var TApplication = /** @class */ (function (_super) {
     });
     TApplication = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injector */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injector */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__providers_auth__["a" /* TAuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_auth__["a" /* TAuthService */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injector */], __WEBPACK_IMPORTED_MODULE_3__providers_auth__["a" /* TAuthService */]])
     ], TApplication);
     return TApplication;
-    var _a, _b;
 }(__WEBPACK_IMPORTED_MODULE_1__UltraCreation_ng_ion_appcontroller__["a" /* TAppController */]));
 
 //# sourceMappingURL=application.js.map
 
 /***/ }),
 
-/***/ 299:
+/***/ 265:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_pub_service__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__ = __webpack_require__(64);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var _ = __webpack_require__(146);
+
+
+var HomeService = /** @class */ (function (_super) {
+    __extends(HomeService, _super);
+    function HomeService(http) {
+        var _this = _super.call(this, http) || this;
+        _this.http = http;
+        _this.subject = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
+        return _this;
+    }
+    // 身份证认证
+    HomeService.prototype.VerifyId = function (idcardNo, name, mobile) {
+        this.SetParam('idcardNo', idcardNo);
+        this.SetParam('name', name);
+        if (mobile) {
+            this.SetParam('mobile', mobile);
+        }
+        return this.Post('kpay/api/idcard/auth');
+    };
+    // 获取当日分润明细
+    HomeService.prototype.GetProfitToday = function () {
+        return this.Post('kpay/api/user/myprofit/today');
+    };
+    // 获取银行卡列表
+    HomeService.prototype.GetCardList = function () {
+        var _this = this;
+        return this.Post('kpay/api/bankcard/list').map(function (resp) {
+            var cards = resp.data;
+            _this.updateCards(cards);
+        }).subscribe(function (data) {
+            // console.log(data);
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    Object.defineProperty(HomeService.prototype, "currentCards", {
+        // 用户当前卡片
+        get: function () {
+            return this.subject.asObservable();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    // 更新卡片数据
+    HomeService.prototype.updateCards = function (cards) {
+        this.subject.next(_.concat(new Array(), cards));
+    };
+    // 设置银行卡主卡
+    HomeService.prototype.SetPrimCard = function (cardId) {
+        this.SetParam('cardId', cardId);
+        return this.Post('kpay/api/bankcard/setPrimary');
+    };
+    // 添加信用卡
+    HomeService.prototype.AddCreditCard = function (cardNo, mobile) {
+        this.SetParam('cardNo', cardNo);
+        this.SetParam('mobile', mobile);
+        return this.Post('kpay/api/bankcard/addCredit');
+    };
+    // 添加储蓄卡
+    HomeService.prototype.AddDeposiCard = function (cardNo, bankName, bankNo, branchName, mobile) {
+        this.SetParam('cardNo', cardNo);
+        this.SetParam('bankName', bankName);
+        this.SetParam('bankNo', bankNo);
+        this.SetParam('branchName', branchName);
+        this.SetParam('mobile', mobile);
+        return this.Post('kpay/api/bankcard/addDeposit');
+    };
+    // 删除银行卡
+    HomeService.prototype.DelCard = function (cardId) {
+        this.SetParam('cardId', cardId);
+        return this.Post('kpay/api/bankcard/del');
+    };
+    // 获取银行总行信息
+    HomeService.prototype.GetTolBanks = function () {
+        return this.Post('kpay/api/bank/info');
+    };
+    //获取银行支行信息
+    HomeService.prototype.GetBranchBanks = function (massage) {
+        this.SetParam('name', massage);
+        return this.Post('kpay/api/bank/list');
+    };
+    // 取现可用返现券
+    HomeService.prototype.GetAvaCash = function (amount) {
+        this.SetParam('amount', amount);
+        return this.Post('kpay/api/cash/cashback/available');
+    };
+    // 获取银行取现列表
+    HomeService.prototype.GetBankPage = function (cardId, enterCardId, amount, cashbackId) {
+        this.SetParam('cardId', cardId);
+        this.SetParam('enterCardId', enterCardId);
+        this.SetParam('amount', Math.round(amount * 100));
+        this.SetParam('token', __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__["a" /* CredentialHelper */].getToken());
+        if (cashbackId) {
+            this.SetParam('cashbackId', cashbackId);
+        }
+        return this.Post('kpay/api/trade/quickPay/request');
+    };
+    // 快捷取现获取验证码
+    HomeService.prototype.GetVerifyode = function (acctNo, cvn2, expDate, mobile, amount, cashbackId) {
+        this.SetParam('acctNo', acctNo);
+        this.SetParam('cvn2', cvn2);
+        this.SetParam('amount', Math.round(amount * 100));
+        this.SetParam('mobile', mobile);
+        this.SetParam('expDate', expDate);
+        if (cashbackId) {
+            this.SetParam('cashbackId', cashbackId);
+        }
+        return this.Post('kpay/api/trade/quickPay/sendVericode');
+    };
+    // 快捷取现确认
+    HomeService.prototype.ConfirmResult = function (orderNo, smsCode) {
+        this.SetParam('orderNo', orderNo);
+        this.SetParam('smsCode', smsCode);
+        return this.Post('kpay/api/trade/quickPay/confirm');
+    };
+    HomeService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]])
+    ], HomeService);
+    return HomeService;
+}(__WEBPACK_IMPORTED_MODULE_3__providers_pub_service__["a" /* TBaseService */]));
+
+//# sourceMappingURL=homeservice.js.map
+
+/***/ }),
+
+/***/ 266:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export IDCARD_HAND */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BANKCARD_FRONT; });
+/* unused harmony export BANKCARD_BACK */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FileService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_lrz__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_pub_service__ = __webpack_require__(54);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+var lodash = __webpack_require__(146);
+
+// 附件类型-手持身份证
+var IDCARD_HAND = 'idcard_hand';
+// 附件类型-银行卡正面
+var BANKCARD_FRONT = 'bankcard_front';
+// 附件类型-银行卡反面
+var BANKCARD_BACK = 'bankcard_back';
+var FileService = /** @class */ (function (_super) {
+    __extends(FileService, _super);
+    function FileService(http, camera, fileTransfer) {
+        var _this = _super.call(this, http) || this;
+        _this.http = http;
+        _this.camera = camera;
+        _this.fileTransfer = fileTransfer;
+        _this.targetWidth = 800;
+        _this.targetHeight = 600;
+        return _this;
+    }
+    // 附件上传
+    FileService.prototype.OcrUpload = function (fileKey, file, cType) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.PostFile('kpay/api/ocr/upload', fileKey, file, { 'type': cType })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    // 身份认证
+    FileService.prototype.IdentityAuth = function (file, cType) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.PostFile('kpay/api/ocr/idcard', 'file', file, { 'type': cType })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    FileService.prototype.PostFiles = function (uri) {
+        return __awaiter(this, void 0, void 0, function () {
+            var resp;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.PostByXMLHttpReq(uri).then(function (resp) { return resp; })];
+                    case 1:
+                        resp = _a.sent();
+                        if (resp.code === 1) {
+                            return [2 /*return*/, resp.data];
+                        }
+                        App.ShowError(resp.msg);
+                        return [2 /*return*/, false];
+                }
+            });
+        });
+    };
+    FileService.prototype.PostFile = function (uri, fileKey, file, params) {
+        return __awaiter(this, void 0, void 0, function () {
+            var k, resp;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        for (k in params) {
+                            this.SetParam(k, params[k]);
+                        }
+                        this.SetParam(fileKey, file);
+                        if (!window['cordova']) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.PostByFileTransfer(uri, fileKey, file, params)
+                                .then(function (resp) { return resp; })
+                                .catch(function (error) {
+                                App.ShowToast(error);
+                            })];
+                    case 1:
+                        resp = _a.sent();
+                        return [3 /*break*/, 4];
+                    case 2: return [4 /*yield*/, this.PostByXMLHttpReq(uri, fileKey, file, params)
+                            .then(function (resp) { return resp; })
+                            .catch(function (error) {
+                            App.ShowToast(error);
+                        })];
+                    case 3:
+                        resp = _a.sent();
+                        _a.label = 4;
+                    case 4:
+                        if (resp.code === 1) {
+                            return [2 /*return*/, resp.data];
+                        }
+                        App.ShowError(resp.msg);
+                        return [2 /*return*/, false];
+                }
+            });
+        });
+    };
+    FileService.prototype.showAddImage = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            if (!window['cordova']) {
+                var input_1 = document.createElement('input');
+                input_1.type = 'file';
+                input_1.accept = "image/png,image/jpeg,image/jpg,image/x-png";
+                input_1.click();
+                input_1.onchange = function () {
+                    console.log(input_1.files[0]);
+                    App.ShowLoading('处理中');
+                    __WEBPACK_IMPORTED_MODULE_4_lrz___default()(input_1.files[0], {
+                        quality: 0.6,
+                        width: _this.targetWidth,
+                        height: _this.targetHeight
+                    })
+                        .then(function (rst) {
+                        // 处理成功会执行
+                        var file = _this.dataURLtoFile(rst.base64, input_1.files[0].name);
+                        var result = {
+                            'file': file,
+                            'base64': rst.base64,
+                            'blob': window.URL.createObjectURL(file)
+                        };
+                        resolve(result);
+                    })
+                        .catch(function (err) {
+                        // 处理失败会执行
+                        console.log('LRZ: Compress image failed.');
+                        console.log(err);
+                    })
+                        .always(function () {
+                        // 不管是成功失败，都会执行
+                        App.HideLoading();
+                    });
+                };
+            }
+            else {
+                new Promise(function (resolve, reject) {
+                    var actionSheetConfig = {
+                        title: '添加图片',
+                        buttons: [
+                            {
+                                text: '相册',
+                                handler: function () {
+                                    resolve(_this.camera.PictureSourceType.PHOTOLIBRARY);
+                                }
+                            },
+                            {
+                                text: '相机',
+                                handler: function () {
+                                    resolve(_this.camera.PictureSourceType.CAMERA);
+                                }
+                            },
+                            {
+                                text: '取消',
+                                role: 'cancel',
+                                handler: function () {
+                                    reject();
+                                }
+                            }
+                        ]
+                    };
+                    App.ShowActionSheet(actionSheetConfig);
+                }).then(function (sourceType) {
+                    if (!window['cordova']) {
+                        return;
+                    }
+                    var options = {
+                        quality: 50,
+                        sourceType: sourceType,
+                        saveToPhotoAlbum: false,
+                        correctOrientation: true,
+                        targetWidth: _this.targetWidth,
+                        targetHeight: _this.targetHeight
+                    };
+                    _this.camera.getPicture(options).then(function (imageData) {
+                        if (imageData.indexOf('?') > -1) {
+                            var arr = imageData.match(new RegExp(/[^?]+/, 'ig'));
+                            if (arr.length > 0) {
+                                imageData = arr[0];
+                            }
+                        }
+                        var result = {
+                            'file': imageData,
+                            'base64': imageData,
+                            'blob': imageData
+                        };
+                        resolve(result);
+                    });
+                }).catch(function (error) {
+                    console.log('Camera failed.');
+                    App.ShowToast('获取图片失败');
+                    reject(error);
+                });
+            }
+        });
+    };
+    FileService.prototype.dataURLtoBlob = function (dataurl) {
+        var arr = dataurl.split(',');
+        var mime = arr[0].match(/:(.*?);/)[1];
+        var bstr = atob(arr[1]);
+        var n = bstr.length;
+        var u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], {
+            type: mime
+        });
+    };
+    FileService.prototype.dataURLtoFile = function (dataurl, filename) {
+        var arr = dataurl.split(',');
+        var mime = arr[0].match(/:(.*?);/)[1];
+        var bstr = atob(arr[1]);
+        var n = bstr.length;
+        var u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, { 'type': mime });
+    };
+    FileService.prototype.PostByFileTransfer = function (uri, fileKey, file, params) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var BaseUrl = _this.BaseUrl;
+            var url = BaseUrl + "/" + uri;
+            if (window['cordova']) {
+                var options = {
+                    fileKey: fileKey,
+                    fileName: file,
+                    headers: {
+                        'Authorization': _this.getToken
+                    }
+                };
+                if (params) {
+                    options.params = params;
+                }
+                var fileTransfer = _this.fileTransfer.create();
+                fileTransfer.upload(file, url, options)
+                    .then(function (data) {
+                    resolve(JSON.parse(data.response));
+                })
+                    .catch(function (error) {
+                    App.ShowToast('上传失败');
+                    reject(error);
+                });
+            }
+        });
+    };
+    FileService.prototype.PostByXMLHttpReq = function (uri, fileKey, file, params) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        var formData = new FormData();
+                        if (lodash.keys(params).length > 0) {
+                            lodash.forEach(params, function (v, k) {
+                                formData.append(k, v);
+                            });
+                        }
+                        var BaseUrl = _this.BaseUrl;
+                        var url = encodeURI(BaseUrl + "/" + uri);
+                        App.ShowLoading();
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('GET', window.URL.createObjectURL(file), true);
+                        xhr.responseType = 'blob';
+                        xhr.onload = function (e) {
+                            if (xhr['status'] != 200) {
+                                App.ShowError('您的浏览器不支持Blob');
+                                console.error(e, xhr);
+                                reject(e);
+                            }
+                            else {
+                                var blob = xhr['response'];
+                                var xhr2_1 = new XMLHttpRequest();
+                                var suffix = file.type.split('/')[1];
+                                var filename = (new Date()).getTime() + '.' + suffix;
+                                formData.append(fileKey, blob, filename);
+                                xhr2_1.onloadend = function () {
+                                    App.HideLoading();
+                                };
+                                xhr2_1.ontimeout = function () {
+                                    App.HideLoading();
+                                };
+                                xhr2_1.onreadystatechange = function () {
+                                    if (xhr2_1.readyState === 4) {
+                                        if (xhr2_1.status === 200) {
+                                            resolve(JSON.parse(xhr2_1.response));
+                                        }
+                                        else {
+                                            reject(xhr2_1);
+                                        }
+                                    }
+                                };
+                                xhr2_1.open('POST', url, true);
+                                xhr2_1.setRequestHeader('Authorization', _this.getToken);
+                                xhr2_1.send(formData);
+                            }
+                        };
+                        xhr.send();
+                    })];
+            });
+        });
+    };
+    FileService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__["a" /* FileTransfer */]])
+    ], FileService);
+    return FileService;
+}(__WEBPACK_IMPORTED_MODULE_5__providers_pub_service__["a" /* TBaseService */]));
+
+//# sourceMappingURL=fileservice.js.map
+
+/***/ }),
+
+/***/ 267:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MineService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_pub_service__ = __webpack_require__(54);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var MineService = /** @class */ (function (_super) {
+    __extends(MineService, _super);
+    function MineService(http) {
+        var _this = _super.call(this, http) || this;
+        _this.http = http;
+        return _this;
+    }
+    //获取取现记录列表
+    MineService.prototype.GetCashList = function () {
+        return this.Post('kpay/api/cash/getCashList');
+    };
+    // 获取取现记录详情
+    MineService.prototype.GetCashDetail = function (orderId) {
+        this.SetParam('id', orderId);
+        return this.Post('kpay/api/cash/getCashDetail');
+    };
+    // 获取红包礼券voucher
+    MineService.prototype.GetVoucherList = function () {
+        return this.Post('kpay/api/cash/cashback/list');
+    };
+    // 获取我的客户
+    MineService.prototype.GetMyCustomer = function () {
+        return this.Post('kpay/api/user/mycustomer');
+    };
+    // 获取返现记录
+    MineService.prototype.GetCashBack = function () {
+        return this.Post('kpay/api/trade/list');
+    };
+    // 获取VIP套餐列表
+    MineService.prototype.GetVipList = function () {
+        return this.Post('kpay/api/package/list');
+    };
+    // 购买Vip
+    MineService.prototype.BuyVip = function (id) {
+        this.SetParam('packId', id);
+        return this.Post('kpay/api/package/buy', { packId: id });
+    };
+    MineService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]])
+    ], MineService);
+    return MineService;
+}(__WEBPACK_IMPORTED_MODULE_2__providers_pub_service__["a" /* TBaseService */]));
+
+//# sourceMappingURL=mineservice.js.map
+
+/***/ }),
+
+/***/ 269:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(300);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(307);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(277);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1124,27 +1123,27 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 307:
+/***/ 277:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(362);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(378);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_app_version__ = __webpack_require__(258);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_camera__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_device__ = __webpack_require__(259);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_component__ = __webpack_require__(382);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers__ = __webpack_require__(386);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__UltraCreation_Native_StatusBar__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__UltraCreation_Native_SplashScreen__ = __webpack_require__(260);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__http_interceptors__ = __webpack_require__(390);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_app_version__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_camera__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_device__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_component__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__UltraCreation_Native_StatusBar__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__UltraCreation_Native_SplashScreen__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__http_interceptors__ = __webpack_require__(356);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1197,8 +1196,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/home/creditcard/creditcard.module#CreditCardPageModule', name: 'CreditCardPage', segment: 'creditcard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/finalpay/finalpay.module#FinalpayPageModule', name: 'FinalpayPage', segment: 'finalpay', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/resetpassword/resetpassword.module#ResetPasswordPageModule', name: 'ResetPasswordPage', segment: 'resetpassword', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/listofbank/listofbank.module#ListofbankPageModule', name: 'ListofbankPage', segment: 'listofbank', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/resetpassword/resetpassword.module#ResetPasswordPageModule', name: 'ResetPasswordPage', segment: 'resetpassword', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/loan/loan.module#LoanPageModule', name: 'LoanPage', segment: 'loan', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/modifypassword/modifypassword.module#ModifyPasswordPageModule', name: 'ModifyPasswordPage', segment: 'modifypassword', priority: 'low', defaultHistory: [] },
@@ -1246,17 +1245,17 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 382:
+/***/ 349:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Native_SplashScreen__ = __webpack_require__(260);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_application__ = __webpack_require__(262);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Native_SplashScreen__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_application__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth__ = __webpack_require__(73);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1314,22 +1313,22 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 383:
+/***/ 350:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TAppController; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_platform_platform__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_app_app__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_components_toast_toast_controller__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular_components_alert_alert_controller__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular_components_modal_modal_controller__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular_components_loading_loading_controller__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular_components_action_sheet_action_sheet_controller__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic_angular_components_popover_popover_controller__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Core_Exception__ = __webpack_require__(384);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_app_app__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_components_toast_toast_controller__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular_components_alert_alert_controller__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular_components_modal_modal_controller__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular_components_loading_loading_controller__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular_components_action_sheet_action_sheet_controller__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic_angular_components_popover_popover_controller__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Core_Exception__ = __webpack_require__(351);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1702,7 +1701,7 @@ var TAppController = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 384:
+/***/ 351:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1842,17 +1841,17 @@ var EUsage = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 386:
+/***/ 352:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProviderModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(262);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mineservice__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__homeservice__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fileservice__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__checkAppUpdate__ = __webpack_require__(387);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mineservice__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__homeservice__ = __webpack_require__(265);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fileservice__ = __webpack_require__(266);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__checkAppUpdate__ = __webpack_require__(353);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1882,18 +1881,18 @@ var ProviderModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 387:
+/***/ 353:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckAppUpdate; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__ = __webpack_require__(258);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_opener__ = __webpack_require__(388);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file__ = __webpack_require__(389);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_device__ = __webpack_require__(259);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_opener__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_device__ = __webpack_require__(251);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2066,13 +2065,13 @@ var CheckAppUpdate = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 390:
+/***/ 356:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return httpInterceptorProviders; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__noop_interceptor__ = __webpack_require__(391);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__noop_interceptor__ = __webpack_require__(357);
 /* "Barrel" of Http Interceptors */
 // import { NgModule } from '@angular/core';
 
@@ -2091,20 +2090,20 @@ var httpInterceptorProviders = [
 
 /***/ }),
 
-/***/ 391:
+/***/ 357:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NoopInterceptor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__ = __webpack_require__(358);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__(359);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_pub_service__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_helper_credential_helper__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_pub_service__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_helper_credential_helper__ = __webpack_require__(64);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2170,17 +2169,247 @@ var NoopInterceptor = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 58:
+/***/ 36:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TypeInfo; });
+/* TypeInfo namespace */
+var TypeInfo;
+(function (TypeInfo) {
+    TypeInfo.UNDEFINED = typeof (void 0);
+    TypeInfo.BOOLEAN = typeof true;
+    TypeInfo.NUMBER = typeof 0;
+    TypeInfo.STRING = typeof '';
+    TypeInfo.OBJECT = typeof {};
+    TypeInfo.FUNCTION = typeof function () { };
+    /**
+     * Returns true if the value Assigned (defined and not null)
+     * @param value
+     * @returns {boolean}
+     */
+    function Assigned(value) {
+        return (typeof value !== TypeInfo.UNDEFINED) && (value !== null);
+    }
+    TypeInfo.Assigned = Assigned;
+    /**
+     * Returns true if the value defined
+     * @param value
+     * @returns {boolean}
+     */
+    function Defined(value) {
+        return (typeof value !== TypeInfo.UNDEFINED);
+    }
+    TypeInfo.Defined = Defined;
+    /**
+     * Returns true if the value is ture null
+     * @param value
+     * @returns {boolean}
+     */
+    function IsNull(value) {
+        return (typeof value !== TypeInfo.UNDEFINED) && (value === null);
+    }
+    TypeInfo.IsNull = IsNull;
+    /**
+     * Returns true if the value parameter is a true/false
+     * @param value
+     * @returns {boolean}
+     */
+    function IsBoolean(value) {
+        return typeof value === TypeInfo.BOOLEAN;
+    }
+    TypeInfo.IsBoolean = IsBoolean;
+    /**
+     * Returns true if the value parameter is a number.
+     * @param value
+     * @param allowNaN Default is true.
+     * @returns {boolean}
+     */
+    function IsNumber(value, allowNaN) {
+        if (allowNaN === void 0) { allowNaN = true; }
+        return typeof value === TypeInfo.NUMBER && (allowNaN || !isNaN(value));
+    }
+    TypeInfo.IsNumber = IsNumber;
+    /**
+     * Returns true if is a number and is NaN.
+     * @param value
+     * @returns {boolean}
+     */
+    function IsTrueNaN(value) {
+        return typeof value === TypeInfo.NUMBER && isNaN(value);
+    }
+    TypeInfo.IsTrueNaN = IsTrueNaN;
+    /**
+     * Returns true if the value parameter is a string.
+     * @param value
+     * @returns {boolean}
+     */
+    function IsString(value) {
+        return typeof value === TypeInfo.STRING;
+    }
+    TypeInfo.IsString = IsString;
+    /**
+     * Returns true if the value is a boolean, string, number, null, or undefined.
+     * @param value
+     * @returns {boolean}
+     */
+    function IsPrimitive(value) {
+        var t = typeof value;
+        switch (t) {
+            case TypeInfo.BOOLEAN:
+            case TypeInfo.STRING:
+            case TypeInfo.NUMBER:
+            case TypeInfo.UNDEFINED:
+                return true;
+            case TypeInfo.OBJECT:
+                return value === null;
+        }
+        return false;
+    }
+    TypeInfo.IsPrimitive = IsPrimitive;
+    /**
+     * Returns true if the value parameter is a function.
+     * @param value
+     * @returns {boolean}
+     */
+    function IsFunction(value) {
+        return typeof value === TypeInfo.FUNCTION;
+    }
+    TypeInfo.IsFunction = IsFunction;
+    /**
+     * Returns true if the value parameter is an object.
+     * @param value
+     * @param allowNull If false (default) null is not considered an object.
+     * @returns {boolean}
+     */
+    function IsObject(value, allowNull) {
+        if (allowNull === void 0) { allowNull = false; }
+        return typeof value === TypeInfo.OBJECT && (allowNull || value !== null);
+    }
+    TypeInfo.IsObject = IsObject;
+    /**
+     * Returns true if the value parameter is an empty object.
+     * @param value
+     * @param allowNull If false (default) null is not considered an object.
+     * @returns {boolean}
+     */
+    function IsEmptyObject(value, allowNull) {
+        if (allowNull === void 0) { allowNull = false; }
+        return this.IsObject(value, allowNull) && JSON.stringify(value) === '{}';
+    }
+    TypeInfo.IsEmptyObject = IsEmptyObject;
+    function IsArrayLike(instance) {
+        /*
+        * NOTE:
+        *
+        * Functions:
+        * Enumerating a function although it has a .length property will yield nothing or unexpected results.
+        * Effectively, a function is not like an array.
+        *
+        * Strings:
+        * Behave like arrays but don't have the same exact methods.
+        */
+        return Assigned(instance) && ((instance instanceof Array) ||
+            IsString(instance) ||
+            (!IsFunction(instance) && HasMember(instance, 'length')));
+    }
+    TypeInfo.IsArrayLike = IsArrayLike;
+    function ZeroArray(ary) {
+        if (ary.fill) {
+            ary.fill(0);
+        }
+        else {
+            for (var I = 0; I < ary.length; I++)
+                ary[I] = 0;
+        }
+    }
+    TypeInfo.ZeroArray = ZeroArray;
+    function ArrayCopy(Dst, Src, SrcOffset, Count, DstOffset) {
+        if (DstOffset === void 0) { DstOffset = 0; }
+        if (Src.subarray && Dst.subarray) {
+            Dst.set(Src.subarray(SrcOffset, SrcOffset + Count), DstOffset);
+        }
+        else {
+            for (var i = 0; i < Count; i++)
+                Dst[DstOffset + i] = Src[SrcOffset + i];
+        }
+    }
+    TypeInfo.ArrayCopy = ArrayCopy;
+    /**
+     *  Guarantees a number value or NaN instead.
+     *  @param value
+     *  @returns {number}
+     */
+    function NumberOrNaN(value) {
+        return isNaN(value) ? NaN : value;
+    }
+    TypeInfo.NumberOrNaN = NumberOrNaN;
+    /**
+     */
+    function HasMember(value, property) {
+        return Assigned(value) && !IsPrimitive(value) && (property in value);
+    }
+    TypeInfo.HasMember = HasMember;
+    /**
+     */
+    function HasMemberOfType(instance, property, type) {
+        return HasMember(instance, property) && typeof (instance[property]) === type;
+    }
+    TypeInfo.HasMemberOfType = HasMemberOfType;
+    function Create(Creater) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        return new Creater(args);
+    }
+    TypeInfo.Create = Create;
+    /* Decorator */
+    /** Class Decorator:
+     *      seal class for futher extendion or add properties
+     */
+    function Sealed() {
+        return function (Cls) {
+            Object.seal(Cls);
+            Object.seal(Cls.prototype);
+        };
+    }
+    TypeInfo.Sealed = Sealed;
+    /** Class Decorator:
+     *      static implements decorator
+     *
+     *      interface FooStatic
+     *      {
+     *          function bar();
+     *      }
+     *
+     *      @StaticImplements<FooStatic>
+     *      class Foo
+     *      {
+     *          static function bar() {};   // shows error if not implements this
+     *      }
+     */
+    function StaticImplements() {
+        return function (constructor) { };
+    }
+    TypeInfo.StaticImplements = StaticImplements;
+})(TypeInfo || (TypeInfo = {}));
+Object.freeze(TypeInfo);
+//# sourceMappingURL=TypeInfo.js.map
+
+/***/ }),
+
+/***/ 54:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TBaseService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__ = __webpack_require__(311);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__ = __webpack_require__(64);
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -2301,21 +2530,57 @@ var TBaseService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 67:
+/***/ 64:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export IDCARD_HAND */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BANKCARD_FRONT; });
-/* unused harmony export BANKCARD_BACK */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FileService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CredentialHelper; });
+var CredentialHelper = /** @class */ (function () {
+    function CredentialHelper() {
+    }
+    CredentialHelper.setToken = function (v) {
+        localStorage.setItem(CredentialHelper.tokenKey, v);
+    };
+    CredentialHelper.setMobile = function (v) {
+        localStorage.setItem(CredentialHelper.mobileKey, v);
+    };
+    CredentialHelper.setSecret = function (v) {
+        localStorage.setItem(CredentialHelper.secretKey, v);
+    };
+    CredentialHelper.getToken = function () {
+        return localStorage.getItem(CredentialHelper.tokenKey);
+    };
+    CredentialHelper.removeToken = function () {
+        return localStorage.removeItem(CredentialHelper.tokenKey);
+    };
+    CredentialHelper.getMobile = function () {
+        return localStorage.getItem(CredentialHelper.mobileKey);
+    };
+    CredentialHelper.getSecret = function () {
+        return localStorage.getItem(CredentialHelper.secretKey);
+    };
+    CredentialHelper.tokenKey = 'token';
+    CredentialHelper.mobileKey = 'mobile';
+    CredentialHelper.secretKey = 'third_party_secret';
+    return CredentialHelper;
+}());
+
+//# sourceMappingURL=credential-helper.js.map
+
+/***/ }),
+
+/***/ 73:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TAuthService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz__ = __webpack_require__(339);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_lrz__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_pub_service__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pub_service__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__ = __webpack_require__(64);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -2375,433 +2640,167 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
-var lodash = __webpack_require__(118);
 
-// 附件类型-手持身份证
-var IDCARD_HAND = 'idcard_hand';
-// 附件类型-银行卡正面
-var BANKCARD_FRONT = 'bankcard_front';
-// 附件类型-银行卡反面
-var BANKCARD_BACK = 'bankcard_back';
-var FileService = /** @class */ (function (_super) {
-    __extends(FileService, _super);
-    function FileService(http, camera, fileTransfer) {
+var TAuthService = /** @class */ (function (_super) {
+    __extends(TAuthService, _super);
+    function TAuthService(http) {
         var _this = _super.call(this, http) || this;
         _this.http = http;
-        _this.camera = camera;
-        _this.fileTransfer = fileTransfer;
-        _this.targetWidth = 800;
-        _this.targetHeight = 600;
+        _this.App = window.App;
+        _this.subject = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
         return _this;
     }
-    // 附件上传
-    FileService.prototype.OcrUpload = function (fileKey, file, cType) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.PostFile('kpay/api/ocr/upload', fileKey, file, { 'type': cType })];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
+    Object.defineProperty(TAuthService.prototype, "currentUser", {
+        // 获取当前登录用户
+        get: function () {
+            return this.subject.asObservable();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    // 更新用户数据
+    TAuthService.prototype.updateUser = function (user) {
+        this.subject.next(Object.assign({}, user));
     };
-    // 身份认证
-    FileService.prototype.IdentityAuth = function (file, cType) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.PostFile('kpay/api/ocr/idcard', 'file', file, { 'type': cType })];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    FileService.prototype.PostFiles = function (uri) {
-        return __awaiter(this, void 0, void 0, function () {
-            var resp;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.PostByXMLHttpReq(uri).then(function (resp) { return resp; })];
-                    case 1:
-                        resp = _a.sent();
-                        if (resp.code === 1) {
-                            return [2 /*return*/, resp.data];
-                        }
-                        App.ShowError(resp.msg);
-                        return [2 /*return*/, false];
-                }
-            });
-        });
-    };
-    FileService.prototype.PostFile = function (uri, fileKey, file, params) {
-        return __awaiter(this, void 0, void 0, function () {
-            var k, resp;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        for (k in params) {
-                            this.SetParam(k, params[k]);
-                        }
-                        this.SetParam(fileKey, file);
-                        if (!window['cordova']) return [3 /*break*/, 2];
-                        return [4 /*yield*/, this.PostByFileTransfer(uri, fileKey, file, params)
-                                .then(function (resp) { return resp; })
-                                .catch(function (error) {
-                                App.ShowToast(error);
-                            })];
-                    case 1:
-                        resp = _a.sent();
-                        return [3 /*break*/, 4];
-                    case 2: return [4 /*yield*/, this.PostByXMLHttpReq(uri, fileKey, file, params)
-                            .then(function (resp) { return resp; })
-                            .catch(function (error) {
-                            App.ShowToast(error);
-                        })];
-                    case 3:
-                        resp = _a.sent();
-                        _a.label = 4;
-                    case 4:
-                        if (resp.code === 1) {
-                            return [2 /*return*/, resp.data];
-                        }
-                        App.ShowError(resp.msg);
-                        return [2 /*return*/, false];
-                }
-            });
-        });
-    };
-    FileService.prototype.showAddImage = function () {
+    // 登录
+    TAuthService.prototype.Login = function (Tel, Password) {
         var _this = this;
-        return new Promise(function (resolve, reject) {
-            if (!window['cordova']) {
-                var input_1 = document.createElement('input');
-                input_1.type = 'file';
-                input_1.accept = "image/png,image/jpeg,image/jpg,image/x-png";
-                input_1.click();
-                input_1.onchange = function () {
-                    console.log(input_1.files[0]);
-                    App.ShowLoading('处理中');
-                    __WEBPACK_IMPORTED_MODULE_4_lrz___default()(input_1.files[0], {
-                        quality: 0.6,
-                        width: _this.targetWidth,
-                        height: _this.targetHeight
-                    })
-                        .then(function (rst) {
-                        // 处理成功会执行
-                        var file = _this.dataURLtoFile(rst.base64, input_1.files[0].name);
-                        var result = {
-                            'file': file,
-                            'base64': rst.base64,
-                            'blob': window.URL.createObjectURL(file)
-                        };
-                        resolve(result);
-                    })
-                        .catch(function (err) {
-                        // 处理失败会执行
-                        console.log('LRZ: Compress image failed.');
-                        console.log(err);
-                    })
-                        .always(function () {
-                        // 不管是成功失败，都会执行
-                        App.HideLoading();
-                    });
-                };
+        this.SetParam('mobile', Tel.toString());
+        this.SetParam('password', this.Md5T(Password).toString());
+        this.Post('kpay/api/login').subscribe(function (data) {
+            _this.GetUserData();
+            App.Nav.push('TabsPage');
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    // 校验找回密码短信验证码
+    TAuthService.prototype.GetFindPwdData = function (tel, VCode) {
+        this.SetParam('mobile', tel.toString());
+        this.SetParam('veriCode', VCode);
+        return this.Post('kpay/api/checkPwdVeriCode');
+    };
+    // 获取找回密码短信验证码
+    TAuthService.prototype.GetResetPwdData = function (tel) {
+        this.SetParam('mobile', tel.toString());
+        return this.Post('kpay/api/getPwdVericode');
+    };
+    // 修改用户密码
+    TAuthService.prototype.GetchangePsdData = function (tel, pwd, VCode) {
+        this.SetParam('mobile', tel.toString());
+        this.SetParam('password', this.Md5T(pwd).toString());
+        this.SetParam('veriCode', VCode);
+        return this.Post('kpay/api/user/changePassword');
+    };
+    // 获取修改密码验证码
+    TAuthService.prototype.getPwdVericode = function (mobile) {
+        this.SetParam('mobile', mobile);
+        return this.Post('kpay/api/getPwdVericode');
+    };
+    // 注册
+    TAuthService.prototype.SignIn = function (Tel, Password, Code, Recommend) {
+        this.SetParam('mobile', Tel.toString());
+        this.SetParam('password', this.Md5T(Password).toString());
+        this.SetParam('veriCode', Code);
+        if (Recommend) {
+            this.SetParam('referee', Recommend);
+        }
+        return this.Post('kpay/api/register');
+    };
+    // 获取注册验证码
+    TAuthService.prototype.GetVerifyCode = function (Tel) {
+        this.SetParam('mobile', Tel.toString());
+        return this.Post('kpay/api/getVericode');
+    };
+    // 验证注册验证码
+    TAuthService.prototype.CheckVerifyCode = function (Tel, VCode) {
+        this.SetParam('mobile', Tel.toString());
+        this.SetParam('veriCode', VCode);
+        return this.Post('kpay/api/checkRegVeriCode');
+    };
+    // 退出登陆
+    TAuthService.prototype.Logout = function () {
+        __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].removeToken();
+        App.UserInfo = null;
+        App.DisableHardwareBackButton();
+        App.NavGo('login');
+    };
+    Object.defineProperty(TAuthService.prototype, "IsLogin", {
+        // 判断登录
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(__WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].getToken());
+        },
+        enumerable: true,
+        configurable: true
+    });
+    // 校验token有效性
+    TAuthService.prototype.CheckToken = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.Post('kpay/api/checkToken').toPromise()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    // 修改用户信息
+    TAuthService.prototype.ModifyUserInfo = function (json) {
+        for (var k in json) {
+            this.SetParam(k, json[k]);
+        }
+        this.Post('kpay/api/user/modify').subscribe(function (data) {
+            console.log(data);
+        });
+    };
+    // 获取用户信息
+    TAuthService.prototype.GetUserData = function () {
+        var _this = this;
+        return this.Post('kpay/api/user/info').map(function (resp) {
+            var userData = resp.data;
+            _this.updateUser(userData);
+        }).subscribe(function (data) {
+            // console.log(data);
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    // 第三方登录
+    TAuthService.prototype.thirdPartyLogin = function (mobile, key) {
+        var _this = this;
+        __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].setMobile(mobile);
+        __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].setSecret(key);
+        this.SetParam('mobile', mobile);
+        this.SetParam('key', key);
+        return this.Post('kpay/api/login/partner').subscribe(function (data) {
+            if (__WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(data.data) && !__WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].IsEmptyObject(data.data)) {
+                __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].setToken(data.data.token);
+                _this.GetUserData();
+                App.Nav.setPages([{ page: 'TabsPage' }, { page: 'CreditCardPage' }]);
             }
             else {
-                new Promise(function (resolve, reject) {
-                    var actionSheetConfig = {
-                        title: '添加图片',
-                        buttons: [
-                            {
-                                text: '相册',
-                                handler: function () {
-                                    resolve(_this.camera.PictureSourceType.PHOTOLIBRARY);
-                                }
-                            },
-                            {
-                                text: '相机',
-                                handler: function () {
-                                    resolve(_this.camera.PictureSourceType.CAMERA);
-                                }
-                            },
-                            {
-                                text: '取消',
-                                role: 'cancel',
-                                handler: function () {
-                                    reject();
-                                }
-                            }
-                        ]
-                    };
-                    App.ShowActionSheet(actionSheetConfig);
-                }).then(function (sourceType) {
-                    if (!window['cordova']) {
-                        return;
-                    }
-                    var options = {
-                        quality: 50,
-                        sourceType: sourceType,
-                        saveToPhotoAlbum: false,
-                        correctOrientation: true,
-                        targetWidth: _this.targetWidth,
-                        targetHeight: _this.targetHeight
-                    };
-                    _this.camera.getPicture(options).then(function (imageData) {
-                        if (imageData.indexOf('?') > -1) {
-                            var arr = imageData.match(new RegExp(/[^?]+/, 'ig'));
-                            if (arr.length > 0) {
-                                imageData = arr[0];
-                            }
-                        }
-                        var result = {
-                            'file': imageData,
-                            'base64': imageData,
-                            'blob': imageData
-                        };
-                        resolve(result);
-                    });
-                }).catch(function (error) {
-                    console.log('Camera failed.');
-                    App.ShowToast('获取图片失败');
-                    reject(error);
-                });
+                App.Nav.setRoot('LoginPage');
             }
+        }, function (error) {
+            console.error(error);
         });
     };
-    FileService.prototype.dataURLtoBlob = function (dataurl) {
-        var arr = dataurl.split(',');
-        var mime = arr[0].match(/:(.*?);/)[1];
-        var bstr = atob(arr[1]);
-        var n = bstr.length;
-        var u8arr = new Uint8Array(n);
-        while (n--) {
-            u8arr[n] = bstr.charCodeAt(n);
-        }
-        return new Blob([u8arr], {
-            type: mime
-        });
+    // 重新登录
+    TAuthService.prototype.thirdPartyReLogin = function () {
+        var mobile = __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].getMobile();
+        var secret = __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].getSecret();
+        this.thirdPartyLogin(mobile, secret);
     };
-    FileService.prototype.dataURLtoFile = function (dataurl, filename) {
-        var arr = dataurl.split(',');
-        var mime = arr[0].match(/:(.*?);/)[1];
-        var bstr = atob(arr[1]);
-        var n = bstr.length;
-        var u8arr = new Uint8Array(n);
-        while (n--) {
-            u8arr[n] = bstr.charCodeAt(n);
-        }
-        return new File([u8arr], filename, { 'type': mime });
-    };
-    FileService.prototype.PostByFileTransfer = function (uri, fileKey, file, params) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var BaseUrl = _this.BaseUrl;
-            var url = BaseUrl + "/" + uri;
-            if (window['cordova']) {
-                var options = {
-                    fileKey: fileKey,
-                    fileName: file,
-                    headers: {
-                        'Authorization': _this.getToken
-                    }
-                };
-                if (params) {
-                    options.params = params;
-                }
-                var fileTransfer = _this.fileTransfer.create();
-                fileTransfer.upload(file, url, options)
-                    .then(function (data) {
-                    resolve(JSON.parse(data.response));
-                })
-                    .catch(function (error) {
-                    App.ShowToast('上传失败');
-                    reject(error);
-                });
-            }
-        });
-    };
-    FileService.prototype.PostByXMLHttpReq = function (uri, fileKey, file, params) {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            return __generator(this, function (_a) {
-                return [2 /*return*/, new Promise(function (resolve, reject) {
-                        var formData = new FormData();
-                        if (lodash.keys(params).length > 0) {
-                            lodash.forEach(params, function (v, k) {
-                                formData.append(k, v);
-                            });
-                        }
-                        var BaseUrl = _this.BaseUrl;
-                        var url = encodeURI(BaseUrl + "/" + uri);
-                        App.ShowLoading();
-                        var xhr = new XMLHttpRequest();
-                        xhr.open('GET', window.URL.createObjectURL(file), true);
-                        xhr.responseType = 'blob';
-                        xhr.onload = function (e) {
-                            if (xhr['status'] != 200) {
-                                App.ShowError('您的浏览器不支持Blob');
-                                console.error(e, xhr);
-                                reject(e);
-                            }
-                            else {
-                                var blob = xhr['response'];
-                                var xhr2_1 = new XMLHttpRequest();
-                                var suffix = file.type.split('/')[1];
-                                var filename = (new Date()).getTime() + '.' + suffix;
-                                formData.append(fileKey, blob, filename);
-                                xhr2_1.onloadend = function () {
-                                    App.HideLoading();
-                                };
-                                xhr2_1.ontimeout = function () {
-                                    App.HideLoading();
-                                };
-                                xhr2_1.onreadystatechange = function () {
-                                    if (xhr2_1.readyState === 4) {
-                                        if (xhr2_1.status === 200) {
-                                            resolve(JSON.parse(xhr2_1.response));
-                                        }
-                                        else {
-                                            reject(xhr2_1);
-                                        }
-                                    }
-                                };
-                                xhr2_1.open('POST', url, true);
-                                xhr2_1.setRequestHeader('Authorization', _this.getToken);
-                                xhr2_1.send(formData);
-                            }
-                        };
-                        xhr.send();
-                    })];
-            });
-        });
-    };
-    FileService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__["a" /* FileTransfer */]])
-    ], FileService);
-    return FileService;
-}(__WEBPACK_IMPORTED_MODULE_5__providers_pub_service__["a" /* TBaseService */]));
-
-//# sourceMappingURL=fileservice.js.map
-
-/***/ }),
-
-/***/ 68:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CredentialHelper; });
-var CredentialHelper = /** @class */ (function () {
-    function CredentialHelper() {
-    }
-    CredentialHelper.setToken = function (v) {
-        localStorage.setItem(CredentialHelper.tokenKey, v);
-    };
-    CredentialHelper.setMobile = function (v) {
-        localStorage.setItem(CredentialHelper.mobileKey, v);
-    };
-    CredentialHelper.setSecret = function (v) {
-        localStorage.setItem(CredentialHelper.secretKey, v);
-    };
-    CredentialHelper.getToken = function () {
-        return localStorage.getItem(CredentialHelper.tokenKey);
-    };
-    CredentialHelper.removeToken = function () {
-        return localStorage.removeItem(CredentialHelper.tokenKey);
-    };
-    CredentialHelper.getMobile = function () {
-        return localStorage.getItem(CredentialHelper.mobileKey);
-    };
-    CredentialHelper.getSecret = function () {
-        return localStorage.getItem(CredentialHelper.secretKey);
-    };
-    CredentialHelper.tokenKey = 'token';
-    CredentialHelper.mobileKey = 'mobile';
-    CredentialHelper.secretKey = 'third_party_secret';
-    return CredentialHelper;
-}());
-
-//# sourceMappingURL=credential-helper.js.map
-
-/***/ }),
-
-/***/ 78:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MineService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_pub_service__ = __webpack_require__(58);
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var MineService = /** @class */ (function (_super) {
-    __extends(MineService, _super);
-    function MineService(http) {
-        var _this = _super.call(this, http) || this;
-        _this.http = http;
-        return _this;
-    }
-    //获取取现记录列表
-    MineService.prototype.GetCashList = function () {
-        return this.Post('kpay/api/cash/getCashList');
-    };
-    // 获取取现记录详情
-    MineService.prototype.GetCashDetail = function (orderId) {
-        this.SetParam('id', orderId);
-        return this.Post('kpay/api/cash/getCashDetail');
-    };
-    // 获取红包礼券voucher
-    MineService.prototype.GetVoucherList = function () {
-        return this.Post('kpay/api/cash/cashback/list');
-    };
-    // 获取我的客户
-    MineService.prototype.GetMyCustomer = function () {
-        return this.Post('kpay/api/user/mycustomer');
-    };
-    // 获取返现记录
-    MineService.prototype.GetCashBack = function () {
-        return this.Post('kpay/api/trade/list');
-    };
-    // 获取VIP套餐列表
-    MineService.prototype.GetVipList = function () {
-        return this.Post('kpay/api/package/list');
-    };
-    // 购买Vip
-    MineService.prototype.BuyVip = function (id) {
-        this.SetParam('packId', id);
-        return this.Post('kpay/api/package/buy', { packId: id });
-    };
-    MineService = __decorate([
+    TAuthService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]])
-    ], MineService);
-    return MineService;
-}(__WEBPACK_IMPORTED_MODULE_2__providers_pub_service__["a" /* TBaseService */]));
+    ], TAuthService);
+    return TAuthService;
+}(__WEBPACK_IMPORTED_MODULE_4__pub_service__["a" /* TBaseService */]));
 
-//# sourceMappingURL=mineservice.js.map
+//# sourceMappingURL=auth.js.map
 
 /***/ })
 
-},[299]);
+},[269]);
 //# sourceMappingURL=main.js.map
