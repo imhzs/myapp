@@ -28891,6 +28891,8 @@ ion-icon.app-icon, ion-icon[app-icon] {
 
 .ucenter-page .card {
   width: 100%;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 .u-mycard .segment .segment-button {
