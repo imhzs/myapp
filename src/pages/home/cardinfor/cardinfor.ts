@@ -115,7 +115,7 @@ export class CardInforPage implements OnInit
       return;
     }
     this.Service.ConfirmResult(this.OrderNo, this.Form_Group_Info.value.VerifyCode).subscribe(res => {
-      App.Nav.push(App.RootPage.ConfirminfoPage, {InCard: this.Params.DepositCard, FinalAmount: this.Params.InputAmount, CardCode: this.Params.DepositCode});
+      App.Nav.push('confirminfo', {InCard: this.Params.DepositCard, FinalAmount: this.Params.InputAmount, CardCode: this.Params.DepositCode});
     })
   }
 

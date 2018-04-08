@@ -87,9 +87,9 @@ export class AddCreditCardPage implements OnInit
         this.auth.currentUser.subscribe(
           (data)=> {
             if (this.navParams.get('page')) {
-              App.Nav.push(this.navParams.get('page'));
+              App.NavGo(this.navParams.get('page'));
             } else {
-              App.Nav.push('MyCardPage');
+              App.NavGo('mycard');
             }
           }
         );

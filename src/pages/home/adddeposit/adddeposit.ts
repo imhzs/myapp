@@ -47,10 +47,11 @@ export class AddDepositPage implements OnInit
   App: any = <any>window.App;
 
   constructor(public Service: HomeService, public navParams: NavParams, private auth: TAuthService, private fileService: FileService) {
-    this.GetIdCard(App.UserInfo['idCardNo']);
+    this.GetIdCard(App.UserInfo.idCardNo);
     this.auth.currentUser.subscribe(
       data => {
-        this.GetIdCard(App.UserInfo['idCardNo']);
+        AuthHelper.check();
+        this.GetIdCard(App.UserInfo.idCardNo);
       }
     );
   }
@@ -70,7 +71,9 @@ export class AddDepositPage implements OnInit
   }
 
   ionViewDidEnter() {
-    AuthHelper.check();
+    if (TypeInfo.Assigned(App.UserInfo) && !TypeInfo.IsEmptyObject(App.UserInfo)) {
+      AuthHelper.check();
+    }
   }
 
   // 卡号是否符合规则
@@ -135,9 +138,9 @@ export class AddDepositPage implements OnInit
         this.auth.GetUserData();
         this.auth.currentUser.subscribe(data => {
           if (this.navParams.get('page')) {
-            App.Nav.push(this.navParams.get('page'));
+            App.NavGo(this.navParams.get('page'));
           } else {
-            App.Nav.push('MyCardPage');
+            App.NavGo('mycard');
           }
         });
       });

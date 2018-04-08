@@ -19,18 +19,44 @@
     "cordova-plugin-device": {
       "PACKAGE_NAME": "com.werunpay"
     },
-    "cordova-plugin-file-transfer": {
-      "PACKAGE_NAME": "com.werunpay"
-    },
     "cordova-plugin-file": {
       "PACKAGE_NAME": "com.werunpay"
     },
     "cordova-plugin-file-opener2": {
       "PACKAGE_NAME": "com.werunpay"
     },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.werunpay"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.werunpay"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "com.werunpay"
+    },
     "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.werunpay"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.werunpay"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.werunpay"
+    },
+    "cordova-plugin-wechat": {
+      "WECHATAPPID": "wx4f67e62f44b0a166",
+      "PACKAGE_NAME": "com.werunpay"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.werunpay"
+    },
+    "cordova-plugin-x-socialsharing": {
       "PACKAGE_NAME": "com.werunpay"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.werunpay"
+    }
+  }
 }

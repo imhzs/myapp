@@ -13,19 +13,19 @@
   <ion-grid class="page-content">
     <ion-row align-items-center justify-content-center class="border-bottom-1px" p-b-10>
       <ion-col col-10 col-sm-10 col-md-10 col-lg-4 col-xs-2>
-        <button type="button" class="btn-home-pay btn-default" ion-button full (click)="App.Nav.push('CreditCardPage')">刷卡收款</button>
+        <a href="/#/creditcard" class="btn-home-pay btn-default" ion-button full>刷卡收款</a>
       </ion-col>
     </ion-row>
     <ion-row p-t-15>
-      <ion-col col-4 class="d-flex flex-column align-items-center" (click)="App.Nav.push('MyCardPage')">
+      <ion-col col-4 class="d-flex flex-column align-items-center" (click)="App.NavGo('mycard')">
         <img src="assets/imgs/creditcard.png" alt="办信用卡" width="60" height="60" />
         <label m-t-5 text-center>办信用卡</label>
       </ion-col>
-      <ion-col col-4 class="d-flex flex-column align-items-center" (click)="App.Nav.push('AddCreditCardPage')">
+      <ion-col col-4 class="d-flex flex-column align-items-center" (click)="App.NavGo('addcreditcard')">
         <img src="assets/imgs/auth.png" alt="身份认证" width="60" height="60" />
         <label m-t-5 text-center>身份认证</label>
       </ion-col>
-      <ion-col col-4 class="d-flex flex-column align-items-center" (click)="App.Nav.push('AddDepositPage')">
+      <ion-col col-4 class="d-flex flex-column align-items-center" (click)="App.NavGo('adddeposit')">
         <img src="assets/imgs/welfare.png" alt="会员福利" width="60" height="60" />
         <label m-t-5 text-center>会员福利</label>
       </ion-col>

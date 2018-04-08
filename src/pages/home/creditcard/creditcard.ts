@@ -144,12 +144,12 @@ export class CreditCardPage
 
   // 添加信用卡
   AddCreditCard() {
-    this.navCtrl.push('AddCreditCardPage');
+    App.NavGo('addcreditcard');
   }
 
   // 添加储蓄卡
   AddDepositCard() {
-    this.navCtrl.push('AddDepositPage');
+    App.NavGo('adddeposit');
   }
 
   // 关闭刷卡流程提醒

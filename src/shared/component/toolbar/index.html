@@ -1,7 +1,7 @@
 <div class="app-toolbar-primary" [class.cover-color]="CoverColor">
   <div class="toolbar-buttons">
     <ng-template [ngIf]="HasBack">
-      <button ion-button class="back-bar-button" navPop tappable></button>
+      <button ion-button class="back-bar-button" (click)="Back()" tappable></button>
     </ng-template>
   </div>
   <div class="toolbar-title">
@@ -9,7 +9,7 @@
   </div>
   <div class="toolbar-buttons">
     <ng-template [ngIf]="!BtnIcon && !BtnText">
-      <button ion-button [class.app-icon]="CircleUser" (click)="UCenter" tappable>
+      <button ion-button [class.app-icon]="CircleUser" (click)="ToUCenter()" tappable>
         <img src="assets/imgs/homemy.png" alt="ucenter" />
       </button>
     </ng-template>

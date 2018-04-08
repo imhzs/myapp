@@ -1,17 +1,17 @@
 webpackJsonp([29],{
 
-/***/ 15:
+/***/ 10:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TAuthService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pub_service__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__ = __webpack_require__(68);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -30,6 +30,41 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
 };
 
 
@@ -60,9 +95,15 @@ var TAuthService = /** @class */ (function (_super) {
     };
     // 登录
     TAuthService.prototype.Login = function (Tel, Password) {
+        var _this = this;
         this.SetParam('mobile', Tel.toString());
         this.SetParam('password', this.Md5T(Password).toString());
-        this.Post('kpay/api/login');
+        this.Post('kpay/api/login').subscribe(function (data) {
+            _this.GetUserData();
+            App.Nav.push('TabsPage');
+        }, function (error) {
+            console.log(error);
+        });
     };
     // 校验找回密码短信验证码
     TAuthService.prototype.GetFindPwdData = function (tel, VCode) {
@@ -110,7 +151,7 @@ var TAuthService = /** @class */ (function (_super) {
     };
     // 退出登陆
     TAuthService.prototype.Logout = function () {
-        localStorage.removeItem('token');
+        __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].removeToken();
         App.UserInfo = null;
         App.DisableHardwareBackButton();
         App.Nav.push(App.RootPage.StartPage);
@@ -118,14 +159,21 @@ var TAuthService = /** @class */ (function (_super) {
     Object.defineProperty(TAuthService.prototype, "IsLogin", {
         // 判断登录
         get: function () {
-            return __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(localStorage.getItem('token'));
+            return __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(__WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].getToken());
         },
         enumerable: true,
         configurable: true
     });
     // 校验token有效性
     TAuthService.prototype.CheckToken = function () {
-        return this.Post('kpay/api/checkToken');
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.Post('kpay/api/checkToken').toPromise()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
     };
     // 修改用户信息
     TAuthService.prototype.ModifyUserInfo = function (json) {
@@ -142,9 +190,8 @@ var TAuthService = /** @class */ (function (_super) {
         return this.Post('kpay/api/user/info').map(function (resp) {
             var userData = resp.data;
             _this.updateUser(userData);
-        })
-            .subscribe(function (data) {
-            console.log(data);
+        }).subscribe(function (data) {
+            // console.log(data);
         }, function (error) {
             console.log(error);
         });
@@ -159,10 +206,16 @@ var TAuthService = /** @class */ (function (_super) {
         return this.Post('kpay/api/login/partner').subscribe(function (data) {
             __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].setToken(data.data.token);
             _this.GetUserData();
-            App.Nav.push('CreditCardPage');
+            App.Nav.setPages([{ page: 'TabsPage' }, { page: 'CreditCardPage' }]);
         }, function (error) {
             console.error(error);
         });
+    };
+    // 重新登录
+    TAuthService.prototype.thirdPartyReLogin = function () {
+        var mobile = __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].getMobile();
+        var secret = __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].getSecret();
+        this.thirdPartyLogin(mobile, secret);
     };
     TAuthService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
@@ -175,13 +228,14 @@ var TAuthService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 150:
+/***/ 151:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListofbankPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_homeservice__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_homeservice__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -193,9 +247,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var ListofbankPage = /** @class */ (function () {
-    function ListofbankPage(Service) {
+    function ListofbankPage(Service, auth) {
         this.Service = Service;
+        this.auth = auth;
         this.App = window.App;
         this.HeadTitle = "选择开户银行";
     }
@@ -207,12 +263,15 @@ var ListofbankPage = /** @class */ (function () {
     ListofbankPage.prototype.SelectedBank = function (item) {
         App.ActiveView.dismiss({ name: item.bankName, code: item.id });
     };
+    ListofbankPage.prototype.ionViewCanEnter = function () {
+        this.auth.CheckToken();
+    };
     ListofbankPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-listofbank',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\listofbank\listofbank.html"*/'<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-list class="bankcard-list">\n\n    <ion-item *ngFor="let item of BankList" (click)="SelectedBank(item)">\n\n      <ion-avatar item-start>\n\n        <img src="assets/banklogo/bank_{{item.id}}.png">\n\n      </ion-avatar>\n\n      <h2>{{item.bankName}}</h2>\n\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\listofbank\listofbank.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_homeservice__["a" /* HomeService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_2__providers_auth__["a" /* TAuthService */]])
     ], ListofbankPage);
     return ListofbankPage;
 }());
@@ -221,14 +280,15 @@ var ListofbankPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 151:
+/***/ 152:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BranchcardPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -240,12 +300,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var _ = __webpack_require__(117);
+var _ = __webpack_require__(118);
+
 
 var BranchcardPage = /** @class */ (function () {
-    function BranchcardPage(navParams, Service) {
+    function BranchcardPage(navParams, Service, auth) {
         this.navParams = navParams;
         this.Service = Service;
+        this.auth = auth;
         this.App = window.App;
         this.HeadTitle = "选择开户支行";
         this.BranchList = new Array();
@@ -272,12 +334,15 @@ var BranchcardPage = /** @class */ (function () {
     BranchcardPage.prototype.SelectedBranch = function (item) {
         App.ActiveView.dismiss({ name: item.bankName, bankCode: item.bankCode });
     };
+    BranchcardPage.prototype.ionViewCanEnter = function () {
+        this.auth.CheckToken();
+    };
     BranchcardPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-branchcard',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\branchcard\branchcard.html"*/'<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n  <ion-toolbar class="search-bar">\n\n    <ion-searchbar  (ngModelChange)="SearchBank()" placeholder="请输关键字搜索,如\'福田\'" [(ngModel)]="KeyWord"></ion-searchbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-list class="bankcard-list">\n\n    <ion-item *ngFor="let item of BranchList" (click)="SelectedBranch(item)">\n\n      <ion-avatar item-start>\n\n        <img src="assets/banklogo/bank_{{BankCode}}.png">\n\n      </ion-avatar>\n\n      <h2>{{item.bankName}}</h2>\n\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\branchcard\branchcard.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__["a" /* HomeService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_3__providers_auth__["a" /* TAuthService */]])
     ], BranchcardPage);
     return BranchcardPage;
 }());
@@ -286,7 +351,7 @@ var BranchcardPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 163:
+/***/ 164:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -299,673 +364,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 163;
+webpackEmptyAsyncContext.id = 164;
 
 /***/ }),
 
-/***/ 203:
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"../pages/auth/auth.module": [
-		483,
-		26
-	],
-	"../pages/findpassword/findpassword.module": [
-		485,
-		25
-	],
-	"../pages/home/addcreditcard/addcreditcard.module": [
-		484,
-		24
-	],
-	"../pages/home/adddeposit/adddeposit.module": [
-		486,
-		23
-	],
-	"../pages/home/branchcard/branchcard.module": [
-		487,
-		22
-	],
-	"../pages/home/cardinfor/cardinfor.module": [
-		488,
-		21
-	],
-	"../pages/home/changecards/changecards.module": [
-		489,
-		20
-	],
-	"../pages/home/checkout/checkout.module": [
-		490,
-		19
-	],
-	"../pages/home/confirminfo/confirminfo.module": [
-		491,
-		18
-	],
-	"../pages/home/creditcard/creditcard.module": [
-		492,
-		17
-	],
-	"../pages/home/finalpay/finalpay.module": [
-		493,
-		16
-	],
-	"../pages/home/home.module": [
-		494,
-		15
-	],
-	"../pages/home/listofbank/listofbank.module": [
-		495,
-		14
-	],
-	"../pages/home/resetpassword/resetpassword.module": [
-		496,
-		13
-	],
-	"../pages/loan/loan.module": [
-		497,
-		12
-	],
-	"../pages/login/login.module": [
-		498,
-		11
-	],
-	"../pages/modifypassword/modifypassword.module": [
-		499,
-		10
-	],
-	"../pages/register/register.module": [
-		500,
-		28
-	],
-	"../pages/setpassword/setpassword.module": [
-		501,
-		9
-	],
-	"../pages/start/start.module": [
-		502,
-		8
-	],
-	"../pages/tabs/tabs.module": [
-		503,
-		7
-	],
-	"../pages/thirdparty/thirdparty.module": [
-		504,
-		27
-	],
-	"../pages/ucenter/VIPmembers/VIPmembers.module": [
-		511,
-		6
-	],
-	"../pages/ucenter/mycard/mycard.module": [
-		505,
-		5
-	],
-	"../pages/ucenter/orders/orders.module": [
-		506,
-		4
-	],
-	"../pages/ucenter/records/records.module": [
-		507,
-		3
-	],
-	"../pages/ucenter/ucenter.module": [
-		508,
-		2
-	],
-	"../pages/ucenter/uinfo/uinfo.module": [
-		509,
-		1
-	],
-	"../pages/ucenter/usetup/usetup.module": [
-		510,
-		0
-	]
-};
-function webpackAsyncContext(req) {
-	var ids = map[req];
-	if(!ids)
-		return Promise.reject(new Error("Cannot find module '" + req + "'."));
-	return __webpack_require__.e(ids[1]).then(function() {
-		return __webpack_require__(ids[0]);
-	});
-};
-webpackAsyncContext.keys = function webpackAsyncContextKeys() {
-	return Object.keys(map);
-};
-webpackAsyncContext.id = 203;
-module.exports = webpackAsyncContext;
-
-/***/ }),
-
-/***/ 207:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CredentialHelper; });
-var CredentialHelper = /** @class */ (function () {
-    function CredentialHelper() {
-    }
-    CredentialHelper.setToken = function (v) {
-        localStorage.setItem(CredentialHelper.tokenKey, v);
-    };
-    CredentialHelper.setMobile = function (v) {
-        localStorage.setItem(CredentialHelper.mobileKey, v);
-    };
-    CredentialHelper.setSecret = function (v) {
-        localStorage.setItem(CredentialHelper.secretKey, v);
-    };
-    CredentialHelper.getToken = function () {
-        return localStorage.getItem(CredentialHelper.tokenKey);
-    };
-    CredentialHelper.getMobile = function () {
-        return localStorage.getItem(CredentialHelper.mobileKey);
-    };
-    CredentialHelper.getSecret = function () {
-        return localStorage.getItem(CredentialHelper.secretKey);
-    };
-    CredentialHelper.tokenKey = 'token';
-    CredentialHelper.mobileKey = 'mobile';
-    CredentialHelper.secretKey = 'third_party_secret';
-    return CredentialHelper;
-}());
-
-//# sourceMappingURL=credential-helper.js.map
-
-/***/ }),
-
-/***/ 21:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_pub_service__ = __webpack_require__(58);
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var _ = __webpack_require__(117);
-
-var HomeService = /** @class */ (function (_super) {
-    __extends(HomeService, _super);
-    function HomeService(http) {
-        var _this = _super.call(this, http) || this;
-        _this.http = http;
-        _this.subject = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
-        return _this;
-    }
-    // 身份证认证
-    HomeService.prototype.VerifyId = function (idcardNo, name, mobile) {
-        this.SetParam('idcardNo', idcardNo);
-        this.SetParam('name', name);
-        if (mobile) {
-            this.SetParam('mobile', mobile);
-        }
-        return this.Post('kpay/api/idcard/auth');
-    };
-    // 获取当日分润明细
-    HomeService.prototype.GetProfitToday = function () {
-        return this.Post('kpay/api/user/myprofit/today');
-    };
-    // 获取银行卡列表
-    HomeService.prototype.GetCardList = function () {
-        var _this = this;
-        return this.Post('kpay/api/bankcard/list').map(function (resp) {
-            var cards = resp.data;
-            _this.updateCards(cards);
-        }).subscribe(function (data) {
-            console.log(data);
-        }, function (error) {
-            console.log(error);
-        });
-    };
-    Object.defineProperty(HomeService.prototype, "currentCards", {
-        // 用户当前卡片
-        get: function () {
-            return this.subject.asObservable();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    // 更新卡片数据
-    HomeService.prototype.updateCards = function (cards) {
-        this.subject.next(_.concat(new Array(), cards));
-    };
-    // 设置银行卡主卡
-    HomeService.prototype.SetPrimCard = function (cardId) {
-        this.SetParam('cardId', cardId);
-        return this.Post('kpay/api/bankcard/setPrimary');
-    };
-    // 添加信用卡
-    HomeService.prototype.AddCreditCard = function (cardNo, mobile) {
-        this.SetParam('cardNo', cardNo);
-        this.SetParam('mobile', mobile);
-        return this.Post('kpay/api/bankcard/addCredit');
-    };
-    // 添加储蓄卡
-    HomeService.prototype.AddDeposiCard = function (cardNo, bankName, bankNo, branchName, mobile) {
-        this.SetParam('cardNo', cardNo);
-        this.SetParam('bankName', bankName);
-        this.SetParam('bankNo', bankNo);
-        this.SetParam('branchName', branchName);
-        this.SetParam('mobile', mobile);
-        return this.Post('kpay/api/bankcard/addDeposit');
-    };
-    // 删除银行卡
-    HomeService.prototype.DelCard = function (cardId) {
-        this.SetParam('cardId', cardId);
-        return this.Post('kpay/api/bankcard/del');
-    };
-    // 获取银行总行信息
-    HomeService.prototype.GetTolBanks = function () {
-        return this.Post('kpay/api/bank/info');
-    };
-    //获取银行支行信息
-    HomeService.prototype.GetBranchBanks = function (massage) {
-        this.SetParam('name', massage);
-        return this.Post('kpay/api/bank/list');
-    };
-    // 取现可用返现券
-    HomeService.prototype.GetAvaCash = function (amount) {
-        this.SetParam('amount', amount);
-        return this.Post('kpay/api/cash/cashback/available');
-    };
-    // 获取银行取现列表
-    HomeService.prototype.GetBankPage = function (cardId, enterCardId, amount, cashbackId) {
-        this.SetParam('cardId', cardId);
-        this.SetParam('enterCardId', enterCardId);
-        this.SetParam('amount', Math.round(amount * 100));
-        this.SetParam('token', localStorage.getItem('token'));
-        if (cashbackId) {
-            this.SetParam('cashbackId', cashbackId);
-        }
-        return this.Post('kpay/api/trade/quickPay/request');
-    };
-    // 快捷取现获取验证码
-    HomeService.prototype.GetVerifyode = function (acctNo, cvn2, expDate, mobile, amount, cashbackId) {
-        this.SetParam('acctNo', acctNo);
-        this.SetParam('cvn2', cvn2);
-        this.SetParam('amount', Math.round(amount * 100));
-        this.SetParam('mobile', mobile);
-        this.SetParam('expDate', expDate);
-        if (cashbackId) {
-            this.SetParam('cashbackId', cashbackId);
-        }
-        App.ShowLoading('验证中...');
-        return this.Post('kpay/api/trade/quickPay/sendVericode');
-    };
-    // 快捷取现确认
-    HomeService.prototype.ConfirmResult = function (orderNo, smsCode) {
-        this.SetParam('orderNo', orderNo);
-        this.SetParam('smsCode', smsCode);
-        return this.Post('kpay/api/trade/quickPay/confirm');
-    };
-    HomeService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]])
-    ], HomeService);
-    return HomeService;
-}(__WEBPACK_IMPORTED_MODULE_3__providers_pub_service__["a" /* TBaseService */]));
-
-//# sourceMappingURL=homeservice.js.map
-
-/***/ }),
-
-/***/ 259:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SplashScreen; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__ = __webpack_require__(27);
-/**
- *  https://github.com/apache/cordova-plugin-splashscreen
- *      cordova plugin add cordova-plugin-splashscreen --save
- */
-
-var SplashScreen = /** @class */ (function () {
-    function SplashScreen() {
-    }
-    SplashScreen.show = function () {
-        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(navigator.splashscreen)) {
-            console.error('SplashScreen Plugin not Installed.');
-            return;
-        }
-        navigator.splashscreen.show();
-    };
-    SplashScreen.hide = function () {
-        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(navigator.splashscreen)) {
-            console.error('SplashScreen Plugin not Installed.');
-            return;
-        }
-        navigator.splashscreen.hide();
-    };
-    return SplashScreen;
-}());
-
-//# sourceMappingURL=SplashScreen.js.map
-
-/***/ }),
-
-/***/ 260:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StatusBar; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__ = __webpack_require__(27);
-/**
- *  https://github.com/apache/cordova-plugin-statusbar
- *      cordova plugin add cordova-plugin-statusbar --save
- */
-
-var StatusBar = /** @class */ (function () {
-    function StatusBar() {
-    }
-    /** iOS */
-    StatusBar.overlaysWebView = function (Overlay) {
-        if (Overlay === void 0) { Overlay = true; }
-        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
-            console.error('StatusBar Plugin not Installed.');
-            return;
-        }
-        window.StatusBar.overlaysWebView(Overlay);
-    };
-    StatusBar.styleDefault = function () {
-        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
-            console.error('StatusBar Plugin not Installed.');
-            return;
-        }
-        window.StatusBar.styleDefault();
-    };
-    /** iOS, WP */
-    StatusBar.styleLightContent = function () {
-        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
-            console.error('StatusBar Plugin not Installed.');
-            return;
-        }
-        window.StatusBar.styleLightContent();
-    };
-    /** iOS, WP */
-    StatusBar.styleBlackTranslucent = function () {
-        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
-            console.error('StatusBar Plugin not Installed.');
-            return;
-        }
-        window.StatusBar.styleBlackTranslucent();
-    };
-    /** iOS, WP */
-    StatusBar.styleBlackOpaque = function () {
-        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
-            console.error('StatusBar Plugin not Installed.');
-            return;
-        }
-        window.StatusBar.styleBlackOpaque();
-    };
-    /** iOS note: you must call StatusBar.overlaysWebView(false) to enable color changing. */
-    StatusBar.backgroundColorByName = function (colorName) {
-        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
-            console.error('StatusBar Plugin not Installed.');
-            return;
-        }
-        window.StatusBar.backgroundColorByName(colorName);
-    };
-    /** iOS note: you must call StatusBar.overlaysWebView(false) to enable color changing. */
-    StatusBar.backgroundColorByHexString = function (hexString) {
-        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
-            console.error('StatusBar Plugin not Installed.');
-            return;
-        }
-        window.StatusBar.backgroundColorByHexString(hexString);
-    };
-    StatusBar.hide = function () {
-        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
-            console.error('StatusBar Plugin not Installed.');
-            return;
-        }
-        window.StatusBar.hide();
-    };
-    StatusBar.show = function () {
-        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
-            console.error('StatusBar Plugin not Installed.');
-            return;
-        }
-        window.StatusBar.show();
-    };
-    Object.defineProperty(StatusBar, "isVisible", {
-        get: function () {
-            if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
-                console.error('StatusBar Plugin not Installed.');
-                return false;
-            }
-            return window.StatusBar.isVisible;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return StatusBar;
-}());
-
-//# sourceMappingURL=StatusBar.js.map
-
-/***/ }),
-
-/***/ 261:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TApplication; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UltraCreation_ng_ion_appcontroller__ = __webpack_require__(382);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_root__ = __webpack_require__(384);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth__ = __webpack_require__(15);
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var TApplication = /** @class */ (function (_super) {
-    __extends(TApplication, _super);
-    function TApplication(Injector, auth) {
-        var _this = _super.call(this, Injector) || this;
-        _this.auth = auth;
-        // 用户信息
-        _this.UserInfo = {};
-        // 银行卡信息
-        _this.Cards = new Array();
-        // 是否VIP会员
-        _this.IsVip = false;
-        // 是否可以交易标识
-        _this.CanTrade = true;
-        // 当前信用卡
-        _this.CurrentCreditCards = {};
-        // 当前储蓄卡
-        _this.CurrentDepositCard = {};
-        _this.RootPage = __WEBPACK_IMPORTED_MODULE_2__shared_root__;
-        _this.HardwareBackButtonDisabled = false;
-        _this.BackButtonPressed = false;
-        window.App = _this;
-        _this.Platform.ready().then(function () {
-            _this.Platform.registerBackButtonAction(function () {
-                if (_this.HardwareBackButtonDisabled) {
-                    return;
-                }
-                if (App.Nav.canGoBack()) {
-                    App.Nav.pop();
-                    return;
-                }
-                if (_this.BackButtonPressed) {
-                    _this.Platform.exitApp();
-                }
-                else {
-                    _this.ShowToast('再按一次退出5u卡贝');
-                    _this.BackButtonPressed = true;
-                    setTimeout(function () {
-                        _this.BackButtonPressed = false;
-                    }, 2000);
-                }
-            });
-            if (_this.IsAndroid) {
-                window.addEventListener('native.keyboardshow', _this.keyboardShowHandler.bind(_this));
-                window.addEventListener('native.keyboardhide', _this.keyboardHideHandler.bind(_this));
-            }
-            _this.auth.currentUser.subscribe(function (data) {
-                console.log('User Data');
-                console.log(data);
-                _this.UserInfo = data;
-            });
-        });
-        return _this;
-    }
-    TApplication.prototype.keyboardShowHandler = function (e) {
-        if (window.scrollY < 100) {
-            window.scrollTo(0, e.keyboardHeight);
-        }
-    };
-    TApplication.prototype.keyboardHideHandler = function (e) {
-        if (window.scrollY != 0) {
-            window.scrollTo(0, 0);
-        }
-    };
-    TApplication.prototype.DisableHardwareBackButton = function () {
-        this.HardwareBackButtonDisabled = true;
-    };
-    TApplication.prototype.EnableHardwareBackButton = function () {
-        this.HardwareBackButtonDisabled = false;
-    };
-    TApplication.prototype.ShowToast = function (MsgOrConfig) {
-        if (MsgOrConfig instanceof Object) {
-            return _super.prototype.ShowToast.call(this, MsgOrConfig);
-        }
-        else {
-            return _super.prototype.ShowToast.call(this, { message: MsgOrConfig, position: 'middle', cssClass: 'toast-default', duration: 1500 });
-        }
-    };
-    TApplication.prototype.ShowLoading = function (MsgOrConfig) {
-        if (MsgOrConfig instanceof Object) {
-            return _super.prototype.ShowLoading.call(this, MsgOrConfig);
-        }
-        else {
-            return _super.prototype.ShowLoading.call(this, { spinner: 'ios-small', content: MsgOrConfig, cssClass: 'loading-default' });
-        }
-    };
-    TApplication.prototype.ShowError = function (err, duration, position) {
-        if (duration === void 0) { duration = 3000; }
-        if (position === void 0) { position = 'middle'; }
-        return _super.prototype.ShowError.call(this, err, {
-            duration: duration, position: position,
-            style: 'toast-error', prefix_lang: 'hint.'
-        });
-    };
-    Object.defineProperty(TApplication.prototype, "UserFace", {
-        get: function () {
-            if (__WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(localStorage.getItem('imageface'))) {
-                var avatar = localStorage.getItem('imageface');
-                return { backgroundImage: "url(" + avatar + ")" };
-            }
-            return null;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    TApplication.prototype.IsReal = function (page) {
-        return false;
-        // if (App.UserInfo.idAuthed !== 1) {
-        //   App.Nav.push(App.RootPage.NoldentifyPage);
-        // } else if(page) {
-        //   App.Nav.push(page);
-        // } else {
-        //   return;
-        // }
-    };
-    Object.defineProperty(TApplication.prototype, "IsIdAuthed", {
-        // 是否已完成身份认证
-        get: function () {
-            return App.UserInfo.idAuthed > 0;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(TApplication.prototype, "IsBankcardAuthed", {
-        // 是否完成储蓄卡验证
-        get: function () {
-            return App.UserInfo.bankcardAuthed > 0;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(TApplication.prototype, "IsCompleteAuthed", {
-        // 是否已完成身份认证
-        get: function () {
-            return this.IsIdAuthed && this.IsBankcardAuthed;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(TApplication.prototype, "IconFace", {
-        get: function () {
-            if (this.UserFace === null && this.UserInfo.sex === '男') {
-                return true;
-            }
-            return false;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    TApplication = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injector */], __WEBPACK_IMPORTED_MODULE_4__providers_auth__["a" /* TAuthService */]])
-    ], TApplication);
-    return TApplication;
-}(__WEBPACK_IMPORTED_MODULE_1__UltraCreation_ng_ion_appcontroller__["a" /* TAppController */]));
-
-//# sourceMappingURL=application.js.map
-
-/***/ }),
-
-/***/ 27:
+/***/ 19:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1083,6 +486,17 @@ var TypeInfo;
         return typeof value === TypeInfo.OBJECT && (allowNull || value !== null);
     }
     TypeInfo.IsObject = IsObject;
+    /**
+     * Returns true if the value parameter is an empty object.
+     * @param value
+     * @param allowNull If false (default) null is not considered an object.
+     * @returns {boolean}
+     */
+    function IsEmptyObject(value, allowNull) {
+        if (allowNull === void 0) { allowNull = false; }
+        return this.IsObject(value, allowNull) && JSON.stringify(value) === '{}';
+    }
+    TypeInfo.IsEmptyObject = IsEmptyObject;
     function IsArrayLike(instance) {
         /*
         * NOTE:
@@ -1184,16 +598,681 @@ Object.freeze(TypeInfo);
 
 /***/ }),
 
-/***/ 272:
+/***/ 204:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"../pages/auth/auth.module": [
+		484,
+		25
+	],
+	"../pages/findpassword/findpassword.module": [
+		485,
+		24
+	],
+	"../pages/home/addcreditcard/addcreditcard.module": [
+		486,
+		23
+	],
+	"../pages/home/adddeposit/adddeposit.module": [
+		487,
+		22
+	],
+	"../pages/home/branchcard/branchcard.module": [
+		488,
+		21
+	],
+	"../pages/home/cardinfor/cardinfor.module": [
+		489,
+		20
+	],
+	"../pages/home/changecards/changecards.module": [
+		491,
+		19
+	],
+	"../pages/home/checkout/checkout.module": [
+		490,
+		18
+	],
+	"../pages/home/confirminfo/confirminfo.module": [
+		492,
+		17
+	],
+	"../pages/home/creditcard/creditcard.module": [
+		493,
+		16
+	],
+	"../pages/home/finalpay/finalpay.module": [
+		494,
+		15
+	],
+	"../pages/home/home.module": [
+		495,
+		28
+	],
+	"../pages/home/listofbank/listofbank.module": [
+		496,
+		14
+	],
+	"../pages/home/resetpassword/resetpassword.module": [
+		497,
+		13
+	],
+	"../pages/loan/loan.module": [
+		498,
+		12
+	],
+	"../pages/login/login.module": [
+		499,
+		11
+	],
+	"../pages/modifypassword/modifypassword.module": [
+		500,
+		10
+	],
+	"../pages/register/register.module": [
+		501,
+		27
+	],
+	"../pages/setpassword/setpassword.module": [
+		502,
+		9
+	],
+	"../pages/start/start.module": [
+		503,
+		8
+	],
+	"../pages/tabs/tabs.module": [
+		504,
+		7
+	],
+	"../pages/thirdparty/thirdparty.module": [
+		505,
+		26
+	],
+	"../pages/ucenter/VIPmembers/VIPmembers.module": [
+		512,
+		6
+	],
+	"../pages/ucenter/mycard/mycard.module": [
+		506,
+		5
+	],
+	"../pages/ucenter/orders/orders.module": [
+		507,
+		4
+	],
+	"../pages/ucenter/records/records.module": [
+		508,
+		3
+	],
+	"../pages/ucenter/ucenter.module": [
+		509,
+		2
+	],
+	"../pages/ucenter/uinfo/uinfo.module": [
+		511,
+		1
+	],
+	"../pages/ucenter/usetup/usetup.module": [
+		510,
+		0
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids)
+		return Promise.reject(new Error("Cannot find module '" + req + "'."));
+	return __webpack_require__.e(ids[1]).then(function() {
+		return __webpack_require__(ids[0]);
+	});
+};
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = 204;
+module.exports = webpackAsyncContext;
+
+/***/ }),
+
+/***/ 208:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthHelper; });
+var AuthHelper = /** @class */ (function () {
+    function AuthHelper() {
+    }
+    AuthHelper.check = function () {
+        if (!App.IsIdAuthed) {
+            var alertOpts = {
+                title: '温馨提示',
+                message: '为了您的资金安全，首次刷卡收款时需要进行身份认证',
+                cssClass: 'text-left',
+                buttons: [
+                    {
+                        text: '取消',
+                        role: 'cancel',
+                        handler: function () {
+                            App.Nav.push('HomePage');
+                        }
+                    },
+                    {
+                        text: '去认证',
+                        handler: function () {
+                            App.Nav.push('AuthPage');
+                        }
+                    }
+                ]
+            };
+            App.ShowAlert(alertOpts);
+        }
+    };
+    return AuthHelper;
+}());
+
+//# sourceMappingURL=auth-helper.js.map
+
+/***/ }),
+
+/***/ 23:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_pub_service__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__ = __webpack_require__(68);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var _ = __webpack_require__(118);
+
+
+var HomeService = /** @class */ (function (_super) {
+    __extends(HomeService, _super);
+    function HomeService(http) {
+        var _this = _super.call(this, http) || this;
+        _this.http = http;
+        _this.subject = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
+        return _this;
+    }
+    // 身份证认证
+    HomeService.prototype.VerifyId = function (idcardNo, name, mobile) {
+        this.SetParam('idcardNo', idcardNo);
+        this.SetParam('name', name);
+        if (mobile) {
+            this.SetParam('mobile', mobile);
+        }
+        return this.Post('kpay/api/idcard/auth');
+    };
+    // 获取当日分润明细
+    HomeService.prototype.GetProfitToday = function () {
+        return this.Post('kpay/api/user/myprofit/today');
+    };
+    // 获取银行卡列表
+    HomeService.prototype.GetCardList = function () {
+        var _this = this;
+        return this.Post('kpay/api/bankcard/list').map(function (resp) {
+            var cards = resp.data;
+            _this.updateCards(cards);
+        }).subscribe(function (data) {
+            // console.log(data);
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    Object.defineProperty(HomeService.prototype, "currentCards", {
+        // 用户当前卡片
+        get: function () {
+            return this.subject.asObservable();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    // 更新卡片数据
+    HomeService.prototype.updateCards = function (cards) {
+        this.subject.next(_.concat(new Array(), cards));
+    };
+    // 设置银行卡主卡
+    HomeService.prototype.SetPrimCard = function (cardId) {
+        this.SetParam('cardId', cardId);
+        return this.Post('kpay/api/bankcard/setPrimary');
+    };
+    // 添加信用卡
+    HomeService.prototype.AddCreditCard = function (cardNo, mobile) {
+        this.SetParam('cardNo', cardNo);
+        this.SetParam('mobile', mobile);
+        return this.Post('kpay/api/bankcard/addCredit');
+    };
+    // 添加储蓄卡
+    HomeService.prototype.AddDeposiCard = function (cardNo, bankName, bankNo, branchName, mobile) {
+        this.SetParam('cardNo', cardNo);
+        this.SetParam('bankName', bankName);
+        this.SetParam('bankNo', bankNo);
+        this.SetParam('branchName', branchName);
+        this.SetParam('mobile', mobile);
+        return this.Post('kpay/api/bankcard/addDeposit');
+    };
+    // 删除银行卡
+    HomeService.prototype.DelCard = function (cardId) {
+        this.SetParam('cardId', cardId);
+        return this.Post('kpay/api/bankcard/del');
+    };
+    // 获取银行总行信息
+    HomeService.prototype.GetTolBanks = function () {
+        return this.Post('kpay/api/bank/info');
+    };
+    //获取银行支行信息
+    HomeService.prototype.GetBranchBanks = function (massage) {
+        this.SetParam('name', massage);
+        return this.Post('kpay/api/bank/list');
+    };
+    // 取现可用返现券
+    HomeService.prototype.GetAvaCash = function (amount) {
+        this.SetParam('amount', amount);
+        return this.Post('kpay/api/cash/cashback/available');
+    };
+    // 获取银行取现列表
+    HomeService.prototype.GetBankPage = function (cardId, enterCardId, amount, cashbackId) {
+        this.SetParam('cardId', cardId);
+        this.SetParam('enterCardId', enterCardId);
+        this.SetParam('amount', Math.round(amount * 100));
+        this.SetParam('token', __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__["a" /* CredentialHelper */].getToken());
+        if (cashbackId) {
+            this.SetParam('cashbackId', cashbackId);
+        }
+        return this.Post('kpay/api/trade/quickPay/request');
+    };
+    // 快捷取现获取验证码
+    HomeService.prototype.GetVerifyode = function (acctNo, cvn2, expDate, mobile, amount, cashbackId) {
+        this.SetParam('acctNo', acctNo);
+        this.SetParam('cvn2', cvn2);
+        this.SetParam('amount', Math.round(amount * 100));
+        this.SetParam('mobile', mobile);
+        this.SetParam('expDate', expDate);
+        if (cashbackId) {
+            this.SetParam('cashbackId', cashbackId);
+        }
+        return this.Post('kpay/api/trade/quickPay/sendVericode');
+    };
+    // 快捷取现确认
+    HomeService.prototype.ConfirmResult = function (orderNo, smsCode) {
+        this.SetParam('orderNo', orderNo);
+        this.SetParam('smsCode', smsCode);
+        return this.Post('kpay/api/trade/quickPay/confirm');
+    };
+    HomeService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]])
+    ], HomeService);
+    return HomeService;
+}(__WEBPACK_IMPORTED_MODULE_3__providers_pub_service__["a" /* TBaseService */]));
+
+//# sourceMappingURL=homeservice.js.map
+
+/***/ }),
+
+/***/ 260:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SplashScreen; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__ = __webpack_require__(19);
+/**
+ *  https://github.com/apache/cordova-plugin-splashscreen
+ *      cordova plugin add cordova-plugin-splashscreen --save
+ */
+
+var SplashScreen = /** @class */ (function () {
+    function SplashScreen() {
+    }
+    SplashScreen.show = function () {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(navigator.splashscreen)) {
+            console.error('SplashScreen Plugin not Installed.');
+            return;
+        }
+        navigator.splashscreen.show();
+    };
+    SplashScreen.hide = function () {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(navigator.splashscreen)) {
+            console.error('SplashScreen Plugin not Installed.');
+            return;
+        }
+        navigator.splashscreen.hide();
+    };
+    return SplashScreen;
+}());
+
+//# sourceMappingURL=SplashScreen.js.map
+
+/***/ }),
+
+/***/ 261:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StatusBar; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__ = __webpack_require__(19);
+/**
+ *  https://github.com/apache/cordova-plugin-statusbar
+ *      cordova plugin add cordova-plugin-statusbar --save
+ */
+
+var StatusBar = /** @class */ (function () {
+    function StatusBar() {
+    }
+    /** iOS */
+    StatusBar.overlaysWebView = function (Overlay) {
+        if (Overlay === void 0) { Overlay = true; }
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.overlaysWebView(Overlay);
+    };
+    StatusBar.styleDefault = function () {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.styleDefault();
+    };
+    /** iOS, WP */
+    StatusBar.styleLightContent = function () {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.styleLightContent();
+    };
+    /** iOS, WP */
+    StatusBar.styleBlackTranslucent = function () {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.styleBlackTranslucent();
+    };
+    /** iOS, WP */
+    StatusBar.styleBlackOpaque = function () {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.styleBlackOpaque();
+    };
+    /** iOS note: you must call StatusBar.overlaysWebView(false) to enable color changing. */
+    StatusBar.backgroundColorByName = function (colorName) {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.backgroundColorByName(colorName);
+    };
+    /** iOS note: you must call StatusBar.overlaysWebView(false) to enable color changing. */
+    StatusBar.backgroundColorByHexString = function (hexString) {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.backgroundColorByHexString(hexString);
+    };
+    StatusBar.hide = function () {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.hide();
+    };
+    StatusBar.show = function () {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.show();
+    };
+    Object.defineProperty(StatusBar, "isVisible", {
+        get: function () {
+            if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+                console.error('StatusBar Plugin not Installed.');
+                return false;
+            }
+            return window.StatusBar.isVisible;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return StatusBar;
+}());
+
+//# sourceMappingURL=StatusBar.js.map
+
+/***/ }),
+
+/***/ 262:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TApplication; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UltraCreation_ng_ion_appcontroller__ = __webpack_require__(383);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_root__ = __webpack_require__(385);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth__ = __webpack_require__(10);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var TApplication = /** @class */ (function (_super) {
+    __extends(TApplication, _super);
+    function TApplication(Injector, auth) {
+        var _this = _super.call(this, Injector) || this;
+        _this.auth = auth;
+        // 用户信息
+        _this.UserInfo = {};
+        // 银行卡信息
+        _this.Cards = new Array();
+        // 是否VIP会员
+        _this.IsVip = false;
+        // 是否可以交易标识
+        _this.CanTrade = true;
+        // 当前信用卡
+        _this.CurrentCreditCards = {};
+        // 当前储蓄卡
+        _this.CurrentDepositCard = {};
+        _this.RootPage = __WEBPACK_IMPORTED_MODULE_2__shared_root__;
+        _this.HardwareBackButtonDisabled = false;
+        _this.BackButtonPressed = false;
+        window.App = _this;
+        _this.Platform.ready().then(function () {
+            _this.Platform.registerBackButtonAction(function () {
+                if (_this.HardwareBackButtonDisabled) {
+                    return;
+                }
+                if (App.Nav.canGoBack()) {
+                    App.Nav.pop();
+                    return;
+                }
+                if (_this.BackButtonPressed) {
+                    _this.Platform.exitApp();
+                }
+                else {
+                    _this.ShowToast('再按一次退出5u卡贝');
+                    _this.BackButtonPressed = true;
+                    setTimeout(function () {
+                        _this.BackButtonPressed = false;
+                    }, 2000);
+                }
+            });
+            if (_this.IsAndroid) {
+                window.addEventListener('native.keyboardshow', _this.keyboardShowHandler.bind(_this));
+                window.addEventListener('native.keyboardhide', _this.keyboardHideHandler.bind(_this));
+            }
+            _this.auth.currentUser.subscribe(function (data) {
+                _this.UserInfo = data;
+            });
+        });
+        return _this;
+    }
+    TApplication.prototype.keyboardShowHandler = function (e) {
+        if (window.scrollY < 100) {
+            window.scrollTo(0, e.keyboardHeight);
+        }
+    };
+    TApplication.prototype.keyboardHideHandler = function (e) {
+        if (window.scrollY != 0) {
+            window.scrollTo(0, 0);
+        }
+    };
+    TApplication.prototype.DisableHardwareBackButton = function () {
+        this.HardwareBackButtonDisabled = true;
+    };
+    TApplication.prototype.EnableHardwareBackButton = function () {
+        this.HardwareBackButtonDisabled = false;
+    };
+    TApplication.prototype.ShowToast = function (MsgOrConfig) {
+        if (MsgOrConfig instanceof Object) {
+            return _super.prototype.ShowToast.call(this, MsgOrConfig);
+        }
+        else {
+            return _super.prototype.ShowToast.call(this, { message: MsgOrConfig, position: 'middle', cssClass: 'toast-default', duration: 1500 });
+        }
+    };
+    TApplication.prototype.ShowLoading = function (MsgOrConfig) {
+        if (MsgOrConfig instanceof Object) {
+            return _super.prototype.ShowLoading.call(this, MsgOrConfig);
+        }
+        else {
+            return _super.prototype.ShowLoading.call(this, { spinner: 'ios-small', content: MsgOrConfig, cssClass: 'loading-default' });
+        }
+    };
+    TApplication.prototype.ShowError = function (err, duration, position) {
+        if (duration === void 0) { duration = 3000; }
+        if (position === void 0) { position = 'middle'; }
+        return _super.prototype.ShowError.call(this, err, {
+            duration: duration, position: position,
+            style: 'toast-error', prefix_lang: 'hint.'
+        });
+    };
+    Object.defineProperty(TApplication.prototype, "UserFace", {
+        get: function () {
+            if (__WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(localStorage.getItem('imageface'))) {
+                var avatar = localStorage.getItem('imageface');
+                return { backgroundImage: "url(" + avatar + ")" };
+            }
+            return null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    TApplication.prototype.IsReal = function (page) {
+        return false;
+        // if (App.UserInfo.idAuthed !== 1) {
+        //   App.Nav.push(App.RootPage.NoldentifyPage);
+        // } else if(page) {
+        //   App.Nav.push(page);
+        // } else {
+        //   return;
+        // }
+    };
+    Object.defineProperty(TApplication.prototype, "IsIdAuthed", {
+        // 是否已完成身份认证
+        get: function () {
+            return App.UserInfo.idAuthed > 0;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TApplication.prototype, "IsBankcardAuthed", {
+        // 是否完成储蓄卡验证
+        get: function () {
+            return App.UserInfo.bankcardAuthed > 0;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TApplication.prototype, "IsCompleteAuthed", {
+        // 是否已完成身份认证
+        get: function () {
+            return this.IsIdAuthed && this.IsBankcardAuthed;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TApplication.prototype, "IconFace", {
+        get: function () {
+            if (this.UserFace === null && this.UserInfo.sex === '男') {
+                return true;
+            }
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    TApplication = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injector */], __WEBPACK_IMPORTED_MODULE_4__providers_auth__["a" /* TAuthService */]])
+    ], TApplication);
+    return TApplication;
+}(__WEBPACK_IMPORTED_MODULE_1__UltraCreation_ng_ion_appcontroller__["a" /* TAppController */]));
+
+//# sourceMappingURL=application.js.map
+
+/***/ }),
+
+/***/ 273:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_fileservice__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1314,11 +1393,12 @@ var AuthPage = /** @class */ (function () {
     };
     // 已完成身份认证不然能进入页面
     AuthPage.prototype.ionViewCanEnter = function () {
+        this.auth.CheckToken();
         return !App.IsIdAuthed;
     };
     AuthPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-auth',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\auth\auth.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content class="auth-page">\n\n	<ion-grid class="page-content">\n\n		<ion-row p-t-5>\n\n			<ion-col col-12>\n\n				<ion-label f-13 no-margin>证件照片</ion-label>\n\n			</ion-col>\n\n		</ion-row>\n\n		<ion-row>\n\n			<ion-col col-6 (click)="OnChangeFile(CardFront, $event)">\n\n				<div class="d-flex justify-content-center card border-1px">\n\n					<img class="img" [src]="PreviewFiles[CardFront]" *ngIf="PreviewFiles[CardFront] != DefaultImg" />\n\n					<button class="bg-transparent" icon-only *ngIf="PreviewFiles[CardFront] == DefaultImg">\n\n						<ion-icon name="ios-add-circle-outline" color="primary"></ion-icon>\n\n					</button>\n\n					<ion-label class="desc" *ngIf="PreviewFiles[CardFront] == DefaultImg">身份证反面照片</ion-label>\n\n				</div>\n\n			</ion-col>\n\n			<ion-col col-6 (click)="OnChangeFile(CardBack, $event)">\n\n				<div class="d-flex justify-content-center card border-1px">\n\n					<img class="img" [src]="PreviewFiles[CardBack]" *ngIf="PreviewFiles[CardBack] != DefaultImg" />\n\n					<button class="bg-transparent" icon-only *ngIf="PreviewFiles[CardBack] == DefaultImg">\n\n						<ion-icon name="ios-add-circle-outline" color="primary"></ion-icon>\n\n					</button>\n\n					<ion-label class="desc" *ngIf="PreviewFiles[CardBack] == DefaultImg">身份证反面照片</ion-label>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n		<!-- 示例 -->\n\n		<ion-row>\n\n			<ion-col col-6>\n\n				<div class="d-flex justify-content-start align-items-start card example border-1px">\n\n					<ion-badge color="primary" class="badge">示例</ion-badge>\n\n					<img class="img" src="assets/imgs/zhengm.png" />\n\n				</div>\n\n			</ion-col>\n\n			<ion-col col-6>\n\n				<div class="d-flex justify-content-start align-items-start card example border-1px">\n\n					<ion-badge color="primary" class="badge">示例</ion-badge>\n\n					<img class="img" src="assets/imgs/zhengm.png" />\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n	</ion-grid>\n\n	<div class="page-content" m-t-10>\n\n		<form novalidate [formGroup]="formGroup" m-t-10>\n\n	    <ion-grid>\n\n	      <ion-row class="d-flex align-items-center form-ctrl border-bottom-1px">\n\n	        <ion-col col-4>姓名</ion-col>\n\n	        <ion-col col-8><ion-input type="text" placeholder="请输入姓名" formControlName="username"></ion-input></ion-col>\n\n	      </ion-row>\n\n\n\n	      <ion-row class="d-flex align-items-center form-ctrl">\n\n	        <ion-col col-4>身份证号</ion-col>\n\n	        <ion-col col-8><ion-input type="text" placeholder="请输入身份证号" formControlName="idCardNo"></ion-input></ion-col>\n\n	      </ion-row>\n\n	    </ion-grid>\n\n	  </form>\n\n  </div>\n\n  <ion-grid>\n\n  	<ion-row>\n\n  		<ion-col col-12>\n\n  			<button type="button" ion-button color="primary" full (click)="OnSubmit()">立即认证</button>\n\n  		</ion-col>\n\n  	</ion-row>\n\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\auth\auth.html"*/
+            selector: 'page-auth',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\auth\auth.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content class="auth-page">\n\n	<ion-grid class="page-content">\n\n		<ion-row p-t-5>\n\n			<ion-col col-12>\n\n				<ion-label f-13 no-margin>证件照片</ion-label>\n\n			</ion-col>\n\n		</ion-row>\n\n		<ion-row>\n\n			<ion-col col-6 (click)="OnChangeFile(CardFront, $event)">\n\n				<div class="d-flex justify-content-center card border-1px">\n\n					<img class="img" [src]="PreviewFiles[CardFront]" *ngIf="PreviewFiles[CardFront] != DefaultImg" />\n\n					<button class="bg-transparent" icon-only *ngIf="PreviewFiles[CardFront] == DefaultImg">\n\n						<ion-icon name="ios-add-circle-outline" color="primary"></ion-icon>\n\n					</button>\n\n					<ion-label class="desc" *ngIf="PreviewFiles[CardFront] == DefaultImg">身份证反面照片</ion-label>\n\n				</div>\n\n			</ion-col>\n\n			<ion-col col-6 (click)="OnChangeFile(CardBack, $event)">\n\n				<div class="d-flex justify-content-center card border-1px">\n\n					<img class="img" [src]="PreviewFiles[CardBack]" *ngIf="PreviewFiles[CardBack] != DefaultImg" />\n\n					<button class="bg-transparent" icon-only *ngIf="PreviewFiles[CardBack] == DefaultImg">\n\n						<ion-icon name="ios-add-circle-outline" color="primary"></ion-icon>\n\n					</button>\n\n					<ion-label class="desc" *ngIf="PreviewFiles[CardBack] == DefaultImg">身份证反面照片</ion-label>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n		<!-- 示例 -->\n\n		<ion-row>\n\n			<ion-col col-6>\n\n				<div class="d-flex justify-content-start align-items-start card example border-1px">\n\n					<ion-badge color="primary" class="badge">示例</ion-badge>\n\n					<img class="img" src="assets/imgs/zhengm.png" />\n\n				</div>\n\n			</ion-col>\n\n			<ion-col col-6>\n\n				<div class="d-flex justify-content-start align-items-start card example border-1px">\n\n					<ion-badge color="primary" class="badge">示例</ion-badge>\n\n					<img class="img" src="assets/imgs/zhengm.png" />\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n	</ion-grid>\n\n	<div class="page-content" m-t-10>\n\n		<form novalidate [formGroup]="formGroup" m-t-10>\n\n	    <ion-grid>\n\n	      <ion-row class="d-flex align-items-center form-ctrl border-bottom-1px">\n\n	        <ion-col col-4>姓名</ion-col>\n\n	        <ion-col col-8><ion-input type="text" placeholder="请输入姓名" formControlName="username"></ion-input></ion-col>\n\n	      </ion-row>\n\n\n\n	      <ion-row class="d-flex align-items-center form-ctrl">\n\n	        <ion-col col-4>身份证号</ion-col>\n\n	        <ion-col col-8><ion-input type="text" placeholder="请输入身份证号" formControlName="idCardNo"></ion-input></ion-col>\n\n	      </ion-row>\n\n	    </ion-grid>\n\n	  </form>\n\n  </div>\n\n  <ion-grid>\n\n  	<ion-row>\n\n  		<ion-col col-12>\n\n  			<button type="button" class="btn-default" ion-button color="primary" full (click)="OnSubmit()">立即认证</button>\n\n  		</ion-col>\n\n  	</ion-row>\n\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\auth\auth.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_fileservice__["b" /* FileService */], __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_4__providers_auth__["a" /* TAuthService */]])
@@ -1330,202 +1410,14 @@ var AuthPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 273:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddCreditCardPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__ = __webpack_require__(67);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-
-
-
-
-var AddCreditCardPage = /** @class */ (function () {
-    function AddCreditCardPage(Service, navParams, Auth, fileService) {
-        this.Service = Service;
-        this.navParams = navParams;
-        this.Auth = Auth;
-        this.fileService = fileService;
-        this.App = window.App;
-        this.HeadTitle = "添加信用卡";
-        this.AddWrong = false;
-        this.WrongMsg = '';
-        this.BankCardFront = __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["a" /* BANKCARD_FRONT */];
-    }
-    AddCreditCardPage.prototype.ngOnInit = function () {
-        this.formGroup = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormGroup */]({
-            CardNo: this.CardNo = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]('', [
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required,
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].minLength(16)
-            ]),
-            Mobile: this.Mobile = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]('', [
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required,
-                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].pattern(/^1[3|4|5|7|8][0-9]{9}$/)
-            ])
-        });
-    };
-    AddCreditCardPage.prototype.ionViewDidEnter = function () {
-        this.GetIdCard(App.UserInfo.idCardNo);
-        if (!App.IsIdAuthed) {
-            var alertOpts = {
-                title: '温馨提示',
-                message: '为了您的资金安全，首次刷卡需先完成身份认证',
-                cssClass: 'text-left',
-                buttons: [
-                    {
-                        text: '取消',
-                        role: 'cancel',
-                        handler: function () {
-                            App.Nav.push('HomePage');
-                        }
-                    },
-                    {
-                        text: '确认',
-                        handler: function () {
-                            App.Nav.push('AuthPage');
-                        }
-                    }
-                ]
-            };
-            App.ShowAlert(alertOpts);
-        }
-    };
-    Object.defineProperty(AddCreditCardPage.prototype, "CompleteBtnIsDisabled", {
-        get: function () {
-            if (this.CardNo.invalid || this.Mobile.invalid) {
-                return true;
-            }
-            return false;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    AddCreditCardPage.prototype.GetIdCard = function (IdNo) {
-        if (__WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(IdNo)) {
-            this.ShowIDCard = IdNo.substr(0, 6);
-            for (var i = 0; i < (IdNo.length - 10); i++) {
-                this.ShowIDCard += '*';
-            }
-            this.ShowIDCard += IdNo.substr(-4);
-        }
-    };
-    // 提交数据
-    AddCreditCardPage.prototype.AddCard = function () {
-        var _this = this;
-        this.Service.AddCreditCard(this.formGroup.value.CardNo, this.formGroup.value.Mobile).subscribe(function (data) {
-            _this.Service.GetCardList();
-            _this.Auth.GetUserData();
-            _this.Auth.currentUser.subscribe(function (data) {
-                if (_this.navParams.get('page')) {
-                    App.Nav.push(_this.navParams.get('page'));
-                }
-                else {
-                    App.Nav.push('MyCardPage');
-                }
-            });
-        });
-    };
-    // 选择文件
-    AddCreditCardPage.prototype.OnChangeFile = function (e) {
-        var _this = this;
-        this.fileService.showAddImage().then(function (rst) {
-            console.log(rst);
-            _this.uploadFile(rst.file, __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["a" /* BANKCARD_FRONT */]);
-        }).catch(function (error) {
-            console.log(error);
-        });
-    };
-    // 保存文件
-    AddCreditCardPage.prototype.uploadFile = function (file, cType) {
-        return __awaiter(this, void 0, void 0, function () {
-            var res;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.fileService.OcrUpload('file', file, cType)];
-                    case 1:
-                        res = _a.sent();
-                        if (false !== res) {
-                            this.CardNo.setValue(res.cardNo.replace(/\s*/g, ''));
-                        }
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    AddCreditCardPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-addcreditcard',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\addcreditcard\addcreditcard.html"*/'<ion-header no-border>\n\n  <!-- 添加信用卡 -->\n\n  <ion-toolbar no-padding>\n\n      <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="adddepositcam-page">\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n        <span ion-text f-13 text-gray>请绑定持卡人的具有银联标识信用卡，此信用卡用于付款刷卡</span>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content">\n\n    <ion-row class="d-flex align-items-center form-ctrlborder-bottom-1px">\n\n      <ion-col col-3>持卡人</ion-col>\n\n      <ion-col>{{App.UserInfo.name}}</ion-col>\n\n    </ion-row>\n\n    <ion-row class="d-flex align-items-center form-ctrl">\n\n      <ion-col col-3>身份证</ion-col>\n\n      <ion-col>{{ShowIDCard}}</ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <div class="page-content" m-t-15>\n\n    <form novalidate [formGroup]="formGroup">\n\n      <ion-grid>\n\n        <ion-row class="d-flex align-items-center form-ctrl border-bottom-1px">\n\n          <ion-col col-3>卡号</ion-col>\n\n          <ion-col col-7><ion-input type=\'number\' placeholder="请输信用卡卡号" formControlName="CardNo"></ion-input></ion-col>\n\n          <ion-col col-2>\n\n            <button ion-button icon-only class="bg-transparent btn-h-auto btn-no-shadow" (click)="OnChangeFile(BankCardFront)">\n\n              <ion-icon name="qr-scanner" text-black-light></ion-icon>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <ion-row class="d-flex align-items-center form-ctrl">\n\n          <ion-col col-3>手机号</ion-col>\n\n          <ion-col> <ion-input type=\'number\' placeholder="请输银行预留手机号" formControlName="Mobile"></ion-input></ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </form>\n\n  </div>\n\n  <ion-row justify-content-center m-t-15>\n\n    <ion-col col-11>\n\n      <button class="bgc-grad-primary bgc-header" \n\n        ion-button round block f-1-6 \n\n        [disabled]="CompleteBtnIsDisabled" \n\n        [class.btn-disabled]="CompleteBtnIsDisabled"\n\n        (click)="AddCard()">保存</button>\n\n    </ion-col>\n\n  </ion-row>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\addcreditcard\addcreditcard.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_5__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["b" /* FileService */]])
-    ], AddCreditCardPage);
-    return AddCreditCardPage;
-}());
-
-//# sourceMappingURL=addcreditcard.js.map
-
-/***/ }),
-
 /***/ 274:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FindPasswordPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1609,16 +1501,190 @@ var FindPasswordPage = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddCreditCardPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_helper_auth_helper__ = __webpack_require__(208);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+
+var AddCreditCardPage = /** @class */ (function () {
+    function AddCreditCardPage(Service, navParams, auth, fileService) {
+        this.Service = Service;
+        this.navParams = navParams;
+        this.auth = auth;
+        this.fileService = fileService;
+        this.App = window.App;
+        this.HeadTitle = "添加信用卡";
+        this.AddWrong = false;
+        this.WrongMsg = '';
+        this.BankCardFront = __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["a" /* BANKCARD_FRONT */];
+        if (__WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(App.UserInfo) && !__WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].IsEmptyObject(App.UserInfo)) {
+            this.GetIdCard(App.UserInfo.idCardNo);
+        }
+    }
+    AddCreditCardPage.prototype.ngOnInit = function () {
+        this.formGroup = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormGroup */]({
+            CardNo: this.CardNo = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]('', [
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required,
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].minLength(16)
+            ]),
+            Mobile: this.Mobile = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormControl */]('', [
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].required,
+                __WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* Validators */].pattern(/^1[3|4|5|7|8][0-9]{9}$/)
+            ])
+        });
+    };
+    AddCreditCardPage.prototype.ionViewDidEnter = function () {
+        __WEBPACK_IMPORTED_MODULE_7__shared_helper_auth_helper__["a" /* AuthHelper */].check();
+    };
+    Object.defineProperty(AddCreditCardPage.prototype, "CompleteBtnIsDisabled", {
+        get: function () {
+            if (this.CardNo.invalid || this.Mobile.invalid) {
+                return true;
+            }
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AddCreditCardPage.prototype.GetIdCard = function (IdNo) {
+        if (__WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(IdNo)) {
+            this.ShowIDCard = IdNo.substr(0, 6);
+            for (var i = 0; i < (IdNo.length - 10); i++) {
+                this.ShowIDCard += '*';
+            }
+            this.ShowIDCard += IdNo.substr(-4);
+        }
+    };
+    // 提交数据
+    AddCreditCardPage.prototype.AddCard = function () {
+        var _this = this;
+        this.Service.AddCreditCard(this.formGroup.value.CardNo, this.formGroup.value.Mobile).subscribe(function (data) {
+            _this.Service.GetCardList();
+            _this.auth.GetUserData();
+            _this.auth.currentUser.subscribe(function (data) {
+                if (_this.navParams.get('page')) {
+                    App.Nav.push(_this.navParams.get('page'));
+                }
+                else {
+                    App.Nav.push('MyCardPage');
+                }
+            });
+        });
+    };
+    // 选择文件
+    AddCreditCardPage.prototype.OnChangeFile = function (e) {
+        var _this = this;
+        this.fileService.showAddImage().then(function (rst) {
+            console.log(rst);
+            _this.uploadFile(rst.file, __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["a" /* BANKCARD_FRONT */]);
+        }).catch(function (error) {
+            console.log(error);
+        });
+    };
+    // 保存文件
+    AddCreditCardPage.prototype.uploadFile = function (file, cType) {
+        return __awaiter(this, void 0, void 0, function () {
+            var res;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.fileService.OcrUpload('file', file, cType)];
+                    case 1:
+                        res = _a.sent();
+                        if (false !== res) {
+                            this.CardNo.setValue(res.cardNo.replace(/\s*/g, ''));
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddCreditCardPage.prototype.ionViewCanEnter = function () {
+        this.auth.CheckToken();
+    };
+    AddCreditCardPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-addcreditcard',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\addcreditcard\addcreditcard.html"*/'<ion-header no-border>\n\n  <!-- 添加信用卡 -->\n\n  <ion-toolbar no-padding>\n\n      <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="adddepositcam-page">\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n        <span ion-text f-13 text-gray>请绑定持卡人的具有银联标识信用卡，此信用卡用于付款刷卡</span>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content">\n\n    <ion-row class="d-flex align-items-center form-ctrlborder-bottom-1px">\n\n      <ion-col col-3>持卡人</ion-col>\n\n      <ion-col>{{App.UserInfo.name}}</ion-col>\n\n    </ion-row>\n\n    <ion-row class="d-flex align-items-center form-ctrl">\n\n      <ion-col col-3>身份证</ion-col>\n\n      <ion-col>{{ShowIDCard}}</ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <div class="page-content" m-t-15>\n\n    <form novalidate [formGroup]="formGroup">\n\n      <ion-grid>\n\n        <ion-row class="d-flex align-items-center form-ctrl border-bottom-1px">\n\n          <ion-col col-3>卡号</ion-col>\n\n          <ion-col col-7><ion-input type=\'number\' placeholder="请输信用卡卡号" formControlName="CardNo"></ion-input></ion-col>\n\n          <ion-col col-2>\n\n            <button ion-button icon-only class="bg-transparent btn-h-auto btn-no-shadow" (click)="OnChangeFile(BankCardFront)">\n\n              <img height="26" width="26" src="assets/imgs/scan.png" alt="拍照" />\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <ion-row class="d-flex align-items-center form-ctrl">\n\n          <ion-col col-3>手机号</ion-col>\n\n          <ion-col> <ion-input type=\'number\' placeholder="请输银行预留手机号" formControlName="Mobile"></ion-input></ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </form>\n\n  </div>\n\n  <ion-row justify-content-center m-t-15>\n\n    <ion-col col-11>\n\n      <button class="bgc-grad-primary bgc-header btn-default" \n\n        ion-button round block f-1-6 \n\n        [disabled]="CompleteBtnIsDisabled" \n\n        [class.btn-disabled]="CompleteBtnIsDisabled"\n\n        (click)="AddCard()">保存</button>\n\n    </ion-col>\n\n  </ion-row>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\addcreditcard\addcreditcard.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_5__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["b" /* FileService */]])
+    ], AddCreditCardPage);
+    return AddCreditCardPage;
+}());
+
+//# sourceMappingURL=addcreditcard.js.map
+
+/***/ }),
+
+/***/ 276:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddDepositPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__listofbank_listofbank__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__branchcard_branchcard__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__listofbank_listofbank__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__branchcard_branchcard__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_helper_auth_helper__ = __webpack_require__(208);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1672,11 +1738,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
+
 var AddDepositPage = /** @class */ (function () {
-    function AddDepositPage(Service, navParams, Auth, fileService) {
+    function AddDepositPage(Service, navParams, auth, fileService) {
+        var _this = this;
         this.Service = Service;
         this.navParams = navParams;
-        this.Auth = Auth;
+        this.auth = auth;
         this.fileService = fileService;
         this.HeadTitle = "添加储蓄卡";
         this.BankName = '请选择开户银行';
@@ -1687,6 +1755,10 @@ var AddDepositPage = /** @class */ (function () {
         this.BankCode = '';
         this.BankCardFront = __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["a" /* BANKCARD_FRONT */];
         this.App = window.App;
+        this.GetIdCard(App.UserInfo['idCardNo']);
+        this.auth.currentUser.subscribe(function (data) {
+            _this.GetIdCard(App.UserInfo['idCardNo']);
+        });
     }
     AddDepositPage.prototype.ngOnInit = function () {
         this.formGroup = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormGroup */]({
@@ -1701,30 +1773,7 @@ var AddDepositPage = /** @class */ (function () {
         });
     };
     AddDepositPage.prototype.ionViewDidEnter = function () {
-        this.GetIdCard(App.UserInfo['idCardNo']);
-        if (!App.IsIdAuthed) {
-            var alertOpts = {
-                title: '温馨提示',
-                message: '为了您的资金安全，首次刷卡需先完成身份认证',
-                cssClass: 'text-left',
-                buttons: [
-                    {
-                        text: '取消',
-                        role: 'cancel',
-                        handler: function () {
-                            App.Nav.push('HomePage');
-                        }
-                    },
-                    {
-                        text: '确认',
-                        handler: function () {
-                            App.Nav.push('AuthPage');
-                        }
-                    }
-                ]
-            };
-            App.ShowAlert(alertOpts);
-        }
+        __WEBPACK_IMPORTED_MODULE_9__shared_helper_auth_helper__["a" /* AuthHelper */].check();
     };
     Object.defineProperty(AddDepositPage.prototype, "CompleteBtnIsDisabled", {
         // 卡号是否符合规则
@@ -1786,8 +1835,8 @@ var AddDepositPage = /** @class */ (function () {
         var _this = this;
         this.Service.AddDeposiCard(this.formGroup.value.CardNo, this.BankName, this.TranCode, this.BranchName, this.formGroup.value.Mobile).subscribe(function (res) {
             _this.Service.GetCardList();
-            _this.Auth.GetUserData();
-            _this.Auth.currentUser.subscribe(function (data) {
+            _this.auth.GetUserData();
+            _this.auth.currentUser.subscribe(function (data) {
                 if (_this.navParams.get('page')) {
                     App.Nav.push(_this.navParams.get('page'));
                 }
@@ -1825,9 +1874,12 @@ var AddDepositPage = /** @class */ (function () {
             });
         });
     };
+    AddDepositPage.prototype.ionViewCanEnter = function () {
+        this.auth.CheckToken();
+    };
     AddDepositPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-adddeposit',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\adddeposit\adddeposit.html"*/'<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content class="h-adddepositcam-page">\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n        <span ion-text f-13 text-gray>请绑定持卡人本人储蓄卡，此储蓄卡用于收款</span>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-b-10>\n\n    <ion-row class="d-flex align-items-center form-ctrl border-bottom-1px">\n\n      <ion-col col-3>持卡人</ion-col>\n\n      <ion-col col-8>{{App.UserInfo.name}}</ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row class="d-flex align-items-center form-ctrl">\n\n      <ion-col col-3>身份证</ion-col>\n\n      <ion-col col-8>{{IdCard}}</ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <form novalidate [formGroup]="formGroup">\n\n    <div class="page-content">\n\n      <ion-grid>\n\n        <ion-row class="d-flex align-items-center border-bottom-1px form-ctrl">\n\n          <ion-col col-3>卡号</ion-col>\n\n          <ion-col col-7><ion-input type="number" placeholder="请输入储蓄卡卡号" formControlName="CardNo" no-margin></ion-input></ion-col>\n\n          <ion-col col-2>\n\n            <button ion-button icon-right class="bg-transparent btn-h-auto btn-no-shadow" (click)="onChangeFile(BankCardFront)">\n\n              <ion-icon name="qr-scanner" text-black-light></ion-icon>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <ion-row (click)="ClickOpenBank()" class="d-flex align-items-center border-bottom-1px form-ctrl">\n\n          <ion-col col-3>银行</ion-col>\n\n          <ion-col col-8>\n\n            <span ion-text text-gray>{{BankName}}</span>\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <ion-row class="d-flex align-items-center border-bottom-1px form-ctrl" (click)="ClickBranchBank()">\n\n          <ion-col col-3>支行</ion-col>\n\n          <ion-col col-8>\n\n            <span ion-text text-gray>{{BranchName}}</span>\n\n          </ion-col>\n\n          <ion-col text-right text-black-light><ion-icon>&#xf3d1;</ion-icon></ion-col>\n\n        </ion-row>\n\n\n\n        <ion-row class="d-flex align-items-center form-ctrl">\n\n          <ion-col col-3>手机号</ion-col>\n\n          <ion-col col-8><ion-input type="Tel" placeholder="请输入银行预留手机号" formControlName="Mobile"></ion-input></ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n\n\n    <ion-row justify-content-center m-t-20>\n\n      <ion-col col-11>\n\n        <button class="bgc-grad-primary bgc-header" \n\n          [class.btn-disabled]="CompleteBtnIsDisabled" ion-button round block f-1-6 tappable \n\n          [disabled]="CompleteBtnIsDisabled" \n\n          (click)="Finish()">完成</button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </form>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\adddeposit\adddeposit.html"*/
+            selector: 'page-adddeposit',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\adddeposit\adddeposit.html"*/'<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content class="h-adddepositcam-page">\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n        <span ion-text f-13 text-gray>请绑定持卡人本人储蓄卡，此储蓄卡用于收款</span>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-b-10>\n\n    <ion-row class="d-flex align-items-center form-ctrl border-bottom-1px">\n\n      <ion-col col-3>持卡人</ion-col>\n\n      <ion-col col-8>{{App.UserInfo.name}}</ion-col>\n\n    </ion-row>\n\n\n\n    <ion-row class="d-flex align-items-center form-ctrl">\n\n      <ion-col col-3>身份证</ion-col>\n\n      <ion-col col-8>{{IdCard}}</ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <form novalidate [formGroup]="formGroup">\n\n    <div class="page-content">\n\n      <ion-grid>\n\n        <ion-row class="d-flex align-items-center border-bottom-1px form-ctrl">\n\n          <ion-col col-3>卡号</ion-col>\n\n          <ion-col col-7><ion-input type="number" placeholder="请输入储蓄卡卡号" formControlName="CardNo" no-margin></ion-input></ion-col>\n\n          <ion-col col-2 text-right (click)="onChangeFile(BankCardFront, $event)">\n\n            <img height="26" width="26" src="assets/imgs/scan.png" alt="拍照" />\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <ion-row (click)="ClickOpenBank()" class="d-flex align-items-center border-bottom-1px form-ctrl">\n\n          <ion-col col-3>银行</ion-col>\n\n          <ion-col col-8>\n\n            <span ion-text text-gray>{{BankName}}</span>\n\n          </ion-col>\n\n        </ion-row>\n\n\n\n        <ion-row class="d-flex align-items-center border-bottom-1px form-ctrl" (click)="ClickBranchBank()">\n\n          <ion-col col-3>支行</ion-col>\n\n          <ion-col col-8>\n\n            <span ion-text text-gray>{{BranchName}}</span>\n\n          </ion-col>\n\n          <ion-col text-right text-black-light><ion-icon>&#xf3d1;</ion-icon></ion-col>\n\n        </ion-row>\n\n\n\n        <ion-row class="d-flex align-items-center form-ctrl">\n\n          <ion-col col-3>手机号</ion-col>\n\n          <ion-col col-8><ion-input type="Tel" placeholder="请输入银行预留手机号" formControlName="Mobile"></ion-input></ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n\n\n    <ion-row justify-content-center m-t-20>\n\n      <ion-col col-11>\n\n        <button class="bgc-grad-primary bgc-header btn-default" \n\n          [class.btn-disabled]="CompleteBtnIsDisabled" ion-button round block f-1-6 tappable \n\n          [disabled]="CompleteBtnIsDisabled" \n\n          (click)="Finish()">完成</button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </form>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\adddeposit\adddeposit.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_5__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_6__providers_fileservice__["b" /* FileService */]])
@@ -1839,15 +1891,15 @@ var AddDepositPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 276:
+/***/ 277:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CardInforPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__ = __webpack_require__(23);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1993,15 +2045,17 @@ var CardInforPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 277:
+/***/ 278:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChangecardsPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckoutPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_helper_card_helper__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_homeservice__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2015,11 +2069,93 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+var CheckoutPage = /** @class */ (function () {
+    function CheckoutPage(navParams, service, auth) {
+        this.navParams = navParams;
+        this.service = service;
+        this.auth = auth;
+        // 标题
+        this.HeadTitle = '确认收款';
+        // 是否可提交标识
+        this.CanSubmited = true;
+        this.Amount = this.navParams.get('amount');
+        if (!__WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(this.Amount) && !__WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].IsObject(this.Amount)) {
+            App.Nav.push('CreditCardPage');
+        }
+        this.CreditCard = this.navParams.get('creditCard');
+        this.DepositCard = this.navParams.get('depositCard');
+    }
+    CheckoutPage.prototype.ionViewDidEnter = function () {
+        this.CanSubmited = true;
+    };
+    // 确认付款
+    CheckoutPage.prototype.Pay = function () {
+        var _this = this;
+        this.CanSubmited = false;
+        this.service.GetBankPage(this.CreditCard.id, this.DepositCard.id, this.Amount.inputAmount).subscribe(function (data) {
+            // 跳转银联页面
+            if (/^[http:\/\/|https:\/\/](.*)?/.test(data)) {
+                (new __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */]()).create(encodeURI(data));
+            }
+            else if (data.indexOf('<html>') == -1) {
+                App.ShowError(data.respMsg);
+            }
+            else {
+                App.Nav.push(App.RootPage.FinalpayPage, { innerHtml: data });
+            }
+        }, function (error) {
+            _this.CanSubmited = true;
+        });
+    };
+    CheckoutPage.prototype.ionViewCanEnter = function () {
+        this.auth.CheckToken();
+    };
+    CheckoutPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-checkout',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\checkout\checkout.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content class="h-checkout-page">\n\n	<ion-grid class="page-content" p-h-40 *ngIf="Amount">\n\n		<ion-row align-items-center class="border-bottom-1px" p-b-5>\n\n			<ion-col col-12>\n\n				<div class="f-flex flex-fill flex-column justify-content-center align-items-center l-h-d pay-amount">\n\n					<p text-center><span ion-text f-13 text-black-light>支付金额(元)</span></p>\n\n					<p text-center p-t-5><span ion-text f-30 class="amount">{{Amount.inputAmount}}</span></p>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n		<ion-row align-items-center p-b-10>\n\n			<ion-col col-12>\n\n				<div class="f-flex flex-fill flex-column justify-content-center align-items-center receive-amount">\n\n					<p text-center><span ion-text f-13 text-black-light>到账金额(元)</span></p>\n\n					<p text-center><span ion-text f-35 class="amount">{{Amount.outputAmount}}</span></p>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n	</ion-grid>\n\n	<ion-grid class="page-content bank-wrp" m-t-10>\n\n		<ion-row align-items-center class="border-bottom-1px" p-v-10 *ngIf="CreditCard">\n\n			<ion-col col-6>\n\n				<p><span ion-text>付款信用卡</span></p>\n\n			</ion-col>\n\n			<ion-col col-6>\n\n				<div class="d-flex align-items-center justify-content-end">\n\n					<ion-img src="assets/banklogo/bank_{{CreditCard.code}}.png" class="img" alt="icon"></ion-img>\n\n					<span ion-text m-l-5>{{CreditCard.bank}}({{CreditCard.cardNo}})</span>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n		<ion-row align-items-center p-v-10 *ngIf="DepositCard">\n\n			<ion-col col-6>\n\n				<p><span ion-text>收款储蓄卡</span></p>\n\n			</ion-col>\n\n			<ion-col col-6>\n\n				<div class="d-flex align-items-center justify-content-end">\n\n					<ion-img src="assets/banklogo/bank_{{DepositCard.code}}.png" class="img" alt="icon"></ion-img>\n\n					<span ion-text m-l-5>{{DepositCard.bank}}({{DepositCard.cardNo}})</span>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n	</ion-grid>\n\n	<ion-grid>\n\n		<ion-row>\n\n			<ion-col col-12>\n\n				<button type="button" class="btn-default" ion-button full color="primary" (click)="Pay()" [disabled]="!CanSubmited" [class.btn-disabled]="!CanSubmited">去付款</button>\n\n			</ion-col>\n\n		</ion-row>		\n\n	</ion-grid>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\checkout\checkout.html"*/
+        }),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_5__providers_auth__["a" /* TAuthService */]])
+    ], CheckoutPage);
+    return CheckoutPage;
+}());
+
+//# sourceMappingURL=checkout.js.map
+
+/***/ }),
+
+/***/ 279:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChangecardsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__ = __webpack_require__(78);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
 var ChangecardsPage = /** @class */ (function () {
-    function ChangecardsPage(Service, navParams, viewCtrl) {
+    function ChangecardsPage(Service, navParams, viewCtrl, auth) {
         this.Service = Service;
         this.navParams = navParams;
         this.viewCtrl = viewCtrl;
+        this.auth = auth;
         // 页面标题
         this.HeadTitle = "我的信用卡";
         // 卡片数据
@@ -2031,10 +2167,10 @@ var ChangecardsPage = /** @class */ (function () {
     }
     // 新增卡片
     ChangecardsPage.prototype.AddCards = function () {
-        if (this.CardType === __WEBPACK_IMPORTED_MODULE_3__shared_helper_card_helper__["a" /* CREDIT_CARD */]) {
+        if (this.CardType === __WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__["a" /* CREDIT_CARD */]) {
             App.Nav.push('AddCreditCardPage', { page: 'CreditCardPage' });
         }
-        else if (this.CardType === __WEBPACK_IMPORTED_MODULE_3__shared_helper_card_helper__["c" /* DEPOSIT_CARD */]) {
+        else if (this.CardType === __WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__["c" /* DEPOSIT_CARD */]) {
             App.Nav.push('AddDepositPage', { page: 'CreditCardPage' });
         }
     };
@@ -2043,12 +2179,15 @@ var ChangecardsPage = /** @class */ (function () {
         var data = { id: this.CheckedCardId };
         this.viewCtrl.dismiss(data);
     };
+    ChangecardsPage.prototype.ionViewCanEnter = function () {
+        this.auth.CheckToken();
+    };
     ChangecardsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-changecards',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\changecards\changecards.html"*/'<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle" BtnText="确定" (BtnTextEvent)="OnConfirmCard()"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-list radio-group [(ngModel)]="CheckedCardId">\n\n    <ion-item *ngFor="let card of Cards">\n\n      <ion-label>{{card.bank}}({{card.cardNo}})</ion-label>\n\n      <ion-radio value="{{card.id}}"></ion-radio>\n\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\changecards\changecards.html"*/
+            selector: 'page-changecards',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\changecards\changecards.html"*/'<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle" BtnText="确定" (BtnTextEvent)="OnConfirmCard()"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-list radio-group [(ngModel)]="CheckedCardId">\n\n    <ion-item *ngFor="let card of Cards">\n\n      <ion-label class="d-flex align-items-center">\n\n        <ion-img src="assets/banklogo/bank_{{card.code}}.png" m-r-5></ion-img>\n\n        <span ion-text>{{card.bank}}({{card.cardNo}})</span>\n\n      </ion-label>\n\n      <ion-radio value="{{card.id}}"></ion-radio>\n\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\changecards\changecards.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ViewController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ViewController */], __WEBPACK_IMPORTED_MODULE_3__providers_auth__["a" /* TAuthService */]])
     ], ChangecardsPage);
     return ChangecardsPage;
 }());
@@ -2057,77 +2196,7 @@ var ChangecardsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 278:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckoutPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__ = __webpack_require__(21);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var CheckoutPage = /** @class */ (function () {
-    function CheckoutPage(navParams, service) {
-        this.navParams = navParams;
-        this.service = service;
-        // 标题
-        this.HeadTitle = '确认收款';
-        // 是否可提交标识
-        this.CanSubmited = true;
-        var amount = this.navParams.get('amount');
-        this.PayAmount = amount.inputAmount;
-        this.ReceiveAmount = amount.outputAmount;
-        this.CreditCard = this.navParams.get('creditCard');
-        this.DepositCard = this.navParams.get('depositCard');
-    }
-    CheckoutPage.prototype.ionViewDidEnter = function () {
-        this.CanSubmited = true;
-    };
-    // 确认付款
-    CheckoutPage.prototype.Pay = function () {
-        console.log('Pay');
-        this.CanSubmited = false;
-        this.service.GetBankPage(this.CreditCard.id, this.DepositCard.id, this.PayAmount).subscribe(function (data) {
-            // 跳转银联页面
-            if (/^[http:\/\/|https:\/\/](.*)?/.test(data)) {
-                (new __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */]()).create(encodeURI(data));
-            }
-            else if (data.indexOf('<html>') == -1) {
-                App.ShowError(data.respMsg);
-            }
-            else {
-                App.Nav.push(App.RootPage.FinalpayPage, { innerHtml: data });
-            }
-        });
-    };
-    CheckoutPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-checkout',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\checkout\checkout.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content class="h-checkout-page">\n\n	<ion-grid class="page-content" p-h-40>\n\n		<ion-row align-items-center class="border-bottom-1px" p-b-5>\n\n			<ion-col col-12>\n\n				<div class="f-flex flex-fill flex-column justify-content-center align-items-center l-h-d pay-amount">\n\n					<p text-center><span ion-text f-13 text-black-light>支付金额(元)</span></p>\n\n					<p text-center p-t-5><span ion-text f-30 class="amount">{{PayAmount}}</span></p>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n		<ion-row align-items-center p-b-10>\n\n			<ion-col col-12>\n\n				<div class="f-flex flex-fill flex-column justify-content-center align-items-center receive-amount">\n\n					<p text-center><span ion-text f-13 text-black-light>到账金额(元)</span></p>\n\n					<p text-center><span ion-text f-35 class="amount">{{ReceiveAmount}}</span></p>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n	</ion-grid>\n\n	<ion-grid class="page-content bank-wrp" m-t-10>\n\n		<ion-row align-items-center class="border-bottom-1px" p-v-10>\n\n			<ion-col col-6>\n\n				<p><span ion-text>付款信用卡</span></p>\n\n			</ion-col>\n\n			<ion-col col-6>\n\n				<div class="d-flex align-items-center justify-content-end">\n\n					<ion-img src="assets/banklogo/bank_{{CreditCard.code}}.png" class="img" alt="icon"></ion-img>\n\n					<span ion-text m-l-5>{{CreditCard.bank}}({{CreditCard.cardNo}})</span>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n		<ion-row align-items-center p-v-10>\n\n			<ion-col col-6>\n\n				<p><span ion-text>收款储蓄卡</span></p>\n\n			</ion-col>\n\n			<ion-col col-6>\n\n				<div class="d-flex align-items-center justify-content-end">\n\n					<ion-img src="assets/banklogo/bank_{{DepositCard.code}}.png" class="img" alt="icon"></ion-img>\n\n					<span ion-text m-l-5>{{DepositCard.bank}}({{DepositCard.cardNo}})</span>\n\n				</div>\n\n			</ion-col>\n\n		</ion-row>\n\n	</ion-grid>\n\n	<ion-grid>\n\n		<ion-row>\n\n			<ion-col col-12>\n\n				<button type="button" ion-button full color="primary" (click)="Pay()" [disabled]="!CanSubmited" [class.btn-disabled]="!CanSubmited">去付款</button>\n\n			</ion-col>\n\n		</ion-row>		\n\n	</ion-grid>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\checkout\checkout.html"*/
-        }),
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */]])
-    ], CheckoutPage);
-    return CheckoutPage;
-}());
-
-//# sourceMappingURL=checkout.js.map
-
-/***/ }),
-
-/***/ 279:
+/***/ 280:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2167,17 +2236,17 @@ var ConfirminfoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 280:
+/***/ 281:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreditCardPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_helper_card_helper__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_helper_card_helper__ = __webpack_require__(78);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2205,45 +2274,34 @@ var CreditCardPage = /** @class */ (function () {
         this.DepositCards = new Array();
         // 页面标题
         this.HeadTitle = "刷卡提现";
+        // 是否显示刷卡流程
+        this.ShowFlow = false;
         // 金额
         this.amount = {
             inputAmount: undefined,
             outputAmount: undefined
         };
-        this.Rate = App.UserInfo.rate;
+        if (__WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(App.UserInfo) && !__WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].IsEmptyObject(App.UserInfo)) {
+            this.Rate = App.UserInfo.rate;
+            if (!App.IsIdAuthed) {
+                this.ShowFlow = true;
+            }
+        }
         this.homeService.currentCards.subscribe(function (cards) {
             _this.InitData();
         });
         this.auth.currentUser.subscribe(function (user) {
             _this.Rate = user.rate;
+            if (!App.IsIdAuthed) {
+                _this.ShowFlow = true;
+            }
         });
     }
     CreditCardPage.prototype.ionViewDidEnter = function () {
-        this.auth.currentUser.subscribe(function (data) {
-            if (!App.IsIdAuthed) {
-                var alertOpts = {
-                    title: '温馨提示',
-                    message: '为了您的资金安全，首次刷卡需先完成身份认证',
-                    cssClass: 'text-left',
-                    buttons: [
-                        {
-                            text: '取消',
-                            role: 'cancel',
-                            handler: function () {
-                                App.Nav.push('HomePage');
-                            }
-                        },
-                        {
-                            text: '确认',
-                            handler: function () {
-                                App.Nav.push('AuthPage');
-                            }
-                        }
-                    ]
-                };
-                App.ShowAlert(alertOpts);
-            }
-        });
+        this.InitData();
+    };
+    CreditCardPage.prototype.ionViewCanEnter = function () {
+        this.auth.CheckToken();
     };
     // 初始化数据
     CreditCardPage.prototype.InitData = function () {
@@ -2298,6 +2356,7 @@ var CreditCardPage = /** @class */ (function () {
         App.ShowModal('ChangecardsPage', { data: this.DepositCards, t: __WEBPACK_IMPORTED_MODULE_5__shared_helper_card_helper__["c" /* DEPOSIT_CARD */], curCardId: this.CurrentDepositCard.id }).then(function (modal) {
             modal.onDidDismiss(function (data) {
                 if (__WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(data) && __WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].IsObject(data)) {
+                    console.log(data.id);
                     _this.CurrentDepositCard = _this.cardHelper.getCardById(data.id);
                 }
             });
@@ -2311,6 +2370,10 @@ var CreditCardPage = /** @class */ (function () {
     CreditCardPage.prototype.AddDepositCard = function () {
         this.navCtrl.push('AddDepositPage');
     };
+    // 关闭刷卡流程提醒
+    CreditCardPage.prototype.OnCloseFlow = function () {
+        this.ShowFlow = false;
+    };
     Object.defineProperty(CreditCardPage.prototype, "CanGoNext", {
         // 是否可以点击下一步
         get: function () {
@@ -2321,7 +2384,7 @@ var CreditCardPage = /** @class */ (function () {
     });
     CreditCardPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-creditcard',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\creditcard\creditcard.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content class="h-creditcard-page">\n\n  <ion-grid class="page-content" p-h-10>\n\n    <ion-row justify-content-center>\n\n      <ion-col col-12>\n\n        <ion-label>付款信用卡</ion-label>\n\n      </ion-col>\n\n      <!-- 未添加信用卡 -->\n\n      <ion-col col-12 class="card no-card" text-center *ngIf="!CurrentCreditCard">\n\n        <button ion-button icon-left class="bg-transparent" (click)="AddCreditCard()">\n\n          <ion-icon name="add-circle" color="primary"></ion-icon>\n\n          <span ion-text color="primary">添加信用卡</span>\n\n        </button>\n\n      </ion-col>\n\n      <!-- 未添加信用卡 -->\n\n\n\n      <!-- 已添加信用卡 -->\n\n      <ion-col col-12 class="d-flex flex-column justify-content-between card has-card" p-h-10 p-v-10 *ngIf="CurrentCreditCard">\n\n        <div class="d-flex justify-content-between">\n\n          <div class="flex-fill d-flex align-items-center justify-content-start">\n\n            <ion-img class="icon-bank" src="assets/banklogo/bank_{{CurrentCreditCard.code}}.png" alt="{{CurrentCreditCard.bank}}"></ion-img>\n\n            <span ion-text f-14 text-light m-l-5>{{CurrentCreditCard.bank}}</span>\n\n          </div>\n\n          <div class="flex-fill" text-right>\n\n            <button type="button" ion-button class="bg-transparent btn-change" (click)="ChangeCreditCard()" no-padding no-margin>更换</button>\n\n          </div>\n\n        </div>\n\n        <div>\n\n          <span ion-text text-light>**** **** **** {{CurrentCreditCard.cardNo}}</span>\n\n        </div>\n\n      </ion-col>\n\n      <!-- 已添加信用卡 -->\n\n    </ion-row>\n\n    <ion-row justify-content-center>\n\n      <ion-col col-12>\n\n        <ion-label>收款储蓄卡</ion-label>\n\n      </ion-col>\n\n      <!-- 未添加储蓄卡 -->\n\n      <ion-col col-12 class="card no-card" text-center *ngIf="!CurrentDepositCard">\n\n        <button ion-button icon-left class="bg-transparent" (click)="AddDepositCard()">\n\n          <ion-icon name="add-circle" color="primary"></ion-icon>\n\n          <span ion-text color="primary">添加储蓄卡</span>\n\n        </button>\n\n      </ion-col>\n\n      <!-- 未添加储蓄卡 -->\n\n\n\n      <!-- 已添加储蓄卡 -->\n\n      <ion-col col-12 class="d-flex flex-column justify-content-between card has-card" p-h-10 p-v-10 *ngIf="CurrentDepositCard">\n\n        <div class="d-flex justify-content-between">\n\n          <div class="flex-fill d-flex align-items-center justify-content-start">\n\n            <ion-img class="icon-bank" src="assets/banklogo/bank_{{CurrentDepositCard.code}}.png" alt="{{CurrentDepositCard.bank}}"></ion-img>\n\n            <span ion-text f-14 text-light m-l-5>{{CurrentDepositCard.bank}}</span>\n\n          </div>\n\n          <div class="flex-fill" text-right>\n\n            <button type="button" ion-button class="bg-transparent btn-change" (click)="ChangeDepositCard()" no-padding no-margin>更换</button>\n\n          </div>\n\n        </div>\n\n        <div>\n\n          <span ion-text text-light>**** **** **** {{CurrentDepositCard.cardNo}}</span>\n\n        </div>\n\n      </ion-col>\n\n      <!-- 已添加储蓄卡 -->\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10 p-b-10>\n\n    <ion-row class="border-bottom-1px">\n\n      <ion-col>\n\n        <ion-label>收款金额(元)</ion-label>\n\n      </ion-col>\n\n      <ion-col col-12>\n\n        <ion-input type="number" name="amount" [(ngModel)]="amount.inputAmount" \n\n          (ngModelChange)="OnCahngeInputAmount()" \n\n          no-margin f-30 placeholder="500-20000" p-l-5></ion-input>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row p-t-5>\n\n      <ion-col class="l-h-d">\n\n        <p ion-text class="text-fee">费率：{{Rate}}%+3元，保底8元</p>\n\n        <p ion-text class="text-t">交易时间：9:00-21:00，立即到账</p>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col>\n\n        <button type="button" ion-button full [disabled]="!CanGoNext" [class.btn-disabled]="!CanGoNext" (click)="ConfirmPay()">下一步</button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\creditcard\creditcard.html"*/
+            selector: 'page-creditcard',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\creditcard\creditcard.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content class="h-creditcard-page">\n\n  <ion-grid class="page-content" p-h-10 p-b-10>\n\n    <ion-row justify-content-center>\n\n      <ion-col col-12>\n\n        <ion-label>付款信用卡</ion-label>\n\n      </ion-col>\n\n      <!-- 未添加信用卡 -->\n\n      <ion-col col-12 class="card no-card" text-center *ngIf="!CurrentCreditCard">\n\n        <button ion-button icon-left class="bg-transparent" (click)="AddCreditCard()">\n\n          <ion-icon name="add-circle" color="primary"></ion-icon>\n\n          <span ion-text color="primary">添加信用卡</span>\n\n        </button>\n\n      </ion-col>\n\n      <!-- 未添加信用卡 -->\n\n\n\n      <!-- 已添加信用卡 -->\n\n      <ion-col col-12 class="d-flex flex-column justify-content-between card has-card" p-h-10 p-v-5 *ngIf="CurrentCreditCard">\n\n        <ion-row>\n\n          <ion-col col-10>\n\n            <ion-row>\n\n              <ion-col col-12 class="d-flex align-items-center" no-padding>\n\n                <img class="icon-bank" src="assets/banklogo/bank_{{CurrentCreditCard.code}}.png" alt="{{CurrentCreditCard.bank}}" />\n\n                <span ion-text f-15 text-light m-l-5>{{CurrentCreditCard.bank}}</span>\n\n              </ion-col>\n\n            </ion-row>\n\n            <ion-row m-t-20>\n\n              <ion-col col-12 no-padding>\n\n                <span ion-text text-light>**** **** **** {{CurrentCreditCard.cardNo}}</span>\n\n              </ion-col>\n\n            </ion-row>\n\n          </ion-col>\n\n          <ion-col col-2 text-right>\n\n            <button type="button" ion-button class="bg-transparent btn-change" (click)="ChangeCreditCard()" no-padding no-margin>更换</button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-col>\n\n      <!-- 已添加信用卡 -->\n\n    </ion-row>\n\n    <ion-row justify-content-center>\n\n      <ion-col col-12>\n\n        <ion-label>收款储蓄卡</ion-label>\n\n      </ion-col>\n\n      <!-- 未添加储蓄卡 -->\n\n      <ion-col col-12 class="card no-card" text-center *ngIf="!CurrentDepositCard">\n\n        <button ion-button icon-left class="bg-transparent" (click)="AddDepositCard()">\n\n          <ion-icon name="add-circle" color="primary"></ion-icon>\n\n          <span ion-text color="primary">添加储蓄卡</span>\n\n        </button>\n\n      </ion-col>\n\n      <!-- 未添加储蓄卡 -->\n\n\n\n      <!-- 已添加储蓄卡 -->\n\n      <ion-col col-12 class="d-flex flex-column justify-content-between card has-card" p-h-10 p-v-5 *ngIf="CurrentDepositCard">\n\n        <ion-row>\n\n          <ion-col col-10>\n\n            <ion-row>\n\n              <ion-col col-12 class="d-flex align-items-center" no-padding>\n\n                <img class="icon-bank" src="assets/banklogo/bank_{{CurrentDepositCard.code}}.png" alt="{{CurrentDepositCard.bank}}" />\n\n                <span ion-text f-15 text-light m-l-5>{{CurrentDepositCard.bank}}</span>\n\n              </ion-col>\n\n            </ion-row>\n\n            <ion-row m-t-20>\n\n              <ion-col col-12 no-padding>\n\n                <span ion-text text-light>**** **** **** {{CurrentDepositCard.cardNo}}</span>\n\n              </ion-col>\n\n            </ion-row>\n\n          </ion-col>\n\n          <ion-col col-2 text-right>\n\n            <button type="button" ion-button class="bg-transparent btn-change" (click)="ChangeDepositCard()" no-padding no-margin>更换</button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-col>\n\n      <!-- 已添加储蓄卡 -->\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10 p-b-10>\n\n    <ion-row class="border-bottom-1px">\n\n      <ion-col>\n\n        <ion-label>收款金额(元)</ion-label>\n\n      </ion-col>\n\n      <ion-col col-12>\n\n        <ion-input type="number" name="amount" [(ngModel)]="amount.inputAmount" \n\n          (ngModelChange)="OnCahngeInputAmount()" \n\n          no-margin f-30 placeholder="500-20000" p-l-5></ion-input>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row p-t-5>\n\n      <ion-col class="l-h-d">\n\n        <p ion-text class="text-fee">费率：{{Rate}}%+3元，保底8元</p>\n\n        <p ion-text class="text-t">交易时间：9:00-21:00，立即到账</p>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid>\n\n    <ion-row>\n\n      <ion-col col-12>\n\n        <button type="button" class="btn-default" ion-button full [disabled]="!CanGoNext" [class.btn-disabled]="!CanGoNext" (click)="ConfirmPay()">下一步</button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="popup" no-padding *ngIf="ShowFlow">\n\n    <ion-row class="mask" no-padding>\n\n      <ion-col col-12 text-center>\n\n        <img class="flow" src="assets/imgs/flow.png" alt="刷卡流程" />\n\n      </ion-col>\n\n      <ion-col col-12 text-center>\n\n        <button class="bg-transparent" (click)="OnCloseFlow()">\n\n          <img class="close" src="assets/imgs/close.png" alt="关闭" />\n\n        </button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\creditcard\creditcard.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_5__shared_helper_card_helper__["b" /* CardHelper */], __WEBPACK_IMPORTED_MODULE_2__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_3__providers_homeservice__["a" /* HomeService */]])
@@ -2333,7 +2396,7 @@ var CreditCardPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 281:
+/***/ 282:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2341,8 +2404,9 @@ var CreditCardPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_timers__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_timers__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_timers___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_timers__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2356,10 +2420,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var FinalpayPage = /** @class */ (function () {
-    function FinalpayPage(navParams, sanitizer) {
+    function FinalpayPage(navParams, sanitizer, auth) {
         this.navParams = navParams;
         this.sanitizer = sanitizer;
+        this.auth = auth;
         this.headTitle = '银联支付';
         this.browser = {
             isLoaded: false,
@@ -2474,6 +2540,9 @@ var FinalpayPage = /** @class */ (function () {
         }
         return '';
     };
+    FinalpayPage.prototype.ionViewCanEnter = function () {
+        this.auth.CheckToken();
+    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('paymentForm'),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */])
@@ -2483,7 +2552,7 @@ var FinalpayPage = /** @class */ (function () {
             selector: 'page-finalpay',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\finalpay\finalpay.html"*/'\n\n<ion-header>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="headTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="content">\n\n  <div class="progress" [hidden]="browser.isLoaded">\n\n    <div class="progress-inner" id="progress"></div>\n\n  </div>\n\n  <div *ngIf="flag">\n\n    <iframe [src]="browser.secUrl" id="iframe" class="iframe" \n\n      sandbox="allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-forms"\n\n      (load)="loaded()"\n\n      name="targetIframe">\n\n    </iframe>\n\n    <form [action]="formAction" #paymentForm name="pay_form" method="post" target="targetIframe">\n\n      <div [innerHtml]="htmltext"></div>\n\n    </form>\n\n  </div>\n\n  <div *ngIf="!flag" [innerHtml]="this_html"></div>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\finalpay\finalpay.html"*/,
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["c" /* DomSanitizer */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["c" /* DomSanitizer */], __WEBPACK_IMPORTED_MODULE_4__providers_auth__["a" /* TAuthService */]])
     ], FinalpayPage);
     return FinalpayPage;
 }());
@@ -2492,14 +2561,13 @@ var FinalpayPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 282:
+/***/ 283:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__ = __webpack_require__(21);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2511,26 +2579,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
 var HomePage = /** @class */ (function () {
-    function HomePage(zone, Service, nav) {
-        this.zone = zone;
-        this.Service = Service;
-        this.nav = nav;
+    function HomePage() {
         this.App = window.App;
     }
-    HomePage.prototype.ngOnInit = function () {
-    };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Content */]),
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Content */])
     ], HomePage.prototype, "content", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-grid>\n\n    <ion-row class="border-bottom-1px">\n\n      <ion-col col-1>\n\n        <ion-icon name="volume-up"></ion-icon>\n\n      </ion-col>\n\n      <ion-col cil-11>我的通知</ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-header>\n\n\n\n<ion-content class="home-page">\n\n  <ion-grid class="page-content">\n\n    <ion-row align-items-center justify-content-center class="border-bottom-1px" p-b-10>\n\n      <ion-col col-10 col-xs-8 col-md-6 col-lg-4>\n\n        <button type="button" class="btn-home-pay" ion-button full>刷卡收款</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row p-t-15>\n\n      <ion-col col-4>\n\n        <a href="javascript:void(0)" (click)="App.Nav.push(\'AuthPage\')" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/a-credit.png" alt="办信用卡" width="60" height="60" />\n\n          <label text-center>办信用卡</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="javascript:void(0)" (click)="App.Nav.push(\'AddCreditCardPage\')" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/auth.png" alt="身份认证" width="60" height="60" />\n\n          <label text-center>身份认证</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="javascript:void(0)" (click)="App.Nav.push(\'CreditCardPage\')" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/welfare.png" alt="会员福利" width="60" height="60" />\n\n          <label text-center>会员福利</label>\n\n        </a>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row>\n\n      <ion-col col-12>\n\n        <ion-label>新手大礼包</ion-label>\n\n        <div>\n\n          <img src="assets/imgs/zhengm.png" />\n\n        </div>\n\n      </ion-col>\n\n    </ion-row>  \n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row>\n\n      <ion-col col-12>\n\n        <ion-label>vip专区</ion-label>\n\n        <div>\n\n          <img src="assets/imgs/zhengm.png" />\n\n        </div>\n\n      </ion-col>\n\n    </ion-row>  \n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row>\n\n      <ion-col col-12>\n\n        <ion-label>精选信用卡</ion-label>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col col-4>\n\n        <a href="#" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="办信用卡" width="60" height="60" />\n\n          <label text-center>办信用卡</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="身份认证" width="60" height="60" />\n\n          <label text-center>身份认证</label>\n\n        </a>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <a href="#" class="d-flex flex-column align-items-center">\n\n          <img src="assets/imgs/ca_per.png" alt="会员福利" width="60" height="60" />\n\n          <label text-center>会员福利</label>\n\n        </a>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-grid>\n\n    <ion-row class="border-bottom-1px">\n\n      <ion-col col-1>\n\n        <ion-icon name="volume-up"></ion-icon>\n\n      </ion-col>\n\n      <ion-col cil-11>我的通知</ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-header>\n\n\n\n<ion-content class="home-page">\n\n  <ion-grid class="page-content">\n\n    <ion-row align-items-center justify-content-center class="border-bottom-1px" p-b-10>\n\n      <ion-col col-10 col-sm-10 col-md-10 col-lg-4 col-xs-2>\n\n        <button type="button" class="btn-home-pay btn-default" ion-button full (click)="App.Nav.push(\'CreditCardPage\')">刷卡收款</button>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row p-t-15>\n\n      <ion-col col-4 class="d-flex flex-column align-items-center" (click)="App.Nav.push(\'MyCardPage\')">\n\n        <img src="assets/imgs/creditcard.png" alt="办信用卡" width="60" height="60" />\n\n        <label m-t-5 text-center>办信用卡</label>\n\n      </ion-col>\n\n      <ion-col col-4 class="d-flex flex-column align-items-center" (click)="App.Nav.push(\'AddCreditCardPage\')">\n\n        <img src="assets/imgs/auth.png" alt="身份认证" width="60" height="60" />\n\n        <label m-t-5 text-center>身份认证</label>\n\n      </ion-col>\n\n      <ion-col col-4 class="d-flex flex-column align-items-center" (click)="App.Nav.push(\'AddDepositPage\')">\n\n        <img src="assets/imgs/welfare.png" alt="会员福利" width="60" height="60" />\n\n        <label m-t-5 text-center>会员福利</label>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row p-h-10>\n\n      <ion-col col-12 no-padding>\n\n        <ion-label p-l-10>新手大礼包</ion-label>\n\n      </ion-col>\n\n      <ion-col col-12 no-padding>\n\n        <img src="assets/imgs/zhengm.png" />\n\n      </ion-col>\n\n    </ion-row>  \n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row p-h-10>\n\n      <ion-col col-12 no-padding>\n\n        <ion-label p-l-10>vip专区</ion-label>\n\n      </ion-col>\n\n      <ion-col col-12 no-padding>\n\n        <img src="assets/imgs/zhengm.png" />\n\n      </ion-col>\n\n    </ion-row>  \n\n  </ion-grid>\n\n  <ion-grid class="page-content" m-t-10>\n\n    <ion-row>\n\n      <ion-col col-12>\n\n        <ion-label>精选信用卡</ion-label>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row>\n\n      <ion-col col-4 class="d-flex flex-column align-items-center">\n\n        <img src="assets/imgs/creditcard.png" alt="办信用卡" width="60" height="60" />\n\n        <label m-t-5 text-center>办信用卡</label>\n\n      </ion-col>\n\n      <ion-col col-4 class="d-flex flex-column align-items-center">\n\n        <img src="assets/imgs/cards.png" alt="身份认证" width="60" height="60" />\n\n        <label m-t-5 text-center>身份认证</label>\n\n      </ion-col>\n\n      <ion-col col-4 class="d-flex flex-column align-items-center">\n\n        <img src="assets/imgs/welfare.png" alt="会员福利" width="60" height="60" />\n\n        <label m-t-5 text-center>会员福利</label>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\home.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* NgZone */], __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
+        __metadata("design:paramtypes", [])
     ], HomePage);
     return HomePage;
 }());
@@ -2539,15 +2601,15 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 283:
+/***/ 284:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResetPasswordPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2562,8 +2624,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ResetPasswordPage = /** @class */ (function () {
-    function ResetPasswordPage(Service, navParams) {
-        this.Service = Service;
+    function ResetPasswordPage(auth, navParams) {
+        this.auth = auth;
         this.navParams = navParams;
         this.App = window.App;
         this.HeadTitle = "重置密码";
@@ -2580,15 +2642,18 @@ var ResetPasswordPage = /** @class */ (function () {
     };
     ResetPasswordPage.prototype.clickgetlogin = function () {
         if (this.conpwd === this.formGroup.value.pwd) {
-            this.Service.GetchangePsdData(this.tel, this.formGroup.value.pwd, this.VCode);
+            this.auth.GetchangePsdData(this.tel, this.formGroup.value.pwd, this.VCode);
         }
         else {
             App.ShowError('两次输入密码不一致');
         }
     };
+    ResetPasswordPage.prototype.ionViewCanEnter = function () {
+        this.auth.CheckToken();
+    };
     ResetPasswordPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-resetpwd',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\resetpassword\resetpassword.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle" ></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <div class="register">\n\n    <ion-grid text-center>\n\n      <form novalidate [formGroup]="formGroup" autocomplete="off">\n\n        <ion-row class="border-bottom-1px">\n\n          <ion-col col-12>\n\n            <ion-input type="password" placeholder="请输入密码" formControlName="pwd" required></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n      </form>\n\n      <ion-row class="border-bottom-1px">\n\n        <ion-col col-12>\n\n          <ion-input type="password" placeholder="请确认密码" [(ngModel)]="conpwd"></ion-input>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row m-t-30>\n\n        <ion-col col-12>\n\n          <button ion-button full color="primary" (click)="clickgetlogin()" [class.btn-disabled]="pwd.invalid" [disabled]="pwd.invalid">完成</button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\resetpassword\resetpassword.html"*/
+            selector: 'page-resetpwd',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\home\resetpassword\resetpassword.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle" ></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <div class="register">\n\n    <ion-grid text-center>\n\n      <form novalidate [formGroup]="formGroup" autocomplete="off">\n\n        <ion-row class="border-bottom-1px">\n\n          <ion-col col-12>\n\n            <ion-input type="password" placeholder="请输入密码" formControlName="pwd" required></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n      </form>\n\n      <ion-row class="border-bottom-1px">\n\n        <ion-col col-12>\n\n          <ion-input type="password" placeholder="请确认密码" [(ngModel)]="conpwd"></ion-input>\n\n        </ion-col>\n\n      </ion-row>\n\n      <ion-row m-t-30>\n\n        <ion-col col-12>\n\n          <button ion-button full color="primary" class="btn-default" (click)="clickgetlogin()" [class.btn-disabled]="pwd.invalid" [disabled]="pwd.invalid">完成</button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\home\resetpassword\resetpassword.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */]])
@@ -2600,7 +2665,7 @@ var ResetPasswordPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 284:
+/***/ 285:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2740,15 +2805,15 @@ var LoanPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 285:
+/***/ 286:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2763,10 +2828,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var LoginPage = /** @class */ (function () {
-    function LoginPage(Auth, navParams) {
-        this.Auth = Auth;
+    function LoginPage(auth, navParams) {
+        this.auth = auth;
         this.navParams = navParams;
         this.App = window.App;
+        this.auth.thirdPartyLogin(this.navParams.get('mobile'), this.navParams.get('key'));
     }
     LoginPage.prototype.ngOnInit = function () {
         this.formGroup = new __WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormGroup */]({
@@ -2791,11 +2857,11 @@ var LoginPage = /** @class */ (function () {
         configurable: true
     });
     LoginPage.prototype.Login = function () {
-        this.Auth.Login(this.formGroup.value.Tel, this.formGroup.value.Pass);
+        this.auth.Login(this.formGroup.value.Tel, this.formGroup.value.Pass);
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\login\login.html"*/'<ion-content>\n\n  <div class="register">\n\n    <ion-row class="bgc-grad-primary back-btn">\n\n      <ion-col col-12 f-1-6>\n\n        <span>登 录\n\n          <ion-icon f-2-0 p-r-15 [navPush]="App.RootPage.StartPage" float-right tappable>&#xf2c0;</ion-icon>\n\n        </span>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-row justify-content-center>\n\n      <ion-col class="col" col-3 p-v-40 text-center>\n\n        <img src="assets/imgs/58icon.png">\n\n      </ion-col>\n\n    </ion-row>\n\n    <div>\n\n      <ion-grid text-center>\n\n        <form novalidate [formGroup]="formGroup" autocomplete="off">\n\n          <ion-row class="border-bottom-1px">\n\n            <ion-col col-12>\n\n              <ion-input type="Tel" placeholder="请输入手机号" formControlName="Tel" required></ion-input>\n\n            </ion-col>\n\n          </ion-row>\n\n          <ion-row class="border-bottom-1px">\n\n            <ion-col col-12>\n\n              <ion-input type="password" placeholder="请输入密码" formControlName="Pass" required></ion-input>\n\n            </ion-col>\n\n          </ion-row>\n\n          <ion-row m-t-30>\n\n            <ion-col col-12>\n\n              <button ion-button full (click)="Login()" [class.btn-disabled]="LoginDisabled" [disabled]="LoginDisabled">登录</button>\n\n            </ion-col>\n\n          </ion-row>\n\n        </form>\n\n        <button ion-button outline no-border [navPush]="App.RootPage.FindPasswordPage" ion-text color="primary" p-t-5>忘记密码 ?</button>\n\n      </ion-grid>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\login\login.html"*/
+            selector: 'page-login',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\login\login.html"*/'<ion-content>\n\n  <div class="register">\n\n    <ion-row class="bgc-grad-primary back-btn">\n\n      <ion-col col-12 f-1-6>\n\n        <span>登 录\n\n          <ion-icon f-2-0 p-r-15 [navPush]="App.RootPage.StartPage" float-right tappable>&#xf2c0;</ion-icon>\n\n        </span>\n\n      </ion-col>\n\n    </ion-row>\n\n    <ion-grid text-center class="page-content">\n\n      <form novalidate [formGroup]="formGroup" autocomplete="off">\n\n        <ion-row class="border-bottom-1px">\n\n          <ion-col col-12>\n\n            <ion-input type="Tel" placeholder="请输入手机号" formControlName="Tel" required></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row class="border-bottom-1px">\n\n          <ion-col col-12>\n\n            <ion-input type="password" placeholder="请输入密码" formControlName="Pass" required></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row m-t-30>\n\n          <ion-col col-12>\n\n            <button ion-button full (click)="Login()" class="btn-default" [class.btn-disabled]="LoginDisabled" [disabled]="LoginDisabled">登录</button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </form>\n\n      <button ion-button outline no-border [navPush]="App.RootPage.FindPasswordPage" ion-text color="primary" p-t-5>忘记密码 ?</button>\n\n    </ion-grid>\n\n  </div>\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\login\login.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */]])
@@ -2807,14 +2873,14 @@ var LoginPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 286:
+/***/ 287:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModifyPasswordPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2885,7 +2951,7 @@ var ModifyPasswordPage = /** @class */ (function () {
     };
     ModifyPasswordPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-modifypwd',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\modifypassword\modifypassword.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <div class="page-content">\n\n    <ion-grid text-center>\n\n      <ion-row class="border-bottom-1px form-ctrl">\n\n        <ion-col col-12>\n\n          <ion-input type="Tel" [(ngModel)]="tel" readonly></ion-input>\n\n        </ion-col>\n\n      </ion-row>\n\n      <form novalidate [formGroup]="FormGroup" autocomplete="off">\n\n        <ion-row class="border-bottom-1px form-ctrl">\n\n          <ion-col col-7>\n\n            <ion-input type="text" placeholder="请输入验证码" formControlName="VCode" required></ion-input>\n\n          </ion-col>\n\n          <ion-col col-5>\n\n            <button ion-button class="btn-no-shadow btn-form" (click)="GetTelCode()">\n\n              <span ion-text>{{VCodeText}}</span>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row class="border-bottom-1px form-ctrl">\n\n          <ion-col col-12>\n\n            <ion-input type="password" placeholder="请设置新密码"  formControlName="Password" required></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n      </form>\n\n      <ion-row m-t-30>\n\n        <ion-col col-12>\n\n          <button ion-button full color="primary" [class.btn-disabled]="ConfirmBtnIsDisabled" [disabled]="ConfirmBtnIsDisabled" (click)="ConfirmModify()">确认</button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n</ion-content>\n\n    \n\n    '/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\modifypassword\modifypassword.html"*/
+            selector: 'page-modifypwd',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\modifypassword\modifypassword.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <div class="page-content">\n\n    <ion-grid text-center>\n\n      <ion-row class="border-bottom-1px form-ctrl">\n\n        <ion-col col-12>\n\n          <ion-input type="Tel" [(ngModel)]="tel" readonly></ion-input>\n\n        </ion-col>\n\n      </ion-row>\n\n      <form novalidate [formGroup]="FormGroup" autocomplete="off">\n\n        <ion-row class="border-bottom-1px form-ctrl">\n\n          <ion-col col-7>\n\n            <ion-input type="text" placeholder="请输入验证码" formControlName="VCode" required></ion-input>\n\n          </ion-col>\n\n          <ion-col col-5>\n\n            <button ion-button class="btn-no-shadow btn-form" (click)="GetTelCode()">\n\n              <span ion-text>{{VCodeText}}</span>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row class="border-bottom-1px form-ctrl">\n\n          <ion-col col-12>\n\n            <ion-input type="password" placeholder="请设置新密码"  formControlName="Password" required></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n      </form>\n\n      <ion-row m-t-30>\n\n        <ion-col col-12>\n\n          <button ion-button full color="primary" class="btn-default" [class.btn-disabled]="ConfirmBtnIsDisabled" [disabled]="ConfirmBtnIsDisabled" (click)="ConfirmModify()">确认</button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </div>\n\n</ion-content>\n\n    \n\n    '/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\modifypassword\modifypassword.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_auth__["a" /* TAuthService */]])
@@ -2897,14 +2963,14 @@ var ModifyPasswordPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 287:
+/***/ 288:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2977,15 +3043,15 @@ var RegisterPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 288:
+/***/ 289:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SetPasswordPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3050,7 +3116,7 @@ var SetPasswordPage = /** @class */ (function () {
     };
     SetPasswordPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-setpwd',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\setpassword\setpassword.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <div class="page-content">\n\n    <ion-grid>\n\n      <form novalidate [formGroup]="formGroup" autocomplete="off">\n\n        <ion-row class="border-bottom-1px">\n\n          <ion-col cil-12>\n\n            <ion-input type="password" [attr.type]="PassWordType" placeholder="请设置密码" formControlName="Pass" required [(ngModel)]="PassWord"></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row class="border-bottom-1px">\n\n          <ion-col col-12>\n\n            <ion-input type="password" [attr.type]="PassWordType" placeholder="请确认密码"  formControlName="Pass" required [(ngModel)]="ConPassWord"></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row m-t-30>\n\n          <ion-col col-12>\n\n            <button ion-button full color="primary" [class.btn-disabled]="ResIsDisabled" (click)="OnRegister()" [disabled]="ResIsDisabled">注册</button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </form>\n\n    </ion-grid>\n\n  </div>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\setpassword\setpassword.html"*/
+            selector: 'page-setpwd',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\setpassword\setpassword.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <div class="page-content">\n\n    <ion-grid>\n\n      <form novalidate [formGroup]="formGroup" autocomplete="off">\n\n        <ion-row class="border-bottom-1px">\n\n          <ion-col cil-12>\n\n            <ion-input type="password" [attr.type]="PassWordType" placeholder="请设置密码" formControlName="Pass" required [(ngModel)]="PassWord"></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row class="border-bottom-1px">\n\n          <ion-col col-12>\n\n            <ion-input type="password" [attr.type]="PassWordType" placeholder="请确认密码"  formControlName="Pass" required [(ngModel)]="ConPassWord"></ion-input>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row m-t-30>\n\n          <ion-col col-12>\n\n            <button ion-button full color="primary" class="btn-default" [class.btn-disabled]="ResIsDisabled" (click)="OnRegister()" [disabled]="ResIsDisabled">注册</button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </form>\n\n    </ion-grid>\n\n  </div>\n\n</ion-content>'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\setpassword\setpassword.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavParams */]])
@@ -3062,7 +3128,7 @@ var SetPasswordPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 289:
+/***/ 290:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3095,7 +3161,7 @@ var StartPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 290:
+/***/ 291:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3122,7 +3188,7 @@ var TabsPage = /** @class */ (function () {
         this.tab4Root = 'UcenterPage';
     }
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\tabs\tabs.html"*/'<ion-tabs class="bottom-tabs">\n\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="tab-home" tabsHideOnSubPages="true"></ion-tab>\n\n  <ion-tab [root]="tab2Root" tabTitle="借贷" tabIcon="tab-dr" tabsHideOnSubPages="true"></ion-tab>\n\n  <ion-tab [root]="tab4Root" tabTitle="我的" tabIcon="tab-mine" tabsHideOnSubPages="true"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\tabs\tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\tabs\tabs.html"*/'<ion-tabs class="bottom-tabs">\n\n  <ion-tab [root]="tab1Root" tabTitle="首页" tabIcon="tab-home" tabsHideOnSubPages="false"></ion-tab>\n\n  <!-- <ion-tab [root]="tab2Root" tabTitle="借贷" tabIcon="tab-dr" tabsHideOnSubPages="true"></ion-tab> -->\n\n  <ion-tab [root]="tab4Root" tabTitle="我的" tabIcon="tab-mine" tabsHideOnSubPages="false"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\tabs\tabs.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], TabsPage);
@@ -3133,16 +3199,16 @@ var TabsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 291:
+/***/ 292:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyCardPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_controller__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_homeservice__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__ = __webpack_require__(78);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3152,50 +3218,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 
 
 
 
 
 var MyCardPage = /** @class */ (function () {
-    function MyCardPage(Servie, Auth, navCtrl, cardHelper) {
+    function MyCardPage(Servie, auth, navCtrl, cardHelper) {
+        var _this = this;
         this.Servie = Servie;
-        this.Auth = Auth;
+        this.auth = auth;
         this.navCtrl = navCtrl;
         this.cardHelper = cardHelper;
         this.App = window.App;
@@ -3214,14 +3246,11 @@ var MyCardPage = /** @class */ (function () {
         this.PrimaryCard = __WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__["d" /* PRIMARY_CARD */];
         this.CreditCards = this.cardHelper.filterCard(__WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__["a" /* CREDIT_CARD */]);
         this.DepositCards = this.cardHelper.filterCard(__WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__["c" /* DEPOSIT_CARD */]);
-    }
-    MyCardPage.prototype.ngOnInit = function () {
-        var _this = this;
         this.Servie.currentCards.subscribe(function (data) {
             _this.CreditCards = _this.cardHelper.filterCard(__WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__["a" /* CREDIT_CARD */]);
             _this.DepositCards = _this.cardHelper.filterCard(__WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__["c" /* DEPOSIT_CARD */]);
         });
-    };
+    }
     // 删除信用卡
     MyCardPage.prototype.DelCreditCard = function (cardId) {
         var _this = this;
@@ -3229,7 +3258,7 @@ var MyCardPage = /** @class */ (function () {
             _this.cardHelper.delCard(cardId);
             _this.CreditCards = _this.cardHelper.filterCard(__WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__["a" /* CREDIT_CARD */]);
             App.ShowToast('信用卡删除成功');
-            _this.Auth.GetUserData();
+            _this.auth.GetUserData();
         });
     };
     // 删除储蓄卡
@@ -3239,21 +3268,16 @@ var MyCardPage = /** @class */ (function () {
             _this.cardHelper.delCard(cardId);
             _this.DepositCards = _this.cardHelper.filterCard(__WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__["c" /* DEPOSIT_CARD */]);
             App.ShowToast('储蓄卡删除成功');
-            _this.Auth.GetUserData();
+            _this.auth.GetUserData();
         });
     };
     // 设置主卡
     MyCardPage.prototype.SetPrimaryCard = function (t, id) {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            return __generator(this, function (_a) {
-                this.Servie.SetPrimCard(id).subscribe(function (data) {
-                    _this.cardHelper.setPrimary(t, id);
-                    _this.CreditCards = _this.cardHelper.filterCard(__WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__["a" /* CREDIT_CARD */]);
-                    _this.DepositCards = _this.cardHelper.filterCard(__WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__["c" /* DEPOSIT_CARD */]);
-                });
-                return [2 /*return*/];
-            });
+        var _this = this;
+        this.Servie.SetPrimCard(id).subscribe(function (data) {
+            _this.cardHelper.setPrimary(t, id);
+            _this.CreditCards = _this.cardHelper.filterCard(__WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__["a" /* CREDIT_CARD */]);
+            _this.DepositCards = _this.cardHelper.filterCard(__WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__["c" /* DEPOSIT_CARD */]);
         });
     };
     // 添加信用卡
@@ -3264,9 +3288,12 @@ var MyCardPage = /** @class */ (function () {
     MyCardPage.prototype.AddDepositCard = function () {
         App.Nav.push('AddDepositPage', { page: 'MyCardPage' });
     };
+    MyCardPage.prototype.ionViewCanEnter = function () {
+        this.auth.CheckToken();
+    };
     MyCardPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-mycard',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\ucenter\mycard\mycard.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="u-mycard">\n\n  <ion-segment [(ngModel)]="CardSwitch">\n\n    <ion-segment-button value="{{CreditCard}}">信用卡</ion-segment-button>\n\n    <ion-segment-button value="{{DepositCard}}">储蓄卡</ion-segment-button>\n\n  </ion-segment>\n\n  <div [ngSwitch]="CardSwitch">\n\n    <!-- 信用卡 -->\n\n    <div *ngSwitchCase="CreditCard">\n\n      <!-- 已添加 -->\n\n      <ion-grid>\n\n        <ion-row m-t-10 *ngFor="let creditCard of CreditCards">\n\n          <ion-col col-12 class="card page-content" p-h-10>\n\n            <div class="d-flex justify-content-between border-bottom-1px" p-v-10>\n\n              <div class="flex-fill d-flex align-items-center justify-content-start">\n\n                <img src="assets/banklogo/bank_{{creditCard.code}}.png" width="30" height="30" alt="logo" />\n\n                <div class="d-flex flex-fill flex-column justify-content-center l-h-d" m-l-5>\n\n                  <p><label f-18>{{creditCard.bank}}</label></p>\n\n                  <p><span ion-text f-12>**** **** **** {{creditCard.cardNo}}</span></p>\n\n                </div>\n\n              </div>\n\n              <div class="flex-fill" text-right>\n\n                <button type="button" ion-only class="bg-transparent btn-change" no-padding no-margin (click)="DelCreditCard(creditCard.id)">\n\n                  <ion-icon f-26 name="trash"></ion-icon>\n\n                </button>\n\n              </div>\n\n            </div>\n\n            <div class="d-flex justify-content-between">\n\n              <ion-label class="flex-fill" ion-text text-left>{{creditCard.accountName}}</ion-label>\n\n              <button class="d-flex flex-fill align-items-center justify-content-end bg-white" (click)="SetPrimaryCard(creditCard.id)">\n\n                <ion-checkbox color="primary" [checked]="creditCard.primary == PrimaryCard"></ion-checkbox>\n\n                <span ion-text m-l-5>设为主卡</span>\n\n              </button>\n\n            </div>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n\n\n      <!-- 未添加 -->\n\n      <ion-grid>\n\n        <ion-row>\n\n          <ion-col col-12 text-center>\n\n            <button ion-button icon-center full (click)="AddCreditCard()">\n\n              <ion-icon name="add-circle"></ion-icon>\n\n              <span ion-text m-l-5>添加信用卡</span>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n\n\n    <!-- 储蓄卡 -->\n\n    <div *ngSwitchCase="DepositCard">\n\n      <!-- 已添加 -->\n\n      <ion-grid>\n\n        <ion-row m-t-10 *ngFor="let depositCard of DepositCards">\n\n          <ion-col col-12 class="card page-content" p-h-10>\n\n            <div class="d-flex justify-content-between border-bottom-1px" p-v-10>\n\n              <div class="flex-fill d-flex align-items-center justify-content-start">\n\n                <img src="assets/banklogo/bank_{{depositCard.code}}.png" width="30" height="30" alt="logo" />\n\n                <div class="d-flex flex-fill flex-column justify-content-center l-h-d" m-l-5>\n\n                  <p><label f-18>{{depositCard.bank}}</label></p>\n\n                  <p><span ion-text f-12>**** **** **** {{depositCard.cardNo}}</span></p>\n\n                </div>\n\n              </div>\n\n              <div class="flex-fill" text-right>\n\n                <button type="button" ion-only class="bg-transparent btn-change" no-padding no-margin (click)="DelDepositCard(depositCard.id)">\n\n                  <ion-icon f-26 name="trash"></ion-icon>\n\n                </button>\n\n              </div>\n\n            </div>\n\n            <div class="d-flex justify-content-between">\n\n              <ion-label class="flex-fill" ion-text text-left>{{depositCard.accountName}}</ion-label>\n\n              <button class="d-flex flex-fill align-items-center justify-content-end bg-white" (click)="SetPrimaryCard(depositCard.id)">\n\n                <ion-checkbox color="primary" [checked]="depositCard.primary == PrimaryCard"></ion-checkbox>\n\n                <span ion-text m-l-5>设为主卡</span>\n\n              </button>\n\n            </div>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n\n\n      <!-- 未添加 -->\n\n      <ion-grid>\n\n        <ion-row>\n\n          <ion-col col-12 text-center \n\n            (click)="AddDepositCard()">\n\n            <button ion-button icon-center full>\n\n              <ion-icon name="add-circle"></ion-icon>\n\n              <span ion-text m-l-5>添加储蓄卡</span>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\ucenter\mycard\mycard.html"*/
+            selector: 'page-mycard',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\ucenter\mycard\mycard.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="u-mycard">\n\n  <ion-segment [(ngModel)]="CardSwitch">\n\n    <ion-segment-button value="{{CreditCard}}">\n\n      <span ion-text f-16>信用卡</span>\n\n    </ion-segment-button>\n\n    <ion-segment-button value="{{DepositCard}}">\n\n      <span ion-text f-16>储蓄卡</span>\n\n    </ion-segment-button>\n\n  </ion-segment>\n\n  <div [ngSwitch]="CardSwitch">\n\n    <!-- 信用卡 -->\n\n    <div *ngSwitchCase="CreditCard">\n\n      <!-- 已添加 -->\n\n      <ion-grid>\n\n        <ion-row m-t-10 *ngFor="let creditCard of CreditCards">\n\n          <ion-col col-12 class="card page-content" p-h-10>\n\n            <div class="d-flex justify-content-between border-bottom-1px" p-v-10>\n\n              <div class="flex-fill d-flex align-items-center justify-content-start">\n\n                <img src="assets/banklogo/bank_{{creditCard.code}}.png" width="30" height="30" alt="logo" />\n\n                <div class="d-flex flex-fill flex-column justify-content-center" m-l-10>\n\n                  <p><label f-16>{{creditCard.bank}}</label></p>\n\n                  <p m-t-5><span ion-text f-12>**** **** **** {{creditCard.cardNo}}</span></p>\n\n                </div>\n\n              </div>\n\n              <div class="flex-fill" text-right>\n\n                <button type="button" ion-only class="bg-transparent btn-change" no-padding no-margin (click)="DelCreditCard(creditCard.id)">\n\n                  <ion-icon f-22 name="trash" class="trash"></ion-icon>\n\n                </button>\n\n              </div>\n\n            </div>\n\n            <div class="d-flex justify-content-between">\n\n              <ion-label class="flex-fill" ion-text text-left>{{creditCard.accountName}}</ion-label>\n\n              <button class="d-flex flex-fill align-items-center justify-content-end bg-white">\n\n                <ion-checkbox color="primary" [disabled]="creditCard.primary == PrimaryCard" [checked]="creditCard.primary == PrimaryCard" (ionChange)="SetPrimaryCard(CreditCard, creditCard.id)"></ion-checkbox>\n\n                <span ion-text m-l-5>设为主卡</span>\n\n              </button>\n\n            </div>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n\n\n      <!-- 未添加 -->\n\n      <ion-grid>\n\n        <ion-row>\n\n          <ion-col col-12 text-center>\n\n            <button ion-button icon-center full (click)="AddCreditCard()" class="btn-default">\n\n              <ion-icon name="add-circle"></ion-icon>\n\n              <span ion-text m-l-5>添加信用卡</span>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n\n\n    <!-- 储蓄卡 -->\n\n    <div *ngSwitchCase="DepositCard">\n\n      <!-- 已添加 -->\n\n      <ion-grid>\n\n        <ion-row m-t-10 *ngFor="let depositCard of DepositCards">\n\n          <ion-col col-12 class="card page-content" p-h-10>\n\n            <div class="d-flex justify-content-between border-bottom-1px" p-v-10>\n\n              <div class="flex-fill d-flex align-items-center justify-content-start">\n\n                <img src="assets/banklogo/bank_{{depositCard.code}}.png" width="30" height="30" alt="logo" />\n\n                <div class="d-flex flex-fill flex-column justify-content-center" m-l-10>\n\n                  <p><label f-16>{{depositCard.bank}}</label></p>\n\n                  <p m-t-5><span ion-text f-12>**** **** **** {{depositCard.cardNo}}</span></p>\n\n                </div>\n\n              </div>\n\n              <div class="flex-fill" text-right>\n\n                <button type="button" ion-only class="bg-transparent btn-change" no-padding no-margin (click)="DelDepositCard(depositCard.id)">\n\n                  <ion-icon f-22 name="trash" class="trash"></ion-icon>\n\n                </button>\n\n              </div>\n\n            </div>\n\n            <div class="d-flex justify-content-between">\n\n              <ion-label class="flex-fill" ion-text text-left>{{depositCard.accountName}}</ion-label>\n\n              <button class="d-flex flex-fill align-items-center justify-content-end bg-white">\n\n                <ion-checkbox color="primary" [checked]="depositCard.primary == PrimaryCard" \n\n                  (ionChange)="SetPrimaryCard(DepositCard, depositCard.id)"\n\n                  [disabled]="depositCard.primary == PrimaryCard"></ion-checkbox>\n\n                <span ion-text m-l-5>设为主卡</span>\n\n              </button>\n\n            </div>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n\n\n      <!-- 未添加 -->\n\n      <ion-grid>\n\n        <ion-row>\n\n          <ion-col col-12 text-center \n\n            (click)="AddDepositCard()">\n\n            <button ion-button icon-center full class="btn-default">\n\n              <ion-icon name="add-circle"></ion-icon>\n\n              <span ion-text m-l-5>添加储蓄卡</span>\n\n            </button>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\ucenter\mycard\mycard.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_3__providers_auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular_navigation_nav_controller__["a" /* NavController */], __WEBPACK_IMPORTED_MODULE_4__shared_helper_card_helper__["b" /* CardHelper */]])
@@ -3278,14 +3305,15 @@ var MyCardPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 292:
+/***/ 293:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrdersPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_mineservice__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_mineservice__ = __webpack_require__(69);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3298,10 +3326,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var OrdersPage = /** @class */ (function () {
-    function OrdersPage(navParams, Service) {
+    function OrdersPage(navParams, Service, auth) {
         this.navParams = navParams;
         this.Service = Service;
+        this.auth = auth;
         this.HeadTitle = "订单详情";
         this.OrderDetail = {};
         var orderId = navParams.data;
@@ -3311,11 +3341,14 @@ var OrdersPage = /** @class */ (function () {
         var _this = this;
         this.Service.GetCashDetail(id).subscribe(function (data) { return _this.OrderDetail = data.data; });
     };
+    OrdersPage.prototype.ionViewCanEnter = function () {
+        this.auth.CheckToken();
+    };
     OrdersPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-orders',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\ucenter\orders\orders.html"*/'<ion-header no-border>\n\n    <ion-toolbar no-padding>\n\n        <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n    </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n    <ion-grid class="list-grid-default" m-b-10>\n\n        <ion-row padding-vertical>\n\n            <ion-col>\n\n                <ul class="list-row-inner">\n\n                    <li class="title" text-center>\n\n                        <div f-2-5 style="color:orange;font-weight:700;" [ngStyle]="{ \'color\': OrderDetail.status == 1 ? \'orange\' : \'red\'}"><span f-1-2>￥</span>{{OrderDetail.amount/100}}</div>\n\n                        <p class="text-gray-600">收款金额</p>\n\n                    </li>\n\n                    <!-- <li class="title slash" text-center><span></span></li> -->\n\n                    <li class="title" text-center>\n\n                        <div f-2-5 style="color:orange;font-weight:700;" [ngStyle]="{ \'color\': OrderDetail.status == 1 ? \'orange\' : \'red\'}"><span f-1-2>￥</span>{{OrderDetail.enterAmount/100}}</div>\n\n                        <p class="text-gray-600">到账金额</p>\n\n                    </li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n    </ion-grid>\n\n\n\n    <ion-grid class="list-grid-default no-border">\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner">\n\n                    <li class="title" text-left><span class="text-gray-600">订单编号：</span></li>\n\n                    <li class="title" text-right>{{OrderDetail.orderNo}}</li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner" [ngSwitch]="OrderDetail.status">\n\n                    <li class="title" text-left><span class="text-gray-600">订单状态：</span></li>\n\n                    <li class="title" text-right *ngSwitchCase="\'1\'"><span ion-text color="orange">成功</span></li>\n\n                    <li class="title" text-right *ngSwitchCase="\'0\'"><span ion-text color="danger">失败</span></li>\n\n                    <li class="title" text-right *ngSwitchCase="\'2\'"><span ion-text color="primary">处理中</span></li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner"  [ngSwitch]="OrderDetail.type">\n\n                    <li class="title" text-left><span class="text-gray-600">收款方式：</span></li>\n\n                    <li class="title" text-right *ngSwitchCase="\'card\'">信用卡收款</li>\n\n                    <li class="title" text-right *ngSwitchCase="\'alipay\'">支付宝收款</li>\n\n                    <li class="title" text-right *ngSwitchCase="\'wechat\'">微信收款</li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner">\n\n                    <li class="title" text-left><span class="text-gray-600">收款信用卡：</span></li>\n\n                    <li class="title" text-right>{{OrderDetail.payCard}}</li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner">\n\n                    <li class="title" text-left><span class="text-gray-600">到账储蓄卡：</span></li>\n\n                    <li class="title" text-right>{{OrderDetail.outCard}}</li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col>\n\n                <ul class="list-row-inner">\n\n                    <li class="title" text-left><span class="text-gray-600">收款时间：</span></li>\n\n                    <li class="title" text-right>{{OrderDetail.time}}</li>\n\n                </ul>\n\n            </ion-col>\n\n        </ion-row>\n\n    </ion-grid>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\ucenter\orders\orders.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_mineservice__["a" /* MineService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_mineservice__["a" /* MineService */], __WEBPACK_IMPORTED_MODULE_2__providers_auth__["a" /* TAuthService */]])
     ], OrdersPage);
     return OrdersPage;
 }());
@@ -3324,13 +3357,14 @@ var OrdersPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 293:
+/***/ 294:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RecordsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_mineservice__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_auth__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_mineservice__ = __webpack_require__(69);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3342,9 +3376,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var RecordsPage = /** @class */ (function () {
-    function RecordsPage(Service) {
+    function RecordsPage(Service, auth) {
         this.Service = Service;
+        this.auth = auth;
         this.App = window.App;
         this.HeadTitle = '收款记录';
         this.GetCashList();
@@ -3389,12 +3425,15 @@ var RecordsPage = /** @class */ (function () {
             }
         }
     };
+    RecordsPage.prototype.ionViewCanEnter = function () {
+        this.auth.CheckToken();
+    };
     RecordsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-records',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\ucenter\records\records.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ng-template [ngIf]="!DataEmpty">\n\n    <ion-grid class="bgc-light" no-padding>\n\n      <div *ngFor="let items of ListData">\n\n        <h5 p-h-10 p-v-5 [ngStyle]="{\'background\':\'aliceblue\',\'margin\':\'0\'}">\n\n          {{items.month}}成功收款\n\n          <span float-right>{{items.total/100}}元</span>\n\n        </h5>\n\n        <div *ngFor="let item of items.data">\n\n          <ion-row align-items-center p-h-5 [navPush]="App.RootPage.OrdersPage" [navParams]="item.id">\n\n            <ion-col col-1 text-center>\n\n              <img src="assets/imgs/vip.png">\n\n            </ion-col>\n\n            <ion-col col-5 [ngSwitch]="item.type">\n\n              <span *ngSwitchCase="\'card\'">信用卡收款</span>\n\n              <span *ngSwitchCase="\'alipay\'">支付宝收款</span>\n\n              <span *ngSwitchCase="\'wechat\'">微信收款</span>\n\n              <p no-margin ion-text color="light-dark">{{item.time}}</p>\n\n            </ion-col>\n\n            <ion-col col-3 [ngSwitch]="item.status">\n\n              <img *ngSwitchCase="\'0\'" src="assets/imgs/seal-3.png" style="max-width:none;width:60px;height:60px;">\n\n              <img *ngSwitchCase="\'1\'" src="assets/imgs/seal-1.png" style="max-width:none;width:60px;height:60px;">\n\n              <img *ngSwitchCase="\'2\'" src="assets/imgs/seal-2.png" style="max-width:none;width:60px;height:60px;">\n\n            </ion-col>\n\n            <ion-col col-3 text-nowrap>\n\n              <span f-1-0>￥</span>{{item.amount/100}}\n\n              <ion-icon [ngStyle]="{\'float\':\'right\',\'color\':\'#ccc\'}">&#xf3d1;</ion-icon>\n\n            </ion-col>\n\n          </ion-row>\n\n        </div>\n\n      </div>\n\n    </ion-grid>\n\n  </ng-template>\n\n  <ng-template [ngIf]="DataEmpty">\n\n    <div text-center p-t-50 p-b-50>\n\n      <img src="assets/imgs/nulldata.png" alt="" width="150px">\n\n      <p text-center text-gray-light f-1-6>你还没有收款记录哦</p>\n\n    </div>\n\n  </ng-template>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\ucenter\records\records.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_mineservice__["a" /* MineService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_mineservice__["a" /* MineService */], __WEBPACK_IMPORTED_MODULE_1__providers_auth__["a" /* TAuthService */]])
     ], RecordsPage);
     return RecordsPage;
 }());
@@ -3403,13 +3442,14 @@ var RecordsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 294:
+/***/ 295:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UcenterPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_auth__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_auth__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Core_TypeInfo__ = __webpack_require__(19);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3421,8 +3461,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var UcenterPage = /** @class */ (function () {
     function UcenterPage(auth) {
+        var _this = this;
         this.auth = auth;
         this.App = window.App;
         // 用户数据
@@ -3433,18 +3475,24 @@ var UcenterPage = /** @class */ (function () {
         this.Mobile = "****";
         // 用户头像
         this.ImgData = { ImgSrc: void 0 };
-    }
-    UcenterPage.prototype.ngOnInit = function () {
-        var _this = this;
-        this.auth.currentUser.subscribe(function (user) {
-            _this.User = user;
-            _this.Mobile = App.UserInfo.mobile.toString().substr(0, 3) + _this.Mobile + App.UserInfo.mobile.toString().substr(-4);
-            _this.authText = App.IsIdAuthed ? '已完成' : '未完成';
+        if (__WEBPACK_IMPORTED_MODULE_2__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(App.UserInfo) && !__WEBPACK_IMPORTED_MODULE_2__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].IsEmptyObject(App.UserInfo)) {
+            this.User = App.UserInfo;
+            this.formatMobile();
+        }
+        this.auth.currentUser.subscribe(function (data) {
+            _this.User = data;
+            _this.formatMobile();
         });
+    }
+    UcenterPage.prototype.formatMobile = function () {
+        this.Mobile = App.UserInfo.mobile.toString().substr(0, 3) + this.Mobile + App.UserInfo.mobile.toString().substr(-4);
+    };
+    UcenterPage.prototype.ionViewCanEnter = function () {
+        this.auth.CheckToken();
     };
     UcenterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-ucenter',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\ucenter\ucenter.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <app-toolbar [Title]="HeadTitle" AppIcon="true" BtnIcon="&#xf103;" (BtnIconEvent)="App.Nav.push(App.RootPage.UsetupPage)"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="ucenter-page">\n\n  <div m-b-10>\n\n    <ion-card no-margin p-v-10>\n\n      <ion-item>\n\n        <ion-avatar item-start>\n\n          <img src="assets/imgs/zfb.png">\n\n        </ion-avatar>\n\n        <h2>{{Mobile}}</h2>\n\n      </ion-item>\n\n    </ion-card>\n\n  </div>\n\n\n\n  <ion-grid class="page-content border-bottom-1px">\n\n    <ion-row (click)="App.Nav.push(\'RecordsPage\')">\n\n      <ion-col col-1 class="d-flex align-items-center">\n\n        <ion-icon name="cart"></ion-icon>\n\n      </ion-col>\n\n      <ion-col col-10 align-items-start>\n\n        <ion-label f-14>收款记录</ion-label>\n\n      </ion-col>\n\n      <ion-col col-1 class="d-flex align-items-center">\n\n        <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <ion-grid class="page-content border-bottom-1px">\n\n    <ion-row (click)="App.Nav.push(\'MyCardPage\')">\n\n      <ion-col col-1 class="d-flex align-items-center">\n\n        <ion-icon name="cart"></ion-icon>\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <ion-label f-14>我的卡片</ion-label>\n\n      </ion-col>\n\n      <ion-col col-6>\n\n        <ion-label ion-text f-13 text-gray text-right>{{User.creditCards}}张信用卡，{{User.depositCards}}张储蓄卡</ion-label>\n\n      </ion-col>\n\n      <ion-col col-1 class="d-flex align-items-center">\n\n        <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <ion-grid m-t-10 class="page-content">\n\n    <ion-row>\n\n      <ion-col col-1 class="d-flex align-items-center">\n\n        <ion-icon name="cart"></ion-icon>\n\n      </ion-col>\n\n      <ion-col col-10>\n\n        <ion-label f-14>在线客服</ion-label>\n\n      </ion-col>\n\n      <ion-col col-1 class="d-flex align-items-center">\n\n        <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>\n\n\n\n<!--  个人中心 -->\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\ucenter\ucenter.html"*/
+            selector: 'page-ucenter',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\ucenter\ucenter.html"*/'<ion-header no-border>\n\n  <ion-toolbar no-padding>\n\n    <!-- <app-toolbar [Title]="HeadTitle" AppIcon="false" BtnIcon="&#xf103;" (BtnIconEvent)="App.Nav.push(App.RootPage.UsetupPage)"></app-toolbar> -->\n\n    <app-toolbar [Title]="HeadTitle" AppIcon="false"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="ucenter-page">\n\n  <div m-b-10>\n\n    <ion-card no-margin p-v-10>\n\n      <ion-item>\n\n        <ion-avatar item-start>\n\n          <img src="assets/imgs/user.png">\n\n        </ion-avatar>\n\n        <h2>{{Mobile}}</h2>\n\n      </ion-item>\n\n    </ion-card>\n\n  </div>\n\n\n\n  <ion-grid class="page-content border-bottom-1px">\n\n    <ion-row (click)="App.Nav.push(\'RecordsPage\')">\n\n      <ion-col col-1 class="d-flex align-items-center">\n\n        <img src="assets/imgs/records.png" alt="收款记录" />\n\n      </ion-col>\n\n      <ion-col col-10 align-items-start>\n\n        <ion-label f-14>收款记录</ion-label>\n\n      </ion-col>\n\n      <ion-col col-1 class="d-flex align-items-center">\n\n        <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <ion-grid class="page-content border-bottom-1px">\n\n    <ion-row (click)="App.Nav.push(\'MyCardPage\')">\n\n      <ion-col col-1 class="d-flex align-items-center">\n\n        <img src="assets/imgs/cards.png" alt="收款记录" />\n\n      </ion-col>\n\n      <ion-col col-4>\n\n        <ion-label f-14>我的卡片</ion-label>\n\n      </ion-col>\n\n      <ion-col col-6>\n\n        <ion-label ion-text f-13 text-gray text-right>{{User.creditCards}}张信用卡，{{User.depositCards}}张储蓄卡</ion-label>\n\n      </ion-col>\n\n      <ion-col col-1 class="d-flex align-items-center">\n\n        <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <ion-grid m-t-10 class="page-content">\n\n    <ion-row>\n\n      <ion-col col-1 class="d-flex align-items-center">\n\n        <img src="assets/imgs/c_service.png" alt="在线客服" />\n\n      </ion-col>\n\n      <ion-col col-10>\n\n        <ion-label f-14>在线客服</ion-label>\n\n      </ion-col>\n\n      <ion-col col-1 class="d-flex align-items-center">\n\n        <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n</ion-content>\n\n\n\n<!--  个人中心 -->\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\ucenter\ucenter.html"*/
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_auth__["a" /* TAuthService */]])
@@ -3456,13 +3504,13 @@ var UcenterPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 295:
+/***/ 296:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UinfoPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsetupPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_auth__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_auth__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3474,9 +3522,82 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+var UsetupPage = /** @class */ (function () {
+    function UsetupPage(auth) {
+        this.auth = auth;
+        this.App = window.App;
+        this.HeadTitle = "设 置";
+    }
+    UsetupPage.prototype.ChangeNickName = function () {
+        var _alertOption = {
+            title: '密码',
+            inputs: [
+                {
+                    name: 'PassWord',
+                },
+            ],
+            buttons: [
+                {
+                    text: '取消'
+                },
+                {
+                    text: '保存',
+                    handler: function (data) {
+                        // 请求接口保存新昵称
+                        // this.UserInfo.nickName = data.nickName;
+                        // this.auth.ModifyUserInfo({nickName: data.nickName});
+                    }
+                }
+            ]
+        };
+        App.ShowAlert(_alertOption).then(function (modal) {
+            return modal.onDidDismiss(function () {
+            });
+        });
+    };
+    UsetupPage.prototype.Logout = function () {
+        this.auth.Logout();
+    };
+    UsetupPage.prototype.ionViewCanEnter = function () {
+        this.auth.CheckToken();
+    };
+    UsetupPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-usetup',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\ucenter\usetup\usetup.html"*/'<ion-header no-border>\n\n  <ion-toolbar>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-grid class="bgc-light">\n\n    <ion-row justify-content-center>\n\n      <ion-col col-3 text-center p-t-30>\n\n        <img src="assets/imgs/58icon.png">\n\n        <p no-margin p-t-10>v1.0.0</p>\n\n      </ion-col>\n\n    </ion-row>\n\n    <div padding-horizontal m-b-20>\n\n      <h5 text-center m-t-10>关于我们</h5>\n\n      <ng-template [ngIf]="App.CanTrade || App.IsIos">\n\n        <span text-left ion-text color="dark">\n\n          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 58付是一种基于信用卡的收款（收单）方式，应用于个人之间的资金往来，以及小微商户的收款（收单）场景。 公司专注用户体验、网络安全与个人隐私保护以及服务质量，打造精品，服务客户。\n\n        </span>\n\n      </ng-template>\n\n    </div>\n\n  </ion-grid>\n\n\n\n\n\n\n\n  <ion-grid class="list-grid-default" m-t-10>\n\n    <ion-row p-l-10 [navPush]="App.RootPage.ModifypwdPage">\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">登录密码</li>\n\n          <li class="icon-arrow">\n\n            <ion-icon></ion-icon>\n\n          </li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <!-- <ion-grid class="list-grid-default" m-t-10> -->\n\n    <!-- <ion-row p-l-10>\n\n      <ion-col>\n\n          <ul class="list-row-inner">\n\n            <li class="title">关于我们</li>\n\n            <li class="icon-arrow"><ion-icon></ion-icon></li>\n\n          </ul>\n\n      </ion-col>\n\n    </ion-row> -->\n\n    <!-- <ion-row p-l-10>\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">用户反馈</li>\n\n          <li class="icon-arrow">\n\n            <ion-icon></ion-icon>\n\n          </li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row> -->\n\n  <!-- </ion-grid> -->\n\n  <ion-row justify-content-center margin-vertical>\n\n    <ion-col col-5>\n\n      <button class="bgc-grad-primary" ion-button block (click)="Logout()">退出账号</button>\n\n    </ion-col>\n\n  </ion-row>\n\n  <ion-row text-center>\n\n    <ion-col ion-text color="light-dark" f-1-6>\n\n      <p no-margin>Copyright ©2016-2018</p>\n\n      <span>深圳前海微融科技有限公司</span>\n\n    </ion-col>\n\n  </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\ucenter\usetup\usetup.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_auth__["a" /* TAuthService */]])
+    ], UsetupPage);
+    return UsetupPage;
+}());
+
+//# sourceMappingURL=usetup.js.map
+
+/***/ }),
+
+/***/ 297:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UinfoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_auth__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Core_TypeInfo__ = __webpack_require__(19);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
 var UinfoPage = /** @class */ (function () {
-    function UinfoPage(Auth) {
-        this.Auth = Auth;
+    function UinfoPage(auth) {
+        var _this = this;
+        this.auth = auth;
         this.App = window.App;
         this.ImgData = { ImgSrc: void 0 };
         this.HeadTitle = "个人资料";
@@ -3484,11 +3605,15 @@ var UinfoPage = /** @class */ (function () {
         this.ShowPhone = "****";
         this.ShowID = "********";
         this.infoName = " ";
-        this.InitUserInfo();
+        if (__WEBPACK_IMPORTED_MODULE_2__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(App.UserInfo) && !__WEBPACK_IMPORTED_MODULE_2__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].IsEmptyObject(App.UserInfo)) {
+            this.InitUserInfo();
+        }
+        this.auth.currentUser.subscribe(function (data) {
+            _this.InitUserInfo();
+        });
     }
     UinfoPage.prototype.InitUserInfo = function () {
         this.UserInfo = App.UserInfo;
-        console.log(this.UserInfo);
         if (this.UserInfo.mobile !== null)
             this.ShowPhone = this.UserInfo.mobile.substr(0, 3) + this.ShowPhone + this.UserInfo.mobile.substr(-4);
         if (this.UserInfo.idCardNo !== null)
@@ -3522,7 +3647,7 @@ var UinfoPage = /** @class */ (function () {
                     handler: function (data) {
                         // 请求接口保存新昵称
                         _this.UserInfo.nickName = data.nickName;
-                        _this.Auth.ModifyUserInfo({ nickName: data.nickName });
+                        _this.auth.ModifyUserInfo({ nickName: data.nickName });
                     }
                 }
             ]
@@ -3531,6 +3656,9 @@ var UinfoPage = /** @class */ (function () {
             return modal.onDidDismiss(function () {
             });
         });
+    };
+    UinfoPage.prototype.ionViewCanEnter = function () {
+        this.auth.CheckToken();
     };
     UinfoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
@@ -3546,80 +3674,14 @@ var UinfoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 296:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsetupPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_auth__ = __webpack_require__(15);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var UsetupPage = /** @class */ (function () {
-    function UsetupPage(Service) {
-        this.Service = Service;
-        this.App = window.App;
-        this.HeadTitle = "设 置";
-    }
-    UsetupPage.prototype.ChangeNickName = function () {
-        var _alertOption = {
-            title: '密码',
-            inputs: [
-                {
-                    name: 'PassWord',
-                },
-            ],
-            buttons: [
-                {
-                    text: '取消'
-                },
-                {
-                    text: '保存',
-                    handler: function (data) {
-                        // 请求接口保存新昵称
-                        // this.UserInfo.nickName = data.nickName;
-                        // this.Auth.ModifyUserInfo({nickName: data.nickName});
-                    }
-                }
-            ]
-        };
-        App.ShowAlert(_alertOption).then(function (modal) {
-            return modal.onDidDismiss(function () {
-            });
-        });
-    };
-    UsetupPage.prototype.Logout = function () {
-        this.Service.Logout();
-    };
-    UsetupPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-usetup',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\ucenter\usetup\usetup.html"*/'<ion-header no-border>\n\n  <ion-toolbar>\n\n    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-grid class="bgc-light">\n\n    <ion-row justify-content-center>\n\n      <ion-col col-3 text-center p-t-30>\n\n        <img src="assets/imgs/58icon.png">\n\n        <p no-margin p-t-10>v1.0.0</p>\n\n      </ion-col>\n\n    </ion-row>\n\n    <div padding-horizontal m-b-20>\n\n      <h5 text-center m-t-10>关于我们</h5>\n\n      <ng-template [ngIf]="App.CanTrade || App.IsIos">\n\n        <span text-left ion-text color="dark">\n\n          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 58付是一种基于信用卡的收款（收单）方式，应用于个人之间的资金往来，以及小微商户的收款（收单）场景。 公司专注用户体验、网络安全与个人隐私保护以及服务质量，打造精品，服务客户。\n\n        </span>\n\n      </ng-template>\n\n    </div>\n\n  </ion-grid>\n\n\n\n\n\n\n\n  <ion-grid class="list-grid-default" m-t-10>\n\n    <ion-row p-l-10 [navPush]="App.RootPage.ModifypwdPage">\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">登录密码</li>\n\n          <li class="icon-arrow">\n\n            <ion-icon></ion-icon>\n\n          </li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-grid>\n\n\n\n  <!-- <ion-grid class="list-grid-default" m-t-10> -->\n\n    <!-- <ion-row p-l-10>\n\n      <ion-col>\n\n          <ul class="list-row-inner">\n\n            <li class="title">关于我们</li>\n\n            <li class="icon-arrow"><ion-icon></ion-icon></li>\n\n          </ul>\n\n      </ion-col>\n\n    </ion-row> -->\n\n    <!-- <ion-row p-l-10>\n\n      <ion-col>\n\n        <ul class="list-row-inner">\n\n          <li class="title">用户反馈</li>\n\n          <li class="icon-arrow">\n\n            <ion-icon></ion-icon>\n\n          </li>\n\n        </ul>\n\n      </ion-col>\n\n    </ion-row> -->\n\n  <!-- </ion-grid> -->\n\n  <ion-row justify-content-center margin-vertical>\n\n    <ion-col col-5>\n\n      <button class="bgc-grad-primary" ion-button block (click)="Logout()">退出账号</button>\n\n    </ion-col>\n\n  </ion-row>\n\n  <ion-row text-center>\n\n    <ion-col ion-text color="light-dark" f-1-6>\n\n      <p no-margin>Copyright ©2016-2018</p>\n\n      <span>深圳前海微融科技有限公司</span>\n\n    </ion-col>\n\n  </ion-row>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\ucenter\usetup\usetup.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_auth__["a" /* TAuthService */]])
-    ], UsetupPage);
-    return UsetupPage;
-}());
-
-//# sourceMappingURL=usetup.js.map
-
-/***/ }),
-
-/***/ 297:
+/***/ 298:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VIPmembersPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_mineservice__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_auth__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_mineservice__ = __webpack_require__(69);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3632,9 +3694,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 // import { InAppBrowser } from '@ionic-native/in-app-browser';
 
+
 var VIPmembersPage = /** @class */ (function () {
-    function VIPmembersPage(Service) {
+    function VIPmembersPage(Service, auth) {
         this.Service = Service;
+        this.auth = auth;
         this.App = window.App;
         this.HeadTitle = "我的费率";
         this.VipIndex = 0;
@@ -3675,11 +3739,14 @@ var VIPmembersPage = /** @class */ (function () {
         var Day = DeadTime.getDate();
         this.Deadline = Year + '-' + Month + '-' + Day;
     };
+    VIPmembersPage.prototype.ionViewCanEnter = function () {
+        this.auth.CheckToken();
+    };
     VIPmembersPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-VIPmembers',template:/*ion-inline-start:"D:\projects\myapp\myapp\src\pages\ucenter\VIPmembers\VIPmembers.html"*/'<ion-header no-border>\n\n    <ion-toolbar no-padding>\n\n        <app-toolbar HasBack="true"  [Title]="headTitle"></app-toolbar>\n\n    </ion-toolbar>\n\n</ion-header>\n\n<!-- <ion-header no-border class="bgc-gray-light">\n\n    <ion-toolbar no-padding>\n\n        <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>\n\n        <div class="vip-toolbar bgc-grad-primary"></div> -->\n\n    <!-- </ion-toolbar>\n\n    <ion-toolbar no-padding>\n\n        <ion-grid class="grid-mine-header bgc-grad-primary no-padding">\n\n            <ion-row justify-content-center>\n\n                <ion-col col-5 text-center *ngIf="App.IsVip">\n\n                    <img class="vipface" src="assets/imgs/hgvip.png">\n\n                    <span text-nowrap p-b-5>会员{{Deadline}}到期</span>\n\n                </ion-col>\n\n                <ion-col col-5 text-center *ngIf="!App.IsVip">\n\n                    <img class="vipface" src="assets/imgs/hgvip.png">\n\n                    <span text-nowrap p-b-5>你还不是VIP会员</span>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-grid>\n\n    </ion-toolbar>\n\n</ion-header> -->\n\n<!-- <ion-content>\n\n    <div m-h-15 m-v-15>\n\n        <ion-grid class="vip-list" no-padding \n\n        [ngClass]="{\'active\': VipIndex == i && item.name != App.UserInfo.rank}"\n\n        [ngClass]="{\'no-active\': item.name != App.UserInfo.rank}"\n\n        (click)="ChooseVIP(i)" *ngFor="let item of VipList; let i = index">\n\n            <ion-row class="vip-item">\n\n                <ion-col col-9 text-left>\n\n                    <h4>{{item.name}}</h4>\n\n                    <div m-b-10>\n\n                        <p>无积分{{item.rate}}%，有积分{{item.rate1}}%</p>\n\n                        <p>直推返利：{{item.profitRate1}}%，间推返利：{{item.profitRate2}}%</p>\n\n                        <p>间推返利：{{item.profitRate2}}%</p> -->\n\n                        <!-- <p>有效期\n\n                            <span *ngIf="item.days == \'-1\'; then Infinit; else Days"></span>\n\n                            <ng-template #Infinit>永久有效</ng-template>\n\n                            <ng-template #Days>{{item.days}}天</ng-template>\n\n                        </p>\n\n                    </div>\n\n                </ion-col>\n\n                <ion-col col-3 text-right>\n\n                    <b>￥{{item.price}}</b>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-grid>\n\n        <ion-grid class="vip-list pay list-grid-default" p-v-20 m-t-10>\n\n            <ion-row p-h-10>\n\n                <ion-col>\n\n                    <ul class="list-row-inner">\n\n                        <li class="note" text-left>\n\n                            <span class="bank-face"><img src="assets/imgs/zfb.png"></span>\n\n                            <span ion-text color="dark">支付宝支付</span>\n\n                        </li>\n\n                        <li class="title" text-right><i class="has-point active"></i></li>\n\n                    </ul>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-grid>\n\n    </div> -->\n\n    <!-- <div [ngStyle]="{width: \'100%\', height: \'8%\', \'margin-top\': \'2%\'}"></div>\n\n    <div p-h-15>\n\n        <ion-grid class="grid-vip-cont grid-header-bar" p-v-20>\n\n            <div class="foor-face"><img src="assets/imgs/yyy.png" alt=""></div>\n\n            <ion-row class="face-cont face-cont-vip"\n\n                [ngClass]="{\'active\': VipIndex == i && item.name != App.UserInfo.rank}"\n\n                [ngClass]="{\'no-active\': item.name != App.UserInfo.rank}"\n\n                (click)="ChooseVIP(i)" *ngFor="let item of VipList; let i = index">\n\n                <ion-col>\n\n                    <b class="face-tab" [ngClass]="{\'face-active\': VipIndex == i}">\n\n                        <img class="face-nav" src="assets/imgs/zs{{item.id}}.png">\n\n                    </b>\n\n                </ion-col>\n\n                <ion-col col-2>\n\n                    <h5>{{item.Tname}}</h5>\n\n                    <h5>会员</h5>\n\n                </ion-col>\n\n                <ion-col col-2 class="border">\n\n                    <h6>费率</h6>\n\n                    <b>{{item.rate}}%</b>\n\n                </ion-col>\n\n                <ion-col col-2>\n\n                    <h6>有效期</h6>\n\n                    <b *ngIf="item.days == \'-1\'; then Infinit; else Days"></b>\n\n                    <ng-template #Infinit>永久有效</ng-template>\n\n                    <ng-template #Days>{{item.days}}天</ng-template>\n\n                </ion-col>\n\n                <ion-col col-3 ion-text color="red-dark">\n\n                    ￥<b f-2-5>{{item.price}}</b>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-grid>\n\n        <ion-grid class="grid-vip-cont list-grid-default" p-v-20 m-t-10>\n\n            <span>选择支付方式</span>\n\n            <ion-row>\n\n                <ion-col text-center>收款方式</ion-col>\n\n                <ion-col>\n\n                    <ul class="list-row-inner">\n\n                        <li class="note" text-left>\n\n                            <span class="bank-face"><img src="assets/imgs/zfb.png"></span>\n\n                            <span ion-text color="dark">支付宝支付</span>\n\n                        </li>\n\n                        <li class="title" text-right><i class="has-point active"></i></li>\n\n                    </ul>\n\n                </ion-col>\n\n                <ion-col>\n\n                    <ul class="list-row-inner">\n\n                        <li class="title" text-right><i class="has-point"></i></li>\n\n                        <li class="note" text-left>\n\n                            <span class="bank-face"><img src="assets/imgs/wx.png"></span>\n\n                            <span ion-text color="dark" >微信</span>\n\n                        </li>\n\n                    </ul>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-grid>\n\n    </div> -->\n\n\n\n<!-- </ion-content>\n\n<ion-footer class="bgc-gray-light">\n\n    <ion-row justify-content-center m-h-10>\n\n        <ion-col>\n\n            <button ion-button block round class="bgc-grad-primary" (click)="Submit()">应付金额{{PayAmount}}元，去提交</button>\n\n        </ion-col>\n\n    </ion-row>\n\n</ion-footer> -->\n\n<ion-content>\n\n    <ion-grid class="list-grid-default">\n\n        <ion-row>\n\n            <ion-col col-12>\n\n                <h3>费率：</h3>\n\n            </ion-col>\n\n        </ion-row>\n\n        <ion-row align-items-center justify-content-center>\n\n            <ion-row col-12>\n\n                <ion-col col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8>\n\n                    <p ion-text color="red">{{App.UserInfo.rate}}%+2元/笔</p>\n\n                </ion-col>\n\n                <ion-col col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4>\n\n                    <p ion-text>无积分</p>\n\n                </ion-col>\n\n            </ion-row>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col col-12>\n\n                <p ion-text>即时到账，单笔上2万，交易时间8:00 - 22：00点</p>\n\n            </ion-col>\n\n        </ion-row>\n\n    </ion-grid>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\projects\myapp\myapp\src\pages\ucenter\VIPmembers\VIPmembers.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_mineservice__["a" /* MineService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_mineservice__["a" /* MineService */], __WEBPACK_IMPORTED_MODULE_1__providers_auth__["a" /* TAuthService */]])
     ], VIPmembersPage);
     return VIPmembersPage;
 }());
@@ -3688,13 +3755,13 @@ var VIPmembersPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 298:
+/***/ 299:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(299);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(306);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(307);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -3702,7 +3769,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 306:
+/***/ 307:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3710,19 +3777,19 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(362);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_app_version__ = __webpack_require__(257);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_camera__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_device__ = __webpack_require__(258);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_component__ = __webpack_require__(381);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers__ = __webpack_require__(385);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__UltraCreation_Native_StatusBar__ = __webpack_require__(260);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__UltraCreation_Native_SplashScreen__ = __webpack_require__(259);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__http_interceptors__ = __webpack_require__(389);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(378);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_app_version__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_camera__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_device__ = __webpack_require__(259);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_component__ = __webpack_require__(382);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__UltraCreation_Native_StatusBar__ = __webpack_require__(261);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__UltraCreation_Native_SplashScreen__ = __webpack_require__(260);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__http_interceptors__ = __webpack_require__(390);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3760,18 +3827,17 @@ var AppModule = /** @class */ (function () {
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["c" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_15__http_interceptors__["a" /* InterceptorModule */],
                 __WEBPACK_IMPORTED_MODULE_12__providers__["a" /* ProviderModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_11__app_component__["a" /* MyApp */], config, {
                     links: [
                         { loadChildren: '../pages/auth/auth.module#AuthPageModule', name: 'AuthPage', segment: 'auth', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/addcreditcard/addcreditcard.module#AddCreditCardPageModule', name: 'AddCreditCardPage', segment: 'addcreditcard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/findpassword/findpassword.module#FindPasswordPageModule', name: 'FindPasswordPage', segment: 'findpassword', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/addcreditcard/addcreditcard.module#AddCreditCardPageModule', name: 'AddCreditCardPage', segment: 'addcreditcard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/adddeposit/adddeposit.module#AddDepositPageModule', name: 'AddDepositPage', segment: 'adddeposit', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/branchcard/branchcard.module#BranchcardPageModule', name: 'BranchcardPage', segment: 'branchcard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/cardinfor/cardinfor.module#CardInforPageModule', name: 'CardInforPage', segment: 'cardinfor', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/changecards/changecards.module#ChangecardsPageModule', name: 'ChangecardsPage', segment: 'changecards', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/checkout/checkout.module#CheckoutPageModule', name: 'CheckoutPage', segment: 'checkout', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/changecards/changecards.module#ChangecardsPageModule', name: 'ChangecardsPage', segment: 'changecards', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/confirminfo/confirminfo.module#ConfirminfoPageModule', name: 'ConfirminfoPage', segment: 'confirminfo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/creditcard/creditcard.module#CreditCardPageModule', name: 'CreditCardPage', segment: 'creditcard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/finalpay/finalpay.module#FinalpayPageModule', name: 'FinalpayPage', segment: 'finalpay', priority: 'low', defaultHistory: [] },
@@ -3790,8 +3856,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/ucenter/orders/orders.module#OrdersPageModule', name: 'OrdersPage', segment: 'orders', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ucenter/records/records.module#RecordsPageModule', name: 'RecordsPage', segment: 'records', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ucenter/ucenter.module#UcenterPageModule', name: 'UcenterPage', segment: 'ucenter', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/ucenter/uinfo/uinfo.module#UinfoPageModule', name: 'UinfoPage', segment: 'uinfo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ucenter/usetup/usetup.module#UsetupPageModule', name: 'UsetupPage', segment: 'usetup', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ucenter/uinfo/uinfo.module#UinfoPageModule', name: 'UinfoPage', segment: 'uinfo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ucenter/VIPmembers/VIPmembers.module#VIPmembersPageModule', name: 'VIPmembersPage', segment: 'VIPmembers', priority: 'low', defaultHistory: [] }
                     ]
                 }),
@@ -3813,6 +3879,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_13__UltraCreation_Native_StatusBar__["a" /* StatusBar */],
                 __WEBPACK_IMPORTED_MODULE_14__UltraCreation_Native_SplashScreen__["a" /* SplashScreen */],
                 __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__["a" /* InAppBrowser */],
+                __WEBPACK_IMPORTED_MODULE_15__http_interceptors__["a" /* httpInterceptorProviders */],
                 { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicErrorHandler */] }
             ]
         })
@@ -3824,17 +3891,17 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 381:
+/***/ 382:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Native_SplashScreen__ = __webpack_require__(259);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__ = __webpack_require__(260);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_application__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Native_SplashScreen__ = __webpack_require__(260);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__ = __webpack_require__(261);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_application__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3892,22 +3959,22 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 382:
+/***/ 383:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TAppController; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_platform_platform__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_app_app__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_components_toast_toast_controller__ = __webpack_require__(138);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular_components_alert_alert_controller__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular_components_modal_modal_controller__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular_components_loading_loading_controller__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular_components_action_sheet_action_sheet_controller__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic_angular_components_popover_popover_controller__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Core_Exception__ = __webpack_require__(383);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_app_app__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_components_toast_toast_controller__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular_components_alert_alert_controller__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular_components_modal_modal_controller__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular_components_loading_loading_controller__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular_components_action_sheet_action_sheet_controller__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic_angular_components_popover_popover_controller__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Core_Exception__ = __webpack_require__(384);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4280,7 +4347,7 @@ var TAppController = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 383:
+/***/ 384:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4420,66 +4487,66 @@ var EUsage = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 384:
+/***/ 385:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_tabs_tabs__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_tabs_tabs__ = __webpack_require__(291);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "TabsPage", function() { return __WEBPACK_IMPORTED_MODULE_0__pages_tabs_tabs__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_home_home__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_home_home__ = __webpack_require__(283);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "HomePage", function() { return __WEBPACK_IMPORTED_MODULE_1__pages_home_home__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_home_creditcard_creditcard__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_home_creditcard_creditcard__ = __webpack_require__(281);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CreditCardPage", function() { return __WEBPACK_IMPORTED_MODULE_2__pages_home_creditcard_creditcard__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_cardinfor_cardinfor__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_home_cardinfor_cardinfor__ = __webpack_require__(277);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CardInforPage", function() { return __WEBPACK_IMPORTED_MODULE_3__pages_home_cardinfor_cardinfor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_finalpay_finalpay__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_finalpay_finalpay__ = __webpack_require__(282);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FinalpayPage", function() { return __WEBPACK_IMPORTED_MODULE_4__pages_home_finalpay_finalpay__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_confirminfo_confirminfo__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_confirminfo_confirminfo__ = __webpack_require__(280);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirminfoPage", function() { return __WEBPACK_IMPORTED_MODULE_5__pages_home_confirminfo_confirminfo__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_addcreditcard_addcreditcard__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_addcreditcard_addcreditcard__ = __webpack_require__(275);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AddCreditCardPage", function() { return __WEBPACK_IMPORTED_MODULE_6__pages_home_addcreditcard_addcreditcard__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_changecards_changecards__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_changecards_changecards__ = __webpack_require__(279);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ChangecardsPage", function() { return __WEBPACK_IMPORTED_MODULE_7__pages_home_changecards_changecards__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_adddeposit_adddeposit__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_home_adddeposit_adddeposit__ = __webpack_require__(276);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AddDepositPage", function() { return __WEBPACK_IMPORTED_MODULE_8__pages_home_adddeposit_adddeposit__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_listofbank_listofbank__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_listofbank_listofbank__ = __webpack_require__(151);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ListofbankPage", function() { return __WEBPACK_IMPORTED_MODULE_9__pages_home_listofbank_listofbank__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_branchcard_branchcard__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_branchcard_branchcard__ = __webpack_require__(152);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "BranchcardPage", function() { return __WEBPACK_IMPORTED_MODULE_10__pages_home_branchcard_branchcard__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_start_start__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_start_start__ = __webpack_require__(290);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "StartPage", function() { return __WEBPACK_IMPORTED_MODULE_11__pages_start_start__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_modifypassword_modifypassword__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_modifypassword_modifypassword__ = __webpack_require__(287);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ModifyPasswordPage", function() { return __WEBPACK_IMPORTED_MODULE_12__pages_modifypassword_modifypassword__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_findpassword_findpassword__ = __webpack_require__(274);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FindPasswordPage", function() { return __WEBPACK_IMPORTED_MODULE_13__pages_findpassword_findpassword__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_home_resetpassword_resetpassword__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_home_resetpassword_resetpassword__ = __webpack_require__(284);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ResetPasswordPage", function() { return __WEBPACK_IMPORTED_MODULE_14__pages_home_resetpassword_resetpassword__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_home_checkout_checkout__ = __webpack_require__(278);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CheckoutPage", function() { return __WEBPACK_IMPORTED_MODULE_15__pages_home_checkout_checkout__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_ucenter_ucenter__ = __webpack_require__(294);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_ucenter_ucenter__ = __webpack_require__(295);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "UcenterPage", function() { return __WEBPACK_IMPORTED_MODULE_16__pages_ucenter_ucenter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_login_login__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_login_login__ = __webpack_require__(286);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPage", function() { return __WEBPACK_IMPORTED_MODULE_17__pages_login_login__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_loan_loan__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_loan_loan__ = __webpack_require__(285);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "LoanPage", function() { return __WEBPACK_IMPORTED_MODULE_18__pages_loan_loan__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_setpassword_setpassword__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_setpassword_setpassword__ = __webpack_require__(289);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "SetPasswordPage", function() { return __WEBPACK_IMPORTED_MODULE_19__pages_setpassword_setpassword__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_auth_auth__ = __webpack_require__(272);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_auth_auth__ = __webpack_require__(273);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AuthPage", function() { return __WEBPACK_IMPORTED_MODULE_20__pages_auth_auth__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_ucenter_orders_orders__ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_ucenter_orders_orders__ = __webpack_require__(293);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "OrdersPage", function() { return __WEBPACK_IMPORTED_MODULE_21__pages_ucenter_orders_orders__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_ucenter_records_records__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_ucenter_records_records__ = __webpack_require__(294);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "RecordsPage", function() { return __WEBPACK_IMPORTED_MODULE_22__pages_ucenter_records_records__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_ucenter_uinfo_uinfo__ = __webpack_require__(295);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_ucenter_uinfo_uinfo__ = __webpack_require__(297);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "UinfoPage", function() { return __WEBPACK_IMPORTED_MODULE_23__pages_ucenter_uinfo_uinfo__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_ucenter_usetup_usetup__ = __webpack_require__(296);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "UsetupPage", function() { return __WEBPACK_IMPORTED_MODULE_24__pages_ucenter_usetup_usetup__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_ucenter_VIPmembers_VIPmembers__ = __webpack_require__(297);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_ucenter_VIPmembers_VIPmembers__ = __webpack_require__(298);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "VIPmembersPage", function() { return __WEBPACK_IMPORTED_MODULE_25__pages_ucenter_VIPmembers_VIPmembers__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_ucenter_mycard_mycard__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_ucenter_mycard_mycard__ = __webpack_require__(292);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MyCardPage", function() { return __WEBPACK_IMPORTED_MODULE_26__pages_ucenter_mycard_mycard__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_register_register__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_register_register__ = __webpack_require__(288);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterPage", function() { return __WEBPACK_IMPORTED_MODULE_27__pages_register_register__["a"]; });
 // import { from } from 'rxjs/observable/from';
 
@@ -4514,17 +4581,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 385:
+/***/ 386:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProviderModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mineservice__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__homeservice__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mineservice__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__homeservice__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fileservice__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__checkAppUpdate__ = __webpack_require__(386);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__checkAppUpdate__ = __webpack_require__(387);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4554,18 +4621,18 @@ var ProviderModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 386:
+/***/ 387:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckAppUpdate; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__ = __webpack_require__(257);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_opener__ = __webpack_require__(387);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file__ = __webpack_require__(388);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_device__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_opener__ = __webpack_require__(388);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file__ = __webpack_require__(389);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_device__ = __webpack_require__(259);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4738,64 +4805,52 @@ var CheckAppUpdate = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 389:
+/***/ 390:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InterceptorModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__noop_interceptor__ = __webpack_require__(390);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return httpInterceptorProviders; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__noop_interceptor__ = __webpack_require__(391);
 /* "Barrel" of Http Interceptors */
-
+// import { NgModule } from '@angular/core';
 
 
 /** Http interceptor providers in outside-in order */
-/*export const httpInterceptorProviders = [
-  { provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true },
-];*/
-var InterceptorModule = /** @class */ (function () {
-    function InterceptorModule() {
-    }
-    InterceptorModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
-            providers: [
-                { provide: __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HTTP_INTERCEPTORS */], useClass: __WEBPACK_IMPORTED_MODULE_2__noop_interceptor__["a" /* NoopInterceptor */], multi: true }
-            ]
-        })
-    ], InterceptorModule);
-    return InterceptorModule;
-}());
-
+var httpInterceptorProviders = [
+    { provide: __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HTTP_INTERCEPTORS */], useClass: __WEBPACK_IMPORTED_MODULE_1__noop_interceptor__["a" /* NoopInterceptor */], multi: true },
+];
+// @NgModule({
+//   providers: [
+//     { provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true }
+//   ]
+// })
+// export class InterceptorModule { }
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 390:
+/***/ 391:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NoopInterceptor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__ = __webpack_require__(391);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__ = __webpack_require__(392);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__(393);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_pub_service__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_helper_credential_helper__ = __webpack_require__(68);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -4809,14 +4864,20 @@ var NoopInterceptor = /** @class */ (function () {
     NoopInterceptor.prototype.intercept = function (req, next) {
         var jwtReq = req;
         if (!req.headers.has('Authorization')) {
-            var token = localStorage.getItem('token');
+            var token = __WEBPACK_IMPORTED_MODULE_6__shared_helper_credential_helper__["a" /* CredentialHelper */].getToken();
             jwtReq = req.clone({ headers: req.headers.set('Authorization', "Bearer " + token) });
         }
         return next.handle(jwtReq).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["catchError"])(this.handleError)).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["tap"])(function (event) {
-            console.log('response');
             if (event instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpResponse */]) {
                 if (event.body.code === __WEBPACK_IMPORTED_MODULE_4__providers_pub_service__["a" /* TBaseService */].SESSION_TIMEOUT) {
-                    App.Nav.push('LoginPage');
+                    var mobile = __WEBPACK_IMPORTED_MODULE_6__shared_helper_credential_helper__["a" /* CredentialHelper */].getMobile();
+                    var secret = __WEBPACK_IMPORTED_MODULE_6__shared_helper_credential_helper__["a" /* CredentialHelper */].getSecret();
+                    if (__WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(mobile) && __WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(secret)) {
+                        location.href = "/#/thirdLogin/" + mobile + "/" + secret;
+                    }
+                    else {
+                        location.href = '/#/login';
+                    }
                     return new __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__["ErrorObservable"]('登录超时');
                 }
                 else if (event.body.code === __WEBPACK_IMPORTED_MODULE_4__providers_pub_service__["a" /* TBaseService */].REQ_FAIL) {
@@ -4854,11 +4915,11 @@ var NoopInterceptor = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TBaseService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__ = __webpack_require__(68);
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -4989,9 +5050,9 @@ var TBaseService = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FileService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz__ = __webpack_require__(339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_lrz__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_pub_service__ = __webpack_require__(58);
 var __extends = (this && this.__extends) || (function () {
@@ -5053,7 +5114,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
-var lodash = __webpack_require__(117);
+var lodash = __webpack_require__(118);
 
 // 附件类型-手持身份证
 var IDCARD_HAND = 'idcard_hand';
@@ -5368,6 +5429,45 @@ var FileService = /** @class */ (function (_super) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CredentialHelper; });
+var CredentialHelper = /** @class */ (function () {
+    function CredentialHelper() {
+    }
+    CredentialHelper.setToken = function (v) {
+        localStorage.setItem(CredentialHelper.tokenKey, v);
+    };
+    CredentialHelper.setMobile = function (v) {
+        localStorage.setItem(CredentialHelper.mobileKey, v);
+    };
+    CredentialHelper.setSecret = function (v) {
+        localStorage.setItem(CredentialHelper.secretKey, v);
+    };
+    CredentialHelper.getToken = function () {
+        return localStorage.getItem(CredentialHelper.tokenKey);
+    };
+    CredentialHelper.removeToken = function () {
+        return localStorage.removeItem(CredentialHelper.tokenKey);
+    };
+    CredentialHelper.getMobile = function () {
+        return localStorage.getItem(CredentialHelper.mobileKey);
+    };
+    CredentialHelper.getSecret = function () {
+        return localStorage.getItem(CredentialHelper.secretKey);
+    };
+    CredentialHelper.tokenKey = 'token';
+    CredentialHelper.mobileKey = 'mobile';
+    CredentialHelper.secretKey = 'third_party_secret';
+    return CredentialHelper;
+}());
+
+//# sourceMappingURL=credential-helper.js.map
+
+/***/ }),
+
+/***/ 69:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MineService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(40);
@@ -5442,7 +5542,7 @@ var MineService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 77:
+/***/ 78:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5452,7 +5552,7 @@ var MineService = /** @class */ (function (_super) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CREDIT_CARD; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return DEPOSIT_CARD; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_homeservice__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_homeservice__ = __webpack_require__(23);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5471,7 +5571,6 @@ var CardHelper = /** @class */ (function () {
         this.cards = new Array();
         this.service.GetCardList();
         this.service.currentCards.subscribe(function (data) {
-            console.log('User card data: ', data);
             _this.cards = data;
         });
     }
@@ -5487,19 +5586,15 @@ var CardHelper = /** @class */ (function () {
     };
     // 获取一张卡片
     CardHelper.prototype.getCardById = function (id) {
-        var c;
-        this.cards.forEach(function (card) {
-            if (card.id === id) {
-                c = card;
-            }
+        var cards = this.cards.filter(function (card) {
+            return card.id == id;
         });
-        return c;
+        return cards.length > 0 ? cards[0] : {};
     };
     // 根据类型刷选卡片
     CardHelper.prototype.filterCard = function (t) {
         var cards = this.cards;
         return cards.filter(function (card) {
-            console.log(t);
             return parseInt(card.type) === t;
         });
     };
@@ -5508,7 +5603,7 @@ var CardHelper = /** @class */ (function () {
         var _this = this;
         this.cards.forEach(function (card, k) {
             if (parseInt(card.type) === t) {
-                if (card.id === id) {
+                if (card.id == id) {
                     _this.cards[k].primary = PRIMARY_CARD.toString();
                 }
                 else {
@@ -5546,5 +5641,5 @@ var DEPOSIT_CARD = 1;
 
 /***/ })
 
-},[298]);
+},[299]);
 //# sourceMappingURL=main.js.map

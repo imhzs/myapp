@@ -1,6 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { IonicPage, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 
 import { TAuthService } from '../../providers/auth';
 
@@ -24,8 +24,7 @@ export class LoginPage implements OnInit
 
   findPasswordPage: any;
 
-  constructor(private auth: TAuthService, public navParams: NavParams) {
-    this.auth.thirdPartyLogin(this.navParams.get('mobile'), this.navParams.get('key'));
+  constructor(private auth: TAuthService) {
   }
 
   ngOnInit() {

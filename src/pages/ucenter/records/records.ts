@@ -3,6 +3,7 @@ import { IonicPage } from 'ionic-angular';
 
 import { TAuthService } from '../../../providers/auth';
 import { MineService } from '../../../providers/mineservice';
+import { OrderHelper } from '../../../shared/helper/order-helper';
 
 @IonicPage()
 @Component({
@@ -14,10 +15,13 @@ export class RecordsPage
 {
   App = window.App;
 
+  // 页面标题
   HeadTitle: string='收款记录'
 
-  ListData: Array<any>;
+  // 收款记录数据
+  ListData: Array<any> = new Array<any>();
 
+  // 没有收款记录
   DataEmpty: boolean;
 
   constructor(public Service: MineService, private auth: TAuthService) {
@@ -29,38 +33,36 @@ export class RecordsPage
   }
 
   DataProcess(data) {
-    if (data.length == 0) return this.DataEmpty = true;
+    if (data.length == 0) {
+      return this.DataEmpty = true;
+    }
     this.DataEmpty = false;
-    this.ListData = new Array<any>();
-    let tmpMonth = data[0].time.split(' ')[0].substr(0,7);
-    this.ListData = [
-      {
-        month: tmpMonth,
-        total: 0,
-        data: []
-      }
-    ];
+    let tmpMonth = data[0].time.split(' ')[0].substr(0, 7);
+    this.ListData = [{month: tmpMonth, total: 0, data: []}];
     for (let i = 0; i < data.length; i ++) {
       let tmpJson = data[i];
-      if (tmpMonth == data[i].time.split(' ')[0].substr(0,7)) {
+      tmpJson['statusText'] = OrderHelper.getStatusText(tmpJson.status);
+      tmpJson['typeText'] = OrderHelper.getTypeText(tmpJson.type);
+      if (tmpMonth == data[i].time.split(' ')[0].substr(0, 7)) {
         for (let j = 0; j < this.ListData.length; j ++) {
           if (this.ListData[j].month == tmpMonth)  {
             this.ListData[j].data.push(tmpJson);
             // 成功订单统计
-            if(tmpJson.status == '1') {
+            if(tmpJson.status == OrderHelper.StatusSuccess) {
               this.ListData[j].total += Number(tmpJson.amount);
             }
           }
         }
       } else {
-        tmpMonth = data[i].time.split(' ')[0].substr(0,7);
-        this.ListData.push ({
-          month: tmpMonth,
-          total: tmpJson.amount,
-          data: [tmpJson]
-        });
+        tmpMonth = data[i].time.split(' ')[0].substr(0, 7);
+        this.ListData.push ({month: tmpMonth, total: tmpJson.amount, data: [tmpJson]});
       }
     }
+  }
+
+  // 详情页
+  ShowDetail(id) {
+    App.NavGo(`record/detail/${id}`);
   }
   
   ionViewCanEnter() {

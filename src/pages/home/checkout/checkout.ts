@@ -55,7 +55,7 @@ export class CheckoutPage
 				} else if(data.indexOf('<html>') == -1) {
 					App.ShowError(data.respMsg);
 				} else {
-					App.Nav.push(App.RootPage.FinalpayPage, {innerHtml: data});
+					App.Nav.push('finalpay', {innerHtml: data});
 				}
 			},
 			error => {

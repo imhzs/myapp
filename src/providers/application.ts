@@ -2,7 +2,7 @@ import {Injectable, Injector} from '@angular/core';
 import { Platform, Content } from 'ionic-angular';
 
 import {TAppController} from '../UltraCreation/ng-ion/appcontroller';
-import * as RootPage from '../shared/root';
+// import * as RootPage from '../shared/root';
 import { TypeInfo } from '../UltraCreation/Core/TypeInfo';
 import { CardModel } from '../models/card-model';
 import { UserModel } from '../models/user-model';
@@ -43,7 +43,7 @@ export class TApplication extends TAppController
   // 当前储蓄卡
   CurrentDepositCard: any = {};
 
-  public RootPage: any = RootPage;
+  // public RootPage: any = RootPage;
 
   private HardwareBackButtonDisabled = false;
 
@@ -135,14 +135,18 @@ export class TApplication extends TAppController
   }
 
   IsReal(page?: any) {
-    return false;
-    // if (App.UserInfo.idAuthed !== 1) {
-    //   App.Nav.push(App.RootPage.NoldentifyPage);
-    // } else if(page) {
-    //   App.Nav.push(page);
-    // } else {
-    //   return;
-    // }
+    if (!this.IsIdAuthed) {
+      location.href = '/#/auth';
+    } else if(page) {
+      location.href = `/#/${page}`;
+    } else {
+      return;
+    }
+  }
+
+  // 页面导航
+  NavGo(uri: string) {
+    location.href = `/#/${uri}`;
   }
 
   // 是否已完成身份认证

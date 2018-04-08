@@ -1,12 +1,14 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { NavController } from 'ionic-angular';
 
-@Component({ selector: 'app-toolbar', templateUrl: './index.html' })
+@Component({
+  selector: 'app-toolbar',
+  templateUrl: './index.html'
+})
 export class PageToolbarComponent
 {
   App: any = <any>window.App;
 
-  constructor(private navCtrl: NavController) {}
+  constructor() {}
 
   @Input() CoverColor: Boolean = false;
   @Input() HasBack: Boolean;
@@ -18,9 +20,12 @@ export class PageToolbarComponent
   @Output() CircleUser: boolean = true;
   @Output() BtnTextEvent = new EventEmitter();
   @Output() BtnIconEvent = new EventEmitter();
-  @Output() UCenter = this.ToUCenter;
 
   ToUCenter() {
-    this.navCtrl.push('UcenterPage');
+    location.href = '/#/ucenter';
+  }
+
+  Back() {
+    history.go(-1);
   }
 }

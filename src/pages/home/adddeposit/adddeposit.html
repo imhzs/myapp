@@ -29,7 +29,7 @@
         <ion-row class="d-flex align-items-center border-bottom-1px form-ctrl">
           <ion-col col-3>卡号</ion-col>
           <ion-col col-7><ion-input type="number" placeholder="请输入储蓄卡卡号" formControlName="CardNo" no-margin></ion-input></ion-col>
-          <ion-col col-2 text-right>
+          <ion-col col-2 text-right (click)="onChangeFile(BankCardFront, $event)">
             <img height="26" width="26" src="assets/imgs/scan.png" alt="拍照" />
           </ion-col>
         </ion-row>

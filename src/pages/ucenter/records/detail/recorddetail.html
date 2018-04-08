@@ -1,0 +1,60 @@
+<ion-header no-border>
+  <ion-toolbar no-padding>
+    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ng-template [ngIf]="OrderDetail">
+    <ion-grid class="page-content" p-h-10>
+      <ion-row padding-vertical>
+        <ion-col col-6 class="d-flex flex-column justify-content-center align-items-center">
+          <p ion-text text-black-light f-18>￥{{OrderDetail.amount/100}}</p>
+          <p ion-text class="text-gray-600" m-t-10>收款金额</p>
+        </ion-col>
+        <ion-col col-6 class="d-flex flex-column justify-content-center align-items-center">
+          <p ion-text text-black-light f-18>￥{{OrderDetail.enterAmount/100}}</p>
+          <p ion-text class="text-gray-600" m-t-10>到账金额</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid m-t-10 p-h-10 class="page-content">
+      <ion-row p-v-5>
+        <ion-col col-6>
+          <p ion-text class="text-gray-600">订单编号</p>
+        </ion-col>
+        <ion-col col-6 text-right>{{OrderDetail.orderNo}}</ion-col>
+      </ion-row>
+      <ion-row p-v-5>
+        <ion-col col-6>
+          <p ion-text class="text-gray-600">订单状态</p>
+        </ion-col>
+        <ion-col col-6 text-right>{{OrderDetail.statusText}}</ion-col>
+      </ion-row>
+      <ion-row p-v-5>
+        <ion-col col-6>
+          <p ion-text class="text-gray-600">收款方式</p>
+        </ion-col>
+        <ion-col col-6 text-right>{{OrderDetail.typeText}}</ion-col>
+      </ion-row>
+      <ion-row p-v-5>
+        <ion-col col-6>
+          <p ion-text class="text-gray-600">收款信用卡</p>
+        </ion-col>
+        <ion-col col-6 text-right>{{OrderDetail.payCard}}</ion-col>
+      </ion-row>
+      <ion-row p-v-5>
+        <ion-col col-6>
+          <p ion-text class="text-gray-600">到账储蓄卡</p>
+        </ion-col>
+        <ion-col col-6 text-right>{{OrderDetail.outCard}}</ion-col>
+      </ion-row>
+      <ion-row p-v-5>
+        <ion-col col-6>
+          <p ion-text class="text-gray-600">收款时间</p>
+        </ion-col>
+        <ion-col col-6 text-right>{{OrderDetail.time}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-template>
+</ion-content>

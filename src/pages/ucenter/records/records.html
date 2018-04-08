@@ -5,31 +5,34 @@
 </ion-header>
 <ion-content>
   <ng-template [ngIf]="!DataEmpty">
-    <ion-grid class="bgc-light" no-padding>
+    <ion-grid no-padding>
       <div *ngFor="let items of ListData">
-        <h5 p-h-10 p-v-5 [ngStyle]="{'background':'aliceblue','margin':'0'}">
-          {{items.month}}成功收款
-          <span float-right>{{items.total/100}}元</span>
-        </h5>
-        <div *ngFor="let item of items.data">
-          <ion-row align-items-center p-h-5 [navPush]="App.RootPage.OrdersPage" [navParams]="item.id">
-            <ion-col col-1 text-center>
-              <img src="assets/imgs/vip.png">
+        <ion-row p-l-5 p-r-10 p-v-10>
+          <ion-col col-6>
+            <span ion-text f-16>{{items.month}}</span>
+          </ion-col>
+          <ion-col col-6 text-right>
+            <span ion-text f-16>￥{{items.total/100}}</span>
+          </ion-col>
+        </ion-row>
+        <div *ngFor="let item of items.data" class="page-content border-bottom-1px" p-v-15>
+          <ion-row align-items-center p-h-5 (click)="ShowDetail(item.id)">
+            <ion-col col-6 [ngSwitch]="item.type">
+              <p ion-text text-black-light f-16>{{item.typeText}}</p>
+              <p ion-text m-t-10 class="text-gray-500">{{item.time}}</p>
             </ion-col>
-            <ion-col col-5 [ngSwitch]="item.type">
-              <span *ngSwitchCase="'card'">信用卡收款</span>
-              <span *ngSwitchCase="'alipay'">支付宝收款</span>
-              <span *ngSwitchCase="'wechat'">微信收款</span>
-              <p no-margin ion-text color="light-dark">{{item.time}}</p>
-            </ion-col>
-            <ion-col col-3 [ngSwitch]="item.status">
-              <img *ngSwitchCase="'0'" src="assets/imgs/seal-3.png" style="max-width:none;width:60px;height:60px;">
-              <img *ngSwitchCase="'1'" src="assets/imgs/seal-1.png" style="max-width:none;width:60px;height:60px;">
-              <img *ngSwitchCase="'2'" src="assets/imgs/seal-2.png" style="max-width:none;width:60px;height:60px;">
-            </ion-col>
-            <ion-col col-3 text-nowrap>
-              <span f-1-0>￥</span>{{item.amount/100}}
-              <ion-icon [ngStyle]="{'float':'right','color':'#ccc'}">&#xf3d1;</ion-icon>
+            <ion-col col-6>
+              <ion-row>
+                <ion-col col-12 class="d-flex justify-content-end">
+                  <div class="d-flex flex-column justify-content-center">
+                    <p ion-text f-15 m-b-5>￥{{item.amount/100}}</p>
+                    <p ion-text f-15 color="primary" text-right>{{item.statusText}}</p>
+                  </div>
+                  <div class="d-flex align-items-center" m-l-10>
+                    <ion-icon class="text-gray-500">&#xf3d1;</ion-icon>
+                  </div>
+                </ion-col>
+              </ion-row>
             </ion-col>
           </ion-row>
         </div>

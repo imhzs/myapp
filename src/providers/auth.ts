@@ -157,9 +157,13 @@ export class TAuthService extends TBaseService
 
     return this.Post('kpay/api/login/partner').subscribe(
       data => {
-        CredentialHelper.setToken(data.data.token);
-        this.GetUserData();
-        App.Nav.setPages([{page: 'TabsPage'}, {page: 'CreditCardPage'}]);
+        if (TypeInfo.Assigned(data.data) && !TypeInfo.IsEmptyObject(data.data)) {
+          CredentialHelper.setToken(data.data.token);
+          this.GetUserData();
+          App.Nav.setPages([{page: 'TabsPage'}, {page: 'CreditCardPage'}]);
+        } else {
+          App.Nav.setRoot('LoginPage');
+        }
       },
       error => {
         console.error(error);  
