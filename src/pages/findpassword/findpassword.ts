@@ -45,7 +45,7 @@ export class FindPasswordPage implements OnInit
     let count: number = 60;
     let timer = setInterval(() => {
       if (count > 0) {
-        count --;
+        count--;
         this.VCodeText = count + 's' + '后重新获取';
         if (count === 0) {
           this.VCodeText = '重新获取';
@@ -58,7 +58,7 @@ export class FindPasswordPage implements OnInit
   GetCode() {
     this.Service.GetResetPwdData(this.formGroup.value.tel).subscribe(
       data => {
-        console.log(data);
+        this.times();
       },
       error => {
         console.log(error);
@@ -67,11 +67,17 @@ export class FindPasswordPage implements OnInit
   }
     
   GetTelCode() {
-    this.Service.GetFindPwdData(this.formGroup.value.tel,this.formGroup.value.VCode)
+    this.Service.GetFindPwdData(this.formGroup.value.tel, this.formGroup.value.VCode).subscribe(
+      data => {
+        App.NavGo(`resetpassword/${this.formGroup.value.tel}/${this.formGroup.value.VCode}`);
+      }
+    );
   }
 
   get FindDisabled(): boolean {
-    if (this.tel.invalid || this.VCode.invalid) return true;
+    if (this.tel.invalid || this.VCode.invalid) {
+      return true;
+    }
     return false;
   }
 }

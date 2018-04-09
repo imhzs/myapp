@@ -43,7 +43,9 @@
     </ion-row>
   </ion-grid>
   <ion-row text-right p-r-10 ion-text color="gray"><ion-col>*如未实时到账，一般最晚第二个工作日可到账</ion-col></ion-row>
-  <ion-row justify-content-center m-t-50  (click)="App.Nav.push('TabsPage')">
-    <ion-col col-11><button class="bgc-grad-primary bgc-header" round ion-button block  f-1-6>完 成</button></ion-col>
+  <ion-row justify-content-center m-t-50>
+    <ion-col col-11>
+      <button  (click)="App.Nav.push('TabsPage')" class="bgc-grad-primary bgc-header" round ion-button block  f-1-6>完 成</button>
+    </ion-col>
   </ion-row>
 </ion-content>

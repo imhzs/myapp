@@ -18,6 +18,20 @@
   </div>
 
   <ion-grid class="page-content border-bottom-1px">
+    <ion-row (click)="App.NavGo('creditcard')">
+      <ion-col col-1 class="d-flex align-items-center">
+        <img src="assets/imgs/ucreditcard.png" alt="刷卡收款" />
+      </ion-col>
+      <ion-col col-10 align-items-start>
+        <ion-label f-14>刷卡收款</ion-label>
+      </ion-col>
+      <ion-col col-1 class="d-flex align-items-center">
+        <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="page-content border-bottom-1px">
     <ion-row (click)="App.NavGo('records')">
       <ion-col col-1 class="d-flex align-items-center">
         <img src="assets/imgs/records.png" alt="收款记录" />

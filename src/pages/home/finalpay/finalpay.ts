@@ -67,7 +67,7 @@ export class FinalpayPage implements OnInit
 
     let browser = this.navParams.get('browser');
     if (browser) {
-      this.flag = false;
+      this.flag = true;
       this.browser.title = browser.title;
       this.browser.url = browser.url;
       this.browser.secUrl = this.sanitizer.bypassSecurityTrustResourceUrl(browser.url);
@@ -82,7 +82,7 @@ export class FinalpayPage implements OnInit
   }
 
   ionViewDidEnter() {
-    if (this.flag) {
+    if (this.flag && this.htmltext.length > 0) {
       this.paymentForm.nativeElement.submit();
     }
     if(!this.browser.proObj) {

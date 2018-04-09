@@ -17,17 +17,23 @@
       </ion-col>
     </ion-row>
     <ion-row p-t-15>
-      <ion-col col-4 class="d-flex flex-column align-items-center" (click)="App.NavGo('mycard')">
-        <img src="assets/imgs/creditcard.png" alt="办信用卡" width="60" height="60" />
-        <label m-t-5 text-center>办信用卡</label>
+      <ion-col col-4>
+        <a href="/#/mycard" class="d-flex flex-column align-items-center">
+          <img src="assets/imgs/creditcard.png" alt="办信用卡" width="60" height="60" />
+          <label m-t-5 text-center>办信用卡</label>
+        </a>
       </ion-col>
-      <ion-col col-4 class="d-flex flex-column align-items-center" (click)="App.NavGo('addcreditcard')">
-        <img src="assets/imgs/auth.png" alt="身份认证" width="60" height="60" />
-        <label m-t-5 text-center>身份认证</label>
+      <ion-col col-4>
+        <a href="/#/addcreditcard" class="d-flex flex-column align-items-center">
+          <img src="assets/imgs/auth.png" alt="身份认证" width="60" height="60" />
+          <label m-t-5 text-center>身份认证</label>
+        </a>
       </ion-col>
-      <ion-col col-4 class="d-flex flex-column align-items-center" (click)="App.NavGo('adddeposit')">
-        <img src="assets/imgs/welfare.png" alt="会员福利" width="60" height="60" />
-        <label m-t-5 text-center>会员福利</label>
+      <ion-col col-4>
+        <a href="/#/adddeposit" class="d-flex flex-column align-items-center">
+          <img src="assets/imgs/welfare.png" alt="会员福利" width="60" height="60" />
+          <label m-t-5 text-center>会员福利</label>
+        </a>
       </ion-col>
     </ion-row>
   </ion-grid>

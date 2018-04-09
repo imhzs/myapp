@@ -4,7 +4,9 @@ import { NavParams, IonicPage } from 'ionic-angular';
 
 import { TAuthService } from '../../../providers/auth';
 
-@IonicPage()
+@IonicPage({
+  segment: 'resetpassword/:mobile/:vcode'
+})
 @Component({
   selector: 'page-resetpwd',
   templateUrl: 'resetpassword.html'
@@ -28,7 +30,7 @@ export class ResetPasswordPage implements OnInit
 
   constructor(public auth: TAuthService, public navParams: NavParams) {
     this.tel = this.navParams.get('mobile');
-    this.VCode = this.navParams.get('code');
+    this.VCode = this.navParams.get('vcode');
   }
 
   ngOnInit() {
@@ -42,7 +44,11 @@ export class ResetPasswordPage implements OnInit
 
   clickgetlogin() {
     if(this.conpwd === this.formGroup.value.pwd ) {
-      this.auth.GetchangePsdData(this.tel,this.formGroup.value.pwd, this.VCode);
+      this.auth.GetchangePsdData(this.tel,this.formGroup.value.pwd, this.VCode).subscribe(
+        data => {
+          App.NavGo('login');
+        }
+      );
     } else {
       App.ShowError('两次输入密码不一致')
     }
