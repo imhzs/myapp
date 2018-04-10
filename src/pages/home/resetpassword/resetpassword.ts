@@ -46,7 +46,7 @@ export class ResetPasswordPage implements OnInit
     if(this.conpwd === this.formGroup.value.pwd ) {
       this.auth.GetchangePsdData(this.tel,this.formGroup.value.pwd, this.VCode).subscribe(
         data => {
-          App.NavGo('login');
+          App.Nav.push(App.pages.loginPage);
         }
       );
     } else {

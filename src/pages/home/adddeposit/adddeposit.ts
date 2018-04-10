@@ -138,9 +138,9 @@ export class AddDepositPage implements OnInit
         this.auth.GetUserData();
         this.auth.currentUser.subscribe(data => {
           if (this.navParams.get('page')) {
-            App.NavGo(this.navParams.get('page'));
+            App.Nav.push(this.navParams.get('page'));
           } else {
-            App.NavGo('mycard');
+            App.Nav.push(App.pages.myCardPage);
           }
         });
       });

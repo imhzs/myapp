@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+import { TypeInfo } from '../../UltraCreation/Core/TypeInfo';
 import { HomeService } from '../../providers/homeservice';
 import { CardModel } from '../../models/card-model';
 
@@ -19,8 +20,11 @@ export class CardHelper
 
 	// 获取主卡
 	public getPrimaryCard(t: number): CardModel {
-		let c: CardModel;
+		if (this.isEmpty()) {
+			return <CardModel>{};
+		}
 
+		let c: CardModel;
 		this.cards.forEach((card) => {
 			if (parseInt(card.type) === t && parseInt(card.primary) === PRIMARY_CARD) {
 				c = card;
@@ -31,6 +35,10 @@ export class CardHelper
 
 	// 获取一张卡片
 	public getCardById(id: number): CardModel {
+		if (this.isEmpty()) {
+			return <CardModel>{};
+		}
+
 		let cards = this.cards.filter((card) => {
 			return card.id == id;
 		});
@@ -39,35 +47,48 @@ export class CardHelper
 
 	// 根据类型刷选卡片
 	public filterCard(t: number): Array<CardModel> {
-		let cards = this.cards;
+		if (this.isEmpty()) {
+			return new Array();
+		}
 
-		return cards.filter((card) => {
+		return this.cards.filter((card) => {
 			return parseInt(card.type) === t;
 		});
 	}
 
 	// 设置主卡
 	public setPrimary(t: number, id: number): void {
-		this.cards.forEach((card, k) => {
-			if (parseInt(card.type) === t) {
-				if (card.id == id) {
-					this.cards[k].primary = PRIMARY_CARD.toString();
-				} else {
-					this.cards[k].primary = NOT_PRI_CARD.toString();
+		if (!this.isEmpty()) {
+			this.cards.forEach((card, k) => {
+				if (parseInt(card.type) === t) {
+					if (card.id == id) {
+						this.cards[k].primary = PRIMARY_CARD.toString();
+					} else {
+						this.cards[k].primary = NOT_PRI_CARD.toString();
+					}
 				}
-			}
-		});
-		this.service.updateCards(this.cards);
+			});
+			this.service.updateCards(this.cards);
+		}
 	}
 
 	// 删除卡片
 	public delCard(id: number) {
-		this.cards.forEach((v, k) => {
-			if (v.id === id) {
-				this.cards.splice(k, 1);
-			}
-		});
-		this.service.updateCards(this.cards);
+		if (!this.isEmpty()) {
+			this.cards.forEach((v, k) => {
+				if (v.id === id) {
+					this.cards.splice(k, 1);
+				}
+			});
+			this.service.updateCards(this.cards);
+		}
+	}
+
+	public isEmpty() {
+		if (TypeInfo.Assigned(this.cards[0])) {
+			return false;
+		}
+		return true;
 	}
 }
 

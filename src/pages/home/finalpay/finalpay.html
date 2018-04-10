@@ -12,10 +12,9 @@
   <div *ngIf="flag">
     <iframe [src]="browser.secUrl" id="iframe" class="iframe" 
       sandbox="allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-forms"
-      (load)="loaded()"
-      name="targetIframe">
+      (load)="loaded()" name="targetIframe" [width]="iframeWidth" [height]="iframeHeight">
     </iframe>
-    <form [action]="formAction" #paymentForm name="pay_form" method="post" target="targetIframe">
+    <form class="hide" [action]="formAction" #paymentForm name="pay_form" method="post" target="targetIframe">
       <div [innerHtml]="htmltext"></div>
     </form>
   </div>

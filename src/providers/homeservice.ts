@@ -41,7 +41,7 @@ export class HomeService extends TBaseService
       this.updateCards(cards);
     }).subscribe(
       data => {
-        // console.log(data);
+        console.log(data);
       },
       error => {
         console.log(error);
@@ -115,6 +115,7 @@ export class HomeService extends TBaseService
     if (cashbackId) {
       this.SetParam('cashbackId', cashbackId);
     }
+    this.SetResponseType('text');
 
     return this.Post('kpay/api/trade/quickPay/request');
   }

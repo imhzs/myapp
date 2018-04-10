@@ -84,7 +84,7 @@ export class AuthPage implements OnInit
     this.service.VerifyId(this.formGroup.value.idCardNo, this.formGroup.value.username).subscribe(
       data => {
         this.auth.GetUserData();
-        App.Nav.push('CreditCardPage');
+        App.Nav.setPages([{page: App.pages.tabsPage}, {page: App.pages.creditCardPage}]);
       },
       error => {
         console.log(error);

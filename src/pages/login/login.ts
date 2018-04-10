@@ -24,6 +24,8 @@ export class LoginPage implements OnInit
 
   findPasswordPage: any;
 
+  HeadTitle: string = '登录';
+
   constructor(private auth: TAuthService) {
   }
 

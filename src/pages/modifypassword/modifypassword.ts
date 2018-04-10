@@ -64,8 +64,11 @@ export class ModifyPasswordPage implements OnInit
   }
 
   GetTelCode() {
-    this.Service.getPwdVericode(App.UserInfo.mobile).subscribe(res => {
-    })
+    this.Service.getPwdVericode(App.UserInfo.mobile).subscribe(
+      data => {
+        this.times();
+      }
+    )
   }
 
   get ConfirmBtnIsDisabled(): boolean {
@@ -76,6 +79,10 @@ export class ModifyPasswordPage implements OnInit
   }
 
   ConfirmModify() {
-    this.Service.GetchangePsdData(App.UserInfo.mobile, this.FormGroup.value.Password, this.FormGroup.value.VCode);
+    this.Service.GetchangePsdData(App.UserInfo.mobile, this.FormGroup.value.Password, this.FormGroup.value.VCode).subscribe(
+      data => {
+        this.Service.Logout();
+      }
+    );
   }
 }

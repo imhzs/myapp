@@ -1,7 +1,6 @@
 <ion-header no-border>
   <ion-toolbar no-padding>
-    <!-- <app-toolbar [Title]="HeadTitle" AppIcon="false" BtnIcon="&#xf103;" (BtnIconEvent)="App.NavGo('usetup')"></app-toolbar> -->
-    <app-toolbar HasBack="true" [Title]="HeadTitle" AppIcon="false"></app-toolbar>
+    <app-toolbar HasBack="true" [Title]="HeadTitle" AppIcon="false" BtnIcon="&#xf103;" (BtnIconEvent)="App.Nav.push(App.pages.usetupPage)"></app-toolbar>
   </ion-toolbar>
 </ion-header>
 
@@ -18,7 +17,7 @@
   </div>
 
   <ion-grid class="page-content border-bottom-1px">
-    <ion-row (click)="App.NavGo('creditcard')">
+    <ion-row (click)="App.Nav.push(App.pages.creditCardPage)">
       <ion-col col-1 class="d-flex align-items-center">
         <img src="assets/imgs/ucreditcard.png" alt="刷卡收款" />
       </ion-col>
@@ -32,7 +31,7 @@
   </ion-grid>
 
   <ion-grid class="page-content border-bottom-1px">
-    <ion-row (click)="App.NavGo('records')">
+    <ion-row (click)="App.Nav.push(App.pages.recordsPage)">
       <ion-col col-1 class="d-flex align-items-center">
         <img src="assets/imgs/records.png" alt="收款记录" />
       </ion-col>
@@ -46,7 +45,7 @@
   </ion-grid>
 
   <ion-grid class="page-content border-bottom-1px">
-    <ion-row (click)="App.NavGo('mycard')">
+    <ion-row (click)="App.Nav.push(App.pages.myCardPage)">
       <ion-col col-1 class="d-flex align-items-center">
         <img src="assets/imgs/cards.png" alt="我的卡片" />
       </ion-col>

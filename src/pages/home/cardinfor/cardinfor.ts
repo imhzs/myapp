@@ -14,6 +14,32 @@ export class CardInforPage implements OnInit
 {
   App = window.App;
 
+  HeadTitle: string = "确认信息";
+
+  Params: ParamsOptions;
+
+  OrderNo: number;
+
+  VCodeText: string = '获取验证码';
+
+  State: number = 0;
+
+  ShowFront: boolean = false;
+
+  ShowBack: boolean = false;
+
+  Voucher: Array<any> = [];
+
+  VoucherId: string;
+
+  Form_Group_Info: FormGroup;
+
+  CVN: FormControl;
+
+  CardDate: FormControl;
+
+  VerifyCode: FormControl;
+
   constructor(public navParams: NavParams, public Service: HomeService) {
     this.Params = {
       InputAmount: this.navParams.get('OutAmount'),
@@ -114,9 +140,11 @@ export class CardInforPage implements OnInit
       App.ShowError('验证码输入不正确');
       return;
     }
-    this.Service.ConfirmResult(this.OrderNo, this.Form_Group_Info.value.VerifyCode).subscribe(res => {
-      App.Nav.push('confirminfo', {InCard: this.Params.DepositCard, FinalAmount: this.Params.InputAmount, CardCode: this.Params.DepositCode});
-    })
+    this.Service.ConfirmResult(this.OrderNo, this.Form_Group_Info.value.VerifyCode).subscribe(
+      data => {
+        App.Nav.push(App.pages.confirmInfoPage, {InCard: this.Params.DepositCard, FinalAmount: this.Params.InputAmount, CardCode: this.Params.DepositCode});
+      }
+    )
   }
 
   ShowBackEmp() {
@@ -133,23 +161,9 @@ export class CardInforPage implements OnInit
 
   ClickUserVoucher() {
   }
+
   ClickUserChosen() {
   }
-
-  HeadTitle: string = "确认信息";
-  Params: ParamsOptions;
-  OrderNo: number;
-  VCodeText: string = '获取验证码';
-  State: number = 0;
-  ShowFront: boolean = false;
-  ShowBack: boolean = false;
-  Voucher: Array<any> = [];
-  VoucherId: string;
-
-  Form_Group_Info: FormGroup;
-  CVN: FormControl;
-  CardDate: FormControl;
-  VerifyCode: FormControl;
 }
 export interface ParamsOptions
 {

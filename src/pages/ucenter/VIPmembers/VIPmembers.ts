@@ -34,20 +34,20 @@ export class VIPmembersPage implements OnInit
     this.Service.GetVipList().subscribe(resp => {
       this.VipList = resp.data;
       for (let i = 0; i < this.VipList.length; i ++) {
-        if (this.VipList[i].name.indexOf(App.UserInfo['rank']) !== -1) {
+        if (this.VipList[i].name.indexOf(App.UserInfo.rank) !== -1) {
           this.VipId = this.VipList[i].id;
         }
       }
       this.PayAmount = this.VipList[this.VipIndex].price;
     });
 
-    if (App.UserInfo['vip']) {
-      this.GetVipDeadLine(App.UserInfo['packageDays']);
+    if (App.UserInfo.vip) {
+      this.GetVipDeadLine(App.UserInfo.packageDays);
     }
   }
 
   ChooseVIP(ind) {
-    if (this.VipList[ind].name == App.UserInfo['rank']) return;
+    if (this.VipList[ind].name == App.UserInfo.rank) return;
     this.VipIndex = ind;
     this.PayAmount = this.VipList[ind].price;
   }

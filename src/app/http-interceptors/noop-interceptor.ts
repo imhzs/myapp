@@ -26,9 +26,9 @@ export class NoopInterceptor implements HttpInterceptor
           let mobile = CredentialHelper.getMobile();
           let secret = CredentialHelper.getSecret();
           if (TypeInfo.Assigned(mobile) && TypeInfo.Assigned(secret)) {
-            location.href = `/#/thirdLogin/${mobile}/${secret}`;
+            App.Nav.setPages([{page: App.pages.tabsPage}, {page: App.pages.thirdLoginPage, params: {mobile: mobile, key: secret}}]);
           } else {
-            location.href = '/#/login';
+            App.Nav.setPages([{page: App.pages.tabsPage}, {page: App.pages.loginPage}]);
           }
 
           return new ErrorObservable('登录超时');
@@ -36,10 +36,10 @@ export class NoopInterceptor implements HttpInterceptor
           if (TypeInfo.Assigned(event.body.msg)) {
             App.ShowError(event.body.msg);
           }
-          return new ErrorObservable('请求失败');
+          return new ErrorObservable('请求成功，返回失败值');
         }
       }
-    }));
+    })).pipe(catchError(this.handleError));
   }
 
   // 错误处理

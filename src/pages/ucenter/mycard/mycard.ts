@@ -84,12 +84,12 @@ export class MyCardPage
 
   // 添加信用卡
   AddCreditCard() {
-    App.Nav.push('AddCreditCardPage', {page: 'mycard'});
+    App.Nav.push('AddCreditCardPage', {page: App.pages.myCardPage});
   }
 
   // 添加储蓄卡
   AddDepositCard() {
-    App.Nav.push('AddDepositPage', {page: 'mycard'});
+    App.Nav.push('AddDepositPage', {page: App.pages.myCardPage});
   }
 
   ionViewCanEnter() {

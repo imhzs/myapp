@@ -17,7 +17,7 @@ export class MyApp
   // 启动页
   rootPage: string = 'TabsPage';
 
-  constructor(App: TApplication, public auth: TAuthService) {
+  constructor(public App: TApplication, public auth: TAuthService) {
     App.Platform.ready().then(() => {
       SplashScreen.show();
       StatusBar.hide();
@@ -32,7 +32,9 @@ export class MyApp
       SplashScreen.hide();
       StatusBar.show();
     }).then(() => {
-      this.auth.GetUserData();
+      if (!this.auth.shouldPassThrough) {
+        this.auth.GetUserData();
+      }
     });
   }
 }

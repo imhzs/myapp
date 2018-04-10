@@ -36,9 +36,9 @@ export class ChangecardsPage
   // 新增卡片
   AddCards() {
     if (this.CardType === CREDIT_CARD) {
-      App.Nav.push('AddCreditCardPage', {page: 'CreditCardPage'});
+      App.Nav.push(App.pages.addCreditCardPage, {page: App.pages.creditCardPage});
     } else if (this.CardType === DEPOSIT_CARD) {
-      App.Nav.push('AddDepositPage', {page: 'CreditCardPage'});
+      App.Nav.push(App.pages.addDepositPage, {page: App.pages.creditCardPage});
     }
   }
 

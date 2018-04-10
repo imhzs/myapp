@@ -69,6 +69,10 @@ export class SetPasswordPage implements OnInit
       App.ShowError("两次输入的密码不一致");
       return;
     }
-    this.Service.SignIn( this.Tel ,this.formGroup.value.Pass, this.VCode,);
+    this.Service.SignIn(this.Tel, this.formGroup.value.Pass, this.VCode).subscribe(
+      data => {
+        App.Nav.push(App.pages.tabsPage);
+      }
+    );
   }
 }

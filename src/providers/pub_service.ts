@@ -19,6 +19,8 @@ export class TBaseService
   // 登录超时
   static SESSION_TIMEOUT = 2;
 
+  private responseType: any = 'json';
+
   protected headers: HttpHeaders;
 
   protected params: URLSearchParams;
@@ -61,7 +63,7 @@ export class TBaseService
     let url = `${API_URL}/${Uri}`;
     let params = this.params.toString();
     this.setNewParams();
-    return this.http.post(url, params, {headers: this.headers});
+    return this.http.post(url, params, {headers: this.headers, responseType: this.responseType});
   }
 
   // 设置参数
@@ -71,6 +73,11 @@ export class TBaseService
     } else {
       this.params.append(key, value);
     }
+  }
+
+  // 设置数据返回类型
+  public SetResponseType(responstType: any) {
+    this.responseType = responstType;
   }
 
   // 重置请求参数

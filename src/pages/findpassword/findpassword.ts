@@ -69,7 +69,10 @@ export class FindPasswordPage implements OnInit
   GetTelCode() {
     this.Service.GetFindPwdData(this.formGroup.value.tel, this.formGroup.value.VCode).subscribe(
       data => {
-        App.NavGo(`resetpassword/${this.formGroup.value.tel}/${this.formGroup.value.VCode}`);
+        App.Nav.push(App.pages.resetPasswordPage, {
+          mobile: this.formGroup.value.tel,
+          vcode: this.formGroup.value.VCode
+        });
       }
     );
   }

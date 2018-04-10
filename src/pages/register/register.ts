@@ -24,6 +24,8 @@ export class RegisterPage implements OnInit
 
   VCode: FormControl;
 
+  HeadTitle: string = '用户注册';
+
   constructor(public Service: TAuthService) {
   }
 
@@ -61,7 +63,7 @@ export class RegisterPage implements OnInit
   GetVeriyCode() {
     this.Service.GetVerifyCode(this.formGroup.value.Tel).subscribe(
       data => {
-        console.log(data);
+        this.times();
       }
     );
   }
@@ -69,7 +71,7 @@ export class RegisterPage implements OnInit
   NextTable() {
     this.Service.CheckVerifyCode(this.formGroup.value.Tel, this.formGroup.value.VCode).subscribe(
       data => {
-        console.log(data);
+        App.Nav.push(App.pages.setPasswordPage);
       }
     );
   }

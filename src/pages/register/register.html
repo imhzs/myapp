@@ -1,8 +1,13 @@
+<ion-header no-border>
+  <ion-toolbar no-padding>
+    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
-  <div class=" register">
+  <div class="page-content">
     <ion-row justify-content-center>
       <ion-col col-3 p-v-40 text-center>
-        <img src="assets/imgs/58icon.png">
+        <img src="assets/imgs/logo.png" alt="logo" />
       </ion-col>
     </ion-row>
     <ion-grid text-center>
@@ -17,7 +22,7 @@
             <ion-input type="text" placeholder="请输入手机验证码" formControlName="VCode" required></ion-input>
           </ion-col>
           <ion-col col-5>
-            <button ion-button outline [disabled]="Tel.invalid" (click)="GetVeriyCode()">{{VCodeText}}</button>
+            <button class="btn-send" ion-button outline [disabled]="Tel.invalid" (click)="GetVeriyCode()">{{VCodeText}}</button>
           </ion-col>
         </ion-row>
        <ion-row m-t-30 m-b-10>
@@ -25,7 +30,11 @@
             <button ion-button full color="primary" (click)="NextTable()" [class.btn-disabled]="Tel.invalid || VCode.invalid" [disabled]="Tel.invalid || VCode.invalid">下一步</button>
           </ion-col>
         </ion-row>
-        <span f-1-0>点击"下一步"即表示您同意</span><span ion-text color="primary">《5u卡贝用户使用协议》</span>
+        <ion-row>
+          <ion-col col-12>
+            <span ion-text f-12>点击"下一步"即表示您同意</span><span ion-text color="primary">《5u卡贝用户使用协议》</span>
+          </ion-col>
+        </ion-row>
       </form>
     </ion-grid>
   </div>

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Location } from '@angular/common';
+const _ = require('lodash');
 
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
@@ -16,7 +18,7 @@ export class TAuthService extends TBaseService
 
   public subject: Subject<UserModel> = new Subject<UserModel>();
 
-  constructor(protected http: HttpClient) {
+  constructor(protected http: HttpClient, private location: Location) {
     super(http);
   }
 
@@ -37,8 +39,11 @@ export class TAuthService extends TBaseService
 
     this.Post('kpay/api/login').subscribe(
       data => {
-        this.GetUserData();
-        App.Nav.push('TabsPage');
+        if (data.code === TBaseService.REQ_OK) {
+          CredentialHelper.setToken(data.data.token);
+          this.GetUserData();
+          App.Nav.push('TabsPage');
+        }
       },
       error => {
         console.log(error);
@@ -107,7 +112,7 @@ export class TAuthService extends TBaseService
     CredentialHelper.removeToken();
     App.UserInfo = null;
     App.DisableHardwareBackButton();
-    App.NavGo('login');
+    App.Nav.setPages([{page: App.pages.tabsPage}, {page: App.pages.loginPage}]);
   }
 
   // 判断登录
@@ -139,7 +144,7 @@ export class TAuthService extends TBaseService
       this.updateUser(userData);
     }).subscribe(
       data => {
-        // console.log(data);
+        console.log(data);
       },
       error => {
         console.log(error);
@@ -162,7 +167,7 @@ export class TAuthService extends TBaseService
           this.GetUserData();
           App.Nav.setPages([{page: 'TabsPage'}, {page: 'CreditCardPage'}]);
         } else {
-          App.Nav.setRoot('LoginPage');
+          App.Nav.setRoot(App.pages.loginPage);
         }
       },
       error => {
@@ -176,5 +181,11 @@ export class TAuthService extends TBaseService
     let mobile = CredentialHelper.getMobile();
     let secret = CredentialHelper.getSecret();
     this.thirdPartyLogin(mobile, secret);
+  }
+
+  // 是否不需要登录
+  shouldPassThrough() {
+    let paths = ['/register', '/login', '/findpassword', '/home', '/tabs/首页/home', '/thirdlogin'];
+    return _.indexOf(paths, decodeURIComponent(this.location.path()).toLocaleLowerCase()) > -1;
   }
 }

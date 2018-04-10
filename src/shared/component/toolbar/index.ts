@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-toolbar',
@@ -8,7 +9,7 @@ export class PageToolbarComponent
 {
   App: any = <any>window.App;
 
-  constructor() {}
+  constructor(public location: Location) {}
 
   @Input() CoverColor: Boolean = false;
   @Input() HasBack: Boolean;
@@ -22,10 +23,15 @@ export class PageToolbarComponent
   @Output() BtnIconEvent = new EventEmitter();
 
   ToUCenter() {
-    location.href = '/#/ucenter';
+    App.Nav.push(App.pages.ucenterPage);
   }
 
   Back() {
-    history.go(-1);
+    if (App.Nav.length() > 1) {
+      App.Nav.pop();
+    } else {
+      this.location.back();
+      // history.go(-1);
+    }
   }
 }

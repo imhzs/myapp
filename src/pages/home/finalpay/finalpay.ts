@@ -1,11 +1,14 @@
 import { Component, OnInit, ViewChild, ElementRef, Injectable } from '@angular/core';
 import { NavParams, IonicPage } from 'ionic-angular';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { setTimeout, clearTimeout } from 'timers';
 
 import { TAuthService } from '../../../providers/auth';
+import { TypeInfo } from '../../../UltraCreation/Core/TypeInfo';
 
-@IonicPage()
+@IonicPage({
+  segment: 'finalpay'
+})
 @Component({
   selector: 'page-finalpay',
   templateUrl: 'finalpay.html',
@@ -33,9 +36,13 @@ export class FinalpayPage implements OnInit
 
   this_html: any = '';
 
-  htmltext: any = '';
+  htmltext: SafeHtml;
 
   formAction: string = '';
+
+  iframeWidth: number;
+
+  iframeHeight: number;
 
   @ViewChild('paymentForm') paymentForm: ElementRef;
 
@@ -45,6 +52,11 @@ export class FinalpayPage implements OnInit
   };
 
   constructor(public navParams: NavParams, private sanitizer: DomSanitizer, private auth: TAuthService) {
+    if (!this.navParams.get('innerHtml') && !this.navParams.get('broswer')) {
+      App.Nav.push(App.pages.creditCardPage);
+    }
+    this.iframeWidth = document.body.offsetWidth;
+    this.iframeHeight = document.body.offsetHeight;
   }
 
   ngOnInit() {
@@ -57,12 +69,10 @@ export class FinalpayPage implements OnInit
       this.this_html = tmp_html;
     } else if(bodyText.indexOf('form') > -1) {
       this.flag = true;
-      let arr = bodyText.match(/<form[^>]*>(.*)?<\/form>/);
-      let tmpHtml = arr[1];
+      let reg = /<form[^>]*>([\s\S]*)<\/form/ig;
+      let arr = reg.exec(bodyText);
       this.formAction = this.getFormAction(arr[0]);
-      // tmpHtml = tmpHtml.replace('<form', '<form target="targetIframe"');
-      tmpHtml = this.sanitizer.bypassSecurityTrustHtml(tmpHtml);
-      this.htmltext = tmpHtml;
+      this.htmltext = this.sanitizer.bypassSecurityTrustHtml(arr[1]);
     }
 
     let browser = this.navParams.get('browser');
@@ -82,7 +92,7 @@ export class FinalpayPage implements OnInit
   }
 
   ionViewDidEnter() {
-    if (this.flag && this.htmltext.length > 0) {
+    if (this.flag && TypeInfo.Assigned(this.htmltext)) {
       this.paymentForm.nativeElement.submit();
     }
     if(!this.browser.proObj) {
@@ -145,7 +155,8 @@ export class FinalpayPage implements OnInit
   }
 
   private getFormAction(s: string): string {
-    let arr = s.match(new RegExp(/action=['|"]([^'|"]*)/));
+    let reg = /action=['|"]([^'|"]*)/ig;
+    let arr = reg.exec(s);
     if (arr.length > 1) {
       return arr[1];
     }

@@ -99,13 +99,6 @@ export class CreditCardPage
 
   // 确认提交
   ConfirmPay() {
-    let date = new Date();
-    let hour = date.getHours();
-    if (hour < 9 || hour > 22) {
-      App.ShowError('交易时间为9:00-22:00');
-      return;
-    }
-
     if (this.CreditCards.length == 0 || this.DepositCards.length == 0) {
       App.ShowError('请先添加银行卡和储蓄卡');
       return;
@@ -144,12 +137,12 @@ export class CreditCardPage
 
   // 添加信用卡
   AddCreditCard() {
-    App.NavGo('addcreditcard');
+    App.Nav.push(App.pages.addCreditcard, {page: App.pages.creditCardPage});
   }
 
   // 添加储蓄卡
   AddDepositCard() {
-    App.NavGo('adddeposit');
+    App.Nav.push(App.pages.addDepositPage, {page: App.pages.creditCardPage});
   }
 
   // 关闭刷卡流程提醒

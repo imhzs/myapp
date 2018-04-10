@@ -1,6 +1,5 @@
 import { Component, Injectable } from '@angular/core';
 import { NavParams, IonicPage } from 'ionic-angular';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { TypeInfo } from '../../../UltraCreation/Core/TypeInfo';
 import { CardModel } from '../../../models/card-model';
@@ -51,11 +50,11 @@ export class CheckoutPage
 			data => {
 				// 跳转银联页面
 				if (/^[http:\/\/|https:\/\/](.*)?/.test(data)) {
-					(new InAppBrowser()).create(encodeURI(data));
+					App.Nav.push(App.pages.finalPayPage, {innerHtml: '', browser: data});
 				} else if(data.indexOf('<html>') == -1) {
 					App.ShowError(data.respMsg);
 				} else {
-					App.Nav.push('finalpay', {innerHtml: data});
+					App.Nav.push(App.pages.finalPayPage, {innerHtml: data});
 				}
 			},
 			error => {

@@ -62,7 +62,7 @@ export class RecordsPage
 
   // 详情页
   ShowDetail(id) {
-    App.NavGo(`record/detail/${id}`);
+    App.Nav.push(App.pages.recordDetailPage, {id: id});
   }
   
   ionViewCanEnter() {

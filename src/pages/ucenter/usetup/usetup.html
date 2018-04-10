@@ -4,39 +4,42 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-grid class="bgc-light">
+  <ion-grid class="page-content">
     <ion-row justify-content-center>
       <ion-col col-3 text-center p-t-30>
-        <!-- <img src="assets/imgs/58icon.png"> -->
+        <img src="assets/imgs/logo.png" alt="logo" />
         <p no-margin p-t-10>v1.0.0</p>
       </ion-col>
     </ion-row>
-    <div padding-horizontal m-b-20>
-      <h5 text-center m-t-10>关于我们</h5>
-      <ng-template [ngIf]="App.CanTrade || App.IsIos">
-        <span text-left ion-text color="dark">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5u卡贝是一种基于信用卡的收款（收单）方式，应用于个人之间的资金往来，以及小微商户的收款（收单）场景。 公司专注用户体验、网络安全与个人隐私保护以及服务质量，打造精品，服务客户。
-        </span>
-      </ng-template>
-    </div>
-  </ion-grid>
-
-  <ion-grid class="list-grid-default" m-t-10>
-    <ion-row p-l-10 (click)="App.NavGo('modifypassword')">
-      <ion-col>
-        <ul class="list-row-inner">
-          <li class="title">登录密码</li>
-          <li class="icon-arrow">
-            <ion-icon></ion-icon>
-          </li>
-        </ul>
+    <ion-row padding-horizontal m-b-20>
+      <ion-col col-12>
+        <h5 text-center m-t-10>关于我们</h5>
+      </ion-col>
+      <ion-col col-12>
+        <ng-template [ngIf]="App.CanTrade || App.IsIos">
+          <p text-left ion-text color="dark" class="l-h-d">
+            5u卡贝是一种基于信用卡的收款（收单）方式，应用于个人之间的资金往来，以及小微商户的收款（收单）场景。 公司专注用户体验、网络安全与个人隐私保护以及服务质量，打造精品，服务客户。
+          </p>
+        </ng-template>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-row justify-content-center margin-vertical>
-    <ion-col col-5>
-      <button class="bgc-grad-primary" ion-button block (click)="Logout()">退出账号</button>
-    </ion-col>
-  </ion-row>
+  <ion-grid m-t-10 class="page-content">
+    <ion-row (click)="App.Nav.push(App.pages.modifyPasswordPage)">
+      <ion-col col-11 align-items-start>
+        <ion-label f-14>修改密码</ion-label>
+      </ion-col>
+      <ion-col col-1 class="d-flex align-items-center">
+        <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row justify-content-center margin-vertical>
+      <ion-col col-12>
+        <button color="primary" ion-button full (click)="Logout()">退出账号</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
