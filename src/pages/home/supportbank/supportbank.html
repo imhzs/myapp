@@ -1,0 +1,90 @@
+<ion-header no-border>
+  <ion-toolbar no-padding>
+    <app-toolbar HasBack="true" [Title]="HeadTitle"></app-toolbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="supportbanks-page">
+  <ion-grid>
+    <ion-col col-12>
+      <ul class="list-row-inner">
+        <li text-center><span class="t-desc">目前{{App.AppName}}支持的银行列表以及银行限额见下表：</span></li>
+      </ul>
+    </ion-col>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 text-center>
+        <span ion-text f-14 class="bold">有积分通道支持的银行</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row class="t-row">
+      <ion-col col-4 text-center>
+        <span class="t-title" ion-text>银行名称</span>
+      </ion-col>
+      <ion-col col-4 text-center>
+        <span class="t-title" ion-text>单笔限额（元）</span>
+      </ion-col>
+      <ion-col col-4 text-center>
+        <span class="t-title" ion-text>单日限额（元）</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row class="d-flex flex-fill item-row border-bottom-1px" text-center *ngFor="let hasScoreBank of hasScoreBanks">
+      <ion-col col-4 text-center *ngIf="hasScoreBank">
+        <span ion-text>{{hasScoreBank.bankName}}</span>
+      </ion-col>
+      <ion-col col-4 text-center *ngIf="hasScoreBank">
+        <span ion-text>{{hasScoreBank.onceAmount}}</span>
+      </ion-col>
+      <ion-col col-4 text-center *ngIf="hasScoreBank">
+        <span ion-text>{{hasScoreBank.dailyAmount}}</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 text-center>
+        <span ion-text f-14 class="bold">无积分通道支持的银行</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row class="t-row">
+      <ion-col col-4 text-center>
+        <span class="t-title" ion-text>银行名称</span>
+      </ion-col>
+      <ion-col col-4 text-center>
+        <span class="t-title" ion-text>单笔限额（元）</span>
+      </ion-col>
+      <ion-col col-4 text-center>
+        <span class="t-title" ion-text>单日限额（元）</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row class="d-flex flex-fill item-row border-bottom-1px" text-center *ngFor="let noScoreBank of noScoreBanks">
+      <ion-col col-4 text-center *ngIf="noScoreBank">
+        <span ion-text>{{noScoreBank.bankName}}</span>
+      </ion-col>
+      <ion-col col-4 text-center *ngIf="noScoreBank">
+        <span ion-text>{{noScoreBank.onceAmount}}</span>
+      </ion-col>
+      <ion-col col-4 text-center *ngIf="noScoreBank">
+        <span ion-text>{{noScoreBank.dailyAmount}}</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid m-t-18 m-b-28>
+    <ion-col col-12>
+      <ul class="list-row-inner">
+        <li text-center><span class="t-desc" ion-text>注：如仍然有问题，请直接联系客服寻求帮助 &gt;&gt;</span></li>
+      </ul>
+    </ion-col>
+  </ion-grid>
+</ion-content>

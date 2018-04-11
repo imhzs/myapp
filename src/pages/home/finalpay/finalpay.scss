@@ -1,0 +1,20 @@
+.progress {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: .2rem;
+  background: #f5f5f5;
+  z-index: 200;
+  .progress-inner {
+    width: 0;
+    background: #22ac38;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    box-shadow: 0 0 10px $primary;
+    -webkit-transition: width 0.4s ease;
+    transition: width 0.4s ease;
+  }
+}

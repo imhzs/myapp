@@ -40,7 +40,6 @@ export class HomeService extends TBaseService
       resp => {
         let cards: Array<CardModel> = resp.data;
         this.updateCards(cards);
-        console.log(resp);
       },
       error => {
         console.log(error);
@@ -140,5 +139,12 @@ export class HomeService extends TBaseService
     this.SetParam('smsCode', smsCode);
 
     return this.Post('kpay/api/trade/quickPay/confirm');
+  }
+
+  
+  // 获取支持银行列表
+  SupportBanks() {
+    App.ShowLoading();
+    return this.Post('kpay/api/trade/supportbanks');
   }
 }

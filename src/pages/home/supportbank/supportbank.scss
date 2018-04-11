@@ -1,0 +1,23 @@
+.supportbanks-page {
+  .t-desc {
+    font-size: 14px;
+    color: #666666;
+  }
+  .t-row {
+    padding: 10px 0;
+    background: #f2f2f2f2;
+    .col {
+      background-color: #f2f2f2f2;
+      .t-title {
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+  }
+  .item-row {
+    padding: 6px 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333333;
+  }
+}

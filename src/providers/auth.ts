@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { TypeInfo } from '../UltraCreation/Core/TypeInfo';
 import { TBaseService } from './pub_service';
+import { HomeService } from './homeservice';
 import { CredentialHelper } from '../shared/helper/credential-helper';
 import { UserModel } from '../models/user-model';
 
@@ -18,7 +19,7 @@ export class TAuthService extends TBaseService
 
   public subject: Subject<UserModel> = new Subject<UserModel>();
 
-  constructor(protected http: HttpClient, private location: Location) {
+  constructor(protected http: HttpClient, private location: Location, private homeService: HomeService) {
     super(http);
   }
 
@@ -42,6 +43,7 @@ export class TAuthService extends TBaseService
         if (resp.code === TBaseService.REQ_OK) {
           CredentialHelper.setToken(resp.data.token);
           this.GetUserData();
+          this.homeService.GetCardList();
           App.Nav.setPages([{page: App.pages.tabsPage}]);
         }
       },
@@ -143,7 +145,6 @@ export class TAuthService extends TBaseService
       resp => {
         let userData: UserModel = resp.data;
         this.updateUser(userData);
-        console.log(resp);
       },
       error => {
         console.log(error);
@@ -164,6 +165,7 @@ export class TAuthService extends TBaseService
         if (TypeInfo.Assigned(resp.data) && !TypeInfo.IsEmptyObject(resp.data)) {
           CredentialHelper.setToken(resp.data.token);
           this.GetUserData();
+          this.homeService.GetCardList();
           App.Nav.setPages([{page: App.pages.tabsPage}, {page: App.pages.creditCardPage}]);
         } else {
           App.Nav.setRoot(App.pages.loginPage);

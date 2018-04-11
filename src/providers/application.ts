@@ -37,14 +37,11 @@ export class TApplication extends TAppController
   // 是否可以交易标识
   CanTrade: boolean = true;
 
-  // 当前信用卡
-  CurrentCreditCards: any = {};
-
-  // 当前储蓄卡
-  CurrentDepositCard: any = {};
-
   // 所有页面路由
   public pages: any = RootPage;
+
+  // 项目名称
+  public AppName: string = '5U卡贝';
 
   private HardwareBackButtonDisabled = false;
 

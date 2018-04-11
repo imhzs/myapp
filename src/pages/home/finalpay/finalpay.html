@@ -1,12 +1,12 @@
 
-<ion-header>
+<ion-header #headerRef>
   <ion-toolbar no-padding>
     <app-toolbar HasBack="true" [Title]="headTitle"></app-toolbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="content">
-  <div class="progress" [hidden]="browser.isLoaded">
+  <div class="progress" [hidden]="browser.isLoaded" #progressRef>
     <div class="progress-inner" id="progress"></div>
   </div>
   <div *ngIf="flag">

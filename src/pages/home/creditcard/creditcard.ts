@@ -54,6 +54,7 @@ export class CreditCardPage
       }
     );
 
+    this.auth.GetUserData();
     this.auth.currentUser.subscribe(
       (user) => {
         this.Rate = user.rate;
@@ -65,7 +66,6 @@ export class CreditCardPage
   }
 
   ionViewDidEnter() {
-    this.auth.GetUserData();
     this.InitData();
   }
 
@@ -100,6 +100,11 @@ export class CreditCardPage
 
   // 确认提交
   ConfirmPay() {
+    if (this.amount.inputAmount < 200 || this.amount.inputAmount > 20000) {
+      App.ShowError('单笔金额为200-20000');
+      return;
+    }
+    
     if (this.CreditCards.length == 0 || this.DepositCards.length == 0) {
       App.ShowError('请先添加银行卡和储蓄卡');
       return;
@@ -128,7 +133,6 @@ export class CreditCardPage
       (modal) => {
         modal.onDidDismiss((data) => {
           if (TypeInfo.Assigned(data) && TypeInfo.IsObject(data)) {
-            console.log(data.id);
             this.CurrentDepositCard = this.cardHelper.getCardById(data.id);
           }
         });

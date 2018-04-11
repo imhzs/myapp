@@ -30,8 +30,17 @@ export class CheckoutPage
 	// 是否可提交标识
 	CanSubmited: boolean = true;
 
+	// 支付金额
+	PayAmount: string;
+
+	// 到账金额
+	ReceiveAmount: string;
+
 	constructor (private navParams: NavParams, private service: HomeService, private auth: TAuthService) {
 		this.Amount = <AmountOptions>this.navParams.get('amount');
+		this.PayAmount = parseFloat(this.Amount.inputAmount.toString()).toFixed(2);
+		this.ReceiveAmount = parseFloat(this.Amount.outputAmount.toString()).toFixed(2);
+
 		if (!TypeInfo.Assigned(this.Amount) && !TypeInfo.IsObject(this.Amount)) {
 			App.Nav.push('CreditCardPage');
 		}

@@ -45,6 +45,8 @@ export class FinalpayPage implements OnInit
   iframeHeight: number;
 
   @ViewChild('paymentForm') paymentForm: ElementRef;
+  @ViewChild('progressRef') progressRef: ElementRef;
+  @ViewChild('headerRef') headerRef: ElementRef;
 
   // 分享控制的配置
   shareConfig: any = {
@@ -55,11 +57,14 @@ export class FinalpayPage implements OnInit
     if (!this.navParams.get('innerHtml') && !this.navParams.get('broswer')) {
       App.Nav.push(App.pages.creditCardPage);
     }
-    this.iframeWidth = document.body.offsetWidth;
-    this.iframeHeight = document.body.offsetHeight;
   }
 
   ngOnInit() {
+    let headerHeight = parseInt(window.getComputedStyle(this.headerRef.nativeElement).height) + 10;
+    let progressHeight = parseInt(window.getComputedStyle(this.progressRef.nativeElement).height) + 10;
+    this.iframeWidth = document.body.offsetWidth;
+    this.iframeHeight = document.body.offsetHeight - (progressHeight + headerHeight);
+
     let bodyText = this.navParams.get('innerHtml').toString();
 
     if (bodyText.indexOf('form') == -1 && bodyText.indexOf('body') > -1) {

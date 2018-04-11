@@ -14,6 +14,7 @@ export const modifyPasswordPage = 'ModifyPasswordPage';
 export const findPasswordPage = 'FindPasswordPage';
 export const resetPasswordPage = 'ResetPasswordPage';
 export const checkoutPage = 'CheckoutPage';
+export const supportBankPage = 'SupportBankPage';
 
 export const ucenterPage = 'UcenterPage';
 export const loginPage = 'LoginPage';
