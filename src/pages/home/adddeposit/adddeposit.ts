@@ -48,12 +48,6 @@ export class AddDepositPage implements OnInit
 
   constructor(public Service: HomeService, public navParams: NavParams, private auth: TAuthService, private fileService: FileService) {
     this.GetIdCard(App.UserInfo.idCardNo);
-    this.auth.currentUser.subscribe(
-      data => {
-        AuthHelper.check();
-        this.GetIdCard(App.UserInfo.idCardNo);
-      }
-    );
   }
 
   ngOnInit() { 
@@ -71,9 +65,13 @@ export class AddDepositPage implements OnInit
   }
 
   ionViewDidEnter() {
-    if (TypeInfo.Assigned(App.UserInfo) && !TypeInfo.IsEmptyObject(App.UserInfo)) {
-      AuthHelper.check();
-    }
+    this.auth.GetUserData();
+    this.auth.currentUser.subscribe(
+      data => {
+        AuthHelper.check();
+        this.GetIdCard(App.UserInfo.idCardNo);
+      }
+    );
   }
 
   // 卡号是否符合规则
@@ -133,17 +131,19 @@ export class AddDepositPage implements OnInit
   // 完成添加
   Finish() {
     this.Service.AddDeposiCard(this.formGroup.value.CardNo, this.BankName,
-      this.TranCode, this.BranchName, this.formGroup.value.Mobile).subscribe(res => {
-        this.Service.GetCardList();
-        this.auth.GetUserData();
-        this.auth.currentUser.subscribe(data => {
-          if (this.navParams.get('page')) {
-            App.Nav.push(this.navParams.get('page'));
-          } else {
-            App.Nav.push(App.pages.myCardPage);
+      this.TranCode, this.BranchName, this.formGroup.value.Mobile).subscribe(
+        resp => {
+          if (resp.code === TAuthService.REQ_OK) {
+            this.Service.GetCardList();
+            this.auth.GetUserData();
+            if (this.navParams.get('page')) {
+              App.Nav.push(this.navParams.get('page'));
+            } else {
+              App.Nav.push(App.pages.myCardPage);
+            }
           }
-        });
-      });
+        }
+      );
   }
 
   // 选择文件

@@ -38,11 +38,11 @@ export class TAuthService extends TBaseService
     this.SetParam('password', this.Md5T(Password).toString());
 
     this.Post('kpay/api/login').subscribe(
-      data => {
-        if (data.code === TBaseService.REQ_OK) {
-          CredentialHelper.setToken(data.data.token);
+      resp => {
+        if (resp.code === TBaseService.REQ_OK) {
+          CredentialHelper.setToken(resp.data.token);
           this.GetUserData();
-          App.Nav.push('TabsPage');
+          App.Nav.setPages([{page: App.pages.tabsPage}]);
         }
       },
       error => {
@@ -139,12 +139,11 @@ export class TAuthService extends TBaseService
 
   // 获取用户信息
   GetUserData() {
-    return this.Post('kpay/api/user/info').map((resp: any) => {
-      let userData: UserModel = resp.data;
-      this.updateUser(userData);
-    }).subscribe(
-      data => {
-        console.log(data);
+    return this.Post('kpay/api/user/info').subscribe(
+      resp => {
+        let userData: UserModel = resp.data;
+        this.updateUser(userData);
+        console.log(resp);
       },
       error => {
         console.log(error);
@@ -161,17 +160,17 @@ export class TAuthService extends TBaseService
     this.SetParam('key', key);
 
     return this.Post('kpay/api/login/partner').subscribe(
-      data => {
-        if (TypeInfo.Assigned(data.data) && !TypeInfo.IsEmptyObject(data.data)) {
-          CredentialHelper.setToken(data.data.token);
+      resp => {
+        if (TypeInfo.Assigned(resp.data) && !TypeInfo.IsEmptyObject(resp.data)) {
+          CredentialHelper.setToken(resp.data.token);
           this.GetUserData();
-          App.Nav.setPages([{page: 'TabsPage'}, {page: 'CreditCardPage'}]);
+          App.Nav.setPages([{page: App.pages.tabsPage}, {page: App.pages.creditCardPage}]);
         } else {
           App.Nav.setRoot(App.pages.loginPage);
         }
       },
       error => {
-        console.error(error);  
+        console.error(error);
       }
     );
   }

@@ -11,13 +11,13 @@ export class AuthHelper
             text: '取消',
             role: 'cancel',
             handler: () => {
-              App.Nav.push('HomePage');
+              // App.Nav.push(App.pages.tabsPage);
             }
           },
           {
             text: '去认证',
             handler: () => {
-              App.Nav.push('AuthPage');
+              App.Nav.push(App.pages.authPage);
             }
           }
         ]

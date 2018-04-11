@@ -8,9 +8,6 @@ const lodash = require('lodash');
 import { TBaseService } from '../providers/pub_service';
 import { ResponseModel } from '../models/response-model';
 
-// 附件类型-手持身份证
-export const IDCARD_HAND = 'idcard_hand';
-
 // 附件类型-银行卡正面
 export const BANKCARD_FRONT = 'bankcard_front';
 

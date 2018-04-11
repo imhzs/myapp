@@ -1,5 +1,4 @@
 import { Component, Injectable } from '@angular/core';
-import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { IonicPage } from 'ionic-angular';
 
 import { HomeService } from '../../../providers/homeservice';
@@ -37,10 +36,8 @@ export class MyCardPage
   // 主卡表示
   PrimaryCard: number = PRIMARY_CARD;
 
-  constructor(public Servie: HomeService, private auth: TAuthService, public navCtrl: NavController, public cardHelper: CardHelper) {
-    this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
-    this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
-
+  constructor(public Servie: HomeService, private auth: TAuthService, public cardHelper: CardHelper) {
+    this.Servie.GetCardList();
     this.Servie.currentCards.subscribe(
       data => {
         this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
@@ -55,7 +52,6 @@ export class MyCardPage
       this.cardHelper.delCard(cardId);
       this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
       
-      App.ShowToast('信用卡删除成功');
       this.auth.GetUserData();
     })
   }
@@ -66,7 +62,6 @@ export class MyCardPage
       this.cardHelper.delCard(cardId);
       this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
 
-      App.ShowToast('储蓄卡删除成功');
       this.auth.GetUserData();
     })
   }

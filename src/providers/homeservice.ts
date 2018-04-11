@@ -36,12 +36,11 @@ export class HomeService extends TBaseService
 
   // 获取银行卡列表
   GetCardList() {
-    return this.Post('kpay/api/bankcard/list').map((resp: any) => {
-      let cards: Array<CardModel> = resp.data;
-      this.updateCards(cards);
-    }).subscribe(
-      data => {
-        console.log(data);
+    return this.Post('kpay/api/bankcard/list').subscribe(
+      resp => {
+        let cards: Array<CardModel> = resp.data;
+        this.updateCards(cards);
+        console.log(resp);
       },
       error => {
         console.log(error);

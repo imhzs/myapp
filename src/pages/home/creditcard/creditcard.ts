@@ -49,7 +49,7 @@ export class CreditCardPage
     }
     
     this.homeService.currentCards.subscribe(
-      (cards) => {
+      cards => {
         this.InitData();
       }
     );
@@ -65,6 +65,7 @@ export class CreditCardPage
   }
 
   ionViewDidEnter() {
+    this.auth.GetUserData();
     this.InitData();
   }
 
@@ -94,7 +95,7 @@ export class CreditCardPage
       this.amount.outputAmount = undefined;
       return;
     }
-    this.amount.outputAmount = Math.floor((this.amount.inputAmount * (1 - this.Rate / 100)) * 10) / 10;
+    this.amount.outputAmount = Math.floor((this.amount.inputAmount * (1 - this.Rate / 100)) * 10) / 10 - 3;
   }
 
   // 确认提交
@@ -110,7 +111,7 @@ export class CreditCardPage
 
   // 更换信用卡
   ChangeCreditCard() {
-    App.ShowModal('ChangecardsPage', {data: this.CreditCards, t: CREDIT_CARD, curCardId: this.CurrentCreditCard.id}).then(
+    App.ShowModal('ChangecardsPage', {data: this.CreditCards, t: CREDIT_CARD, curCardId: this.CurrentCreditCard.id, title: '更换信用卡'}).then(
       (modal) => {
         modal.onDidDismiss((data) => {
           if (TypeInfo.Assigned(data) && TypeInfo.IsObject(data)) {
@@ -123,7 +124,7 @@ export class CreditCardPage
 
   // 更换储蓄卡
   ChangeDepositCard() {
-    App.ShowModal('ChangecardsPage', {data: this.DepositCards, t: DEPOSIT_CARD, curCardId: this.CurrentDepositCard.id}).then(
+    App.ShowModal('ChangecardsPage', {data: this.DepositCards, t: DEPOSIT_CARD, curCardId: this.CurrentDepositCard.id, title: '更换储蓄卡'}).then(
       (modal) => {
         modal.onDidDismiss((data) => {
           if (TypeInfo.Assigned(data) && TypeInfo.IsObject(data)) {
@@ -137,7 +138,7 @@ export class CreditCardPage
 
   // 添加信用卡
   AddCreditCard() {
-    App.Nav.push(App.pages.addCreditcard, {page: App.pages.creditCardPage});
+    App.Nav.push(App.pages.addCreditCardPage, {page: App.pages.creditCardPage});
   }
 
   // 添加储蓄卡

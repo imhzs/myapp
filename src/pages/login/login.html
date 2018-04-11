@@ -9,35 +9,39 @@
   <div class="page-login">
     <ion-grid>
       <ion-row>
-        <ion-col col-12 text-center>
+        <ion-col col-10 offset-1 text-center>
           <img class="logo" src="assets/imgs/logo.png" alt="logo" />
         </ion-col>
       </ion-row>
     </ion-grid>
     <ion-grid text-center class="page-content" p-t-30>
-      <form novalidate [formGroup]="formGroup" autocomplete="off">
-        <ion-row class="border-bottom-1px">
-          <ion-col col-12>
-            <ion-input type="Tel" placeholder="请输入手机号" formControlName="Tel" required></ion-input>
-          </ion-col>
-        </ion-row>
-        <ion-row class="border-bottom-1px">
-          <ion-col col-12>
-            <ion-input type="password" placeholder="请输入密码" formControlName="Pass" required></ion-input>
-          </ion-col>
-        </ion-row>
-        <ion-row m-t-30>
-          <ion-col col-12>
-            <button ion-button full (click)="Login()" class="btn-default" [class.btn-disabled]="LoginDisabled" [disabled]="LoginDisabled">登录</button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12>
-            <button class="btn-default" (click)="App.Nav.push(App.pages.registerPage)" ion-button block outline>注册</button>
-          </ion-col>
-        </ion-row>
-      </form>
-      <a href="javascript:void(0)" (click)="App.Nav.push(App.pages.findPasswordPage)" ion-text color="primary" p-t-5>忘记密码 ?</a>
+      <ion-row>
+        <ion-col col-10 offset-1>
+          <form novalidate [formGroup]="formGroup" autocomplete="off">
+            <ion-row class="border-bottom-1px">
+              <ion-col col-12>
+                <ion-input type="Tel" placeholder="请输入手机号" formControlName="Tel" required></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row class="border-bottom-1px">
+              <ion-col col-12>
+                <ion-input type="password" placeholder="请输入密码" formControlName="Pass" required></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row m-t-30>
+              <ion-col col-12>
+                <button ion-button full (click)="Login()" class="btn-default" [class.btn-disabled]="LoginDisabled" [disabled]="LoginDisabled">登录</button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12>
+                <button class="btn-default" (click)="App.Nav.push(App.pages.registerPage)" ion-button block outline>注册</button>
+              </ion-col>
+            </ion-row>
+          </form>
+          <a href="javascript:void(0)" (click)="App.Nav.push(App.pages.findPasswordPage)" ion-text color="primary" p-t-5>忘记密码 ?</a>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </div>
 </ion-content>

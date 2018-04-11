@@ -71,7 +71,7 @@ export class RegisterPage implements OnInit
   NextTable() {
     this.Service.CheckVerifyCode(this.formGroup.value.Tel, this.formGroup.value.VCode).subscribe(
       data => {
-        App.Nav.push(App.pages.setPasswordPage);
+        App.Nav.push(App.pages.setPasswordPage, {mobile: this.formGroup.value.Tel, code: this.formGroup.value.VCode});
       }
     );
   }

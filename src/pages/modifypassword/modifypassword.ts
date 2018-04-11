@@ -26,14 +26,14 @@ export class ModifyPasswordPage implements OnInit
 
   pwdVisible: boolean = false;
 
-  private tel: string = "****";
+  private tel: string = '';
 
   constructor(public Service: TAuthService) {
   }
 
   ngOnInit() {
     if (App.UserInfo.mobile) {
-      this.tel = App.UserInfo.mobile.toString().substr(0, 3) + this.tel + App.UserInfo.mobile.toString().substr(-4);
+      this.tel = App.UserInfo.mobile.toString().replace(/(\d{3})(\d{4})(\d{4})/, '$1****$3');
     }
 
     this.FormGroup = new FormGroup({
@@ -80,8 +80,10 @@ export class ModifyPasswordPage implements OnInit
 
   ConfirmModify() {
     this.Service.GetchangePsdData(App.UserInfo.mobile, this.FormGroup.value.Password, this.FormGroup.value.VCode).subscribe(
-      data => {
-        this.Service.Logout();
+      resp => {
+        if (resp.code === TAuthService.REQ_OK) {
+          this.Service.Logout();
+        }
       }
     );
   }

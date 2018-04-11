@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="h-creditcard-page">
-  <ion-grid class="page-content" p-h-10 p-b-10>
+  <ion-grid class="page-content" p-h-15 p-b-10>
     <ion-row justify-content-center>
       <ion-col col-12>
         <ion-label>付款信用卡</ion-label>
@@ -19,7 +19,7 @@
       <!-- 未添加信用卡 -->
 
       <!-- 已添加信用卡 -->
-      <ion-col col-12 class="d-flex flex-column justify-content-between card has-card" p-h-10 p-v-5 *ngIf="CurrentCreditCard">
+      <ion-col col-12 class="d-flex flex-column justify-content-between card has-card" p-h-15 p-v-5 *ngIf="CurrentCreditCard">
         <ion-row>
           <ion-col col-10>
             <ion-row>
@@ -55,7 +55,7 @@
       <!-- 未添加储蓄卡 -->
 
       <!-- 已添加储蓄卡 -->
-      <ion-col col-12 class="d-flex flex-column justify-content-between card has-card" p-h-10 p-v-5 *ngIf="CurrentDepositCard">
+      <ion-col col-12 class="d-flex flex-column justify-content-between card has-card" p-h-15 p-v-5 *ngIf="CurrentDepositCard">
         <ion-row>
           <ion-col col-10>
             <ion-row>
@@ -78,7 +78,7 @@
       <!-- 已添加储蓄卡 -->
     </ion-row>
   </ion-grid>
-  <ion-grid class="page-content" m-t-10 p-b-10>
+  <ion-grid class="page-content" m-t-10 p-b-10 p-h-15>
     <ion-row class="border-bottom-1px">
       <ion-col>
         <ion-label>收款金额(元)</ion-label>
@@ -91,8 +91,8 @@
     </ion-row>
     <ion-row p-t-5>
       <ion-col class="l-h-d">
-        <p ion-text class="text-fee">费率：{{Rate}}%+3元，保底8元</p>
-        <p ion-text class="text-t">交易时间：9:00-21:00，立即到账</p>
+        <p ion-text class="text-fee">费率：{{Rate}}%+3元</p>
+        <p ion-text class="text-t">交易时间：8:00-21:00，立即到账</p>
       </ion-col>
     </ion-row>
   </ion-grid>

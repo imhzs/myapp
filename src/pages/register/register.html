@@ -11,31 +11,35 @@
       </ion-col>
     </ion-row>
     <ion-grid text-center>
-      <form novalidate [formGroup]="formGroup" autocomplete="off">
-        <ion-row class="reg-line border-bottom-1px">
-          <ion-col col-12>
-            <ion-input type="Tel" placeholder="请输入手机号" formControlName="Tel" required></ion-input>
-          </ion-col>
-        </ion-row>
-        <ion-row class="reg-line border-bottom-1px">
-          <ion-col col-7>
-            <ion-input type="text" placeholder="请输入手机验证码" formControlName="VCode" required></ion-input>
-          </ion-col>
-          <ion-col col-5>
-            <button class="btn-send" ion-button outline [disabled]="Tel.invalid" (click)="GetVeriyCode()">{{VCodeText}}</button>
-          </ion-col>
-        </ion-row>
-       <ion-row m-t-30 m-b-10>
-          <ion-col col-12>
-            <button ion-button full color="primary" (click)="NextTable()" [class.btn-disabled]="Tel.invalid || VCode.invalid" [disabled]="Tel.invalid || VCode.invalid">下一步</button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12>
-            <span ion-text f-12>点击"下一步"即表示您同意</span><span ion-text color="primary">《5u卡贝用户使用协议》</span>
-          </ion-col>
-        </ion-row>
-      </form>
+      <ion-row>
+        <ion-col col-10 offset-1>
+          <form novalidate [formGroup]="formGroup" autocomplete="off">
+            <ion-row class="reg-line border-bottom-1px">
+              <ion-col col-12>
+                <ion-input type="Tel" placeholder="请输入手机号" formControlName="Tel" required></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row class="reg-line border-bottom-1px">
+              <ion-col col-7>
+                <ion-input type="text" placeholder="请输入手机验证码" formControlName="VCode" required></ion-input>
+              </ion-col>
+              <ion-col col-5>
+                <button class="btn-send" ion-button outline [disabled]="Tel.invalid" (click)="GetVeriyCode()">{{VCodeText}}</button>
+              </ion-col>
+            </ion-row>
+           <ion-row m-t-30 m-b-5>
+              <ion-col col-12>
+                <button class="btn-default" ion-button full color="primary" (click)="NextTable()" [class.btn-disabled]="Tel.invalid || VCode.invalid" [disabled]="Tel.invalid || VCode.invalid">下一步</button>
+              </ion-col>
+            </ion-row>
+            <ion-row m-b-10>
+              <ion-col col-12>
+                <button class="btn-default" ion-button outline block (click)="App.Nav.push(App.pages.loginPage)">登录</button>
+              </ion-col>
+            </ion-row>
+          </form>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </div>
 </ion-content>

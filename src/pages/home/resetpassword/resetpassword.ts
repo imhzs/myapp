@@ -42,16 +42,18 @@ export class ResetPasswordPage implements OnInit
     })
   }
 
-  clickgetlogin() {
-    if(this.conpwd === this.formGroup.value.pwd ) {
-      this.auth.GetchangePsdData(this.tel,this.formGroup.value.pwd, this.VCode).subscribe(
-        data => {
-          App.Nav.push(App.pages.loginPage);
-        }
-      );
-    } else {
-      App.ShowError('两次输入密码不一致')
+  OnConfirm() {
+    if(this.conpwd !== this.formGroup.value.pwd ) {
+      App.ShowError('两次输入密码不一致');
+      return;
     }
+    this.auth.GetchangePsdData(this.tel,this.formGroup.value.pwd, this.VCode).subscribe(
+      resp => {
+        if (resp.code === TAuthService.REQ_OK) {
+          this.auth.Logout();
+        }
+      }
+    );
   }
 
   ionViewCanEnter() {

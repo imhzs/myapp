@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { TypeInfo } from '../UltraCreation/Core/TypeInfo';
 import { CredentialHelper } from '../shared/helper/credential-helper';
 
-const API_URL = 'http://39.104.113.132';
+const API_URL = 'https://h5.5ucardpay.com';
 
 export class TBaseService
 {

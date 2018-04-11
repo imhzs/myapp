@@ -64,7 +64,10 @@
   <ion-grid>
   	<ion-row>
   		<ion-col col-12>
-  			<button type="button" class="btn-default" ion-button color="primary" full (click)="OnSubmit()">立即认证</button>
+				<button type="button" class="btn-default" 
+					ion-button color="primary" full (click)="OnSubmit()"
+					[class.btn-disabled]="!CanSubmit"
+					[disabled]="!CanSubmit">立即认证</button>
   		</ion-col>
   	</ion-row>
   </ion-grid>

@@ -4,7 +4,9 @@ import { NavParams, IonicPage } from 'ionic-angular';
 
 import { TAuthService } from '../../providers/auth';
 
-@IonicPage()
+@IonicPage({
+  segment: 'setpassword/:mobile/:code'
+})
 @Component({
   selector: 'page-setpwd',
   templateUrl: 'setpassword.html'
@@ -70,8 +72,10 @@ export class SetPasswordPage implements OnInit
       return;
     }
     this.Service.SignIn(this.Tel, this.formGroup.value.Pass, this.VCode).subscribe(
-      data => {
-        App.Nav.push(App.pages.tabsPage);
+      resp => {
+        if (resp.code === TAuthService.REQ_OK) {
+          App.Nav.push(App.pages.loginPage);
+        }
       }
     );
   }

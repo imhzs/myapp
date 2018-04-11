@@ -22,7 +22,7 @@ export class UcenterPage
   HeadTitle: string = "我 的";
 
   // 手机号
-  Mobile: string = "****";
+  Mobile: string = '';
 
   // 用户头像
   ImgData = { ImgSrc: void 0 };
@@ -32,21 +32,20 @@ export class UcenterPage
       this.User = App.UserInfo;
       this.formatMobile();
     }
-    
+  }
+
+  private formatMobile() {
+    this.Mobile = App.UserInfo.mobile.toString().replace(/(\d{3})(\d{4})(\d{4})/, '$1****$3');
+  }
+
+  ionViewCanEnter() {
+    this.auth.GetUserData();
     this.auth.currentUser.subscribe(
       data => {
         this.User = data;
         this.formatMobile();
       }
     );
-  }
-
-  private formatMobile() {
-    this.Mobile = App.UserInfo.mobile.toString().substr(0, 3) + this.Mobile + App.UserInfo.mobile.toString().substr(-4);
-  }
-
-  ionViewCanEnter() {
-    this.auth.CheckToken();
   }
 }
 

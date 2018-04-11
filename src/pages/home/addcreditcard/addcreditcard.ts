@@ -58,7 +58,12 @@ export class AddCreditCardPage implements OnInit
   }
 
   ionViewDidEnter() {
-    AuthHelper.check();
+    this.auth.GetUserData();
+    this.auth.currentUser.subscribe(
+      data => {
+        AuthHelper.check();
+      }
+    );
   }
 
   get CompleteBtnIsDisabled(): boolean {
@@ -82,17 +87,15 @@ export class AddCreditCardPage implements OnInit
   AddCard() {
     this.Service.AddCreditCard(this.formGroup.value.CardNo, this.formGroup.value.Mobile).subscribe(
       data => {
-        this.Service.GetCardList();
-        this.auth.GetUserData();
-        this.auth.currentUser.subscribe(
-          (data)=> {
-            if (this.navParams.get('page')) {
-              App.Nav.push(this.navParams.get('page'));
-            } else {
-              App.Nav.push(App.pages.myCardPage);
-            }
+        if (data.code === TAuthService.REQ_OK) {
+          this.Service.GetCardList();
+          this.auth.GetUserData();
+          if (this.navParams.get('page')) {
+            App.Nav.push(this.navParams.get('page'));
+          } else {
+            App.Nav.push(App.pages.myCardPage);
           }
-        );
+        }
       }
     );
   }

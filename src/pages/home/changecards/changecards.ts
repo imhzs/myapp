@@ -27,10 +27,10 @@ export class ChangecardsPage
   CardType: number;
 
   constructor(public Service: HomeService, public navParams: NavParams, public viewCtrl: ViewController, private auth: TAuthService) {
-    console.log(this.navParams.get('curCardId'));
     this.CheckedCardId = this.navParams.get('curCardId');
     this.Cards = this.navParams.get('data');
     this.CardType = this.navParams.get('t');
+    this.HeadTitle = this.navParams.get('title');
   }
 
   // 新增卡片

@@ -13,6 +13,7 @@ export class CardHelper
 		this.service.GetCardList();
 		this.service.currentCards.subscribe(
 			data => {
+				console.log('CardHelper', data);
 				this.cards = data;
 			}
 		);
@@ -21,7 +22,7 @@ export class CardHelper
 	// 获取主卡
 	public getPrimaryCard(t: number): CardModel {
 		if (this.isEmpty()) {
-			return <CardModel>{};
+			return null;
 		}
 
 		let c: CardModel;

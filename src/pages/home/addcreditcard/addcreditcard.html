@@ -6,14 +6,14 @@
 </ion-header>
 
 <ion-content class="adddepositcam-page">
-  <ion-grid>
+  <ion-grid p-h-15>
     <ion-row>
       <ion-col>
-        <span ion-text f-13 text-gray>请绑定持卡人的具有银联标识信用卡，此信用卡用于付款刷卡</span>
+        <span ion-text f-13 text-gray class="l-h-d">请绑定持卡人的具有银联标识信用卡，此信用卡用于付款刷卡</span>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-grid class="page-content">
+  <ion-grid class="page-content" p-h-15>
     <ion-row class="d-flex align-items-center form-ctrlborder-bottom-1px">
       <ion-col col-3>持卡人</ion-col>
       <ion-col>{{App.UserInfo.name}}</ion-col>
@@ -26,7 +26,7 @@
 
   <div class="page-content" m-t-15>
     <form novalidate [formGroup]="formGroup">
-      <ion-grid>
+      <ion-grid p-h-15>
         <ion-row class="d-flex align-items-center form-ctrl border-bottom-1px">
           <ion-col col-3>卡号</ion-col>
           <ion-col col-7><ion-input type='number' placeholder="请输信用卡卡号" formControlName="CardNo"></ion-input></ion-col>

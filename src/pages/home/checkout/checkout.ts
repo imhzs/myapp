@@ -52,7 +52,8 @@ export class CheckoutPage
 				if (/^[http:\/\/|https:\/\/](.*)?/.test(data)) {
 					App.Nav.push(App.pages.finalPayPage, {innerHtml: '', browser: data});
 				} else if(data.indexOf('<html>') == -1) {
-					App.ShowError(data.respMsg);
+					this.CanSubmited = true;
+					App.ShowError('跳转支付失败，请稍后再试');
 				} else {
 					App.Nav.push(App.pages.finalPayPage, {innerHtml: data});
 				}

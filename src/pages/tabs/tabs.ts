@@ -9,8 +9,7 @@ export class TabsPage
 {
   App = window.App;
 
-  tab1Root = 'HomePage';
-  tab2Root = 'LoanPage';
+  tab1Root = 'CreditCardPage';
   tab4Root = 'UcenterPage';
 
   constructor() { }
