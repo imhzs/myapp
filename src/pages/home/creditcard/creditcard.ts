@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 
 import { TAuthService } from '../../../providers/auth';
@@ -13,7 +13,7 @@ import { CardHelper, CREDIT_CARD, DEPOSIT_CARD } from '../../../shared/helper/ca
   templateUrl: 'creditcard.html'
 })
 @Injectable()
-export class CreditCardPage
+export class CreditCardPage implements OnInit
 {
   App = window.App;
 
@@ -40,7 +40,12 @@ export class CreditCardPage
     outputAmount: undefined
   };
 
-  constructor(public navCtrl: NavController, public cardHelper: CardHelper, private auth: TAuthService, private homeService: HomeService) {
+  constructor(
+    public navCtrl: NavController,
+    public cardHelper: CardHelper,
+    private auth: TAuthService,
+    private homeService: HomeService
+  ) {
     if (TypeInfo.Assigned(App.UserInfo) && !TypeInfo.IsEmptyObject(App.UserInfo)) {
       this.Rate = App.UserInfo.rate;
       if (!App.IsIdAuthed) {
@@ -63,6 +68,9 @@ export class CreditCardPage
         }
       }
     );
+  }
+
+  ngOnInit() { 
   }
 
   ionViewDidEnter() {
@@ -95,16 +103,26 @@ export class CreditCardPage
       this.amount.outputAmount = undefined;
       return;
     }
-    this.amount.outputAmount = Math.floor((this.amount.inputAmount * (1 - this.Rate / 100)) * 10) / 10 - 3;
+    this.amount.outputAmount = this.amount.inputAmount * (1 - this.Rate / 100) - 3;
   }
 
   // 确认提交
   ConfirmPay() {
+    // 交易时间限制
+    let date = new Date();
+    let hour = date.getHours();
+    if (hour < 8 || hour > 21) {
+      App.ShowError('请在08:00-21:00时间内交易');
+      return;
+    }
+
+    // 建议金额限制
     if (this.amount.inputAmount < 200 || this.amount.inputAmount > 20000) {
       App.ShowError('单笔金额为200-20000');
       return;
     }
     
+    // 无银行卡
     if (this.CreditCards.length == 0 || this.DepositCards.length == 0) {
       App.ShowError('请先添加银行卡和储蓄卡');
       return;

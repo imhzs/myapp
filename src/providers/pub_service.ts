@@ -62,8 +62,12 @@ export class TBaseService
   Post(Uri: string, Data?: any): Observable<any> {
     let url = `${API_URL}/${Uri}`;
     let params = this.params.toString();
+    let responstType = this.responseType;
+
+    this.SetResponseType('json');
     this.setNewParams();
-    return this.http.post(url, params, {headers: this.headers, responseType: this.responseType});
+    
+    return this.http.post(url, params, {headers: this.headers, responseType: responstType});
   }
 
   // 设置参数

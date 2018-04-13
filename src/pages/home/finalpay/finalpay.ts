@@ -44,9 +44,10 @@ export class FinalpayPage implements OnInit
 
   iframeHeight: number;
 
-  @ViewChild('paymentForm') paymentForm: ElementRef;
+  // @ViewChild('paymentForm') paymentForm: ElementRef;
   @ViewChild('progressRef') progressRef: ElementRef;
   @ViewChild('headerRef') headerRef: ElementRef;
+  @ViewChild('iframeRef') iframeRef: ElementRef;
 
   // 分享控制的配置
   shareConfig: any = {
@@ -54,7 +55,7 @@ export class FinalpayPage implements OnInit
   };
 
   constructor(public navParams: NavParams, private sanitizer: DomSanitizer, private auth: TAuthService) {
-    if (!this.navParams.get('innerHtml') && !this.navParams.get('broswer')) {
+    if (!this.navParams.get('innerHtml') && !this.navParams.get('browser')) {
       App.Nav.push(App.pages.creditCardPage);
     }
   }
@@ -67,17 +68,22 @@ export class FinalpayPage implements OnInit
 
     let bodyText = this.navParams.get('innerHtml').toString();
 
-    if (bodyText.indexOf('form') == -1 && bodyText.indexOf('body') > -1) {
+    if (bodyText.indexOf('</form>') == -1 && bodyText.indexOf('</body>') > -1) {
       this.flag = false;
-      let tmp_html = bodyText.match(/<body[^>]*>(.*)?<\/body>/)[1];
-      tmp_html = this.sanitizer.bypassSecurityTrustHtml(tmp_html);
-      this.this_html = tmp_html;
-    } else if(bodyText.indexOf('form') > -1) {
-      this.flag = true;
-      let reg = /<form[^>]*>([\s\S]*)<\/form/ig;
+      let reg = /<body[^>]*>([\s\S]*)<\/body>/ig;
       let arr = reg.exec(bodyText);
-      this.formAction = this.getFormAction(arr[0]);
-      this.htmltext = this.sanitizer.bypassSecurityTrustHtml(arr[1]);
+
+      if (TypeInfo.IsArrayLike(arr)) {
+        this.this_html = this.sanitizer.bypassSecurityTrustHtml(arr[1]);
+      }
+    } else if(bodyText.indexOf('</form>') > -1) {
+      this.flag = true;
+      let reg = /<form[^>]*>([\s\S]*)<\/form>/ig;
+      let arr = reg.exec(bodyText);
+      if (TypeInfo.IsArrayLike(arr)) {
+        let html = arr[0].replace('<form', '<form target="targetIframe" ');
+        this.htmltext = this.sanitizer.bypassSecurityTrustHtml(html);
+      }
     }
 
     let browser = this.navParams.get('browser');
@@ -97,14 +103,20 @@ export class FinalpayPage implements OnInit
   }
 
   ionViewDidEnter() {
-    if (this.flag && TypeInfo.Assigned(this.htmltext)) {
-      this.paymentForm.nativeElement.submit();
-    }
+    this.submitForm();
     if(!this.browser.proObj) {
       this.browser.proObj = document.getElementById('progress');
     }
 
     this.onprogress();
+  }
+
+  // 提交表单
+  private submitForm() {
+    if (this.flag && TypeInfo.Assigned(this.htmltext)) {
+      // this.paymentForm.nativeElement.submit();
+      document.querySelector('form').submit();
+    }
   }
 
   private random(min: number, max: number): number {
@@ -157,15 +169,6 @@ export class FinalpayPage implements OnInit
       this.browser.title = title;
       this.browser.secUrl = url;
     }, 10);
-  }
-
-  private getFormAction(s: string): string {
-    let reg = /action=['|"]([^'|"]*)/ig;
-    let arr = reg.exec(s);
-    if (arr.length > 1) {
-      return arr[1];
-    }
-    return '';
   }
 
   ionViewCanEnter() {

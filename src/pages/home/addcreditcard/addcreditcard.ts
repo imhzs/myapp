@@ -103,7 +103,6 @@ export class AddCreditCardPage implements OnInit
   // 选择文件
   OnChangeFile(e) {
     this.fileService.showAddImage().then((rst: any) => {
-      console.log(rst);
       this.uploadFile(rst.file, BANKCARD_FRONT);
     }).catch (error => {
       console.log(error);

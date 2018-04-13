@@ -6,6 +6,7 @@ import { CardModel } from '../../../models/card-model';
 import { HomeService } from '../../../providers/homeservice';
 import { TAuthService } from '../../../providers/auth';
 import { AmountOptions } from '../creditcard/creditcard';
+import { CheckoutHelper } from '../../../shared/helper/checkout-helper';
 
 @IonicPage()
 @Component({
@@ -36,7 +37,7 @@ export class CheckoutPage
 	// 到账金额
 	ReceiveAmount: string;
 
-	constructor (private navParams: NavParams, private service: HomeService, private auth: TAuthService) {
+	constructor (private navParams: NavParams, private service: HomeService, private auth: TAuthService, private checkoutHelper: CheckoutHelper) {
 		this.Amount = <AmountOptions>this.navParams.get('amount');
 		this.PayAmount = parseFloat(this.Amount.inputAmount.toString()).toFixed(2);
 		this.ReceiveAmount = parseFloat(this.Amount.outputAmount.toString()).toFixed(2);
@@ -56,16 +57,9 @@ export class CheckoutPage
 	Pay() {
     this.CanSubmited = false;
     this.service.GetBankPage(this.CreditCard.id, this.DepositCard.id, this.Amount.inputAmount).subscribe(
-			data => {
-				// 跳转银联页面
-				if (/^[http:\/\/|https:\/\/](.*)?/.test(data)) {
-					App.Nav.push(App.pages.finalPayPage, {innerHtml: '', browser: data});
-				} else if(data.indexOf('<html>') == -1) {
-					this.CanSubmited = true;
-					App.ShowError('跳转支付失败，请稍后再试');
-				} else {
-					App.Nav.push(App.pages.finalPayPage, {innerHtml: data});
-				}
+			resp => {
+				this.CanSubmited = true;
+				this.checkoutHelper.parse(resp);
 			},
 			error => {
 				this.CanSubmited = true;

@@ -222,6 +222,14 @@ module.exports = [
     "runs": true
   },
   {
+    "id": "cordova-plugin-file-opener2.FileOpener2",
+    "file": "plugins/cordova-plugin-file-opener2/www/plugins.FileOpener2.js",
+    "pluginId": "cordova-plugin-file-opener2",
+    "clobbers": [
+      "cordova.plugins.fileOpener2"
+    ]
+  },
+  {
     "id": "cordova-plugin-file-transfer.FileTransferError",
     "file": "plugins/cordova-plugin-file-transfer/www/FileTransferError.js",
     "pluginId": "cordova-plugin-file-transfer",
@@ -244,6 +252,23 @@ module.exports = [
     "clobbers": [
       "cordova.InAppBrowser.open",
       "window.open"
+    ]
+  },
+  {
+    "id": "cordova-plugin-network-information.network",
+    "file": "plugins/cordova-plugin-network-information/www/network.js",
+    "pluginId": "cordova-plugin-network-information",
+    "clobbers": [
+      "navigator.connection",
+      "navigator.network.connection"
+    ]
+  },
+  {
+    "id": "cordova-plugin-network-information.Connection",
+    "file": "plugins/cordova-plugin-network-information/www/Connection.js",
+    "pluginId": "cordova-plugin-network-information",
+    "clobbers": [
+      "Connection"
     ]
   },
   {
@@ -283,31 +308,6 @@ module.exports = [
     "clobbers": [
       "window.plugins.socialsharing"
     ]
-  },
-  {
-    "id": "cordova-plugin-file-opener2.FileOpener2",
-    "file": "plugins/cordova-plugin-file-opener2/www/plugins.FileOpener2.js",
-    "pluginId": "cordova-plugin-file-opener2",
-    "clobbers": [
-      "cordova.plugins.fileOpener2"
-    ]
-  },
-  {
-    "id": "cordova-plugin-network-information.network",
-    "file": "plugins/cordova-plugin-network-information/www/network.js",
-    "pluginId": "cordova-plugin-network-information",
-    "clobbers": [
-      "navigator.connection",
-      "navigator.network.connection"
-    ]
-  },
-  {
-    "id": "cordova-plugin-network-information.Connection",
-    "file": "plugins/cordova-plugin-network-information/www/Connection.js",
-    "pluginId": "cordova-plugin-network-information",
-    "clobbers": [
-      "Connection"
-    ]
   }
 ];
 module.exports.metadata = 
@@ -317,17 +317,17 @@ module.exports.metadata =
   "cordova-plugin-camera": "4.0.2",
   "cordova-plugin-device": "1.1.7",
   "cordova-plugin-file": "6.0.1",
+  "cordova-plugin-file-opener2": "2.0.19",
   "cordova-plugin-file-transfer": "1.7.1",
   "cordova-plugin-inappbrowser": "2.0.1",
   "cordova-plugin-ionic-webview": "1.1.16",
+  "cordova-plugin-network-information": "2.0.1",
   "cordova-plugin-splashscreen": "4.1.0",
   "cordova-plugin-statusbar": "2.4.1",
   "cordova-plugin-wechat": "1.4.0",
   "cordova-plugin-whitelist": "1.3.3",
   "es6-promise-plugin": "4.1.0",
-  "cordova-plugin-x-socialsharing": "5.2.1",
-  "cordova-plugin-file-opener2": "2.0.19",
-  "cordova-plugin-network-information": "2.0.1"
+  "cordova-plugin-x-socialsharing": "5.2.1"
 };
 // BOTTOM OF METADATA
 });

@@ -1,1 +1,2895 @@
-webpackJsonp([29],{104:function(e,t,n){"use strict";n.d(t,"a",function(){return u});var r=n(1),o=n(15),a=(n.n(o),n(66)),i=n(88),s=n(107),u=function(e){Object(r.__extends)(t,e);function t(t){var n=e.call(this,t)||this;return n.http=t,n.subject=new o.Subject,n}return t.prototype.VerifyId=function(e,t,n){return this.SetParam("idcardNo",e),this.SetParam("name",t),n&&this.SetParam("mobile",n),this.Post("kpay/api/idcard/auth")},t.prototype.GetProfitToday=function(){return this.Post("kpay/api/user/myprofit/today")},t.prototype.GetCardList=function(){var e=this;return this.Post("kpay/api/bankcard/list").subscribe(function(t){e.updateCards(t.data)},function(e){console.log(e)})},Object.defineProperty(t.prototype,"currentCards",{get:function(){return this.subject.asObservable()},enumerable:!0,configurable:!0}),t.prototype.updateCards=function(e){this.subject.next(s.concat(new Array,e))},t.prototype.SetPrimCard=function(e){return this.SetParam("cardId",e),this.Post("kpay/api/bankcard/setPrimary")},t.prototype.AddCreditCard=function(e,t){return this.SetParam("cardNo",e),this.SetParam("mobile",t),this.Post("kpay/api/bankcard/addCredit")},t.prototype.AddDeposiCard=function(e,t,n,r,o){return this.SetParam("cardNo",e),this.SetParam("bankName",t),this.SetParam("bankNo",n),this.SetParam("branchName",r),this.SetParam("mobile",o),this.Post("kpay/api/bankcard/addDeposit")},t.prototype.DelCard=function(e){return this.SetParam("cardId",e),this.Post("kpay/api/bankcard/del")},t.prototype.GetTolBanks=function(){return this.Post("kpay/api/bank/info")},t.prototype.GetBranchBanks=function(e){return this.SetParam("name",e),this.Post("kpay/api/bank/list")},t.prototype.GetAvaCash=function(e){return this.SetParam("amount",e),this.Post("kpay/api/cash/cashback/available")},t.prototype.GetBankPage=function(e,t,n,r){return this.SetParam("cardId",e),this.SetParam("enterCardId",t),this.SetParam("amount",Math.round(100*n)),this.SetParam("token",i.a.getToken()),r&&this.SetParam("cashbackId",r),this.SetResponseType("text"),this.Post("kpay/api/trade/quickPay/request")},t.prototype.GetVerifyode=function(e,t,n,r,o,a){return this.SetParam("acctNo",e),this.SetParam("cvn2",t),this.SetParam("amount",Math.round(100*o)),this.SetParam("mobile",r),this.SetParam("expDate",n),a&&this.SetParam("cashbackId",a),this.Post("kpay/api/trade/quickPay/sendVericode")},t.prototype.ConfirmResult=function(e,t){return this.SetParam("orderNo",e),this.SetParam("smsCode",t),this.Post("kpay/api/trade/quickPay/confirm")},t.prototype.SupportBanks=function(){return App.ShowLoading(),this.Post("kpay/api/trade/supportbanks")},t}(a.a)},163:function(e,t,n){"use strict";n.d(t,"a",function(){return d}),n.d(t,"b",function(){return l});var r=n(1),o=(n(131),n(87),n(285)),a=n.n(o),i=n(66),s=this&&this.__awaiter||function(e,t,n,r){return new(n||(n=Promise))(function(o,a){function i(e){try{u(r.next(e))}catch(e){a(e)}}function s(e){try{u(r.throw(e))}catch(e){a(e)}}function u(e){e.done?o(e.value):new n(function(t){t(e.value)}).then(i,s)}u((r=r.apply(e,t||[])).next())})},u=this&&this.__generator||function(e,t){var n,r,o,a,i={label:0,sent:function(){if(1&o[0])throw o[1];return o[1]},trys:[],ops:[]};return a={next:s(0),throw:s(1),return:s(2)},"function"==typeof Symbol&&(a[Symbol.iterator]=function(){return this}),a;function s(a){return function(s){return function(a){if(n)throw new TypeError("Generator is already executing.");for(;i;)try{if(n=1,r&&(o=r[2&a[0]?"return":a[0]?"throw":"next"])&&!(o=o.call(r,a[1])).done)return o;switch(r=0,o&&(a=[0,o.value]),a[0]){case 0:case 1:o=a;break;case 4:return i.label++,{value:a[1],done:!1};case 5:i.label++,r=a[1],a=[0];continue;case 7:a=i.ops.pop(),i.trys.pop();continue;default:if(!(o=(o=i.trys).length>0&&o[o.length-1])&&(6===a[0]||2===a[0])){i=0;continue}if(3===a[0]&&(!o||a[1]>o[0]&&a[1]<o[3])){i.label=a[1];break}if(6===a[0]&&i.label<o[1]){i.label=o[1],o=a;break}if(o&&i.label<o[2]){i.label=o[2],i.ops.push(a);break}o[2]&&i.ops.pop(),i.trys.pop();continue}a=t.call(e,i)}catch(e){a=[6,e],r=0}finally{n=o=0}if(5&a[0])throw a[1];return{value:a[0]?a[1]:void 0,done:!0}}([a,s])}}},c=n(107),d="bankcard_front",l=function(e){Object(r.__extends)(t,e);function t(t,n,r){var o=e.call(this,t)||this;return o.http=t,o.camera=n,o.fileTransfer=r,o.targetWidth=800,o.targetHeight=600,o}return t.prototype.OcrUpload=function(e,t,n){return s(this,void 0,void 0,function(){return u(this,function(r){switch(r.label){case 0:return[4,this.PostFile("kpay/api/ocr/upload",e,t,{type:n})];case 1:return[2,r.sent()]}})})},t.prototype.IdentityAuth=function(e,t){return s(this,void 0,void 0,function(){return u(this,function(n){switch(n.label){case 0:return[4,this.PostFile("kpay/api/ocr/idcard","file",e,{type:t})];case 1:return[2,n.sent()]}})})},t.prototype.PostFiles=function(e){return s(this,void 0,void 0,function(){var t;return u(this,function(n){switch(n.label){case 0:return[4,this.PostByXMLHttpReq(e).then(function(e){return e})];case 1:return 1===(t=n.sent()).code?[2,t.data]:(App.ShowError(t.msg),[2,!1])}})})},t.prototype.PostFile=function(e,t,n,r){return s(this,void 0,void 0,function(){var o,a;return u(this,function(i){switch(i.label){case 0:for(o in r)this.SetParam(o,r[o]);return this.SetParam(t,n),window.cordova?[4,this.PostByFileTransfer(e,t,n,r).then(function(e){return e}).catch(function(e){App.ShowToast(e)})]:[3,2];case 1:return a=i.sent(),[3,4];case 2:return[4,this.PostByXMLHttpReq(e,t,n,r).then(function(e){return e}).catch(function(e){App.ShowToast(e)})];case 3:a=i.sent(),i.label=4;case 4:return 1===a.code?[2,a.data]:(App.ShowError(a.msg),[2,!1])}})})},t.prototype.showAddImage=function(){var e=this;return new Promise(function(t,n){if(window.cordova)new Promise(function(t,n){App.ShowActionSheet({title:"添加图片",buttons:[{text:"相册",handler:function(){t(e.camera.PictureSourceType.PHOTOLIBRARY)}},{text:"相机",handler:function(){t(e.camera.PictureSourceType.CAMERA)}},{text:"取消",role:"cancel",handler:function(){n()}}]})}).then(function(n){if(window.cordova){e.camera.getPicture({quality:50,sourceType:n,saveToPhotoAlbum:!1,correctOrientation:!0,targetWidth:e.targetWidth,targetHeight:e.targetHeight}).then(function(e){if(e.indexOf("?")>-1){var n=e.match(new RegExp(/[^?]+/,"ig"));n.length>0&&(e=n[0])}t({file:e,base64:e,blob:e})})}}).catch(function(e){console.log("Camera failed."),App.ShowToast("获取图片失败"),n(e)});else{var r=document.createElement("input");r.type="file",r.accept="image/png,image/jpeg,image/jpg,image/x-png",r.click(),r.onchange=function(){console.log(r.files[0]),App.ShowLoading("处理中"),a()(r.files[0],{quality:.6,width:e.targetWidth,height:e.targetHeight}).then(function(n){var o=e.dataURLtoFile(n.base64,r.files[0].name),a={file:o,base64:n.base64,blob:window.URL.createObjectURL(o)};t(a)}).catch(function(e){console.log("LRZ: Compress image failed."),console.log(e)}).always(function(){App.HideLoading()})}}})},t.prototype.dataURLtoBlob=function(e){for(var t=e.split(","),n=t[0].match(/:(.*?);/)[1],r=atob(t[1]),o=r.length,a=new Uint8Array(o);o--;)a[o]=r.charCodeAt(o);return new Blob([a],{type:n})},t.prototype.dataURLtoFile=function(e,t){for(var n=e.split(","),r=n[0].match(/:(.*?);/)[1],o=atob(n[1]),a=o.length,i=new Uint8Array(a);a--;)i[a]=o.charCodeAt(a);return new File([i],t,{type:r})},t.prototype.PostByFileTransfer=function(e,t,n,r){var o=this;return new Promise(function(a,i){var s=o.BaseUrl+"/"+e;if(window.cordova){var u={fileKey:t,fileName:n,headers:{Authorization:o.getToken}};r&&(u.params=r);o.fileTransfer.create().upload(n,s,u).then(function(e){a(JSON.parse(e.response))}).catch(function(e){App.ShowToast("上传失败"),i(e)})}})},t.prototype.PostByXMLHttpReq=function(e,t,n,r){return s(this,void 0,void 0,function(){var o=this;return u(this,function(a){return[2,new Promise(function(a,i){var s=new FormData;c.keys(r).length>0&&c.forEach(r,function(e,t){s.append(t,e)});var u=encodeURI(o.BaseUrl+"/"+e);App.ShowLoading();var d=new XMLHttpRequest;d.open("GET",window.URL.createObjectURL(n),!0),d.responseType="blob",d.onload=function(e){if(200!=d.status)App.ShowError("您的浏览器不支持Blob"),console.error(e,d),i(e);else{var r=d.response,c=new XMLHttpRequest,l=n.type.split("/")[1],p=(new Date).getTime()+"."+l;s.append(t,r,p),c.onloadend=function(){App.HideLoading()},c.ontimeout=function(){App.HideLoading()},c.onreadystatechange=function(){4===c.readyState&&(200===c.status?a(JSON.parse(c.response)):i(c))},c.open("POST",u,!0),c.setRequestHeader("Authorization",o.getToken),c.send(s)}},d.send()})]})})},t}(i.a)},164:function(e,t,n){"use strict";n.d(t,"a",function(){return o});var r=n(1),o=function(e){Object(r.__extends)(t,e);function t(t){var n=e.call(this,t)||this;return n.http=t,n}return t.prototype.GetCashList=function(){return this.Post("kpay/api/cash/getCashList")},t.prototype.GetCashDetail=function(e){return this.SetParam("id",e),this.Post("kpay/api/cash/getCashDetail")},t.prototype.GetVoucherList=function(){return this.Post("kpay/api/cash/cashback/list")},t.prototype.GetMyCustomer=function(){return this.Post("kpay/api/user/mycustomer")},t.prototype.GetCashBack=function(){return this.Post("kpay/api/trade/list")},t.prototype.GetVipList=function(){return this.Post("kpay/api/package/list")},t.prototype.BuyVip=function(e){return this.SetParam("packId",e),this.Post("kpay/api/package/buy",{packId:e})},t}(n(66).a)},185:function(e,t){function n(e){return Promise.resolve().then(function(){throw new Error("Cannot find module '"+e+"'.")})}n.keys=function(){return[]},n.resolve=n,e.exports=n,n.id=185},212:function(e,t,n){var r={"../pages/auth/auth.module.ngfactory":[400,17],"../pages/findpassword/findpassword.module.ngfactory":[401,16],"../pages/home/addcreditcard/addcreditcard.module.ngfactory":[402,3],"../pages/home/adddeposit/adddeposit.module.ngfactory":[403,0],"../pages/home/branchcard/branchcard.module.ngfactory":[404,9],"../pages/home/cardinfor/cardinfor.module.ngfactory":[405,15],"../pages/home/changecards/changecards.module.ngfactory":[406,4],"../pages/home/checkout/checkout.module.ngfactory":[407,18],"../pages/home/confirminfo/confirminfo.module.ngfactory":[408,24],"../pages/home/creditcard/creditcard.module.ngfactory":[409,2],"../pages/home/finalpay/finalpay.module.ngfactory":[410,1],"../pages/home/home.module.ngfactory":[411,28],"../pages/home/listofbank/listofbank.module.ngfactory":[412,8],"../pages/home/resetpassword/resetpassword.module.ngfactory":[413,14],"../pages/home/supportbank/supportbank.module.ngfactory":[414,23],"../pages/login/login.module.ngfactory":[415,13],"../pages/modifypassword/modifypassword.module.ngfactory":[416,12],"../pages/register/register.module.ngfactory":[417,11],"../pages/setpassword/setpassword.module.ngfactory":[418,10],"../pages/start/start.module.ngfactory":[419,25],"../pages/tabs/tabs.module.ngfactory":[421,26],"../pages/thirdparty/thirdparty.module.ngfactory":[420,27],"../pages/ucenter/VIPmembers/VIPmembers.module.ngfactory":[428,22],"../pages/ucenter/mycard/mycard.module.ngfactory":[422,7],"../pages/ucenter/records/detail/recorddetail.module.ngfactory":[423,6],"../pages/ucenter/records/records.module.ngfactory":[424,5],"../pages/ucenter/ucenter.module.ngfactory":[425,21],"../pages/ucenter/uinfo/uinfo.module.ngfactory":[426,20],"../pages/ucenter/usetup/usetup.module.ngfactory":[427,19]};function o(e){var t=r[e];return t?n.e(t[1]).then(function(){return n(t[0])}):Promise.reject(new Error("Cannot find module '"+e+"'."))}o.keys=function(){return Object.keys(r)},o.id=212,e.exports=o},268:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r={};n.d(r,"tabsPage",function(){return L}),n.d(r,"homePage",function(){return M}),n.d(r,"creditCardPage",function(){return H}),n.d(r,"cardInforPage",function(){return E}),n.d(r,"finalPayPage",function(){return F}),n.d(r,"confirmInfoPage",function(){return U}),n.d(r,"addCreditCardPage",function(){return j}),n.d(r,"changeCardsPage",function(){return x}),n.d(r,"addDepositPage",function(){return D}),n.d(r,"listBankPage",function(){return R}),n.d(r,"branchcardPage",function(){return V}),n.d(r,"startPage",function(){return G}),n.d(r,"modifyPasswordPage",function(){return q}),n.d(r,"findPasswordPage",function(){return K}),n.d(r,"resetPasswordPage",function(){return X}),n.d(r,"checkoutPage",function(){return W}),n.d(r,"supportBankPage",function(){return J}),n.d(r,"ucenterPage",function(){return z}),n.d(r,"loginPage",function(){return Y}),n.d(r,"thirdLoginPage",function(){return Q}),n.d(r,"setPasswordPage",function(){return Z}),n.d(r,"authPage",function(){return $}),n.d(r,"recordsPage",function(){return ee}),n.d(r,"recordDetailPage",function(){return te}),n.d(r,"uinfoPage",function(){return ne}),n.d(r,"usetupPage",function(){return re}),n.d(r,"vipMembersPage",function(){return oe}),n.d(r,"myCardPage",function(){return ae}),n.d(r,"registerPage",function(){return ie});var o=n(35),a=n(0),i=n(1),s=(n(155),n(234)),u=n(34),c=n(244),d=n(246),l=n(152),p=n(87),f=n(131),h=n(153),g=n(42),y=function(){function e(){}return e.show=function(){g.a.Assigned(navigator.splashscreen)?navigator.splashscreen.show():console.error("SplashScreen Plugin not Installed.")},e.hide=function(){g.a.Assigned(navigator.splashscreen)?navigator.splashscreen.hide():console.error("SplashScreen Plugin not Installed.")},e}(),m=function(){function e(){}return e.overlaysWebView=function(e){void 0===e&&(e=!0),g.a.Assigned(window.StatusBar)?window.StatusBar.overlaysWebView(e):console.error("StatusBar Plugin not Installed.")},e.styleDefault=function(){g.a.Assigned(window.StatusBar)?window.StatusBar.styleDefault():console.error("StatusBar Plugin not Installed.")},e.styleLightContent=function(){g.a.Assigned(window.StatusBar)?window.StatusBar.styleLightContent():console.error("StatusBar Plugin not Installed.")},e.styleBlackTranslucent=function(){g.a.Assigned(window.StatusBar)?window.StatusBar.styleBlackTranslucent():console.error("StatusBar Plugin not Installed.")},e.styleBlackOpaque=function(){g.a.Assigned(window.StatusBar)?window.StatusBar.styleBlackOpaque():console.error("StatusBar Plugin not Installed.")},e.backgroundColorByName=function(e){g.a.Assigned(window.StatusBar)?window.StatusBar.backgroundColorByName(e):console.error("StatusBar Plugin not Installed.")},e.backgroundColorByHexString=function(e){g.a.Assigned(window.StatusBar)?window.StatusBar.backgroundColorByHexString(e):console.error("StatusBar Plugin not Installed.")},e.hide=function(){g.a.Assigned(window.StatusBar)?window.StatusBar.hide():console.error("StatusBar Plugin not Installed.")},e.show=function(){g.a.Assigned(window.StatusBar)?window.StatusBar.show():console.error("StatusBar Plugin not Installed.")},Object.defineProperty(e,"isVisible",{get:function(){return g.a.Assigned(window.StatusBar)?window.StatusBar.isVisible:(console.error("StatusBar Plugin not Installed."),!1)},enumerable:!0,configurable:!0}),e}(),b=n(5),P=n(12),w=n(95),v=n(78),S=n(93),k=n(85),_=n(76),A=n(94),C=this&&this.__extends||function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n])};return function(t,n){e(t,n);function r(){this.constructor=t}t.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r)}}(),I=function(e){C(t,e);function t(t){var n=this.constructor;void 0===t&&(t="");var r=e.call(this,t)||this;return Object.setPrototypeOf(r,n.prototype),r}return t.Throw=function(){for(var e=[],t=0;t<arguments.length;t++)e[t]=arguments[t];throw this.Create.apply(this,e)},t.Create=function(){for(var e=[],t=0;t<arguments.length;t++)e[t]=arguments[t];return new((n=this).bind.apply(n,[void 0].concat(e)));var n},t.prototype.toString=function(){return this.name+": "+this.message},t}(Error),B=function(e){C(t,e);function t(t){void 0===t&&(t="");return""===t&&(t="e_abort"),e.call(this,t)||this}return t}(I),N=this&&this.__awaiter||function(e,t,n,r){return new(n||(n=Promise))(function(o,a){function i(e){try{u(r.next(e))}catch(e){a(e)}}function s(e){try{u(r.throw(e))}catch(e){a(e)}}function u(e){e.done?o(e.value):new n(function(t){t(e.value)}).then(i,s)}u((r=r.apply(e,t||[])).next())})},T=this&&this.__generator||function(e,t){var n,r,o,a,i={label:0,sent:function(){if(1&o[0])throw o[1];return o[1]},trys:[],ops:[]};return a={next:s(0),throw:s(1),return:s(2)},"function"==typeof Symbol&&(a[Symbol.iterator]=function(){return this}),a;function s(a){return function(s){return function(a){if(n)throw new TypeError("Generator is already executing.");for(;i;)try{if(n=1,r&&(o=r[2&a[0]?"return":a[0]?"throw":"next"])&&!(o=o.call(r,a[1])).done)return o;switch(r=0,o&&(a=[0,o.value]),a[0]){case 0:case 1:o=a;break;case 4:return i.label++,{value:a[1],done:!1};case 5:i.label++,r=a[1],a=[0];continue;case 7:a=i.ops.pop(),i.trys.pop();continue;default:if(!(o=(o=i.trys).length>0&&o[o.length-1])&&(6===a[0]||2===a[0])){i=0;continue}if(3===a[0]&&(!o||a[1]>o[0]&&a[1]<o[3])){i.label=a[1];break}if(6===a[0]&&i.label<o[1]){i.label=o[1],o=a;break}if(o&&i.label<o[2]){i.label=o[2],i.ops.push(a);break}o[2]&&i.ops.pop(),i.trys.pop();continue}a=t.call(e,i)}catch(e){a=[6,e],r=0}finally{n=o=0}if(5&a[0])throw a[1];return{value:a[0]?a[1]:void 0,done:!0}}([a,s])}}},O=function(){function e(e){this.Injector=e,this.Instance=e.get(P.a),this.Platform=e.get(b.a),this.ToastCtrl=e.get(w.a),this.AlertCtrl=e.get(v.a),this.ModalCtrl=e.get(S.a),this.LoadingCtrl=e.get(k.a),this.ActionSheetCtrl=e.get(_.a),this.PopoverCtrl=e.get(A.a)}return Object.defineProperty(e.prototype,"IsAndroid",{get:function(){return this.Platform.is("android")},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"IsIos",{get:function(){return this.Platform.is("ios")},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"IsWindowPhone",{get:function(){return this.Platform.is("wp")},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"Nav",{get:function(){return this.Instance.getActiveNavs()[0]},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"ActiveView",{get:function(){return this.Nav.getActive(!0)},enumerable:!0,configurable:!0}),e.prototype.IconFont=function(e){return String.fromCharCode(e)},e.prototype.ShowError=function(e,t){return N(this,void 0,void 0,function(){var n,r,o;return T(this,function(i){switch(i.label){case 0:if(g.a.Assigned(t)||(t={}),Object(a.P)()&&(e instanceof Error?console.error(e.stack):(n=new Error,console.error(n.stack))),e instanceof B)return console.warn(e.message),[2];if(""===(r=g.a.IsString(e)?e:e instanceof Error?e.message:e instanceof I?e.message:""))return[3,4];i.label=1;case 1:return i.trys.push([1,3,,4]),[4,this.ShowToast({message:r,position:t.position,duration:t.duration,cssClass:t.style})];case 2:return i.sent(),[3,4];case 3:return o=i.sent(),console.log(o),[3,4];case 4:return[2]}})})},e.prototype.ShowModal=function(e,t,n){return N(this,void 0,void 0,function(){var r;return T(this,function(o){switch(o.label){case 0:return[4,(r=this.ModalCtrl.create(e,t,n)).present()];case 1:return o.sent(),[2,r]}})})},e.prototype.ShowAlert=function(e){return N(this,void 0,void 0,function(){var t;return T(this,function(n){switch(n.label){case 0:return g.a.Assigned(e.enableBackdropDismiss)||(e.enableBackdropDismiss=!1),[4,(t=this.AlertCtrl.create(e)).present()];case 1:return n.sent(),[2,t]}})})},e.prototype.ShowToast=function(e){return N(this,void 0,void 0,function(){var t=this;return T(this,function(n){switch(n.label){case 0:return g.a.Assigned(this.Toast)?[4,this.Toast.dismiss()]:[3,2];case 1:n.sent(),n.label=2;case 2:return this.Toast=this.ToastCtrl.create(e),this.Toast.onDidDismiss(function(){return t.Toast=void 0}),[4,this.Toast.present()];case 3:return n.sent(),[2,this.Toast]}})})},e.prototype.ShowLoading=function(e,t){return N(this,void 0,void 0,function(){var n=this;return T(this,function(r){switch(r.label){case 0:return g.a.Assigned(this.Loading)?[2]:(g.a.Assigned(e.spinner)||(e.spinner="ios"),this.IsManualHideLoading=!1,this.Loading=this.LoadingCtrl.create(e),this.Loading.onDidDismiss(function(){g.a.Assigned(n.Loading)&&(n.Loading=void 0),!n.IsManualHideLoading&&g.a.Assigned(t)&&t()}),[4,this.Loading.present()]);case 1:return r.sent(),[2,this.Loading]}})})},e.prototype.HideLoading=function(){return N(this,void 0,void 0,function(){var e;return T(this,function(t){switch(t.label){case 0:if(!g.a.Assigned(this.Loading))return[3,5];this.IsManualHideLoading=!0,t.label=1;case 1:return t.trys.push([1,3,,4]),[4,this.Loading.dismiss()];case 2:return t.sent(),[3,4];case 3:return e=t.sent(),console.log(e),[3,4];case 4:this.Loading=void 0,t.label=5;case 5:return[2]}})})},e.prototype.ShowActionSheet=function(e){return N(this,void 0,void 0,function(){var t;return T(this,function(n){switch(n.label){case 0:return g.a.Assigned(e)||(e={}),[4,(t=this.ActionSheetCtrl.create(e)).present()];case 1:return n.sent(),[2,t]}})})},e.prototype.ShowPopover=function(e,t,n,r){return N(this,void 0,void 0,function(){var o;return T(this,function(a){switch(a.label){case 0:return[4,(o=this.PopoverCtrl.create(e,n,r)).present({ev:t})];case 1:return a.sent(),[2,o]}})})},e}(),L="TabsPage",M="HomePage",H="CreditCardPage",E="CardInforPage",F="FinalpayPage",U="ConfirminfoPage",j="AddCreditCardPage",x="ChangecardsPage",D="AddDepositPage",R="ListofbankPage",V="BranchcardPage",G="StartPage",q="ModifyPasswordPage",K="FindPasswordPage",X="ResetPasswordPage",W="CheckoutPage",J="SupportBankPage",z="UcenterPage",Y="LoginPage",Q="ThirdPartyPage",Z="SetPasswordPage",$="AuthPage",ee="RecordsPage",te="OrderDetailPage",ne="UinfoPage",re="UsetupPage",oe="VIPmembersPage",ae="MyCardPage",ie="RegisterPage",se=n(55),ue=function(e){Object(i.__extends)(t,e);function t(t,n){var o=e.call(this,t)||this;return o.auth=n,o.UserInfo={},o.Cards=new Array,o.IsVip=!1,o.CanTrade=!0,o.pages=r,o.AppName="5U卡贝",o.HardwareBackButtonDisabled=!1,o.BackButtonPressed=!1,window.App=o,o.Platform.ready().then(function(){o.Platform.registerBackButtonAction(function(){o.HardwareBackButtonDisabled||(App.Nav.canGoBack()?App.Nav.pop():o.BackButtonPressed?o.Platform.exitApp():(o.ShowToast("再按一次退出5u卡贝"),o.BackButtonPressed=!0,setTimeout(function(){o.BackButtonPressed=!1},2e3)))}),o.IsAndroid&&(window.addEventListener("native.keyboardshow",o.keyboardShowHandler.bind(o)),window.addEventListener("native.keyboardhide",o.keyboardHideHandler.bind(o))),o.auth.currentUser.subscribe(function(e){o.UserInfo=e})}),o}return t.prototype.keyboardShowHandler=function(e){window.scrollY<100&&window.scrollTo(0,e.keyboardHeight)},t.prototype.keyboardHideHandler=function(e){0!=window.scrollY&&window.scrollTo(0,0)},t.prototype.DisableHardwareBackButton=function(){this.HardwareBackButtonDisabled=!0},t.prototype.EnableHardwareBackButton=function(){this.HardwareBackButtonDisabled=!1},t.prototype.ShowToast=function(t){return t instanceof Object?e.prototype.ShowToast.call(this,t):e.prototype.ShowToast.call(this,{message:t,position:"middle",cssClass:"toast-default",duration:1500})},t.prototype.ShowLoading=function(t){return t instanceof Object?e.prototype.ShowLoading.call(this,t):e.prototype.ShowLoading.call(this,{spinner:"ios-small",content:t,cssClass:"loading-default"})},t.prototype.ShowError=function(t,n,r){return void 0===n&&(n=3e3),void 0===r&&(r="middle"),e.prototype.ShowError.call(this,t,{duration:n,position:r,style:"toast-error",prefix_lang:"hint."})},Object.defineProperty(t.prototype,"UserFace",{get:function(){if(g.a.Assigned(localStorage.getItem("imageface"))){return{backgroundImage:"url("+localStorage.getItem("imageface")+")"}}return null},enumerable:!0,configurable:!0}),t.prototype.IsReal=function(e){if(this.IsIdAuthed){if(!e)return;App.Nav.push(e)}else App.Nav.push(App.pages.authPage)},Object.defineProperty(t.prototype,"IsIdAuthed",{get:function(){return App.UserInfo.idAuthed>0},enumerable:!0,configurable:!0}),Object.defineProperty(t.prototype,"IsBankcardAuthed",{get:function(){return App.UserInfo.bankcardAuthed>0},enumerable:!0,configurable:!0}),Object.defineProperty(t.prototype,"IsCompleteAuthed",{get:function(){return this.IsIdAuthed&&this.IsBankcardAuthed},enumerable:!0,configurable:!0}),Object.defineProperty(t.prototype,"IconFace",{get:function(){return null===this.UserFace&&"男"===this.UserInfo.sex},enumerable:!0,configurable:!0}),t}(O),ce=function(){return function(e,t){var n=this;this.App=e,this.auth=t,this.rootPage="TabsPage",e.Platform.ready().then(function(){y.show(),m.hide(),m.overlaysWebView(!0),e.IsIos?m.styleBlackTranslucent():m.backgroundColorByHexString("#2D93F3")}).then(function(){y.hide(),m.show()}).then(function(){n.auth.shouldPassThrough||n.auth.GetUserData()})}}(),de=n(164),le=n(104),pe=n(163),fe=n(132),he=n(305),ge=n(306),ye=function(){function e(e,t,n,r){this.http=e,this.appVersion=t,this.fileTransfer=n,this.device=r,this.curVersion=0,this.App=window.App,this.file=new ge.a,this.fileOpener=new he.a}return e.prototype.appUpdate=function(){var e=this;App.IsAndroid&&(this.setCurVersion(),this.setUpdateInfo().then(function(){if(e.hasNewVersion()){App.ShowAlert({title:"版本升级",message:"发现新版本，是否升级？",buttons:[{text:"取消",role:"cancel",handler:function(){console.log("已取消升级")}},{text:"确定",handler:function(){e.download()}}]})}}).catch(function(e){console.log(e)}))},e.prototype.setUpdateInfo=function(){var e=this;return new Promise(function(t,n){e.http.get("http://58mpay.com/pay/update.xml").toPromise().then(function(n){console.log(n.text()),e.xml=n.text(),e.setVersion(parseInt(e.getFromXml("version"))),e.setApkUrl(e.getFromXml("url")),t()}).catch(function(e){n(e),console.log(e)})})},e.prototype.setVersion=function(e){this.version=e},e.prototype.setApkUrl=function(e){this.apkUrl=e},e.prototype.getFromXml=function(e){var t=this.xml.match("<("+e+")>([^<>]+)</"+e+">");return t.length>2?t[2]:""},e.prototype.setCurVersion=function(){var e=this;this.appVersion.getVersionCode().then(function(t){e.curVersion=parseInt(t)}).catch(function(e){console.log(e)})},e.prototype.hasNewVersion=function(){return this.curVersion>0&&this.curVersion<this.version},e.prototype.download=function(){var e=this,t=this.fileTransfer.create();this.showProcess(),t.onProgress(function(t){var n=t.loaded/t.total*100;e.showProcess(),n>99&&App.HideLoading()}),this.file.createFile(this.getStoragePath,"58pay.apk",!0).then(function(n){t.download(e.apkUrl,n.toInternalURL(),!0).then(function(t){e.fileOpener.open(t.toInternalURL(),"application/vnd.android.package-archive").then(function(e){console.log("打开成功")}).catch(function(e){console.log("打开文件失败"),console.log(e)}),App.HideLoading(),console.log("download complete: "+t.toURL())}).catch(function(e){console.log(e)})}).catch(function(e){console.log("创建文件失败"),console.log(e)})},e.prototype.showProcess=function(){App.ShowLoading({content:"下载中..."})},Object.defineProperty(e.prototype,"getStoragePath",{get:function(){return App.IsAndroid&&this.device.version>"7"?this.file.dataDirectory:this.file.externalDataDirectory},enumerable:!0,configurable:!0}),e}(),me=function(){return function(){}}(),be=n(307),Pe=n(308),we=n(66),ve=n(88),Se=function(){function e(){}return e.prototype.intercept=function(e,t){var n=e;if(!e.headers.has("Authorization")){var r=ve.a.getToken();n=e.clone({headers:e.headers.set("Authorization","Bearer "+r)})}return t.handle(n).pipe(Object(Pe.catchError)(this.handleError)).pipe(Object(Pe.tap)(function(e){if(e instanceof u.h){if(e.body.code==we.a.SESSION_TIMEOUT){var t=ve.a.getMobile(),n=ve.a.getSecret();return g.a.Assigned(t)&&g.a.Assigned(n)?App.Nav.setPages([{page:App.pages.tabsPage},{page:App.pages.thirdLoginPage,params:{mobile:t,key:n}}]):App.Nav.setPages([{page:App.pages.tabsPage},{page:App.pages.loginPage}]),new be.ErrorObservable("登录超时")}if(e.body.code==we.a.REQ_FAIL)return g.a.Assigned(e.body.msg)&&App.ShowError(e.body.msg),new be.ErrorObservable("请求成功，返回失败值")}})).pipe(Object(Pe.catchError)(this.handleError))},e.prototype.handleError=function(e){return e.error instanceof ErrorEvent?console.error("An error occurred:",e.error.message):console.log("Backend returned code "+e.status+", body was: "+e.error),new be.ErrorObservable("Something bad happened; please try again later.")},e}();Object(a.M)();var ke=function(){return function(){}}(),_e=n(60),Ae=n(257),Ce=n(258),Ie=n(259),Be=n(260),Ne=n(261),Te=n(262),Oe=n(263),Le=n(264),Me=n(265),He=n(399),Ee=n(43),Fe=n(64),Ue=n(6),je=n(28),xe=n(2),De=n(11),Re=n(36),Ve=n(18),Ge=n(13),qe=a.X({encapsulation:2,styles:[],data:{}});function Ke(e){return a._19(0,[a._16(402653184,1,{nav:0}),(e()(),a.Z(1,0,null,null,2,"ion-nav",[],null,null,null,He.b,He.a)),a._15(6144,null,Ee.a,null,[Fe.a]),a.Y(3,4374528,[[1,4],["rootNavController",4]],0,Fe.a,[[2,Ue.a],[2,je.a],P.a,xe.a,b.a,a.j,a.u,a.z,a.i,De.l,Re.a,[2,Ve.a],Ge.a,a.k],{root:[0,"root"]},null)],function(e,t){e(t,3,0,t.component.rootPage)},null)}var Xe=a.V("ng-component",ce,function(e){return a._19(0,[(e()(),a.Z(0,0,null,null,1,"ng-component",[],null,null,null,Ke,qe)),a.Y(1,49152,null,0,ce,[ue,se.a],null,null)],null,null)},{},{},[]),We=n(17),Je=n(134),ze=n(156),Ye=n(21),Qe=n(133),Ze=n(19),$e=n(41),et=n(50),tt=n(62),nt=n(51),rt=n(80),ot=n(136),at=n(96),it=n(99),st=n(101),ut=n(100),ct=n(151),dt=n(49),lt=n(245),pt=n(233),ft=n(135),ht=n(38),gt=n(127),yt=n(137),mt=a.W(ke,[_e.b],function(e){return a._10([a._11(512,a.i,a.S,[[8,[Ae.a,Ce.a,Ie.a,Be.a,Ne.a,Te.a,Oe.a,Le.a,Me.a,Xe]],[3,a.i],a.s]),a._11(5120,a.r,a._9,[[3,a.r]]),a._11(4608,We.k,We.j,[a.r,[2,We.s]]),a._11(5120,a.b,a._0,[]),a._11(5120,a.p,a._6,[]),a._11(5120,a.q,a._7,[]),a._11(4608,o.c,o.q,[We.c]),a._11(6144,a.D,null,[o.c]),a._11(4608,o.f,Je.a,[]),a._11(5120,o.d,function(e,t,n,r,a){return[new o.k(e,t),new o.o(n),new o.n(r,a)]},[We.c,a.u,We.c,We.c,o.f]),a._11(4608,o.e,o.e,[o.d,a.u]),a._11(135680,o.m,o.m,[We.c]),a._11(4608,o.l,o.l,[o.e,o.m]),a._11(6144,a.B,null,[o.l]),a._11(6144,o.p,null,[o.m]),a._11(4608,a.G,a.G,[a.u]),a._11(4608,o.h,o.h,[We.c]),a._11(4608,o.i,o.i,[We.c]),a._11(4608,u.j,u.o,[We.c,a.w,u.m]),a._11(4608,u.p,u.p,[u.j,u.n]),a._11(5120,u.a,function(e){return[e,new Se]},[u.p]),a._11(4608,u.l,u.l,[]),a._11(6144,u.k,null,[u.l]),a._11(4608,u.i,u.i,[u.k]),a._11(6144,u.b,null,[u.i]),a._11(5120,u.f,u.q,[u.b,[2,u.a]]),a._11(4608,u.c,u.c,[u.f]),a._11(5120,We.f,ze.c,[We.q,[2,We.a],xe.a]),a._11(4608,We.e,We.e,[We.f]),a._11(4608,le.a,le.a,[u.c]),a._11(4608,se.a,se.a,[u.c,We.e,le.a]),a._11(4608,ue,ue,[a.o,se.a]),a._11(4608,de.a,de.a,[u.c]),a._11(4608,f.a,f.a,[]),a._11(4608,p.a,p.a,[]),a._11(4608,pe.b,pe.b,[u.c,f.a,p.a]),a._11(4608,l.a,l.a,[]),a._11(4608,h.a,h.a,[]),a._11(4608,ye,ye,[fe.a,l.a,p.a,h.a]),a._11(4608,Ye.v,Ye.v,[]),a._11(4608,Ye.d,Ye.d,[]),a._11(4608,_.a,_.a,[P.a,xe.a]),a._11(4608,v.a,v.a,[P.a,xe.a]),a._11(4608,Qe.a,Qe.a,[]),a._11(4608,Ze.a,Ze.a,[]),a._11(4608,$e.a,$e.a,[b.a]),a._11(4608,et.a,et.a,[xe.a,b.a,a.u,Ge.a]),a._11(4608,k.a,k.a,[P.a,xe.a]),a._11(5120,tt.b,tt.d,[P.a,tt.a]),a._11(5120,Ve.a,Ve.b,[P.a,tt.b,We.e,nt.b,a.i]),a._11(4608,S.a,S.a,[P.a,xe.a,Ve.a]),a._11(4608,rt.a,rt.a,[P.a,xe.a]),a._11(4608,A.a,A.a,[P.a,xe.a,Ve.a]),a._11(4608,ot.a,ot.a,[xe.a,b.a,Ge.a,P.a,De.l]),a._11(4608,w.a,w.a,[P.a,xe.a]),a._11(4608,Re.a,Re.a,[b.a,xe.a]),a._11(4608,at.b,at.a,[]),a._11(4608,it.a,it.b,[]),a._11(4608,st.b,st.a,[]),a._11(4608,ut.b,ut.a,[]),a._11(4608,ct.a,ct.a,[]),a._11(4608,dt.a,dt.a,[ct.a,at.b,it.a,st.b,ut.b,dt.b,dt.c]),a._11(5120,lt.a,lt.c,[lt.b]),a._11(4608,m,m,[]),a._11(4608,y,y,[]),a._11(4608,d.a,d.a,[]),a._11(512,We.b,We.b,[]),a._11(512,a.k,pt.a,[]),a._11(256,xe.b,{backButtonText:"",pageTransitionDelay:0,swipeBackEnabled:!1,preloadModules:!0},[]),a._11(1024,ft.a,ft.b,[]),a._11(1024,b.a,b.b,[o.b,ft.a,a.u]),a._11(1024,xe.a,xe.c,[xe.b,b.a]),a._11(512,Ge.a,Ge.a,[b.a]),a._11(512,ht.a,ht.a,[]),a._11(512,P.a,P.a,[xe.a,b.a,[2,ht.a]]),a._11(512,De.l,De.l,[P.a]),a._11(256,tt.a,{links:[{loadChildren:"../pages/auth/auth.module.ngfactory#AuthPageModuleNgFactory",name:"AuthPage",segment:"auth",priority:"low",defaultHistory:[]},{loadChildren:"../pages/findpassword/findpassword.module.ngfactory#FindPasswordPageModuleNgFactory",name:"FindPasswordPage",segment:"findpassword",priority:"low",defaultHistory:[]},{loadChildren:"../pages/home/addcreditcard/addcreditcard.module.ngfactory#AddCreditCardPageModuleNgFactory",name:"AddCreditCardPage",segment:"addcreditcard",priority:"low",defaultHistory:[]},{loadChildren:"../pages/home/adddeposit/adddeposit.module.ngfactory#AddDepositPageModuleNgFactory",name:"AddDepositPage",segment:"adddeposit",priority:"low",defaultHistory:[]},{loadChildren:"../pages/home/branchcard/branchcard.module.ngfactory#BranchcardPageModuleNgFactory",name:"BranchcardPage",segment:"branchcard",priority:"low",defaultHistory:[]},{loadChildren:"../pages/home/cardinfor/cardinfor.module.ngfactory#CardInforPageModuleNgFactory",name:"CardInforPage",segment:"cardinfor",priority:"low",defaultHistory:[]},{loadChildren:"../pages/home/changecards/changecards.module.ngfactory#ChangecardsPageModuleNgFactory",name:"ChangecardsPage",segment:"changecards",priority:"low",defaultHistory:[]},{loadChildren:"../pages/home/checkout/checkout.module.ngfactory#CheckoutPageModuleNgFactory",name:"CheckoutPage",segment:"checkout",priority:"low",defaultHistory:[]},{loadChildren:"../pages/home/confirminfo/confirminfo.module.ngfactory#ConfirminfoPageModuleNgFactory",name:"ConfirminfoPage",segment:"confirminfo",priority:"low",defaultHistory:[]},{loadChildren:"../pages/home/creditcard/creditcard.module.ngfactory#CreditCardPageModuleNgFactory",name:"CreditCardPage",segment:"creditcard",priority:"low",defaultHistory:[]},{loadChildren:"../pages/home/finalpay/finalpay.module.ngfactory#FinalpayPageModuleNgFactory",name:"FinalpayPage",segment:"finalpay",priority:"low",defaultHistory:[]},{loadChildren:"../pages/home/home.module.ngfactory#HomePageModuleNgFactory",name:"HomePage",segment:"home",priority:"low",defaultHistory:[]},{loadChildren:"../pages/home/listofbank/listofbank.module.ngfactory#ListofbankPageModuleNgFactory",name:"ListofbankPage",segment:"listofbank",priority:"low",defaultHistory:[]},{loadChildren:"../pages/home/resetpassword/resetpassword.module.ngfactory#ResetPasswordPageModuleNgFactory",name:"ResetPasswordPage",segment:"resetpassword/:mobile/:vcode",priority:"low",defaultHistory:[]},{loadChildren:"../pages/home/supportbank/supportbank.module.ngfactory#ListofbankPageModuleNgFactory",name:"SupportBankPage",segment:"supportbank",priority:"low",defaultHistory:[]},{loadChildren:"../pages/login/login.module.ngfactory#LoginPageModuleNgFactory",name:"LoginPage",segment:"login",priority:"low",defaultHistory:[]},{loadChildren:"../pages/modifypassword/modifypassword.module.ngfactory#ModifyPasswordPageModuleNgFactory",name:"ModifyPasswordPage",segment:"modifypassword",priority:"low",defaultHistory:[]},{loadChildren:"../pages/register/register.module.ngfactory#RegisterPageModuleNgFactory",name:"RegisterPage",segment:"register",priority:"low",defaultHistory:[]},{loadChildren:"../pages/setpassword/setpassword.module.ngfactory#SetPasswordPageModuleNgFactory",name:"SetPasswordPage",segment:"setpassword/:mobile/:code",priority:"low",defaultHistory:[]},{loadChildren:"../pages/start/start.module.ngfactory#StartPageModuleNgFactory",name:"StartPage",segment:"start",priority:"low",defaultHistory:[]},{loadChildren:"../pages/thirdparty/thirdparty.module.ngfactory#ThirdPartyPageModuleNgFactory",name:"ThirdPartyPage",segment:"thirdLogin/:mobile/:key",priority:"low",defaultHistory:[]},{loadChildren:"../pages/tabs/tabs.module.ngfactory#TabsPageModuleNgFactory",name:"TabsPage",segment:"tabs",priority:"low",defaultHistory:[]},{loadChildren:"../pages/ucenter/mycard/mycard.module.ngfactory#MyCardPageModuleNgFactory",name:"MyCardPage",segment:"mycard",priority:"low",defaultHistory:[]},{loadChildren:"../pages/ucenter/records/detail/recorddetail.module.ngfactory#OrdersPageModuleNgFactory",name:"OrderDetailPage",segment:"record/detail/:id",priority:"low",defaultHistory:[]},{loadChildren:"../pages/ucenter/records/records.module.ngfactory#RecordsPageModuleNgFactory",name:"RecordsPage",segment:"records",priority:"low",defaultHistory:[]},{loadChildren:"../pages/ucenter/ucenter.module.ngfactory#UcenterPageModuleNgFactory",name:"UcenterPage",segment:"ucenter",priority:"low",defaultHistory:[]},{loadChildren:"../pages/ucenter/uinfo/uinfo.module.ngfactory#UinfoPageModuleNgFactory",name:"UinfoPage",segment:"uinfo",priority:"low",defaultHistory:[]},{loadChildren:"../pages/ucenter/usetup/usetup.module.ngfactory#UsetupPageModuleNgFactory",name:"UsetupPage",segment:"usetup",priority:"low",defaultHistory:[]},{loadChildren:"../pages/ucenter/VIPmembers/VIPmembers.module.ngfactory#VIPmembersPageModuleNgFactory",name:"VIPmembersPage",segment:"VIPmembers",priority:"low",defaultHistory:[]}]},[]),a._11(512,a.h,a.h,[]),a._11(512,gt.a,gt.a,[a.h]),a._11(1024,nt.b,nt.c,[gt.a,a.o]),a._11(1024,a.c,function(e,t,n,r,a,i,s,u,c,d,l,p,f){return[o.s(e),yt.a(t),Qe.b(n,r),ot.b(a,i,s,u,c),nt.d(d,l,p,f)]},[[2,a.t],xe.a,b.a,Ge.a,xe.a,b.a,Ge.a,P.a,De.l,xe.a,tt.a,nt.b,a.u]),a._11(512,a.d,a.d,[[2,a.c]]),a._11(131584,a.f,a.f,[a.u,a.T,a.o,a.k,a.i,a.d]),a._11(512,a.e,a.e,[a.f]),a._11(512,o.a,o.a,[[3,o.a]]),a._11(512,u.e,u.e,[]),a._11(512,u.d,u.d,[]),a._11(512,me,me,[]),a._11(512,Ye.t,Ye.t,[]),a._11(512,Ye.i,Ye.i,[]),a._11(512,Ye.q,Ye.q,[]),a._11(512,ze.a,ze.a,[]),a._11(512,s.a,s.a,[]),a._11(512,c.a,c.a,[]),a._11(512,ke,ke,[]),a._11(256,u.m,"XSRF-TOKEN",[]),a._11(256,u.n,"X-XSRF-TOKEN",[]),a._11(256,We.a,"/",[]),a._11(256,_e.a,ce,[]),a._11(256,dt.c,void 0,[]),a._11(256,dt.b,void 0,[]),a._11(256,lt.b,null,[])])});Object(a.M)(),Object(o.j)().bootstrapModuleFactory(mt)},42:function(e,t,n){"use strict";n.d(t,"a",function(){return r});var r;!function(e){e.UNDEFINED="undefined",e.BOOLEAN=typeof!0,e.NUMBER="number",e.STRING="string",e.OBJECT=typeof{},e.FUNCTION="function";function t(t){return typeof t!==e.UNDEFINED&&null!==t}e.Assigned=t;e.Defined=function(t){return typeof t!==e.UNDEFINED};e.IsNull=function(t){return typeof t!==e.UNDEFINED&&null===t};e.IsBoolean=function(t){return typeof t===e.BOOLEAN};e.IsNumber=function(t,n){return void 0===n&&(n=!0),typeof t===e.NUMBER&&(n||!isNaN(t))};e.IsTrueNaN=function(t){return typeof t===e.NUMBER&&isNaN(t)};function n(t){return typeof t===e.STRING}e.IsString=n;function r(t){switch(typeof t){case e.BOOLEAN:case e.STRING:case e.NUMBER:case e.UNDEFINED:return!0;case e.OBJECT:return null===t}return!1}e.IsPrimitive=r;function o(t){return typeof t===e.FUNCTION}e.IsFunction=o;e.IsObject=function(t,n){return void 0===n&&(n=!1),typeof t===e.OBJECT&&(n||null!==t)};e.IsEmptyObject=function(e,t){return void 0===t&&(t=!1),this.IsObject(e,t)&&"{}"===JSON.stringify(e)};e.IsArrayLike=function(e){return t(e)&&(e instanceof Array||n(e)||!o(e)&&a(e,"length"))};e.ZeroArray=function(e){if(e.fill)e.fill(0);else for(var t=0;t<e.length;t++)e[t]=0};e.ArrayCopy=function(e,t,n,r,o){if(void 0===o&&(o=0),t.subarray&&e.subarray)e.set(t.subarray(n,n+r),o);else for(var a=0;a<r;a++)e[o+a]=t[n+a]};e.NumberOrNaN=function(e){return isNaN(e)?NaN:e};function a(e,n){return t(e)&&!r(e)&&n in e}e.HasMember=a;e.HasMemberOfType=function(e,t,n){return a(e,t)&&typeof e[t]===n};e.Create=function(e){for(var t=[],n=1;n<arguments.length;n++)t[n-1]=arguments[n];return new e(t)};e.Sealed=function(){return function(e){Object.seal(e),Object.seal(e.prototype)}};e.StaticImplements=function(){return function(e){}}}(r||(r={})),Object.freeze(r)},55:function(e,t,n){"use strict";n.d(t,"a",function(){return l});var r=n(1),o=n(15),a=(n.n(o),n(42)),i=n(66),s=(n(104),n(88)),u=this&&this.__awaiter||function(e,t,n,r){return new(n||(n=Promise))(function(o,a){function i(e){try{u(r.next(e))}catch(e){a(e)}}function s(e){try{u(r.throw(e))}catch(e){a(e)}}function u(e){e.done?o(e.value):new n(function(t){t(e.value)}).then(i,s)}u((r=r.apply(e,t||[])).next())})},c=this&&this.__generator||function(e,t){var n,r,o,a,i={label:0,sent:function(){if(1&o[0])throw o[1];return o[1]},trys:[],ops:[]};return a={next:s(0),throw:s(1),return:s(2)},"function"==typeof Symbol&&(a[Symbol.iterator]=function(){return this}),a;function s(a){return function(s){return function(a){if(n)throw new TypeError("Generator is already executing.");for(;i;)try{if(n=1,r&&(o=r[2&a[0]?"return":a[0]?"throw":"next"])&&!(o=o.call(r,a[1])).done)return o;switch(r=0,o&&(a=[0,o.value]),a[0]){case 0:case 1:o=a;break;case 4:return i.label++,{value:a[1],done:!1};case 5:i.label++,r=a[1],a=[0];continue;case 7:a=i.ops.pop(),i.trys.pop();continue;default:if(!(o=(o=i.trys).length>0&&o[o.length-1])&&(6===a[0]||2===a[0])){i=0;continue}if(3===a[0]&&(!o||a[1]>o[0]&&a[1]<o[3])){i.label=a[1];break}if(6===a[0]&&i.label<o[1]){i.label=o[1],o=a;break}if(o&&i.label<o[2]){i.label=o[2],i.ops.push(a);break}o[2]&&i.ops.pop(),i.trys.pop();continue}a=t.call(e,i)}catch(e){a=[6,e],r=0}finally{n=o=0}if(5&a[0])throw a[1];return{value:a[0]?a[1]:void 0,done:!0}}([a,s])}}},d=n(107),l=function(e){Object(r.__extends)(t,e);function t(t,n,r){var a=e.call(this,t)||this;return a.http=t,a.location=n,a.homeService=r,a.App=window.App,a.subject=new o.Subject,a}return Object.defineProperty(t.prototype,"currentUser",{get:function(){return this.subject.asObservable()},enumerable:!0,configurable:!0}),t.prototype.updateUser=function(e){this.subject.next(Object.assign({},e))},t.prototype.Login=function(e,t){var n=this;this.SetParam("mobile",e.toString()),this.SetParam("password",this.Md5T(t).toString()),this.Post("kpay/api/login").subscribe(function(e){e.code===i.a.REQ_OK&&(s.a.setToken(e.data.token),n.GetUserData(),n.homeService.GetCardList(),App.Nav.setPages([{page:App.pages.tabsPage}]))},function(e){console.log(e)})},t.prototype.GetFindPwdData=function(e,t){return this.SetParam("mobile",e.toString()),this.SetParam("veriCode",t),this.Post("kpay/api/checkPwdVeriCode")},t.prototype.GetResetPwdData=function(e){return this.SetParam("mobile",e.toString()),this.Post("kpay/api/getPwdVericode")},t.prototype.GetchangePsdData=function(e,t,n){return this.SetParam("mobile",e.toString()),this.SetParam("password",this.Md5T(t).toString()),this.SetParam("veriCode",n),this.Post("kpay/api/user/changePassword")},t.prototype.getPwdVericode=function(e){return this.SetParam("mobile",e),this.Post("kpay/api/getPwdVericode")},t.prototype.SignIn=function(e,t,n,r){return this.SetParam("mobile",e.toString()),this.SetParam("password",this.Md5T(t).toString()),this.SetParam("veriCode",n),r&&this.SetParam("referee",r),this.Post("kpay/api/register")},t.prototype.GetVerifyCode=function(e){return this.SetParam("mobile",e.toString()),this.Post("kpay/api/getVericode")},t.prototype.CheckVerifyCode=function(e,t){return this.SetParam("mobile",e.toString()),this.SetParam("veriCode",t),this.Post("kpay/api/checkRegVeriCode")},t.prototype.Logout=function(){s.a.removeToken(),App.UserInfo=null,App.DisableHardwareBackButton(),App.Nav.setPages([{page:App.pages.tabsPage},{page:App.pages.loginPage}])},Object.defineProperty(t.prototype,"IsLogin",{get:function(){return a.a.Assigned(s.a.getToken())},enumerable:!0,configurable:!0}),t.prototype.CheckToken=function(){return u(this,void 0,void 0,function(){return c(this,function(e){switch(e.label){case 0:return[4,this.Post("kpay/api/checkToken").toPromise()];case 1:return[2,e.sent()]}})})},t.prototype.ModifyUserInfo=function(e){for(var t in e)this.SetParam(t,e[t]);this.Post("kpay/api/user/modify").subscribe(function(e){console.log(e)})},t.prototype.GetUserData=function(){var e=this;return this.Post("kpay/api/user/info").subscribe(function(t){e.updateUser(t.data)},function(e){console.log(e)})},t.prototype.thirdPartyLogin=function(e,t){var n=this;return s.a.setMobile(e),s.a.setSecret(t),this.SetParam("mobile",e),this.SetParam("key",t),this.Post("kpay/api/login/partner").subscribe(function(e){a.a.Assigned(e.data)&&!a.a.IsEmptyObject(e.data)?(s.a.setToken(e.data.token),n.GetUserData(),n.homeService.GetCardList(),App.Nav.setPages([{page:App.pages.tabsPage},{page:App.pages.creditCardPage}])):App.Nav.setRoot(App.pages.loginPage)},function(e){console.error(e)})},t.prototype.thirdPartyReLogin=function(){var e=s.a.getMobile(),t=s.a.getSecret();this.thirdPartyLogin(e,t)},t.prototype.shouldPassThrough=function(){return d.indexOf(["/register","/login","/findpassword","/home","/tabs/首页/home","/thirdlogin"],decodeURIComponent(this.location.path()).toLocaleLowerCase())>-1},t}(i.a)},66:function(e,t,n){"use strict";n.d(t,"a",function(){return l});var r=n(34),o=n(132),a=n(287),i=(n.n(a),n(42)),s=n(88),u=this&&this.__awaiter||function(e,t,n,r){return new(n||(n=Promise))(function(o,a){function i(e){try{u(r.next(e))}catch(e){a(e)}}function s(e){try{u(r.throw(e))}catch(e){a(e)}}function u(e){e.done?o(e.value):new n(function(t){t(e.value)}).then(i,s)}u((r=r.apply(e,t||[])).next())})},c=this&&this.__generator||function(e,t){var n,r,o,a,i={label:0,sent:function(){if(1&o[0])throw o[1];return o[1]},trys:[],ops:[]};return a={next:s(0),throw:s(1),return:s(2)},"function"==typeof Symbol&&(a[Symbol.iterator]=function(){return this}),a;function s(a){return function(s){return function(a){if(n)throw new TypeError("Generator is already executing.");for(;i;)try{if(n=1,r&&(o=r[2&a[0]?"return":a[0]?"throw":"next"])&&!(o=o.call(r,a[1])).done)return o;switch(r=0,o&&(a=[0,o.value]),a[0]){case 0:case 1:o=a;break;case 4:return i.label++,{value:a[1],done:!1};case 5:i.label++,r=a[1],a=[0];continue;case 7:a=i.ops.pop(),i.trys.pop();continue;default:if(!(o=(o=i.trys).length>0&&o[o.length-1])&&(6===a[0]||2===a[0])){i=0;continue}if(3===a[0]&&(!o||a[1]>o[0]&&a[1]<o[3])){i.label=a[1];break}if(6===a[0]&&i.label<o[1]){i.label=o[1],o=a;break}if(o&&i.label<o[2]){i.label=o[2],i.ops.push(a);break}o[2]&&i.ops.pop(),i.trys.pop();continue}a=t.call(e,i)}catch(e){a=[6,e],r=0}finally{n=o=0}if(5&a[0])throw a[1];return{value:a[0]?a[1]:void 0,done:!0}}([a,s])}}},d="https://h5.5ucardpay.com",l=function(){function e(e){this.http=e,this.responseType="json",this.headers=new r.g({"Content-Type":"application/x-www-form-urlencoded"}),this.params=new o.b}return Object.defineProperty(e.prototype,"BaseUrl",{get:function(){return d},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"getToken",{get:function(){var e=s.a.getToken();return i.a.Assigned(e)?"Bearer "+e:""},enumerable:!0,configurable:!0}),e.prototype.SetHeader=function(e,t){this.headers.set(e,t)},e.prototype.Md5T=function(e){return a.Md5.hashStr(e.toString())},e.prototype.Get=function(e){return u(this,void 0,void 0,function(){return c(this,function(t){switch(t.label){case 0:return[4,this.http.get(d+"/"+e,{headers:this.headers})];case 1:return[2,t.sent()]}})})},e.prototype.Post=function(e,t){var n=d+"/"+e,r=this.params.toString();return this.setNewParams(),this.http.post(n,r,{headers:this.headers,responseType:this.responseType})},e.prototype.SetParam=function(e,t){this.params.has(e)?this.params.set(e,t):this.params.append(e,t)},e.prototype.SetResponseType=function(e){this.responseType=e},e.prototype.setNewParams=function(){this.params=new o.b},e.REQ_OK=1,e.REQ_FAIL=0,e.SESSION_TIMEOUT=2,e}()},88:function(e,t,n){"use strict";n.d(t,"a",function(){return r});var r=function(){function e(){}return e.setToken=function(t){localStorage.setItem(e.tokenKey,t)},e.setMobile=function(t){localStorage.setItem(e.mobileKey,t)},e.setSecret=function(t){localStorage.setItem(e.secretKey,t)},e.getToken=function(){return localStorage.getItem(e.tokenKey)},e.removeToken=function(){return localStorage.removeItem(e.tokenKey)},e.getMobile=function(){return localStorage.getItem(e.mobileKey)},e.getSecret=function(){return localStorage.getItem(e.secretKey)},e.tokenKey="token",e.mobileKey="mobile",e.secretKey="third_party_secret",e}()}},[268]);
+webpackJsonp([29],{
+
+/***/ 147:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_pub_service__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__ = __webpack_require__(64);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var _ = __webpack_require__(74);
+
+
+var HomeService = /** @class */ (function (_super) {
+    __extends(HomeService, _super);
+    function HomeService(http) {
+        var _this = _super.call(this, http) || this;
+        _this.http = http;
+        _this.subject = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__["Subject"]();
+        return _this;
+    }
+    // 身份证认证
+    HomeService.prototype.VerifyId = function (idcardNo, name, mobile) {
+        this.SetParam('idcardNo', idcardNo);
+        this.SetParam('name', name);
+        if (mobile) {
+            this.SetParam('mobile', mobile);
+        }
+        return this.Post('kpay/api/idcard/auth');
+    };
+    // 获取当日分润明细
+    HomeService.prototype.GetProfitToday = function () {
+        return this.Post('kpay/api/user/myprofit/today');
+    };
+    // 获取银行卡列表
+    HomeService.prototype.GetCardList = function () {
+        var _this = this;
+        return this.Post('kpay/api/bankcard/list').subscribe(function (resp) {
+            var cards = resp.data;
+            _this.updateCards(cards);
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    Object.defineProperty(HomeService.prototype, "currentCards", {
+        // 用户当前卡片
+        get: function () {
+            return this.subject.asObservable();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    // 更新卡片数据
+    HomeService.prototype.updateCards = function (cards) {
+        this.subject.next(_.concat(new Array(), cards));
+    };
+    // 设置银行卡主卡
+    HomeService.prototype.SetPrimCard = function (cardId) {
+        this.SetParam('cardId', cardId);
+        return this.Post('kpay/api/bankcard/setPrimary');
+    };
+    // 添加信用卡
+    HomeService.prototype.AddCreditCard = function (cardNo, mobile) {
+        this.SetParam('cardNo', cardNo);
+        this.SetParam('mobile', mobile);
+        return this.Post('kpay/api/bankcard/addCredit');
+    };
+    // 添加储蓄卡
+    HomeService.prototype.AddDeposiCard = function (cardNo, bankName, bankNo, branchName, mobile) {
+        this.SetParam('cardNo', cardNo);
+        this.SetParam('bankName', bankName);
+        this.SetParam('bankNo', bankNo);
+        this.SetParam('branchName', branchName);
+        this.SetParam('mobile', mobile);
+        return this.Post('kpay/api/bankcard/addDeposit');
+    };
+    // 删除银行卡
+    HomeService.prototype.DelCard = function (cardId) {
+        this.SetParam('cardId', cardId);
+        return this.Post('kpay/api/bankcard/del');
+    };
+    // 获取银行总行信息
+    HomeService.prototype.GetTolBanks = function () {
+        return this.Post('kpay/api/bank/info');
+    };
+    //获取银行支行信息
+    HomeService.prototype.GetBranchBanks = function (massage) {
+        this.SetParam('name', massage);
+        return this.Post('kpay/api/bank/list');
+    };
+    // 取现可用返现券
+    HomeService.prototype.GetAvaCash = function (amount) {
+        this.SetParam('amount', amount);
+        return this.Post('kpay/api/cash/cashback/available');
+    };
+    // 获取银行取现列表
+    HomeService.prototype.GetBankPage = function (cardId, enterCardId, amount, cashbackId) {
+        this.SetParam('cardId', cardId);
+        this.SetParam('enterCardId', enterCardId);
+        this.SetParam('amount', Math.round(amount * 100));
+        this.SetParam('token', __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__["a" /* CredentialHelper */].getToken());
+        if (cashbackId) {
+            this.SetParam('cashbackId', cashbackId);
+        }
+        this.SetResponseType('text');
+        return this.Post('kpay/api/trade/quickPay/request');
+    };
+    // 快捷取现获取验证码
+    HomeService.prototype.GetVerifyode = function (acctNo, cvn2, expDate, mobile, amount, cashbackId) {
+        this.SetParam('acctNo', acctNo);
+        this.SetParam('cvn2', cvn2);
+        this.SetParam('amount', Math.round(amount * 100));
+        this.SetParam('mobile', mobile);
+        this.SetParam('expDate', expDate);
+        if (cashbackId) {
+            this.SetParam('cashbackId', cashbackId);
+        }
+        return this.Post('kpay/api/trade/quickPay/sendVericode');
+    };
+    // 快捷取现确认
+    HomeService.prototype.ConfirmResult = function (orderNo, smsCode) {
+        this.SetParam('orderNo', orderNo);
+        this.SetParam('smsCode', smsCode);
+        return this.Post('kpay/api/trade/quickPay/confirm');
+    };
+    // 获取支持银行列表
+    HomeService.prototype.SupportBanks = function () {
+        App.ShowLoading();
+        return this.Post('kpay/api/trade/supportbanks');
+    };
+    HomeService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]])
+    ], HomeService);
+    return HomeService;
+}(__WEBPACK_IMPORTED_MODULE_3__providers_pub_service__["a" /* TBaseService */]));
+
+//# sourceMappingURL=homeservice.js.map
+
+/***/ }),
+
+/***/ 159:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 159;
+
+/***/ }),
+
+/***/ 199:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"../pages/auth/auth.module": [
+		451,
+		26
+	],
+	"../pages/findpassword/findpassword.module": [
+		452,
+		25
+	],
+	"../pages/home/addcreditcard/addcreditcard.module": [
+		453,
+		8
+	],
+	"../pages/home/adddeposit/adddeposit.module": [
+		454,
+		1
+	],
+	"../pages/home/branchcard/branchcard.module": [
+		455,
+		24
+	],
+	"../pages/home/cardinfor/cardinfor.module": [
+		456,
+		23
+	],
+	"../pages/home/changecards/changecards.module": [
+		457,
+		7
+	],
+	"../pages/home/checkout/checkout.module": [
+		458,
+		6
+	],
+	"../pages/home/confirminfo/confirminfo.module": [
+		459,
+		22
+	],
+	"../pages/home/creditcard/creditcard.module": [
+		460,
+		5
+	],
+	"../pages/home/finalpay/finalpay.module": [
+		461,
+		0
+	],
+	"../pages/home/home.module": [
+		463,
+		28
+	],
+	"../pages/home/listofbank/listofbank.module": [
+		462,
+		21
+	],
+	"../pages/home/resetpassword/resetpassword.module": [
+		464,
+		20
+	],
+	"../pages/home/supportbank/supportbank.module": [
+		465,
+		19
+	],
+	"../pages/login/login.module": [
+		466,
+		18
+	],
+	"../pages/modifypassword/modifypassword.module": [
+		467,
+		17
+	],
+	"../pages/register/register.module": [
+		468,
+		16
+	],
+	"../pages/setpassword/setpassword.module": [
+		469,
+		15
+	],
+	"../pages/start/start.module": [
+		470,
+		14
+	],
+	"../pages/tabs/tabs.module": [
+		471,
+		13
+	],
+	"../pages/thirdparty/thirdparty.module": [
+		472,
+		27
+	],
+	"../pages/ucenter/VIPmembers/VIPmembers.module": [
+		479,
+		12
+	],
+	"../pages/ucenter/mycard/mycard.module": [
+		473,
+		4
+	],
+	"../pages/ucenter/records/detail/recorddetail.module": [
+		474,
+		3
+	],
+	"../pages/ucenter/records/records.module": [
+		475,
+		2
+	],
+	"../pages/ucenter/ucenter.module": [
+		476,
+		11
+	],
+	"../pages/ucenter/uinfo/uinfo.module": [
+		477,
+		10
+	],
+	"../pages/ucenter/usetup/usetup.module": [
+		478,
+		9
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids)
+		return Promise.reject(new Error("Cannot find module '" + req + "'."));
+	return __webpack_require__.e(ids[1]).then(function() {
+		return __webpack_require__(ids[0]);
+	});
+};
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = 199;
+module.exports = webpackAsyncContext;
+
+/***/ }),
+
+/***/ 253:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SplashScreen; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__ = __webpack_require__(36);
+/**
+ *  https://github.com/apache/cordova-plugin-splashscreen
+ *      cordova plugin add cordova-plugin-splashscreen --save
+ */
+
+var SplashScreen = /** @class */ (function () {
+    function SplashScreen() {
+    }
+    SplashScreen.show = function () {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(navigator.splashscreen)) {
+            console.error('SplashScreen Plugin not Installed.');
+            return;
+        }
+        navigator.splashscreen.show();
+    };
+    SplashScreen.hide = function () {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(navigator.splashscreen)) {
+            console.error('SplashScreen Plugin not Installed.');
+            return;
+        }
+        navigator.splashscreen.hide();
+    };
+    return SplashScreen;
+}());
+
+//# sourceMappingURL=SplashScreen.js.map
+
+/***/ }),
+
+/***/ 254:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StatusBar; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__ = __webpack_require__(36);
+/**
+ *  https://github.com/apache/cordova-plugin-statusbar
+ *      cordova plugin add cordova-plugin-statusbar --save
+ */
+
+var StatusBar = /** @class */ (function () {
+    function StatusBar() {
+    }
+    /** iOS */
+    StatusBar.overlaysWebView = function (Overlay) {
+        if (Overlay === void 0) { Overlay = true; }
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.overlaysWebView(Overlay);
+    };
+    StatusBar.styleDefault = function () {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.styleDefault();
+    };
+    /** iOS, WP */
+    StatusBar.styleLightContent = function () {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.styleLightContent();
+    };
+    /** iOS, WP */
+    StatusBar.styleBlackTranslucent = function () {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.styleBlackTranslucent();
+    };
+    /** iOS, WP */
+    StatusBar.styleBlackOpaque = function () {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.styleBlackOpaque();
+    };
+    /** iOS note: you must call StatusBar.overlaysWebView(false) to enable color changing. */
+    StatusBar.backgroundColorByName = function (colorName) {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.backgroundColorByName(colorName);
+    };
+    /** iOS note: you must call StatusBar.overlaysWebView(false) to enable color changing. */
+    StatusBar.backgroundColorByHexString = function (hexString) {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.backgroundColorByHexString(hexString);
+    };
+    StatusBar.hide = function () {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.hide();
+    };
+    StatusBar.show = function () {
+        if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+            console.error('StatusBar Plugin not Installed.');
+            return;
+        }
+        window.StatusBar.show();
+    };
+    Object.defineProperty(StatusBar, "isVisible", {
+        get: function () {
+            if (!__WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__["a" /* TypeInfo */].Assigned(window.StatusBar)) {
+                console.error('StatusBar Plugin not Installed.');
+                return false;
+            }
+            return window.StatusBar.isVisible;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return StatusBar;
+}());
+
+//# sourceMappingURL=StatusBar.js.map
+
+/***/ }),
+
+/***/ 255:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TApplication; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UltraCreation_ng_ion_appcontroller__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_root__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth__ = __webpack_require__(73);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var TApplication = /** @class */ (function (_super) {
+    __extends(TApplication, _super);
+    function TApplication(Injector, auth) {
+        var _this = _super.call(this, Injector) || this;
+        _this.auth = auth;
+        // 用户信息
+        _this.UserInfo = {};
+        // 银行卡信息
+        _this.Cards = new Array();
+        // 是否VIP会员
+        _this.IsVip = false;
+        // 是否可以交易标识
+        _this.CanTrade = true;
+        // 所有页面路由
+        _this.pages = __WEBPACK_IMPORTED_MODULE_2__shared_root__;
+        // 项目名称
+        _this.AppName = '5U卡贝';
+        _this.HardwareBackButtonDisabled = false;
+        _this.BackButtonPressed = false;
+        window.App = _this;
+        _this.Platform.ready().then(function () {
+            _this.Platform.registerBackButtonAction(function () {
+                if (_this.HardwareBackButtonDisabled) {
+                    return;
+                }
+                if (App.Nav.canGoBack()) {
+                    App.Nav.pop();
+                    return;
+                }
+                if (_this.BackButtonPressed) {
+                    _this.Platform.exitApp();
+                }
+                else {
+                    _this.ShowToast('再按一次退出5u卡贝');
+                    _this.BackButtonPressed = true;
+                    setTimeout(function () {
+                        _this.BackButtonPressed = false;
+                    }, 2000);
+                }
+            });
+            if (_this.IsAndroid) {
+                window.addEventListener('native.keyboardshow', _this.keyboardShowHandler.bind(_this));
+                window.addEventListener('native.keyboardhide', _this.keyboardHideHandler.bind(_this));
+            }
+            _this.auth.currentUser.subscribe(function (data) {
+                _this.UserInfo = data;
+            });
+        });
+        return _this;
+    }
+    TApplication.prototype.keyboardShowHandler = function (e) {
+        if (window.scrollY < 100) {
+            window.scrollTo(0, e.keyboardHeight);
+        }
+    };
+    TApplication.prototype.keyboardHideHandler = function (e) {
+        if (window.scrollY != 0) {
+            window.scrollTo(0, 0);
+        }
+    };
+    TApplication.prototype.DisableHardwareBackButton = function () {
+        this.HardwareBackButtonDisabled = true;
+    };
+    TApplication.prototype.EnableHardwareBackButton = function () {
+        this.HardwareBackButtonDisabled = false;
+    };
+    TApplication.prototype.ShowToast = function (MsgOrConfig) {
+        if (MsgOrConfig instanceof Object) {
+            return _super.prototype.ShowToast.call(this, MsgOrConfig);
+        }
+        else {
+            return _super.prototype.ShowToast.call(this, { message: MsgOrConfig, position: 'middle', cssClass: 'toast-default', duration: 1500 });
+        }
+    };
+    TApplication.prototype.ShowLoading = function (MsgOrConfig) {
+        if (MsgOrConfig instanceof Object) {
+            return _super.prototype.ShowLoading.call(this, MsgOrConfig);
+        }
+        else {
+            return _super.prototype.ShowLoading.call(this, { spinner: 'ios-small', content: MsgOrConfig, cssClass: 'loading-default' });
+        }
+    };
+    TApplication.prototype.ShowError = function (err, duration, position) {
+        if (duration === void 0) { duration = 3000; }
+        if (position === void 0) { position = 'middle'; }
+        return _super.prototype.ShowError.call(this, err, {
+            duration: duration, position: position,
+            style: 'toast-error', prefix_lang: 'hint.'
+        });
+    };
+    Object.defineProperty(TApplication.prototype, "UserFace", {
+        get: function () {
+            if (__WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(localStorage.getItem('imageface'))) {
+                var avatar = localStorage.getItem('imageface');
+                return { backgroundImage: "url(" + avatar + ")" };
+            }
+            return null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    TApplication.prototype.IsReal = function (page) {
+        if (!this.IsIdAuthed) {
+            App.Nav.push(App.pages.authPage);
+        }
+        else if (page) {
+            App.Nav.push(page);
+        }
+        else {
+            return;
+        }
+    };
+    Object.defineProperty(TApplication.prototype, "IsIdAuthed", {
+        // 是否已完成身份认证
+        get: function () {
+            return App.UserInfo.idAuthed > 0;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TApplication.prototype, "IsBankcardAuthed", {
+        // 是否完成储蓄卡验证
+        get: function () {
+            return App.UserInfo.bankcardAuthed > 0;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TApplication.prototype, "IsCompleteAuthed", {
+        // 是否已完成身份认证
+        get: function () {
+            return this.IsIdAuthed && this.IsBankcardAuthed;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TApplication.prototype, "IconFace", {
+        get: function () {
+            if (this.UserFace === null && this.UserInfo.sex === '男') {
+                return true;
+            }
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    TApplication = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injector */], __WEBPACK_IMPORTED_MODULE_4__providers_auth__["a" /* TAuthService */]])
+    ], TApplication);
+    return TApplication;
+}(__WEBPACK_IMPORTED_MODULE_1__UltraCreation_ng_ion_appcontroller__["a" /* TAppController */]));
+
+//# sourceMappingURL=application.js.map
+
+/***/ }),
+
+/***/ 266:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BANKCARD_FRONT; });
+/* unused harmony export BANKCARD_BACK */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FileService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_lrz__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_pub_service__ = __webpack_require__(54);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+var lodash = __webpack_require__(74);
+
+// 附件类型-银行卡正面
+var BANKCARD_FRONT = 'bankcard_front';
+// 附件类型-银行卡反面
+var BANKCARD_BACK = 'bankcard_back';
+var FileService = /** @class */ (function (_super) {
+    __extends(FileService, _super);
+    function FileService(http, camera, fileTransfer) {
+        var _this = _super.call(this, http) || this;
+        _this.http = http;
+        _this.camera = camera;
+        _this.fileTransfer = fileTransfer;
+        _this.targetWidth = 800;
+        _this.targetHeight = 600;
+        return _this;
+    }
+    // 附件上传
+    FileService.prototype.OcrUpload = function (fileKey, file, cType) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.PostFile('kpay/api/ocr/upload', fileKey, file, { 'type': cType })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    // 身份认证
+    FileService.prototype.IdentityAuth = function (file, cType) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.PostFile('kpay/api/ocr/idcard', 'file', file, { 'type': cType })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    FileService.prototype.PostFiles = function (uri) {
+        return __awaiter(this, void 0, void 0, function () {
+            var resp;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.PostByXMLHttpReq(uri).then(function (resp) { return resp; })];
+                    case 1:
+                        resp = _a.sent();
+                        if (resp.code === 1) {
+                            return [2 /*return*/, resp.data];
+                        }
+                        App.ShowError(resp.msg);
+                        return [2 /*return*/, false];
+                }
+            });
+        });
+    };
+    FileService.prototype.PostFile = function (uri, fileKey, file, params) {
+        return __awaiter(this, void 0, void 0, function () {
+            var k, resp;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        for (k in params) {
+                            this.SetParam(k, params[k]);
+                        }
+                        this.SetParam(fileKey, file);
+                        if (!window['cordova']) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.PostByFileTransfer(uri, fileKey, file, params)
+                                .then(function (resp) { return resp; })
+                                .catch(function (error) {
+                                App.ShowToast(error);
+                            })];
+                    case 1:
+                        resp = _a.sent();
+                        return [3 /*break*/, 4];
+                    case 2: return [4 /*yield*/, this.PostByXMLHttpReq(uri, fileKey, file, params)
+                            .then(function (resp) { return resp; })
+                            .catch(function (error) {
+                            App.ShowToast(error);
+                        })];
+                    case 3:
+                        resp = _a.sent();
+                        _a.label = 4;
+                    case 4:
+                        if (resp.code === 1) {
+                            return [2 /*return*/, resp.data];
+                        }
+                        App.ShowError(resp.msg);
+                        return [2 /*return*/, false];
+                }
+            });
+        });
+    };
+    FileService.prototype.showAddImage = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            if (!window['cordova']) {
+                var input_1 = document.createElement('input');
+                input_1.type = 'file';
+                input_1.accept = "image/png,image/jpeg,image/jpg,image/x-png";
+                input_1.click();
+                input_1.onchange = function () {
+                    console.log(input_1.files[0]);
+                    App.ShowLoading('处理中');
+                    __WEBPACK_IMPORTED_MODULE_4_lrz___default()(input_1.files[0], {
+                        quality: 0.6,
+                        width: _this.targetWidth,
+                        height: _this.targetHeight
+                    })
+                        .then(function (rst) {
+                        // 处理成功会执行
+                        var file = _this.dataURLtoFile(rst.base64, input_1.files[0].name);
+                        var result = {
+                            'file': file,
+                            'base64': rst.base64,
+                            'blob': window.URL.createObjectURL(file)
+                        };
+                        resolve(result);
+                    })
+                        .catch(function (err) {
+                        // 处理失败会执行
+                        console.log('LRZ: Compress image failed.');
+                        console.log(err);
+                    })
+                        .always(function () {
+                        // 不管是成功失败，都会执行
+                        App.HideLoading();
+                    });
+                };
+            }
+            else {
+                new Promise(function (resolve, reject) {
+                    var actionSheetConfig = {
+                        title: '添加图片',
+                        buttons: [
+                            {
+                                text: '相册',
+                                handler: function () {
+                                    resolve(_this.camera.PictureSourceType.PHOTOLIBRARY);
+                                }
+                            },
+                            {
+                                text: '相机',
+                                handler: function () {
+                                    resolve(_this.camera.PictureSourceType.CAMERA);
+                                }
+                            },
+                            {
+                                text: '取消',
+                                role: 'cancel',
+                                handler: function () {
+                                    reject();
+                                }
+                            }
+                        ]
+                    };
+                    App.ShowActionSheet(actionSheetConfig);
+                }).then(function (sourceType) {
+                    if (!window['cordova']) {
+                        return;
+                    }
+                    var options = {
+                        quality: 50,
+                        sourceType: sourceType,
+                        saveToPhotoAlbum: false,
+                        correctOrientation: true,
+                        targetWidth: _this.targetWidth,
+                        targetHeight: _this.targetHeight
+                    };
+                    _this.camera.getPicture(options).then(function (imageData) {
+                        if (imageData.indexOf('?') > -1) {
+                            var arr = imageData.match(new RegExp(/[^?]+/, 'ig'));
+                            if (arr.length > 0) {
+                                imageData = arr[0];
+                            }
+                        }
+                        var result = {
+                            'file': imageData,
+                            'base64': imageData,
+                            'blob': imageData
+                        };
+                        resolve(result);
+                    });
+                }).catch(function (error) {
+                    console.log('Camera failed.');
+                    App.ShowToast('获取图片失败');
+                    reject(error);
+                });
+            }
+        });
+    };
+    FileService.prototype.dataURLtoBlob = function (dataurl) {
+        var arr = dataurl.split(',');
+        var mime = arr[0].match(/:(.*?);/)[1];
+        var bstr = atob(arr[1]);
+        var n = bstr.length;
+        var u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], {
+            type: mime
+        });
+    };
+    FileService.prototype.dataURLtoFile = function (dataurl, filename) {
+        var arr = dataurl.split(',');
+        var mime = arr[0].match(/:(.*?);/)[1];
+        var bstr = atob(arr[1]);
+        var n = bstr.length;
+        var u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, { 'type': mime });
+    };
+    FileService.prototype.PostByFileTransfer = function (uri, fileKey, file, params) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var BaseUrl = _this.BaseUrl;
+            var url = BaseUrl + "/" + uri;
+            if (window['cordova']) {
+                var options = {
+                    fileKey: fileKey,
+                    fileName: file,
+                    headers: {
+                        'Authorization': _this.getToken
+                    }
+                };
+                if (params) {
+                    options.params = params;
+                }
+                var fileTransfer = _this.fileTransfer.create();
+                fileTransfer.upload(file, url, options)
+                    .then(function (data) {
+                    resolve(JSON.parse(data.response));
+                })
+                    .catch(function (error) {
+                    App.ShowToast('上传失败');
+                    reject(error);
+                });
+            }
+        });
+    };
+    FileService.prototype.PostByXMLHttpReq = function (uri, fileKey, file, params) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        var formData = new FormData();
+                        if (lodash.keys(params).length > 0) {
+                            lodash.forEach(params, function (v, k) {
+                                formData.append(k, v);
+                            });
+                        }
+                        var BaseUrl = _this.BaseUrl;
+                        var url = encodeURI(BaseUrl + "/" + uri);
+                        App.ShowLoading();
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('GET', window.URL.createObjectURL(file), true);
+                        xhr.responseType = 'blob';
+                        xhr.onload = function (e) {
+                            if (xhr['status'] != 200) {
+                                App.ShowError('您的浏览器不支持Blob');
+                                console.error(e, xhr);
+                                reject(e);
+                            }
+                            else {
+                                var blob = xhr['response'];
+                                var xhr2_1 = new XMLHttpRequest();
+                                var suffix = file.type.split('/')[1];
+                                var filename = (new Date()).getTime() + '.' + suffix;
+                                formData.append(fileKey, blob, filename);
+                                xhr2_1.onloadend = function () {
+                                    App.HideLoading();
+                                };
+                                xhr2_1.ontimeout = function () {
+                                    App.HideLoading();
+                                };
+                                xhr2_1.onreadystatechange = function () {
+                                    if (xhr2_1.readyState === 4) {
+                                        if (xhr2_1.status === 200) {
+                                            resolve(JSON.parse(xhr2_1.response));
+                                        }
+                                        else {
+                                            reject(xhr2_1);
+                                        }
+                                    }
+                                };
+                                xhr2_1.open('POST', url, true);
+                                xhr2_1.setRequestHeader('Authorization', _this.getToken);
+                                xhr2_1.send(formData);
+                            }
+                        };
+                        xhr.send();
+                    })];
+            });
+        });
+    };
+    FileService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__["a" /* FileTransfer */]])
+    ], FileService);
+    return FileService;
+}(__WEBPACK_IMPORTED_MODULE_5__providers_pub_service__["a" /* TBaseService */]));
+
+//# sourceMappingURL=fileservice.js.map
+
+/***/ }),
+
+/***/ 267:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MineService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_pub_service__ = __webpack_require__(54);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var MineService = /** @class */ (function (_super) {
+    __extends(MineService, _super);
+    function MineService(http) {
+        var _this = _super.call(this, http) || this;
+        _this.http = http;
+        return _this;
+    }
+    //获取取现记录列表
+    MineService.prototype.GetCashList = function () {
+        return this.Post('kpay/api/cash/getCashList');
+    };
+    // 获取取现记录详情
+    MineService.prototype.GetCashDetail = function (orderId) {
+        this.SetParam('id', orderId);
+        return this.Post('kpay/api/cash/getCashDetail');
+    };
+    // 获取红包礼券voucher
+    MineService.prototype.GetVoucherList = function () {
+        return this.Post('kpay/api/cash/cashback/list');
+    };
+    // 获取我的客户
+    MineService.prototype.GetMyCustomer = function () {
+        return this.Post('kpay/api/user/mycustomer');
+    };
+    // 获取返现记录
+    MineService.prototype.GetCashBack = function () {
+        return this.Post('kpay/api/trade/list');
+    };
+    // 获取VIP套餐列表
+    MineService.prototype.GetVipList = function () {
+        return this.Post('kpay/api/package/list');
+    };
+    // 购买Vip
+    MineService.prototype.BuyVip = function (id) {
+        this.SetParam('packId', id);
+        return this.Post('kpay/api/package/buy', { packId: id });
+    };
+    MineService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]])
+    ], MineService);
+    return MineService;
+}(__WEBPACK_IMPORTED_MODULE_2__providers_pub_service__["a" /* TBaseService */]));
+
+//# sourceMappingURL=mineservice.js.map
+
+/***/ }),
+
+/***/ 268:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(276);
+
+
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
+//# sourceMappingURL=main.js.map
+
+/***/ }),
+
+/***/ 276:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_app_version__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_camera__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_device__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_component__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__UltraCreation_Native_StatusBar__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__UltraCreation_Native_SplashScreen__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__http_interceptors__ = __webpack_require__(357);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* enableProdMode */])();
+var config = {
+    backButtonText: '',
+    pageTransitionDelay: 0,
+    swipeBackEnabled: false,
+    preloadModules: true
+};
+var AppModule = /** @class */ (function () {
+    function AppModule() {
+    }
+    AppModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["c" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_12__providers__["a" /* ProviderModule */],
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_11__app_component__["a" /* MyApp */], config, {
+                    links: [
+                        { loadChildren: '../pages/auth/auth.module#AuthPageModule', name: 'AuthPage', segment: 'auth', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/findpassword/findpassword.module#FindPasswordPageModule', name: 'FindPasswordPage', segment: 'findpassword', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/addcreditcard/addcreditcard.module#AddCreditCardPageModule', name: 'AddCreditCardPage', segment: 'addcreditcard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/adddeposit/adddeposit.module#AddDepositPageModule', name: 'AddDepositPage', segment: 'adddeposit', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/branchcard/branchcard.module#BranchcardPageModule', name: 'BranchcardPage', segment: 'branchcard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/cardinfor/cardinfor.module#CardInforPageModule', name: 'CardInforPage', segment: 'cardinfor', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/changecards/changecards.module#ChangecardsPageModule', name: 'ChangecardsPage', segment: 'changecards', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/checkout/checkout.module#CheckoutPageModule', name: 'CheckoutPage', segment: 'checkout', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/confirminfo/confirminfo.module#ConfirminfoPageModule', name: 'ConfirminfoPage', segment: 'confirminfo', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/creditcard/creditcard.module#CreditCardPageModule', name: 'CreditCardPage', segment: 'creditcard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/finalpay/finalpay.module#FinalpayPageModule', name: 'FinalpayPage', segment: 'finalpay', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/listofbank/listofbank.module#ListofbankPageModule', name: 'ListofbankPage', segment: 'listofbank', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/resetpassword/resetpassword.module#ResetPasswordPageModule', name: 'ResetPasswordPage', segment: 'resetpassword/:mobile/:vcode', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/supportbank/supportbank.module#ListofbankPageModule', name: 'SupportBankPage', segment: 'supportbank', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/modifypassword/modifypassword.module#ModifyPasswordPageModule', name: 'ModifyPasswordPage', segment: 'modifypassword', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/setpassword/setpassword.module#SetPasswordPageModule', name: 'SetPasswordPage', segment: 'setpassword/:mobile/:code', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/start/start.module#StartPageModule', name: 'StartPage', segment: 'start', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/tabs/tabs.module#TabsPageModule', name: 'TabsPage', segment: 'tabs', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/thirdparty/thirdparty.module#ThirdPartyPageModule', name: 'ThirdPartyPage', segment: 'thirdLogin/:mobile/:key', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ucenter/mycard/mycard.module#MyCardPageModule', name: 'MyCardPage', segment: 'mycard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ucenter/records/detail/recorddetail.module#OrdersPageModule', name: 'OrderDetailPage', segment: 'record/detail/:id', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ucenter/records/records.module#RecordsPageModule', name: 'RecordsPage', segment: 'records', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ucenter/ucenter.module#UcenterPageModule', name: 'UcenterPage', segment: 'ucenter', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ucenter/uinfo/uinfo.module#UinfoPageModule', name: 'UinfoPage', segment: 'uinfo', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ucenter/usetup/usetup.module#UsetupPageModule', name: 'UsetupPage', segment: 'usetup', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ucenter/VIPmembers/VIPmembers.module#VIPmembersPageModule', name: 'VIPmembersPage', segment: 'VIPmembers', priority: 'low', defaultHistory: [] }
+                    ]
+                }),
+                __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["a" /* TranslateModule */].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["a" /* IonicStorageModule */].forRoot()
+            ],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicApp */]],
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_11__app_component__["a" /* MyApp */]
+            ],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_11__app_component__["a" /* MyApp */]
+            ],
+            providers: [
+                __WEBPACK_IMPORTED_MODULE_10__ionic_native_device__["a" /* Device */],
+                __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer__["a" /* FileTransfer */],
+                __WEBPACK_IMPORTED_MODULE_9__ionic_native_camera__["a" /* Camera */],
+                __WEBPACK_IMPORTED_MODULE_7__ionic_native_app_version__["a" /* AppVersion */],
+                __WEBPACK_IMPORTED_MODULE_13__UltraCreation_Native_StatusBar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_14__UltraCreation_Native_SplashScreen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__["a" /* InAppBrowser */],
+                __WEBPACK_IMPORTED_MODULE_15__http_interceptors__["a" /* httpInterceptorProviders */],
+                { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicErrorHandler */] }
+            ]
+        })
+    ], AppModule);
+    return AppModule;
+}());
+
+//# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ 349:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Native_SplashScreen__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_application__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth__ = __webpack_require__(73);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var MyApp = /** @class */ (function () {
+    function MyApp(App, auth) {
+        var _this = this;
+        this.App = App;
+        this.auth = auth;
+        // 启动页
+        this.rootPage = 'TabsPage';
+        App.Platform.ready().then(function () {
+            __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Native_SplashScreen__["a" /* SplashScreen */].show();
+            __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__["a" /* StatusBar */].hide();
+            __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__["a" /* StatusBar */].overlaysWebView(true);
+            if (App.IsIos) {
+                __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__["a" /* StatusBar */].styleBlackTranslucent();
+            }
+            else {
+                __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__["a" /* StatusBar */].backgroundColorByHexString('#2D93F3');
+            }
+        })
+            .then(function () {
+            __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Native_SplashScreen__["a" /* SplashScreen */].hide();
+            __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__["a" /* StatusBar */].show();
+        }).then(function () {
+            if (!_this.auth.shouldPassThrough) {
+                _this.auth.GetUserData();
+            }
+        });
+    }
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('rootNavController'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */])
+    ], MyApp.prototype, "nav", void 0);
+    MyApp = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            template: "<ion-nav #rootNavController [root]=\"rootPage\"></ion-nav>"
+        }),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__providers_application__["a" /* TApplication */], __WEBPACK_IMPORTED_MODULE_5__providers_auth__["a" /* TAuthService */]])
+    ], MyApp);
+    return MyApp;
+}());
+
+//# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 350:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TAppController; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular_platform_platform__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_app_app__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_components_toast_toast_controller__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular_components_alert_alert_controller__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular_components_modal_modal_controller__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular_components_loading_loading_controller__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular_components_action_sheet_action_sheet_controller__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic_angular_components_popover_popover_controller__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Core_Exception__ = __webpack_require__(351);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+// import {TranslateService} from '@ngx-translate/core';
+
+
+
+
+
+
+
+
+
+
+var TAppController = /** @class */ (function () {
+    function TAppController(Injector) {
+        this.Injector = Injector;
+        this.Instance = Injector.get(__WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_app_app__["a" /* App */]);
+        this.Platform = Injector.get(__WEBPACK_IMPORTED_MODULE_1_ionic_angular_platform_platform__["a" /* Platform */]);
+        this.ToastCtrl = Injector.get(__WEBPACK_IMPORTED_MODULE_3_ionic_angular_components_toast_toast_controller__["a" /* ToastController */]);
+        this.AlertCtrl = Injector.get(__WEBPACK_IMPORTED_MODULE_4_ionic_angular_components_alert_alert_controller__["a" /* AlertController */]);
+        this.ModalCtrl = Injector.get(__WEBPACK_IMPORTED_MODULE_5_ionic_angular_components_modal_modal_controller__["a" /* ModalController */]);
+        this.LoadingCtrl = Injector.get(__WEBPACK_IMPORTED_MODULE_6_ionic_angular_components_loading_loading_controller__["a" /* LoadingController */]);
+        this.ActionSheetCtrl = Injector.get(__WEBPACK_IMPORTED_MODULE_7_ionic_angular_components_action_sheet_action_sheet_controller__["a" /* ActionSheetController */]);
+        this.PopoverCtrl = Injector.get(__WEBPACK_IMPORTED_MODULE_8_ionic_angular_components_popover_popover_controller__["a" /* PopoverController */]);
+        // this.Translation = Injector.get(TranslateService);
+    }
+    Object.defineProperty(TAppController.prototype, "IsAndroid", {
+        get: function () {
+            return this.Platform.is('android');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TAppController.prototype, "IsIos", {
+        get: function () {
+            return this.Platform.is('ios');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TAppController.prototype, "IsWindowPhone", {
+        get: function () {
+            return this.Platform.is('wp');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TAppController.prototype, "Nav", {
+        get: function () {
+            return this.Instance.getActiveNavs()[0];
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TAppController.prototype, "ActiveView", {
+        get: function () {
+            return this.Nav.getActive(true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    TAppController.prototype.IconFont = function (Index) {
+        return String.fromCharCode(Index);
+    };
+    TAppController.prototype.ShowError = function (err, config) {
+        return __awaiter(this, void 0, void 0, function () {
+            var trace, msg, e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!__WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__["a" /* TypeInfo */].Assigned(config)) {
+                            config = {};
+                        }
+                        if (Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_17" /* isDevMode */])()) {
+                            if (err instanceof Error) {
+                                console.error(err.stack);
+                            }
+                            else {
+                                trace = new Error();
+                                console.error(trace.stack);
+                            }
+                        }
+                        if (err instanceof __WEBPACK_IMPORTED_MODULE_10__Core_Exception__["a" /* EAbort */]) {
+                            console.warn(err.message);
+                            return [2 /*return*/];
+                        }
+                        if (__WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__["a" /* TypeInfo */].IsString(err)) {
+                            msg = err;
+                        }
+                        else if (err instanceof Error) {
+                            msg = err.message;
+                        }
+                        else if (err instanceof __WEBPACK_IMPORTED_MODULE_10__Core_Exception__["b" /* Exception */]) {
+                            msg = err.message;
+                        }
+                        else {
+                            msg = '';
+                        }
+                        if (!(msg !== '')) return [3 /*break*/, 4];
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.ShowToast({ message: msg, position: config.position, duration: config.duration,
+                                cssClass: config.style })];
+                    case 2:
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        console.log(e_1);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     *  @params PageType class of PageType
+     *  @param opts: ModalOptions
+     *      showBackdrop?: boolean;
+     *      enableBackdropDismiss?: boolean;
+    */
+    TAppController.prototype.ShowModal = function (PageType, data, opts) {
+        return __awaiter(this, void 0, void 0, function () {
+            var modal;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        modal = this.ModalCtrl.create(PageType, data, opts);
+                        return [4 /*yield*/, modal.present()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, modal];
+                }
+            });
+        });
+    };
+    /**
+     *  Display an alert with a title, inputs, and buttons
+     *
+     *  @param opts: AlertOptions
+     *      title?: string;
+     *      subTitle?: string;
+     *      message?: string;
+     *      cssClass?: string;
+     *      inputs?: Array<AlertInputOptions>;
+     *      buttons?: Array<any>;
+     *      enableBackdropDismiss?: boolean;
+     *
+     *  @param opts.inputs
+     *      type?: string;
+     *      name?: string;
+     *      placeholder?: string;
+     *      value?: string;
+     *      label?: string;
+     *      checked?: boolean;
+     *      disabled?: boolean;
+     *      id?: string;
+     *
+     *  @param opt.buttons
+     *      text?: string;
+     *      icon?: icon;
+     *      handler?: any;  // function false => dismiss
+     *      cssClass: string;
+     *      role: 'destructive' | 'cancel'
+     */
+    TAppController.prototype.ShowAlert = function (opts) {
+        return __awaiter(this, void 0, void 0, function () {
+            var alert;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!__WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__["a" /* TypeInfo */].Assigned(opts.enableBackdropDismiss))
+                            opts.enableBackdropDismiss = false;
+                        alert = this.AlertCtrl.create(opts);
+                        return [4 /*yield*/, alert.present()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, alert];
+                }
+            });
+        });
+    };
+    TAppController.prototype.ShowToast = function (opt) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!__WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__["a" /* TypeInfo */].Assigned(this.Toast)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.Toast.dismiss()];
+                    case 1:
+                        _a.sent();
+                        _a.label = 2;
+                    case 2:
+                        this.Toast = this.ToastCtrl.create(opt);
+                        this.Toast.onDidDismiss(function () { return _this.Toast = undefined; });
+                        return [4 /*yield*/, this.Toast.present()];
+                    case 3:
+                        _a.sent();
+                        return [2 /*return*/, this.Toast];
+                }
+            });
+        });
+    };
+    TAppController.prototype.ShowLoading = function (opt, timeout) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (__WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__["a" /* TypeInfo */].Assigned(this.Loading)) {
+                            return [2 /*return*/];
+                        }
+                        if (!__WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__["a" /* TypeInfo */].Assigned(opt.spinner)) {
+                            opt.spinner = 'ios';
+                        }
+                        this.IsManualHideLoading = false;
+                        this.Loading = this.LoadingCtrl.create(opt);
+                        this.Loading.onDidDismiss(function () {
+                            if (__WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__["a" /* TypeInfo */].Assigned(_this.Loading)) {
+                                _this.Loading = undefined;
+                            }
+                            if (!_this.IsManualHideLoading && __WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__["a" /* TypeInfo */].Assigned(timeout)) {
+                                timeout();
+                            }
+                        });
+                        return [4 /*yield*/, this.Loading.present()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, this.Loading];
+                }
+            });
+        });
+    };
+    TAppController.prototype.HideLoading = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!__WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__["a" /* TypeInfo */].Assigned(this.Loading)) return [3 /*break*/, 5];
+                        this.IsManualHideLoading = true;
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.Loading.dismiss()];
+                    case 2:
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        err_1 = _a.sent();
+                        console.log(err_1);
+                        return [3 /*break*/, 4];
+                    case 4:
+                        this.Loading = undefined;
+                        _a.label = 5;
+                    case 5: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     *  @param opt: ActionSheetOptions
+     *      title?: string;
+     *      subTitle?: string;
+     *      cssClass?: string;
+     *      buttons?: Array<any>;
+     *      enableBackdropDismiss?: boolean;
+     *
+     *  @param opt.buttons
+     *      text?: string;
+     *      icon?: icon;
+     *      handler?: any;  // function false => dismiss
+     *      cssClass: string;
+     *      role: 'destructive' | 'cancel'
+     */
+    TAppController.prototype.ShowActionSheet = function (opts) {
+        return __awaiter(this, void 0, void 0, function () {
+            var actionSheet;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!__WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__["a" /* TypeInfo */].Assigned(opts)) {
+                            opts = {};
+                        }
+                        actionSheet = this.ActionSheetCtrl.create(opts);
+                        return [4 /*yield*/, actionSheet.present()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, actionSheet];
+                }
+            });
+        });
+    };
+    /**
+     *  @params PageType class of PageType
+     *  @params event to get the top and left prop of current page
+     *  @param opts: ModalOptions
+     *      cssClass?: string;
+     *      showBackdrop?: boolean;
+     *      enableBackdropDismiss?: boolean;
+    */
+    TAppController.prototype.ShowPopover = function (PageType, event, data, opts) {
+        return __awaiter(this, void 0, void 0, function () {
+            var popover;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        popover = this.PopoverCtrl.create(PageType, data, opts);
+                        return [4 /*yield*/, popover.present({ ev: event })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, popover];
+                }
+            });
+        });
+    };
+    TAppController = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injector */]])
+    ], TAppController);
+    return TAppController;
+}());
+
+//# sourceMappingURL=appcontroller.js.map
+
+/***/ }),
+
+/***/ 351:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Exception; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EAbort; });
+/* unused harmony export EInvalidArg */
+/* unused harmony export ENotImplemented */
+/* unused harmony export EUsage */
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+/**
+ *  TODO: how to extend or implement a Error ?
+ *      this simple task impossable to done in JSP
+ *
+ *  more information:
+ *      https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error
+ *
+ *  predefined errors:
+ *      EvalError
+ *          Creates an instance representing an error that occurs regarding the global function eval().
+ *      InternalError
+ *          Creates an instance representing an error that occurs when an internal error in the JavaScript engine is thrown. E.g. "too much recursion".
+ *      RangeError
+ *          Creates an instance representing an error that occurs when a numeric variable or parameter is outside of its valid range.
+ *      ReferenceError
+ *          Creates an instance representing an error that occurs when de-referencing an invalid reference.
+ *      SyntaxError
+ *          Creates an instance representing a syntax error that occurs while parsing code in eval().
+ *      TypeError
+ *          Creates an instance representing an error that occurs when a variable or parameter is not of a valid type.
+ *      URIError
+ *          Creates an instance representing an error that occurs when encodeURI() or decodeURI() are passed invalid parameters.
+ */
+var Exception = /** @class */ (function (_super) {
+    __extends(Exception, _super);
+    function Exception(message) {
+        var _newTarget = this.constructor;
+        if (message === void 0) { message = ''; }
+        var _this = _super.call(this, message) || this;
+        Object.setPrototypeOf(_this, _newTarget.prototype);
+        return _this;
+    }
+    Exception.Throw = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        throw this.Create.apply(this, args);
+    };
+    Exception.Create = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        return new ((_a = this).bind.apply(_a, [void 0].concat(args)))();
+        var _a;
+    };
+    Exception.prototype.toString = function () {
+        return this.name + ': ' + this.message;
+    };
+    return Exception;
+}(Error));
+
+/**
+ *  abort executing only
+ */
+var EAbort = /** @class */ (function (_super) {
+    __extends(EAbort, _super);
+    function EAbort(message) {
+        if (message === void 0) { message = ''; }
+        var _this = this;
+        if (message === '')
+            message = 'e_abort';
+        _this = _super.call(this, message) || this;
+        return _this;
+    }
+    return EAbort;
+}(Exception));
+
+/**
+ *  invalid argument
+ */
+var EInvalidArg = /** @class */ (function (_super) {
+    __extends(EInvalidArg, _super);
+    function EInvalidArg(message) {
+        if (message === void 0) { message = ''; }
+        var _this = this;
+        if (message === '')
+            message = 'e_invalid_arg';
+        _this = _super.call(this, message) || this;
+        return _this;
+    }
+    return EInvalidArg;
+}(Exception));
+
+/**
+ *  not implemented yet.
+ */
+var ENotImplemented = /** @class */ (function (_super) {
+    __extends(ENotImplemented, _super);
+    function ENotImplemented(message) {
+        if (message === void 0) { message = ''; }
+        var _this = this;
+        if (message === '')
+            message = 'e_not_implemented';
+        _this = _super.call(this, message) || this;
+        return _this;
+    }
+    return ENotImplemented;
+}(Exception));
+
+/**
+ *  not use by this way...
+ */
+var EUsage = /** @class */ (function (_super) {
+    __extends(EUsage, _super);
+    function EUsage(message) {
+        if (message === void 0) { message = ''; }
+        var _this = this;
+        if (message === '')
+            message = 'e_usage';
+        _this = _super.call(this, message) || this;
+        return _this;
+    }
+    return EUsage;
+}(Exception));
+
+//# sourceMappingURL=Exception.js.map
+
+/***/ }),
+
+/***/ 352:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tabsPage", function() { return tabsPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "homePage", function() { return homePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "creditCardPage", function() { return creditCardPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cardInforPage", function() { return cardInforPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "finalPayPage", function() { return finalPayPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "confirmInfoPage", function() { return confirmInfoPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addCreditCardPage", function() { return addCreditCardPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeCardsPage", function() { return changeCardsPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addDepositPage", function() { return addDepositPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "listBankPage", function() { return listBankPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "branchcardPage", function() { return branchcardPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "startPage", function() { return startPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modifyPasswordPage", function() { return modifyPasswordPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findPasswordPage", function() { return findPasswordPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetPasswordPage", function() { return resetPasswordPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkoutPage", function() { return checkoutPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "supportBankPage", function() { return supportBankPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ucenterPage", function() { return ucenterPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginPage", function() { return loginPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "thirdLoginPage", function() { return thirdLoginPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setPasswordPage", function() { return setPasswordPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authPage", function() { return authPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recordsPage", function() { return recordsPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recordDetailPage", function() { return recordDetailPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uinfoPage", function() { return uinfoPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "usetupPage", function() { return usetupPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "vipMembersPage", function() { return vipMembersPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "myCardPage", function() { return myCardPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "registerPage", function() { return registerPage; });
+var tabsPage = 'TabsPage';
+var homePage = 'HomePage';
+var creditCardPage = 'CreditCardPage';
+var cardInforPage = 'CardInforPage';
+var finalPayPage = 'FinalpayPage';
+var confirmInfoPage = 'ConfirminfoPage';
+var addCreditCardPage = 'AddCreditCardPage';
+var changeCardsPage = 'ChangecardsPage';
+var addDepositPage = 'AddDepositPage';
+var listBankPage = 'ListofbankPage';
+var branchcardPage = 'BranchcardPage';
+var startPage = 'StartPage';
+var modifyPasswordPage = 'ModifyPasswordPage';
+var findPasswordPage = 'FindPasswordPage';
+var resetPasswordPage = 'ResetPasswordPage';
+var checkoutPage = 'CheckoutPage';
+var supportBankPage = 'SupportBankPage';
+var ucenterPage = 'UcenterPage';
+var loginPage = 'LoginPage';
+var thirdLoginPage = 'ThirdPartyPage';
+var setPasswordPage = 'SetPasswordPage';
+var authPage = 'AuthPage';
+var recordsPage = 'RecordsPage';
+var recordDetailPage = 'OrderDetailPage';
+var uinfoPage = 'UinfoPage';
+var usetupPage = 'UsetupPage';
+var vipMembersPage = 'VIPmembersPage';
+var myCardPage = 'MyCardPage';
+var registerPage = 'RegisterPage';
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 353:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProviderModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mineservice__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__homeservice__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fileservice__ = __webpack_require__(266);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__checkAppUpdate__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+var ProviderModule = /** @class */ (function () {
+    function ProviderModule() {
+    }
+    ProviderModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_6__angular_core__["I" /* NgModule */])({
+            providers: [__WEBPACK_IMPORTED_MODULE_0__application__["a" /* TApplication */], __WEBPACK_IMPORTED_MODULE_1__mineservice__["a" /* MineService */], __WEBPACK_IMPORTED_MODULE_2__homeservice__["a" /* HomeService */], __WEBPACK_IMPORTED_MODULE_3__auth__["a" /* TAuthService */], __WEBPACK_IMPORTED_MODULE_4__fileservice__["b" /* FileService */], __WEBPACK_IMPORTED_MODULE_5__checkAppUpdate__["a" /* CheckAppUpdate */]]
+        })
+    ], ProviderModule);
+    return ProviderModule;
+}());
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 354:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckAppUpdate; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_opener__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file__ = __webpack_require__(356);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_device__ = __webpack_require__(252);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var CheckAppUpdate = /** @class */ (function () {
+    function CheckAppUpdate(http, appVersion, fileTransfer, device) {
+        this.http = http;
+        this.appVersion = appVersion;
+        this.fileTransfer = fileTransfer;
+        this.device = device;
+        this.curVersion = 0;
+        this.App = window.App;
+        this.file = new __WEBPACK_IMPORTED_MODULE_5__ionic_native_file__["a" /* File */]();
+        this.fileOpener = new __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_opener__["a" /* FileOpener */]();
+    }
+    // 检查更新
+    CheckAppUpdate.prototype.appUpdate = function () {
+        var _this = this;
+        if (!App.IsAndroid) {
+            return;
+        }
+        this.setCurVersion();
+        this.setUpdateInfo().then(function () {
+            if (_this.hasNewVersion()) {
+                var opts = {
+                    title: '版本升级',
+                    message: '发现新版本，是否升级？',
+                    buttons: [
+                        {
+                            text: '取消',
+                            role: 'cancel',
+                            handler: function () {
+                                console.log('已取消升级');
+                            }
+                        },
+                        {
+                            text: '确定',
+                            handler: function () {
+                                _this.download();
+                            }
+                        }
+                    ]
+                };
+                App.ShowAlert(opts);
+            }
+        })
+            .catch(function (e) {
+            console.log(e);
+        });
+    };
+    // 获取版本配置信息
+    CheckAppUpdate.prototype.setUpdateInfo = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.http.get('http://58mpay.com/pay/update.xml').toPromise()
+                .then(function (resp) {
+                console.log(resp.text());
+                _this.xml = resp.text();
+                _this.setVersion(parseInt(_this.getFromXml('version')));
+                _this.setApkUrl(_this.getFromXml('url'));
+                resolve();
+            })
+                .catch(function (error) {
+                reject(error);
+                console.log(error);
+            });
+        });
+    };
+    // 设置新版本
+    CheckAppUpdate.prototype.setVersion = function (version) {
+        this.version = version;
+    };
+    // apk下载路径
+    CheckAppUpdate.prototype.setApkUrl = function (url) {
+        this.apkUrl = url;
+    };
+    // 从xml中获取值
+    CheckAppUpdate.prototype.getFromXml = function (key) {
+        var arr = this.xml.match('<(' + key + ')>([^<>]+)<\/' + key + '>');
+        if (arr.length > 2) {
+            return arr[2];
+        }
+        return '';
+    };
+    // 当前版本
+    CheckAppUpdate.prototype.setCurVersion = function () {
+        var _this = this;
+        this.appVersion.getVersionCode()
+            .then(function (no) {
+            _this.curVersion = parseInt(no);
+        })
+            .catch(function (e) {
+            console.log(e);
+        });
+    };
+    // 是否有版本更新
+    CheckAppUpdate.prototype.hasNewVersion = function () {
+        return this.curVersion > 0 && (this.curVersion < this.version);
+    };
+    // 下载apk
+    CheckAppUpdate.prototype.download = function () {
+        var _this = this;
+        var apkName = '58pay.apk';
+        var fileTransfer = this.fileTransfer.create();
+        this.showProcess();
+        fileTransfer.onProgress(function (progress) {
+            var downloadProgress = (progress.loaded / progress.total) * 100;
+            _this.showProcess();
+            if (downloadProgress > 99) {
+                App.HideLoading();
+            }
+        });
+        this.file.createFile(this.getStoragePath, apkName, true).then(function (fileEntry) {
+            fileTransfer.download(_this.apkUrl, fileEntry.toInternalURL(), true).then(function (entry) {
+                _this.fileOpener.open(entry.toInternalURL(), 'application/vnd.android.package-archive')
+                    .then(function (entry) {
+                    console.log('打开成功');
+                })
+                    .catch(function (e) {
+                    console.log('打开文件失败');
+                    console.log(e);
+                });
+                ;
+                App.HideLoading();
+                console.log('download complete: ' + entry.toURL());
+            })
+                .catch(function (e) {
+                console.log(e);
+            });
+        })
+            .catch(function (e) {
+            console.log('创建文件失败');
+            console.log(e);
+        });
+    };
+    // 显示下载进度条
+    CheckAppUpdate.prototype.showProcess = function () {
+        App.ShowLoading({ content: '下载中...' });
+    };
+    Object.defineProperty(CheckAppUpdate.prototype, "getStoragePath", {
+        get: function () {
+            if (App.IsAndroid && this.device.version > '7') {
+                return this.file.dataDirectory;
+            }
+            return this.file.externalDataDirectory;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    CheckAppUpdate = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__["a" /* AppVersion */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__["a" /* FileTransfer */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_device__["a" /* Device */]])
+    ], CheckAppUpdate);
+    return CheckAppUpdate;
+}());
+
+//# sourceMappingURL=checkAppUpdate.js.map
+
+/***/ }),
+
+/***/ 357:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return httpInterceptorProviders; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__noop_interceptor__ = __webpack_require__(358);
+/* "Barrel" of Http Interceptors */
+// import { NgModule } from '@angular/core';
+
+
+/** Http interceptor providers in outside-in order */
+var httpInterceptorProviders = [
+    { provide: __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HTTP_INTERCEPTORS */], useClass: __WEBPACK_IMPORTED_MODULE_1__noop_interceptor__["a" /* NoopInterceptor */], multi: true },
+];
+// @NgModule({
+//   providers: [
+//     { provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true }
+//   ]
+// })
+// export class InterceptorModule { }
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 358:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NoopInterceptor; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_pub_service__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_helper_credential_helper__ = __webpack_require__(64);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+/** Pass untouched request through to the next request handler. */
+var NoopInterceptor = /** @class */ (function () {
+    function NoopInterceptor() {
+    }
+    NoopInterceptor.prototype.intercept = function (req, next) {
+        var jwtReq = req;
+        if (!req.headers.has('Authorization')) {
+            var token = __WEBPACK_IMPORTED_MODULE_6__shared_helper_credential_helper__["a" /* CredentialHelper */].getToken();
+            jwtReq = req.clone({ headers: req.headers.set('Authorization', "Bearer " + token) });
+        }
+        return next.handle(jwtReq).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["catchError"])(this.handleError)).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["tap"])(function (event) {
+            if (event instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpResponse */]) {
+                if (event.body.code == __WEBPACK_IMPORTED_MODULE_4__providers_pub_service__["a" /* TBaseService */].SESSION_TIMEOUT) {
+                    var mobile = __WEBPACK_IMPORTED_MODULE_6__shared_helper_credential_helper__["a" /* CredentialHelper */].getMobile();
+                    var secret = __WEBPACK_IMPORTED_MODULE_6__shared_helper_credential_helper__["a" /* CredentialHelper */].getSecret();
+                    if (__WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(mobile) && __WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(secret)) {
+                        App.Nav.setPages([{ page: App.pages.tabsPage }, { page: App.pages.thirdLoginPage, params: { mobile: mobile, key: secret } }]);
+                    }
+                    else {
+                        App.Nav.setPages([{ page: App.pages.tabsPage }, { page: App.pages.loginPage }]);
+                    }
+                    return new __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__["ErrorObservable"]('登录超时');
+                }
+                else if (event.body.code == __WEBPACK_IMPORTED_MODULE_4__providers_pub_service__["a" /* TBaseService */].REQ_FAIL) {
+                    if (__WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(event.body.msg)) {
+                        App.ShowError(event.body.msg);
+                    }
+                    return new __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__["ErrorObservable"]('请求成功，返回失败值');
+                }
+            }
+        })).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["catchError"])(this.handleError));
+    };
+    // 错误处理
+    NoopInterceptor.prototype.handleError = function (error) {
+        if (error.error instanceof ErrorEvent) {
+            console.error('An error occurred:', error.error.message);
+        }
+        else {
+            console.log("Backend returned code " + error.status + ", body was: " + error.error);
+        }
+        return new __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__["ErrorObservable"]('Something bad happened; please try again later.');
+    };
+    NoopInterceptor = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])()
+    ], NoopInterceptor);
+    return NoopInterceptor;
+}());
+
+//# sourceMappingURL=noop-interceptor.js.map
+
+/***/ }),
+
+/***/ 36:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TypeInfo; });
+/* TypeInfo namespace */
+var TypeInfo;
+(function (TypeInfo) {
+    TypeInfo.UNDEFINED = typeof (void 0);
+    TypeInfo.BOOLEAN = typeof true;
+    TypeInfo.NUMBER = typeof 0;
+    TypeInfo.STRING = typeof '';
+    TypeInfo.OBJECT = typeof {};
+    TypeInfo.FUNCTION = typeof function () { };
+    /**
+     * Returns true if the value Assigned (defined and not null)
+     * @param value
+     * @returns {boolean}
+     */
+    function Assigned(value) {
+        return (typeof value !== TypeInfo.UNDEFINED) && (value !== null);
+    }
+    TypeInfo.Assigned = Assigned;
+    /**
+     * Returns true if the value defined
+     * @param value
+     * @returns {boolean}
+     */
+    function Defined(value) {
+        return (typeof value !== TypeInfo.UNDEFINED);
+    }
+    TypeInfo.Defined = Defined;
+    /**
+     * Returns true if the value is ture null
+     * @param value
+     * @returns {boolean}
+     */
+    function IsNull(value) {
+        return (typeof value !== TypeInfo.UNDEFINED) && (value === null);
+    }
+    TypeInfo.IsNull = IsNull;
+    /**
+     * Returns true if the value parameter is a true/false
+     * @param value
+     * @returns {boolean}
+     */
+    function IsBoolean(value) {
+        return typeof value === TypeInfo.BOOLEAN;
+    }
+    TypeInfo.IsBoolean = IsBoolean;
+    /**
+     * Returns true if the value parameter is a number.
+     * @param value
+     * @param allowNaN Default is true.
+     * @returns {boolean}
+     */
+    function IsNumber(value, allowNaN) {
+        if (allowNaN === void 0) { allowNaN = true; }
+        return typeof value === TypeInfo.NUMBER && (allowNaN || !isNaN(value));
+    }
+    TypeInfo.IsNumber = IsNumber;
+    /**
+     * Returns true if is a number and is NaN.
+     * @param value
+     * @returns {boolean}
+     */
+    function IsTrueNaN(value) {
+        return typeof value === TypeInfo.NUMBER && isNaN(value);
+    }
+    TypeInfo.IsTrueNaN = IsTrueNaN;
+    /**
+     * Returns true if the value parameter is a string.
+     * @param value
+     * @returns {boolean}
+     */
+    function IsString(value) {
+        return typeof value === TypeInfo.STRING;
+    }
+    TypeInfo.IsString = IsString;
+    /**
+     * Returns true if the value is a boolean, string, number, null, or undefined.
+     * @param value
+     * @returns {boolean}
+     */
+    function IsPrimitive(value) {
+        var t = typeof value;
+        switch (t) {
+            case TypeInfo.BOOLEAN:
+            case TypeInfo.STRING:
+            case TypeInfo.NUMBER:
+            case TypeInfo.UNDEFINED:
+                return true;
+            case TypeInfo.OBJECT:
+                return value === null;
+        }
+        return false;
+    }
+    TypeInfo.IsPrimitive = IsPrimitive;
+    /**
+     * Returns true if the value parameter is a function.
+     * @param value
+     * @returns {boolean}
+     */
+    function IsFunction(value) {
+        return typeof value === TypeInfo.FUNCTION;
+    }
+    TypeInfo.IsFunction = IsFunction;
+    /**
+     * Returns true if the value parameter is an object.
+     * @param value
+     * @param allowNull If false (default) null is not considered an object.
+     * @returns {boolean}
+     */
+    function IsObject(value, allowNull) {
+        if (allowNull === void 0) { allowNull = false; }
+        return typeof value === TypeInfo.OBJECT && (allowNull || value !== null);
+    }
+    TypeInfo.IsObject = IsObject;
+    /**
+     * Returns true if the value parameter is an empty object.
+     * @param value
+     * @param allowNull If false (default) null is not considered an object.
+     * @returns {boolean}
+     */
+    function IsEmptyObject(value, allowNull) {
+        if (allowNull === void 0) { allowNull = false; }
+        return this.IsObject(value, allowNull) && JSON.stringify(value) === '{}';
+    }
+    TypeInfo.IsEmptyObject = IsEmptyObject;
+    function IsArrayLike(instance) {
+        /*
+        * NOTE:
+        *
+        * Functions:
+        * Enumerating a function although it has a .length property will yield nothing or unexpected results.
+        * Effectively, a function is not like an array.
+        *
+        * Strings:
+        * Behave like arrays but don't have the same exact methods.
+        */
+        return Assigned(instance) && ((instance instanceof Array) ||
+            IsString(instance) ||
+            (!IsFunction(instance) && HasMember(instance, 'length')));
+    }
+    TypeInfo.IsArrayLike = IsArrayLike;
+    function ZeroArray(ary) {
+        if (ary.fill) {
+            ary.fill(0);
+        }
+        else {
+            for (var I = 0; I < ary.length; I++)
+                ary[I] = 0;
+        }
+    }
+    TypeInfo.ZeroArray = ZeroArray;
+    function ArrayCopy(Dst, Src, SrcOffset, Count, DstOffset) {
+        if (DstOffset === void 0) { DstOffset = 0; }
+        if (Src.subarray && Dst.subarray) {
+            Dst.set(Src.subarray(SrcOffset, SrcOffset + Count), DstOffset);
+        }
+        else {
+            for (var i = 0; i < Count; i++)
+                Dst[DstOffset + i] = Src[SrcOffset + i];
+        }
+    }
+    TypeInfo.ArrayCopy = ArrayCopy;
+    /**
+     *  Guarantees a number value or NaN instead.
+     *  @param value
+     *  @returns {number}
+     */
+    function NumberOrNaN(value) {
+        return isNaN(value) ? NaN : value;
+    }
+    TypeInfo.NumberOrNaN = NumberOrNaN;
+    /**
+     */
+    function HasMember(value, property) {
+        return Assigned(value) && !IsPrimitive(value) && (property in value);
+    }
+    TypeInfo.HasMember = HasMember;
+    /**
+     */
+    function HasMemberOfType(instance, property, type) {
+        return HasMember(instance, property) && typeof (instance[property]) === type;
+    }
+    TypeInfo.HasMemberOfType = HasMemberOfType;
+    function Create(Creater) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        return new Creater(args);
+    }
+    TypeInfo.Create = Create;
+    /* Decorator */
+    /** Class Decorator:
+     *      seal class for futher extendion or add properties
+     */
+    function Sealed() {
+        return function (Cls) {
+            Object.seal(Cls);
+            Object.seal(Cls.prototype);
+        };
+    }
+    TypeInfo.Sealed = Sealed;
+    /** Class Decorator:
+     *      static implements decorator
+     *
+     *      interface FooStatic
+     *      {
+     *          function bar();
+     *      }
+     *
+     *      @StaticImplements<FooStatic>
+     *      class Foo
+     *      {
+     *          static function bar() {};   // shows error if not implements this
+     *      }
+     */
+    function StaticImplements() {
+        return function (constructor) { };
+    }
+    TypeInfo.StaticImplements = StaticImplements;
+})(TypeInfo || (TypeInfo = {}));
+Object.freeze(TypeInfo);
+//# sourceMappingURL=TypeInfo.js.map
+
+/***/ }),
+
+/***/ 54:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TBaseService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__ = __webpack_require__(310);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__ = __webpack_require__(64);
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+var API_URL = 'https://h5.5ucardpay.com';
+var TBaseService = /** @class */ (function () {
+    function TBaseService(http) {
+        this.http = http;
+        this.responseType = 'json';
+        this.headers = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["d" /* HttpHeaders */]({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        this.params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* URLSearchParams */]();
+    }
+    Object.defineProperty(TBaseService.prototype, "BaseUrl", {
+        get: function () {
+            return API_URL;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TBaseService.prototype, "getToken", {
+        get: function () {
+            var token = __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__["a" /* CredentialHelper */].getToken();
+            if (__WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(token)) {
+                return "Bearer " + token;
+            }
+            return '';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    // 设置请求头
+    TBaseService.prototype.SetHeader = function (name, value) {
+        this.headers.set(name, value);
+    };
+    // md5加密
+    TBaseService.prototype.Md5T = function (Password) {
+        return __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__["Md5"].hashStr(Password.toString());
+    };
+    // get请求
+    TBaseService.prototype.Get = function (uri) {
+        return __awaiter(this, void 0, void 0, function () {
+            var url;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        url = API_URL + '/' + uri;
+                        return [4 /*yield*/, this.http.get(url, { headers: this.headers })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    // 发送POST请求
+    TBaseService.prototype.Post = function (Uri, Data) {
+        var url = API_URL + "/" + Uri;
+        var params = this.params.toString();
+        var responstType = this.responseType;
+        this.SetResponseType('json');
+        this.setNewParams();
+        return this.http.post(url, params, { headers: this.headers, responseType: responstType });
+    };
+    // 设置参数
+    TBaseService.prototype.SetParam = function (key, value) {
+        if (this.params.has(key)) {
+            this.params.set(key, value);
+        }
+        else {
+            this.params.append(key, value);
+        }
+    };
+    // 设置数据返回类型
+    TBaseService.prototype.SetResponseType = function (responstType) {
+        this.responseType = responstType;
+    };
+    // 重置请求参数
+    TBaseService.prototype.setNewParams = function () {
+        this.params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* URLSearchParams */]();
+    };
+    // 请求失败
+    TBaseService.REQ_OK = 1;
+    // 请求成功
+    TBaseService.REQ_FAIL = 0;
+    // 登录超时
+    TBaseService.SESSION_TIMEOUT = 2;
+    return TBaseService;
+}());
+
+//# sourceMappingURL=pub_service.js.map
+
+/***/ }),
+
+/***/ 64:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CredentialHelper; });
+var CredentialHelper = /** @class */ (function () {
+    function CredentialHelper() {
+    }
+    CredentialHelper.setToken = function (v) {
+        localStorage.setItem(CredentialHelper.tokenKey, v);
+    };
+    CredentialHelper.setMobile = function (v) {
+        localStorage.setItem(CredentialHelper.mobileKey, v);
+    };
+    CredentialHelper.setSecret = function (v) {
+        localStorage.setItem(CredentialHelper.secretKey, v);
+    };
+    CredentialHelper.getToken = function () {
+        return localStorage.getItem(CredentialHelper.tokenKey);
+    };
+    CredentialHelper.removeToken = function () {
+        return localStorage.removeItem(CredentialHelper.tokenKey);
+    };
+    CredentialHelper.getMobile = function () {
+        return localStorage.getItem(CredentialHelper.mobileKey);
+    };
+    CredentialHelper.getSecret = function () {
+        return localStorage.getItem(CredentialHelper.secretKey);
+    };
+    CredentialHelper.tokenKey = 'token';
+    CredentialHelper.mobileKey = 'mobile';
+    CredentialHelper.secretKey = 'third_party_secret';
+    return CredentialHelper;
+}());
+
+//# sourceMappingURL=credential-helper.js.map
+
+/***/ }),
+
+/***/ 73:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TAuthService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pub_service__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__homeservice__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__ = __webpack_require__(64);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+var _ = __webpack_require__(74);
+
+
+
+
+
+var TAuthService = /** @class */ (function (_super) {
+    __extends(TAuthService, _super);
+    function TAuthService(http, location, homeService) {
+        var _this = _super.call(this, http) || this;
+        _this.http = http;
+        _this.location = location;
+        _this.homeService = homeService;
+        _this.App = window.App;
+        _this.subject = new __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__["Subject"]();
+        return _this;
+    }
+    Object.defineProperty(TAuthService.prototype, "currentUser", {
+        // 获取当前登录用户
+        get: function () {
+            return this.subject.asObservable();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    // 更新用户数据
+    TAuthService.prototype.updateUser = function (user) {
+        this.subject.next(Object.assign({}, user));
+    };
+    // 登录
+    TAuthService.prototype.Login = function (Tel, Password) {
+        var _this = this;
+        this.SetParam('mobile', Tel.toString());
+        this.SetParam('password', this.Md5T(Password).toString());
+        this.Post('kpay/api/login').subscribe(function (resp) {
+            if (resp.code === __WEBPACK_IMPORTED_MODULE_5__pub_service__["a" /* TBaseService */].REQ_OK) {
+                __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].setToken(resp.data.token);
+                _this.GetUserData();
+                _this.homeService.GetCardList();
+                App.Nav.setPages([{ page: App.pages.tabsPage }]);
+            }
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    // 校验找回密码短信验证码
+    TAuthService.prototype.GetFindPwdData = function (tel, VCode) {
+        this.SetParam('mobile', tel.toString());
+        this.SetParam('veriCode', VCode);
+        return this.Post('kpay/api/checkPwdVeriCode');
+    };
+    // 获取找回密码短信验证码
+    TAuthService.prototype.GetResetPwdData = function (tel) {
+        this.SetParam('mobile', tel.toString());
+        return this.Post('kpay/api/getPwdVericode');
+    };
+    // 修改用户密码
+    TAuthService.prototype.GetchangePsdData = function (tel, pwd, VCode) {
+        this.SetParam('mobile', tel.toString());
+        this.SetParam('password', this.Md5T(pwd).toString());
+        this.SetParam('veriCode', VCode);
+        return this.Post('kpay/api/user/changePassword');
+    };
+    // 获取修改密码验证码
+    TAuthService.prototype.getPwdVericode = function (mobile) {
+        this.SetParam('mobile', mobile);
+        return this.Post('kpay/api/getPwdVericode');
+    };
+    // 注册
+    TAuthService.prototype.SignIn = function (Tel, Password, Code, Recommend) {
+        this.SetParam('mobile', Tel.toString());
+        this.SetParam('password', this.Md5T(Password).toString());
+        this.SetParam('veriCode', Code);
+        if (Recommend) {
+            this.SetParam('referee', Recommend);
+        }
+        return this.Post('kpay/api/register');
+    };
+    // 获取注册验证码
+    TAuthService.prototype.GetVerifyCode = function (Tel) {
+        this.SetParam('mobile', Tel.toString());
+        return this.Post('kpay/api/getVericode');
+    };
+    // 验证注册验证码
+    TAuthService.prototype.CheckVerifyCode = function (Tel, VCode) {
+        this.SetParam('mobile', Tel.toString());
+        this.SetParam('veriCode', VCode);
+        return this.Post('kpay/api/checkRegVeriCode');
+    };
+    // 退出登陆
+    TAuthService.prototype.Logout = function () {
+        __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].removeToken();
+        App.UserInfo = null;
+        App.DisableHardwareBackButton();
+        App.Nav.setPages([{ page: App.pages.tabsPage }, { page: App.pages.loginPage }]);
+    };
+    Object.defineProperty(TAuthService.prototype, "IsLogin", {
+        // 判断登录
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(__WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].getToken());
+        },
+        enumerable: true,
+        configurable: true
+    });
+    // 校验token有效性
+    TAuthService.prototype.CheckToken = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.Post('kpay/api/checkToken').toPromise()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    // 修改用户信息
+    TAuthService.prototype.ModifyUserInfo = function (json) {
+        for (var k in json) {
+            this.SetParam(k, json[k]);
+        }
+        this.Post('kpay/api/user/modify').subscribe(function (data) {
+            console.log(data);
+        });
+    };
+    // 获取用户信息
+    TAuthService.prototype.GetUserData = function () {
+        var _this = this;
+        return this.Post('kpay/api/user/info').subscribe(function (resp) {
+            var userData = resp.data;
+            _this.updateUser(userData);
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    // 第三方登录
+    TAuthService.prototype.thirdPartyLogin = function (mobile, key) {
+        var _this = this;
+        __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].setMobile(mobile);
+        __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].setSecret(key);
+        this.SetParam('mobile', mobile);
+        this.SetParam('key', key);
+        return this.Post('kpay/api/login/partner').subscribe(function (resp) {
+            if (__WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(resp.data) && !__WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].IsEmptyObject(resp.data)) {
+                __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].setToken(resp.data.token);
+                _this.GetUserData();
+                _this.homeService.GetCardList();
+                App.Nav.setPages([{ page: App.pages.tabsPage }, { page: App.pages.creditCardPage }]);
+            }
+            else {
+                App.Nav.setRoot(App.pages.loginPage);
+            }
+        }, function (error) {
+            console.error(error);
+        });
+    };
+    // 重新登录
+    TAuthService.prototype.thirdPartyReLogin = function () {
+        var mobile = __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].getMobile();
+        var secret = __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].getSecret();
+        this.thirdPartyLogin(mobile, secret);
+    };
+    // 是否不需要登录
+    TAuthService.prototype.shouldPassThrough = function () {
+        var paths = ['/register', '/login', '/findpassword', '/home', '/tabs/首页/home', '/thirdlogin'];
+        return _.indexOf(paths, decodeURIComponent(this.location.path()).toLocaleLowerCase()) > -1;
+    };
+    TAuthService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__angular_common__["e" /* Location */], __WEBPACK_IMPORTED_MODULE_6__homeservice__["a" /* HomeService */]])
+    ], TAuthService);
+    return TAuthService;
+}(__WEBPACK_IMPORTED_MODULE_5__pub_service__["a" /* TBaseService */]));
+
+//# sourceMappingURL=auth.js.map
+
+/***/ })
+
+},[268]);
+//# sourceMappingURL=main.js.map

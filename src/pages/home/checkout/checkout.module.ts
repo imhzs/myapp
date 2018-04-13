@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 
 import { CheckoutPage } from './checkout';
 import { SharedModule } from '../../../shared';
+import { CheckoutHelper } from '../../../shared/helper/checkout-helper';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { SharedModule } from '../../../shared';
   ],
   entryComponents: [
     CheckoutPage
-  ]
+  ],
+  providers: [CheckoutHelper]
 })
 export class CheckoutPageModule {}

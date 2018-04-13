@@ -13,7 +13,6 @@ export class CardHelper
 		this.service.GetCardList();
 		this.service.currentCards.subscribe(
 			data => {
-				console.log('CardHelper', data);
 				this.cards = data;
 			}
 		);

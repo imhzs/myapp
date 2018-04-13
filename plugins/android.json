@@ -8,52 +8,52 @@
   },
   "installed_plugins": {
     "cordova-plugin-app-version": {
-      "PACKAGE_NAME": "com.werunpay"
+      "PACKAGE_NAME": "com.ucardpay.wapp"
     },
     "cordova-plugin-camera": {
-      "PACKAGE_NAME": "com.werunpay"
+      "PACKAGE_NAME": "com.ucardpay.wapp"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.werunpay"
+      "PACKAGE_NAME": "com.ucardpay.wapp"
     },
     "cordova-plugin-file": {
-      "PACKAGE_NAME": "com.werunpay"
+      "PACKAGE_NAME": "com.ucardpay.wapp"
+    },
+    "cordova-plugin-file-opener2": {
+      "PACKAGE_NAME": "com.ucardpay.wapp"
     },
     "cordova-plugin-file-transfer": {
-      "PACKAGE_NAME": "com.werunpay"
+      "PACKAGE_NAME": "com.ucardpay.wapp"
     },
     "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "com.werunpay"
+      "PACKAGE_NAME": "com.ucardpay.wapp"
     },
     "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "com.werunpay"
+      "PACKAGE_NAME": "com.ucardpay.wapp"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.ucardpay.wapp"
     },
     "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "com.werunpay"
+      "PACKAGE_NAME": "com.ucardpay.wapp"
     },
     "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "com.werunpay"
+      "PACKAGE_NAME": "com.ucardpay.wapp"
     },
     "cordova-plugin-wechat": {
       "WECHATAPPID": "wx4f67e62f44b0a166",
-      "PACKAGE_NAME": "com.werunpay"
+      "PACKAGE_NAME": "com.ucardpay.wapp"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.werunpay"
+      "PACKAGE_NAME": "com.ucardpay.wapp"
     },
     "cordova-plugin-x-socialsharing": {
-      "PACKAGE_NAME": "com.werunpay"
-    },
-    "cordova-plugin-file-opener2": {
-      "PACKAGE_NAME": "com.werunpay"
-    },
-    "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "com.werunpay"
+      "PACKAGE_NAME": "com.ucardpay.wapp"
     }
   },
   "dependent_plugins": {
     "es6-promise-plugin": {
-      "PACKAGE_NAME": "com.werunpay"
+      "PACKAGE_NAME": "com.ucardpay.wapp"
     }
   }
 }
