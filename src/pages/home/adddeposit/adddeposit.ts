@@ -84,14 +84,7 @@ export class AddDepositPage implements OnInit
 
   // 验证身份证
   GetIdCard(IdNo) {
-    if (!TypeInfo.Assigned(IdNo)) {
-      return;
-    }
-    this.IdCard = IdNo.substr(0, 6);
-    for (let i = 0; i < (IdNo.length - 10); i ++) {
-      this.IdCard += '*'
-    }
-    this.IdCard += IdNo.substr(-4);
+    this.IdCard = IdNo;
   }
 
   // 选择开户行
@@ -166,6 +159,6 @@ export class AddDepositPage implements OnInit
   }
 
   ionViewCanEnter() {
-    this.auth.CheckToken();
+    return App.authenticated;
   }
 }

@@ -26,6 +26,12 @@ export class ChangecardsPage
   // 卡类型
   CardType: number;
 
+  // 信用卡
+  TypeCreditCard: number = CREDIT_CARD;
+
+  // 储蓄卡
+  TypeDepositCard: number = DEPOSIT_CARD;
+
   constructor(public Service: HomeService, public navParams: NavParams, public viewCtrl: ViewController, private auth: TAuthService) {
     this.CheckedCardId = this.navParams.get('curCardId');
     this.Cards = this.navParams.get('data');
@@ -42,6 +48,7 @@ export class ChangecardsPage
     }
   }
 
+  // 确认选择
   OnConfirmCard() {
     console.log(this.CheckedCardId);
     let data = {id: this.CheckedCardId};
@@ -50,5 +57,15 @@ export class ChangecardsPage
 
   ionViewCanEnter() {
     this.auth.CheckToken();
+  }
+
+  // 添加信用卡
+  AddCreditCard() {
+    App.Nav.push(App.pages.addCreditCardPage, {page: App.pages.creditCardPage});
+  }
+
+  // 添加储蓄卡
+  AddDepositCard() {
+    App.Nav.push(App.pages.addDepositPage, {page: App.pages.creditCardPage});
   }
 }

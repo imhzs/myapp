@@ -1,7 +1,8 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
-import { TAuthService } from '../../../providers/auth';
+import BScroll from 'better-scroll';
+
 import { MineService } from '../../../providers/mineservice';
 import { OrderHelper } from '../../../shared/helper/order-helper';
 
@@ -24,7 +25,9 @@ export class RecordsPage
   // 没有收款记录
   DataEmpty: boolean;
 
-  constructor(public Service: MineService, private auth: TAuthService) {
+  @ViewChild('wrapperRef') wrapperRef: ElementRef;
+
+  constructor(public Service: MineService) {
     this.GetCashList();
   }
 
@@ -60,12 +63,46 @@ export class RecordsPage
     }
   }
 
+  // 下拉更新
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
+
+  // 上拉更新
+  doInfinite(infiniteScroll) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      infiniteScroll.complete();
+    }, 500);
+  }
+
   // 详情页
   ShowDetail(id) {
+    console.log(id);
     App.Nav.push(App.pages.recordDetailPage, {id: id});
   }
   
   ionViewCanEnter() {
-    this.auth.CheckToken();
+    return App.authenticated;
+  }
+
+  ionViewDidEnter() {
+    let bScroll = new BScroll(this.wrapperRef.nativeElement, {
+      probeType: 3,
+      scrollY: true,
+      click: true,
+      tap: true,
+      mouseWheel: true
+    });
+
+    setTimeout(() => {
+      bScroll.refresh();
+    }, 5000);
   }
 }

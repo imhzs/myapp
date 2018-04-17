@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 // import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { IonicPage } from 'ionic-angular';
 
-import { TAuthService } from '../../../providers/auth';
 import { MineService } from '../../../providers/mineservice';
 
 @IonicPage()
@@ -26,7 +25,7 @@ export class VIPmembersPage implements OnInit
   
   VipId: number;
 
-  constructor(private Service: MineService, private auth: TAuthService) {
+  constructor(private Service: MineService) {
     this.GetVipDeadLine(10);
   }
 
@@ -69,6 +68,6 @@ export class VIPmembersPage implements OnInit
   }
 
   ionViewCanEnter() {
-    this.auth.CheckToken();
+    return App.authenticated;
   }
 }

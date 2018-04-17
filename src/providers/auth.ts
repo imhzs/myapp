@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
 const _ = require('lodash');
 
 import { Subject } from 'rxjs/Subject';
@@ -9,8 +10,11 @@ import { Observable } from 'rxjs/Observable';
 import { TypeInfo } from '../UltraCreation/Core/TypeInfo';
 import { TBaseService } from './pub_service';
 import { HomeService } from './homeservice';
-import { CredentialHelper } from '../shared/helper/credential-helper';
 import { UserModel } from '../models/user-model';
+
+import { CredentialHelper } from '../shared/helper/credential-helper';
+import { LoadingHleper } from '../shared/helper/loading-helper';
+import { UserHelper } from '../shared/helper/user-helper';
 
 @Injectable()
 export class TAuthService extends TBaseService
@@ -19,7 +23,12 @@ export class TAuthService extends TBaseService
 
   public subject: Subject<UserModel> = new Subject<UserModel>();
 
-  constructor(protected http: HttpClient, private location: Location, private homeService: HomeService) {
+  constructor(
+    protected http: HttpClient,
+    private location: Location,
+    private homeService: HomeService,
+    private domSanitizer: DomSanitizer
+  ) {
     super(http);
   }
 
@@ -38,13 +47,15 @@ export class TAuthService extends TBaseService
     this.SetParam('mobile', Tel.toString());
     this.SetParam('password', this.Md5T(Password).toString());
 
+    LoadingHleper.setLoadingText('登录中');
+
     this.Post('kpay/api/login').subscribe(
       resp => {
         if (resp.code === TBaseService.REQ_OK) {
           CredentialHelper.setToken(resp.data.token);
           this.GetUserData();
           this.homeService.GetCardList();
-          App.Nav.setPages([{page: App.pages.tabsPage}]);
+          App.Nav.push(App.pages.creditCardPage);
         }
       },
       error => {
@@ -114,7 +125,7 @@ export class TAuthService extends TBaseService
     CredentialHelper.removeToken();
     App.UserInfo = null;
     App.DisableHardwareBackButton();
-    App.Nav.setPages([{page: App.pages.tabsPage}, {page: App.pages.loginPage}]);
+    App.Nav.setPages([{page: App.pages.loginPage}]);
   }
 
   // 判断登录
@@ -124,6 +135,7 @@ export class TAuthService extends TBaseService
 
   // 校验token有效性
   async CheckToken() {
+    LoadingHleper.setShowLoading(false);
     return await this.Post('kpay/api/checkToken').toPromise();
   }
 
@@ -133,8 +145,10 @@ export class TAuthService extends TBaseService
       this.SetParam(k, json[k]);
     }
     this.Post('kpay/api/user/modify').subscribe(
-        data => {
-          console.log(data);
+        resp => {
+          if (resp.code === TBaseService.REQ_OK) {
+            this.GetUserData();
+          }
         }
       );
   }
@@ -144,7 +158,22 @@ export class TAuthService extends TBaseService
     return this.Post('kpay/api/user/info').subscribe(
       resp => {
         let userData: UserModel = resp.data;
-        this.updateUser(userData);
+        if (TypeInfo.Assigned(userData)) {
+          userData.idCardNo = UserHelper.formatIdCard(userData.idCardNo);
+          userData.formatedMobile = UserHelper.formatMobile(userData.mobile.toString());
+          userData.name = UserHelper.formatRealName(userData.name);
+          if (TypeInfo.Assigned(userData.avatar)) {
+            this.getImage(userData.avatar).subscribe(
+              resp => {
+                userData.avatar = this.domSanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(resp));
+                this.updateUser(userData);
+              }
+            );
+          } else {
+            userData.avatar = 'assets/imgs/user.png';
+          }
+          this.updateUser(userData);
+        }
       },
       error => {
         console.log(error);
@@ -160,13 +189,15 @@ export class TAuthService extends TBaseService
     this.SetParam('mobile', mobile);
     this.SetParam('key', key);
 
+    LoadingHleper.setLoadingText('登录中');
+
     return this.Post('kpay/api/login/partner').subscribe(
       resp => {
         if (TypeInfo.Assigned(resp.data) && !TypeInfo.IsEmptyObject(resp.data)) {
           CredentialHelper.setToken(resp.data.token);
           this.GetUserData();
           this.homeService.GetCardList();
-          App.Nav.setPages([{page: App.pages.tabsPage}, {page: App.pages.creditCardPage}]);
+          App.Nav.setRoot(App.pages.creditCardPage);
         } else {
           App.Nav.setRoot(App.pages.loginPage);
         }
@@ -186,7 +217,7 @@ export class TAuthService extends TBaseService
 
   // 是否不需要登录
   shouldPassThrough() {
-    let paths = ['/register', '/login', '/findpassword', '/home', '/tabs/首页/home', '/thirdlogin'];
+    let paths = ['/register', '/login', '/findpassword', '/home', '/tabs/0/home', '/thirdlogin'];
     return _.indexOf(paths, decodeURIComponent(this.location.path()).toLocaleLowerCase()) > -1;
   }
 }

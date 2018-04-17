@@ -1,9 +1,10 @@
 export interface UserModel {
   userId?: number, // 当前用户ID
   mobile?: number, // 手机号
+  formatedMobile?: string, // 手机号
   nickName?: string, // 昵称
   sex?: string, // 性别
-  avatar?: string, // 头像URI
+  avatar?: any, // 头像URI
   idAuthed?: number, // 身份认证标识 0：未认证 1：已认证
   bankcardAuthed?: number, // 银行卡认证标识 0：未认证 1：已认证
   idCardNo?: string, // 身份证号

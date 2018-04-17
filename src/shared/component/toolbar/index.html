@@ -9,11 +9,11 @@
     <span>{{Title}}</span>
   </div>
   <div class="toolbar-buttons">
-    <!-- <ng-template [ngIf]="!BtnIcon && !BtnText">
+    <ng-template [ngIf]="!BtnIcon && !BtnText">
       <button ion-button [class.app-icon]="CircleUser" (click)="ToUCenter()" tappable>
         <img src="assets/imgs/homemy.png" alt="ucenter" />
       </button>
-    </ng-template> -->
+    </ng-template>
     <ng-template [ngIf]="BtnIcon">
       <button ion-button (click)="BtnIconEvent.emit()" tappable>
         <ion-icon [class.app-icon]="AppIcon" [innerHTML]="BtnIcon"></ion-icon>

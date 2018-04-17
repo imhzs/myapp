@@ -6,11 +6,11 @@ webpackJsonp([29],{
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Subject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_pub_service__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__ = __webpack_require__(55);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -186,47 +186,47 @@ webpackEmptyAsyncContext.id = 159;
 
 var map = {
 	"../pages/auth/auth.module": [
-		451,
+		453,
 		26
 	],
 	"../pages/findpassword/findpassword.module": [
-		452,
+		455,
 		25
 	],
 	"../pages/home/addcreditcard/addcreditcard.module": [
-		453,
+		454,
 		8
 	],
 	"../pages/home/adddeposit/adddeposit.module": [
-		454,
+		456,
 		1
 	],
 	"../pages/home/branchcard/branchcard.module": [
-		455,
+		458,
 		24
 	],
 	"../pages/home/cardinfor/cardinfor.module": [
-		456,
+		457,
 		23
 	],
 	"../pages/home/changecards/changecards.module": [
-		457,
+		459,
 		7
 	],
 	"../pages/home/checkout/checkout.module": [
-		458,
+		460,
 		6
 	],
 	"../pages/home/confirminfo/confirminfo.module": [
-		459,
+		461,
 		22
 	],
 	"../pages/home/creditcard/creditcard.module": [
-		460,
+		462,
 		5
 	],
 	"../pages/home/finalpay/finalpay.module": [
-		461,
+		465,
 		0
 	],
 	"../pages/home/home.module": [
@@ -234,71 +234,71 @@ var map = {
 		28
 	],
 	"../pages/home/listofbank/listofbank.module": [
-		462,
+		464,
 		21
 	],
 	"../pages/home/resetpassword/resetpassword.module": [
-		464,
+		466,
 		20
 	],
 	"../pages/home/supportbank/supportbank.module": [
-		465,
+		467,
 		19
 	],
 	"../pages/login/login.module": [
-		466,
+		468,
 		18
 	],
 	"../pages/modifypassword/modifypassword.module": [
-		467,
+		469,
 		17
 	],
 	"../pages/register/register.module": [
-		468,
+		470,
 		16
 	],
 	"../pages/setpassword/setpassword.module": [
-		469,
+		471,
 		15
 	],
 	"../pages/start/start.module": [
-		470,
+		472,
 		14
 	],
 	"../pages/tabs/tabs.module": [
-		471,
+		473,
 		13
 	],
 	"../pages/thirdparty/thirdparty.module": [
-		472,
+		475,
 		27
 	],
 	"../pages/ucenter/VIPmembers/VIPmembers.module": [
-		479,
+		481,
 		12
 	],
 	"../pages/ucenter/mycard/mycard.module": [
-		473,
+		474,
 		4
 	],
-	"../pages/ucenter/records/detail/recorddetail.module": [
-		474,
-		3
-	],
-	"../pages/ucenter/records/records.module": [
-		475,
-		2
-	],
-	"../pages/ucenter/ucenter.module": [
+	"../pages/ucenter/profile/profile.module": [
 		476,
 		11
 	],
-	"../pages/ucenter/uinfo/uinfo.module": [
+	"../pages/ucenter/records/detail/recorddetail.module": [
 		477,
+		3
+	],
+	"../pages/ucenter/records/records.module": [
+		478,
+		2
+	],
+	"../pages/ucenter/ucenter.module": [
+		479,
 		10
 	],
 	"../pages/ucenter/usetup/usetup.module": [
-		478,
+		480,
 		9
 	]
 };
@@ -318,12 +318,45 @@ module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 253:
+/***/ 203:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoadingHleper; });
+var LoadingHleper = /** @class */ (function () {
+    function LoadingHleper() {
+    }
+    LoadingHleper.setShowLoading = function (loading) {
+        this.loading = loading;
+    };
+    LoadingHleper.setLoadingText = function (text) {
+        this.loadingText = text;
+    };
+    LoadingHleper.showLoading = function () {
+        if (this.loading) {
+            App.ShowLoading(this.loadingText);
+        }
+    };
+    LoadingHleper.hideLoading = function () {
+        App.HideLoading();
+        this.loading = true;
+        this.loadingText = '处理中';
+    };
+    LoadingHleper.loading = true;
+    LoadingHleper.loadingText = '处理中';
+    return LoadingHleper;
+}());
+
+//# sourceMappingURL=loading-helper.js.map
+
+/***/ }),
+
+/***/ 254:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SplashScreen; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__ = __webpack_require__(27);
 /**
  *  https://github.com/apache/cordova-plugin-splashscreen
  *      cordova plugin add cordova-plugin-splashscreen --save
@@ -353,12 +386,12 @@ var SplashScreen = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 254:
+/***/ 255:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StatusBar; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Core_TypeInfo__ = __webpack_require__(27);
 /**
  *  https://github.com/apache/cordova-plugin-statusbar
  *      cordova plugin add cordova-plugin-statusbar --save
@@ -455,16 +488,17 @@ var StatusBar = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 255:
+/***/ 256:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TApplication; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UltraCreation_ng_ion_appcontroller__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_root__ = __webpack_require__(352);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UltraCreation_ng_ion_appcontroller__ = __webpack_require__(353);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_root__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__ = __webpack_require__(55);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -484,6 +518,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -579,17 +614,6 @@ var TApplication = /** @class */ (function (_super) {
             style: 'toast-error', prefix_lang: 'hint.'
         });
     };
-    Object.defineProperty(TApplication.prototype, "UserFace", {
-        get: function () {
-            if (__WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(localStorage.getItem('imageface'))) {
-                var avatar = localStorage.getItem('imageface');
-                return { backgroundImage: "url(" + avatar + ")" };
-            }
-            return null;
-        },
-        enumerable: true,
-        configurable: true
-    });
     TApplication.prototype.IsReal = function (page) {
         if (!this.IsIdAuthed) {
             App.Nav.push(App.pages.authPage);
@@ -625,12 +649,10 @@ var TApplication = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(TApplication.prototype, "IconFace", {
+    Object.defineProperty(TApplication.prototype, "authenticated", {
+        // 是否已登录
         get: function () {
-            if (this.UserFace === null && this.UserInfo.sex === '男') {
-                return true;
-            }
-            return false;
+            return __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(__WEBPACK_IMPORTED_MODULE_5__shared_helper_credential_helper__["a" /* CredentialHelper */].getToken());
         },
         enumerable: true,
         configurable: true
@@ -646,7 +668,7 @@ var TApplication = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 266:
+/***/ 268:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -654,12 +676,13 @@ var TApplication = /** @class */ (function (_super) {
 /* unused harmony export BANKCARD_BACK */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FileService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(200);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz__ = __webpack_require__(310);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lrz___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_lrz__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_pub_service__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__UltraCreation_Core_TypeInfo__ = __webpack_require__(27);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -721,6 +744,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 var lodash = __webpack_require__(74);
 
+
 // 附件类型-银行卡正面
 var BANKCARD_FRONT = 'bankcard_front';
 // 附件类型-银行卡反面
@@ -753,6 +777,17 @@ var FileService = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.PostFile('kpay/api/ocr/idcard', 'file', file, { 'type': cType })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    // 图片上传
+    FileService.prototype.ImageUpload = function (file) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.PostFile('kpay/api/image/upload', 'image1', file, {})];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -803,10 +838,12 @@ var FileService = /** @class */ (function (_super) {
                         resp = _a.sent();
                         _a.label = 4;
                     case 4:
-                        if (resp.code === 1) {
+                        if (__WEBPACK_IMPORTED_MODULE_6__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(resp) && resp.code === 1) {
                             return [2 /*return*/, resp.data];
                         }
-                        App.ShowError(resp.msg);
+                        if (__WEBPACK_IMPORTED_MODULE_6__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(resp) && resp.msg) {
+                            App.ShowError(resp.msg);
+                        }
                         return [2 /*return*/, false];
                 }
             });
@@ -821,7 +858,6 @@ var FileService = /** @class */ (function (_super) {
                 input_1.accept = "image/png,image/jpeg,image/jpg,image/x-png";
                 input_1.click();
                 input_1.onchange = function () {
-                    console.log(input_1.files[0]);
                     App.ShowLoading('处理中');
                     __WEBPACK_IMPORTED_MODULE_4_lrz___default()(input_1.files[0], {
                         quality: 0.6,
@@ -988,16 +1024,24 @@ var FileService = /** @class */ (function (_super) {
                             else {
                                 var blob = xhr['response'];
                                 var xhr2_1 = new XMLHttpRequest();
+                                xhr2_1.timeout = 30000;
                                 var suffix = file.type.split('/')[1];
                                 var filename = (new Date()).getTime() + '.' + suffix;
                                 formData.append(fileKey, blob, filename);
+                                xhr2_1.onerror = function (e) {
+                                    App.HideLoading();
+                                    reject(e);
+                                };
                                 xhr2_1.onloadend = function () {
                                     App.HideLoading();
                                 };
-                                xhr2_1.ontimeout = function () {
+                                xhr2_1.ontimeout = function (e) {
+                                    App.ShowError('请求超时，请稍后重试');
                                     App.HideLoading();
+                                    reject(e);
                                 };
                                 xhr2_1.onreadystatechange = function () {
+                                    App.HideLoading();
                                     if (xhr2_1.readyState === 4) {
                                         if (xhr2_1.status === 200) {
                                             resolve(JSON.parse(xhr2_1.response));
@@ -1028,13 +1072,13 @@ var FileService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 267:
+/***/ 269:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MineService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_pub_service__ = __webpack_require__(54);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -1093,7 +1137,7 @@ var MineService = /** @class */ (function (_super) {
     // 购买Vip
     MineService.prototype.BuyVip = function (id) {
         this.SetParam('packId', id);
-        return this.Post('kpay/api/package/buy', { packId: id });
+        return this.Post('kpay/api/package/buy');
     };
     MineService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
@@ -1106,13 +1150,243 @@ var MineService = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 268:
+/***/ 27:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TypeInfo; });
+/* TypeInfo namespace */
+var TypeInfo;
+(function (TypeInfo) {
+    TypeInfo.UNDEFINED = typeof (void 0);
+    TypeInfo.BOOLEAN = typeof true;
+    TypeInfo.NUMBER = typeof 0;
+    TypeInfo.STRING = typeof '';
+    TypeInfo.OBJECT = typeof {};
+    TypeInfo.FUNCTION = typeof function () { };
+    /**
+     * Returns true if the value Assigned (defined and not null)
+     * @param value
+     * @returns {boolean}
+     */
+    function Assigned(value) {
+        return (typeof value !== TypeInfo.UNDEFINED) && (value !== null);
+    }
+    TypeInfo.Assigned = Assigned;
+    /**
+     * Returns true if the value defined
+     * @param value
+     * @returns {boolean}
+     */
+    function Defined(value) {
+        return (typeof value !== TypeInfo.UNDEFINED);
+    }
+    TypeInfo.Defined = Defined;
+    /**
+     * Returns true if the value is ture null
+     * @param value
+     * @returns {boolean}
+     */
+    function IsNull(value) {
+        return (typeof value !== TypeInfo.UNDEFINED) && (value === null);
+    }
+    TypeInfo.IsNull = IsNull;
+    /**
+     * Returns true if the value parameter is a true/false
+     * @param value
+     * @returns {boolean}
+     */
+    function IsBoolean(value) {
+        return typeof value === TypeInfo.BOOLEAN;
+    }
+    TypeInfo.IsBoolean = IsBoolean;
+    /**
+     * Returns true if the value parameter is a number.
+     * @param value
+     * @param allowNaN Default is true.
+     * @returns {boolean}
+     */
+    function IsNumber(value, allowNaN) {
+        if (allowNaN === void 0) { allowNaN = true; }
+        return typeof value === TypeInfo.NUMBER && (allowNaN || !isNaN(value));
+    }
+    TypeInfo.IsNumber = IsNumber;
+    /**
+     * Returns true if is a number and is NaN.
+     * @param value
+     * @returns {boolean}
+     */
+    function IsTrueNaN(value) {
+        return typeof value === TypeInfo.NUMBER && isNaN(value);
+    }
+    TypeInfo.IsTrueNaN = IsTrueNaN;
+    /**
+     * Returns true if the value parameter is a string.
+     * @param value
+     * @returns {boolean}
+     */
+    function IsString(value) {
+        return typeof value === TypeInfo.STRING;
+    }
+    TypeInfo.IsString = IsString;
+    /**
+     * Returns true if the value is a boolean, string, number, null, or undefined.
+     * @param value
+     * @returns {boolean}
+     */
+    function IsPrimitive(value) {
+        var t = typeof value;
+        switch (t) {
+            case TypeInfo.BOOLEAN:
+            case TypeInfo.STRING:
+            case TypeInfo.NUMBER:
+            case TypeInfo.UNDEFINED:
+                return true;
+            case TypeInfo.OBJECT:
+                return value === null;
+        }
+        return false;
+    }
+    TypeInfo.IsPrimitive = IsPrimitive;
+    /**
+     * Returns true if the value parameter is a function.
+     * @param value
+     * @returns {boolean}
+     */
+    function IsFunction(value) {
+        return typeof value === TypeInfo.FUNCTION;
+    }
+    TypeInfo.IsFunction = IsFunction;
+    /**
+     * Returns true if the value parameter is an object.
+     * @param value
+     * @param allowNull If false (default) null is not considered an object.
+     * @returns {boolean}
+     */
+    function IsObject(value, allowNull) {
+        if (allowNull === void 0) { allowNull = false; }
+        return typeof value === TypeInfo.OBJECT && (allowNull || value !== null);
+    }
+    TypeInfo.IsObject = IsObject;
+    /**
+     * Returns true if the value parameter is an empty object.
+     * @param value
+     * @param allowNull If false (default) null is not considered an object.
+     * @returns {boolean}
+     */
+    function IsEmptyObject(value, allowNull) {
+        if (allowNull === void 0) { allowNull = false; }
+        return this.IsObject(value, allowNull) && JSON.stringify(value) === '{}';
+    }
+    TypeInfo.IsEmptyObject = IsEmptyObject;
+    function IsArrayLike(instance) {
+        /*
+        * NOTE:
+        *
+        * Functions:
+        * Enumerating a function although it has a .length property will yield nothing or unexpected results.
+        * Effectively, a function is not like an array.
+        *
+        * Strings:
+        * Behave like arrays but don't have the same exact methods.
+        */
+        return Assigned(instance) && ((instance instanceof Array) ||
+            IsString(instance) ||
+            (!IsFunction(instance) && HasMember(instance, 'length')));
+    }
+    TypeInfo.IsArrayLike = IsArrayLike;
+    function ZeroArray(ary) {
+        if (ary.fill) {
+            ary.fill(0);
+        }
+        else {
+            for (var I = 0; I < ary.length; I++)
+                ary[I] = 0;
+        }
+    }
+    TypeInfo.ZeroArray = ZeroArray;
+    function ArrayCopy(Dst, Src, SrcOffset, Count, DstOffset) {
+        if (DstOffset === void 0) { DstOffset = 0; }
+        if (Src.subarray && Dst.subarray) {
+            Dst.set(Src.subarray(SrcOffset, SrcOffset + Count), DstOffset);
+        }
+        else {
+            for (var i = 0; i < Count; i++)
+                Dst[DstOffset + i] = Src[SrcOffset + i];
+        }
+    }
+    TypeInfo.ArrayCopy = ArrayCopy;
+    /**
+     *  Guarantees a number value or NaN instead.
+     *  @param value
+     *  @returns {number}
+     */
+    function NumberOrNaN(value) {
+        return isNaN(value) ? NaN : value;
+    }
+    TypeInfo.NumberOrNaN = NumberOrNaN;
+    /**
+     */
+    function HasMember(value, property) {
+        return Assigned(value) && !IsPrimitive(value) && (property in value);
+    }
+    TypeInfo.HasMember = HasMember;
+    /**
+     */
+    function HasMemberOfType(instance, property, type) {
+        return HasMember(instance, property) && typeof (instance[property]) === type;
+    }
+    TypeInfo.HasMemberOfType = HasMemberOfType;
+    function Create(Creater) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        return new Creater(args);
+    }
+    TypeInfo.Create = Create;
+    /* Decorator */
+    /** Class Decorator:
+     *      seal class for futher extendion or add properties
+     */
+    function Sealed() {
+        return function (Cls) {
+            Object.seal(Cls);
+            Object.seal(Cls.prototype);
+        };
+    }
+    TypeInfo.Sealed = Sealed;
+    /** Class Decorator:
+     *      static implements decorator
+     *
+     *      interface FooStatic
+     *      {
+     *          function bar();
+     *      }
+     *
+     *      @StaticImplements<FooStatic>
+     *      class Foo
+     *      {
+     *          static function bar() {};   // shows error if not implements this
+     *      }
+     */
+    function StaticImplements() {
+        return function (constructor) { };
+    }
+    TypeInfo.StaticImplements = StaticImplements;
+})(TypeInfo || (TypeInfo = {}));
+Object.freeze(TypeInfo);
+//# sourceMappingURL=TypeInfo.js.map
+
+/***/ }),
+
+/***/ 270:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(269);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(271);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(278);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1120,27 +1394,27 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 276:
+/***/ 278:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(328);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(348);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_app_version__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_app_version__ = __webpack_require__(252);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file_transfer__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_camera__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_device__ = __webpack_require__(252);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_component__ = __webpack_require__(349);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__UltraCreation_Native_StatusBar__ = __webpack_require__(254);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__UltraCreation_Native_SplashScreen__ = __webpack_require__(253);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__http_interceptors__ = __webpack_require__(357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_device__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_component__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers__ = __webpack_require__(356);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__UltraCreation_Native_StatusBar__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__UltraCreation_Native_SplashScreen__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__http_interceptors__ = __webpack_require__(360);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1182,18 +1456,18 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_11__app_component__["a" /* MyApp */], config, {
                     links: [
                         { loadChildren: '../pages/auth/auth.module#AuthPageModule', name: 'AuthPage', segment: 'auth', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/findpassword/findpassword.module#FindPasswordPageModule', name: 'FindPasswordPage', segment: 'findpassword', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/addcreditcard/addcreditcard.module#AddCreditCardPageModule', name: 'AddCreditCardPage', segment: 'addcreditcard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/findpassword/findpassword.module#FindPasswordPageModule', name: 'FindPasswordPage', segment: 'findpassword', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/adddeposit/adddeposit.module#AddDepositPageModule', name: 'AddDepositPage', segment: 'adddeposit', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/branchcard/branchcard.module#BranchcardPageModule', name: 'BranchcardPage', segment: 'branchcard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/cardinfor/cardinfor.module#CardInforPageModule', name: 'CardInforPage', segment: 'cardinfor', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/branchcard/branchcard.module#BranchcardPageModule', name: 'BranchcardPage', segment: 'branchcard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/changecards/changecards.module#ChangecardsPageModule', name: 'ChangecardsPage', segment: 'changecards', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/checkout/checkout.module#CheckoutPageModule', name: 'CheckoutPage', segment: 'checkout', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/confirminfo/confirminfo.module#ConfirminfoPageModule', name: 'ConfirminfoPage', segment: 'confirminfo', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/creditcard/creditcard.module#CreditCardPageModule', name: 'CreditCardPage', segment: 'creditcard', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/finalpay/finalpay.module#FinalpayPageModule', name: 'FinalpayPage', segment: 'finalpay', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/listofbank/listofbank.module#ListofbankPageModule', name: 'ListofbankPage', segment: 'listofbank', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/creditcard/creditcard.module#CreditCardPageModule', name: 'CreditCardPage', segment: 'creditcard', priority: 'low', defaultHistory: ['CreditCardPage'] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/listofbank/listofbank.module#ListofbankPageModule', name: 'ListofbankPage', segment: 'listofbank', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/finalpay/finalpay.module#FinalpayPageModule', name: 'FinalpayPage', segment: 'finalpay', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/resetpassword/resetpassword.module#ResetPasswordPageModule', name: 'ResetPasswordPage', segment: 'resetpassword/:mobile/:vcode', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/supportbank/supportbank.module#ListofbankPageModule', name: 'SupportBankPage', segment: 'supportbank', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
@@ -1202,12 +1476,12 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/setpassword/setpassword.module#SetPasswordPageModule', name: 'SetPasswordPage', segment: 'setpassword/:mobile/:code', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/start/start.module#StartPageModule', name: 'StartPage', segment: 'start', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/tabs/tabs.module#TabsPageModule', name: 'TabsPage', segment: 'tabs', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/thirdparty/thirdparty.module#ThirdPartyPageModule', name: 'ThirdPartyPage', segment: 'thirdLogin/:mobile/:key', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ucenter/mycard/mycard.module#MyCardPageModule', name: 'MyCardPage', segment: 'mycard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/thirdparty/thirdparty.module#ThirdPartyPageModule', name: 'ThirdPartyPage', segment: 'thirdLogin/:mobile/:key', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/ucenter/profile/profile.module#UinfoPageModule', name: 'ProfilePage', segment: 'profile', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ucenter/records/detail/recorddetail.module#OrdersPageModule', name: 'OrderDetailPage', segment: 'record/detail/:id', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ucenter/records/records.module#RecordsPageModule', name: 'RecordsPage', segment: 'records', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ucenter/ucenter.module#UcenterPageModule', name: 'UcenterPage', segment: 'ucenter', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/ucenter/uinfo/uinfo.module#UinfoPageModule', name: 'UinfoPage', segment: 'uinfo', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ucenter/usetup/usetup.module#UsetupPageModule', name: 'UsetupPage', segment: 'usetup', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/ucenter/VIPmembers/VIPmembers.module#VIPmembersPageModule', name: 'VIPmembersPage', segment: 'VIPmembers', priority: 'low', defaultHistory: [] }
                     ]
@@ -1242,16 +1516,53 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 349:
+/***/ 313:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserHelper; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UltraCreation_Core_TypeInfo__ = __webpack_require__(27);
+
+var UserHelper = /** @class */ (function () {
+    function UserHelper() {
+    }
+    // 格式化手机号
+    UserHelper.formatMobile = function (mobile) {
+        return mobile.replace(/(\d{3})(\d{4})(\d{4})/, '$1****$3');
+    };
+    // 格式化身份证号
+    UserHelper.formatIdCard = function (idcard) {
+        return idcard.replace(/(\d{5})(\d{5,})(\d{5})/, '$1*****$3');
+    };
+    // 格式化真实姓名
+    UserHelper.formatRealName = function (realName) {
+        var str = '';
+        if (!__WEBPACK_IMPORTED_MODULE_0__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(realName)) {
+            return str;
+        }
+        var last = realName.substr(-1);
+        for (var i = 0; i < realName.length - 1; i++) {
+            str += '*';
+        }
+        return "" + str + last;
+    };
+    return UserHelper;
+}());
+
+//# sourceMappingURL=user-helper.js.map
+
+/***/ }),
+
+/***/ 352:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Native_SplashScreen__ = __webpack_require__(253);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__ = __webpack_require__(254);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_application__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Native_SplashScreen__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_application__ = __webpack_require__(256);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth__ = __webpack_require__(73);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1275,18 +1586,18 @@ var MyApp = /** @class */ (function () {
         this.auth = auth;
         // 启动页
         this.rootPage = 'TabsPage';
-        App.Platform.ready().then(function () {
-            __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Native_SplashScreen__["a" /* SplashScreen */].show();
+        App.Platform.ready()
+            .then(function () {
             __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__["a" /* StatusBar */].hide();
+            __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Native_SplashScreen__["a" /* SplashScreen */].show();
             __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__["a" /* StatusBar */].overlaysWebView(true);
             if (App.IsIos) {
                 __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__["a" /* StatusBar */].styleBlackTranslucent();
             }
             else {
-                __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__["a" /* StatusBar */].backgroundColorByHexString('#2D93F3');
+                __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__["a" /* StatusBar */].backgroundColorByHexString('#569af3');
             }
-        })
-            .then(function () {
+        }).then(function () {
             __WEBPACK_IMPORTED_MODULE_2__UltraCreation_Native_SplashScreen__["a" /* SplashScreen */].hide();
             __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Native_StatusBar__["a" /* StatusBar */].show();
         }).then(function () {
@@ -1301,7 +1612,7 @@ var MyApp = /** @class */ (function () {
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            template: "<ion-nav #rootNavController [root]=\"rootPage\"></ion-nav>"
+            template: '<ion-nav #rootNavController [root]="rootPage"></ion-nav>'
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__providers_application__["a" /* TApplication */], __WEBPACK_IMPORTED_MODULE_5__providers_auth__["a" /* TAuthService */]])
@@ -1313,7 +1624,7 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 350:
+/***/ 353:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1327,8 +1638,8 @@ var MyApp = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular_components_loading_loading_controller__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular_components_action_sheet_action_sheet_controller__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ionic_angular_components_popover_popover_controller__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Core_Exception__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__Core_TypeInfo__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Core_Exception__ = __webpack_require__(354);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1701,7 +2012,7 @@ var TAppController = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 351:
+/***/ 354:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1841,7 +2152,7 @@ var EUsage = /** @class */ (function (_super) {
 
 /***/ }),
 
-/***/ 352:
+/***/ 355:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1870,7 +2181,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authPage", function() { return authPage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recordsPage", function() { return recordsPage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recordDetailPage", function() { return recordDetailPage; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uinfoPage", function() { return uinfoPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "profilePage", function() { return profilePage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "usetupPage", function() { return usetupPage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "vipMembersPage", function() { return vipMembersPage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "myCardPage", function() { return myCardPage; });
@@ -1899,7 +2210,7 @@ var setPasswordPage = 'SetPasswordPage';
 var authPage = 'AuthPage';
 var recordsPage = 'RecordsPage';
 var recordDetailPage = 'OrderDetailPage';
-var uinfoPage = 'UinfoPage';
+var profilePage = 'ProfilePage';
 var usetupPage = 'UsetupPage';
 var vipMembersPage = 'VIPmembersPage';
 var myCardPage = 'MyCardPage';
@@ -1908,17 +2219,17 @@ var registerPage = 'RegisterPage';
 
 /***/ }),
 
-/***/ 353:
+/***/ 356:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProviderModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(255);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mineservice__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__application__ = __webpack_require__(256);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mineservice__ = __webpack_require__(269);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__homeservice__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fileservice__ = __webpack_require__(266);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__checkAppUpdate__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__fileservice__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__checkAppUpdate__ = __webpack_require__(357);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1948,18 +2259,18 @@ var ProviderModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 354:
+/***/ 357:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckAppUpdate; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_app_version__ = __webpack_require__(252);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_file_transfer__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_opener__ = __webpack_require__(355);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file__ = __webpack_require__(356);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_device__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_file_opener__ = __webpack_require__(358);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_file__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_device__ = __webpack_require__(253);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2132,13 +2443,13 @@ var CheckAppUpdate = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 357:
+/***/ 360:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return httpInterceptorProviders; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__noop_interceptor__ = __webpack_require__(358);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__noop_interceptor__ = __webpack_require__(361);
 /* "Barrel" of Http Interceptors */
 // import { NgModule } from '@angular/core';
 
@@ -2157,20 +2468,23 @@ var httpInterceptorProviders = [
 
 /***/ }),
 
-/***/ 358:
+/***/ 361:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NoopInterceptor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__ = __webpack_require__(362);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__(363);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_pub_service__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_helper_credential_helper__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_util_TimeoutError__ = __webpack_require__(266);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_util_TimeoutError___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_util_TimeoutError__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_pub_service__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__UltraCreation_Core_TypeInfo__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_helper_loading_helper__ = __webpack_require__(203);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2184,22 +2498,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 /** Pass untouched request through to the next request handler. */
 var NoopInterceptor = /** @class */ (function () {
     function NoopInterceptor() {
     }
     NoopInterceptor.prototype.intercept = function (req, next) {
+        __WEBPACK_IMPORTED_MODULE_8__shared_helper_loading_helper__["a" /* LoadingHleper */].showLoading();
         var jwtReq = req;
         if (!req.headers.has('Authorization')) {
-            var token = __WEBPACK_IMPORTED_MODULE_6__shared_helper_credential_helper__["a" /* CredentialHelper */].getToken();
+            var token = __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].getToken();
             jwtReq = req.clone({ headers: req.headers.set('Authorization', "Bearer " + token) });
         }
-        return next.handle(jwtReq).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["catchError"])(this.handleError)).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["tap"])(function (event) {
+        return next.handle(jwtReq).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["timeout"])(15000)).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["catchError"])(this.handleError)).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["tap"])(function (event) {
             if (event instanceof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["e" /* HttpResponse */]) {
-                if (event.body.code == __WEBPACK_IMPORTED_MODULE_4__providers_pub_service__["a" /* TBaseService */].SESSION_TIMEOUT) {
-                    var mobile = __WEBPACK_IMPORTED_MODULE_6__shared_helper_credential_helper__["a" /* CredentialHelper */].getMobile();
-                    var secret = __WEBPACK_IMPORTED_MODULE_6__shared_helper_credential_helper__["a" /* CredentialHelper */].getSecret();
-                    if (__WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(mobile) && __WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(secret)) {
+                __WEBPACK_IMPORTED_MODULE_8__shared_helper_loading_helper__["a" /* LoadingHleper */].hideLoading();
+                if (event.body.code == __WEBPACK_IMPORTED_MODULE_5__providers_pub_service__["a" /* TBaseService */].SESSION_TIMEOUT) {
+                    var mobile = __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].getMobile();
+                    var secret = __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].getSecret();
+                    __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].removeToken();
+                    if (__WEBPACK_IMPORTED_MODULE_6__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(mobile) && __WEBPACK_IMPORTED_MODULE_6__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(secret)) {
                         App.Nav.setPages([{ page: App.pages.tabsPage }, { page: App.pages.thirdLoginPage, params: { mobile: mobile, key: secret } }]);
                     }
                     else {
@@ -2207,8 +2526,8 @@ var NoopInterceptor = /** @class */ (function () {
                     }
                     return new __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__["ErrorObservable"]('登录超时');
                 }
-                else if (event.body.code == __WEBPACK_IMPORTED_MODULE_4__providers_pub_service__["a" /* TBaseService */].REQ_FAIL) {
-                    if (__WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(event.body.msg)) {
+                else if (event.body.code == __WEBPACK_IMPORTED_MODULE_5__providers_pub_service__["a" /* TBaseService */].REQ_FAIL) {
+                    if (__WEBPACK_IMPORTED_MODULE_6__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(event.body.msg)) {
                         App.ShowError(event.body.msg);
                     }
                     return new __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__["ErrorObservable"]('请求成功，返回失败值');
@@ -2218,12 +2537,17 @@ var NoopInterceptor = /** @class */ (function () {
     };
     // 错误处理
     NoopInterceptor.prototype.handleError = function (error) {
-        if (error.error instanceof ErrorEvent) {
+        if (error instanceof __WEBPACK_IMPORTED_MODULE_4_rxjs_util_TimeoutError__["TimeoutError"]) {
+            App.ShowError('请求超时，请稍后重新');
+            console.log("Request timeout: " + error.message);
+        }
+        else if (error.error instanceof ErrorEvent) {
             console.error('An error occurred:', error.error.message);
         }
         else {
             console.log("Backend returned code " + error.status + ", body was: " + error.error);
         }
+        __WEBPACK_IMPORTED_MODULE_8__shared_helper_loading_helper__["a" /* LoadingHleper */].hideLoading();
         return new __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable_ErrorObservable__["ErrorObservable"]('Something bad happened; please try again later.');
     };
     NoopInterceptor = __decorate([
@@ -2236,247 +2560,17 @@ var NoopInterceptor = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 36:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TypeInfo; });
-/* TypeInfo namespace */
-var TypeInfo;
-(function (TypeInfo) {
-    TypeInfo.UNDEFINED = typeof (void 0);
-    TypeInfo.BOOLEAN = typeof true;
-    TypeInfo.NUMBER = typeof 0;
-    TypeInfo.STRING = typeof '';
-    TypeInfo.OBJECT = typeof {};
-    TypeInfo.FUNCTION = typeof function () { };
-    /**
-     * Returns true if the value Assigned (defined and not null)
-     * @param value
-     * @returns {boolean}
-     */
-    function Assigned(value) {
-        return (typeof value !== TypeInfo.UNDEFINED) && (value !== null);
-    }
-    TypeInfo.Assigned = Assigned;
-    /**
-     * Returns true if the value defined
-     * @param value
-     * @returns {boolean}
-     */
-    function Defined(value) {
-        return (typeof value !== TypeInfo.UNDEFINED);
-    }
-    TypeInfo.Defined = Defined;
-    /**
-     * Returns true if the value is ture null
-     * @param value
-     * @returns {boolean}
-     */
-    function IsNull(value) {
-        return (typeof value !== TypeInfo.UNDEFINED) && (value === null);
-    }
-    TypeInfo.IsNull = IsNull;
-    /**
-     * Returns true if the value parameter is a true/false
-     * @param value
-     * @returns {boolean}
-     */
-    function IsBoolean(value) {
-        return typeof value === TypeInfo.BOOLEAN;
-    }
-    TypeInfo.IsBoolean = IsBoolean;
-    /**
-     * Returns true if the value parameter is a number.
-     * @param value
-     * @param allowNaN Default is true.
-     * @returns {boolean}
-     */
-    function IsNumber(value, allowNaN) {
-        if (allowNaN === void 0) { allowNaN = true; }
-        return typeof value === TypeInfo.NUMBER && (allowNaN || !isNaN(value));
-    }
-    TypeInfo.IsNumber = IsNumber;
-    /**
-     * Returns true if is a number and is NaN.
-     * @param value
-     * @returns {boolean}
-     */
-    function IsTrueNaN(value) {
-        return typeof value === TypeInfo.NUMBER && isNaN(value);
-    }
-    TypeInfo.IsTrueNaN = IsTrueNaN;
-    /**
-     * Returns true if the value parameter is a string.
-     * @param value
-     * @returns {boolean}
-     */
-    function IsString(value) {
-        return typeof value === TypeInfo.STRING;
-    }
-    TypeInfo.IsString = IsString;
-    /**
-     * Returns true if the value is a boolean, string, number, null, or undefined.
-     * @param value
-     * @returns {boolean}
-     */
-    function IsPrimitive(value) {
-        var t = typeof value;
-        switch (t) {
-            case TypeInfo.BOOLEAN:
-            case TypeInfo.STRING:
-            case TypeInfo.NUMBER:
-            case TypeInfo.UNDEFINED:
-                return true;
-            case TypeInfo.OBJECT:
-                return value === null;
-        }
-        return false;
-    }
-    TypeInfo.IsPrimitive = IsPrimitive;
-    /**
-     * Returns true if the value parameter is a function.
-     * @param value
-     * @returns {boolean}
-     */
-    function IsFunction(value) {
-        return typeof value === TypeInfo.FUNCTION;
-    }
-    TypeInfo.IsFunction = IsFunction;
-    /**
-     * Returns true if the value parameter is an object.
-     * @param value
-     * @param allowNull If false (default) null is not considered an object.
-     * @returns {boolean}
-     */
-    function IsObject(value, allowNull) {
-        if (allowNull === void 0) { allowNull = false; }
-        return typeof value === TypeInfo.OBJECT && (allowNull || value !== null);
-    }
-    TypeInfo.IsObject = IsObject;
-    /**
-     * Returns true if the value parameter is an empty object.
-     * @param value
-     * @param allowNull If false (default) null is not considered an object.
-     * @returns {boolean}
-     */
-    function IsEmptyObject(value, allowNull) {
-        if (allowNull === void 0) { allowNull = false; }
-        return this.IsObject(value, allowNull) && JSON.stringify(value) === '{}';
-    }
-    TypeInfo.IsEmptyObject = IsEmptyObject;
-    function IsArrayLike(instance) {
-        /*
-        * NOTE:
-        *
-        * Functions:
-        * Enumerating a function although it has a .length property will yield nothing or unexpected results.
-        * Effectively, a function is not like an array.
-        *
-        * Strings:
-        * Behave like arrays but don't have the same exact methods.
-        */
-        return Assigned(instance) && ((instance instanceof Array) ||
-            IsString(instance) ||
-            (!IsFunction(instance) && HasMember(instance, 'length')));
-    }
-    TypeInfo.IsArrayLike = IsArrayLike;
-    function ZeroArray(ary) {
-        if (ary.fill) {
-            ary.fill(0);
-        }
-        else {
-            for (var I = 0; I < ary.length; I++)
-                ary[I] = 0;
-        }
-    }
-    TypeInfo.ZeroArray = ZeroArray;
-    function ArrayCopy(Dst, Src, SrcOffset, Count, DstOffset) {
-        if (DstOffset === void 0) { DstOffset = 0; }
-        if (Src.subarray && Dst.subarray) {
-            Dst.set(Src.subarray(SrcOffset, SrcOffset + Count), DstOffset);
-        }
-        else {
-            for (var i = 0; i < Count; i++)
-                Dst[DstOffset + i] = Src[SrcOffset + i];
-        }
-    }
-    TypeInfo.ArrayCopy = ArrayCopy;
-    /**
-     *  Guarantees a number value or NaN instead.
-     *  @param value
-     *  @returns {number}
-     */
-    function NumberOrNaN(value) {
-        return isNaN(value) ? NaN : value;
-    }
-    TypeInfo.NumberOrNaN = NumberOrNaN;
-    /**
-     */
-    function HasMember(value, property) {
-        return Assigned(value) && !IsPrimitive(value) && (property in value);
-    }
-    TypeInfo.HasMember = HasMember;
-    /**
-     */
-    function HasMemberOfType(instance, property, type) {
-        return HasMember(instance, property) && typeof (instance[property]) === type;
-    }
-    TypeInfo.HasMemberOfType = HasMemberOfType;
-    function Create(Creater) {
-        var args = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            args[_i - 1] = arguments[_i];
-        }
-        return new Creater(args);
-    }
-    TypeInfo.Create = Create;
-    /* Decorator */
-    /** Class Decorator:
-     *      seal class for futher extendion or add properties
-     */
-    function Sealed() {
-        return function (Cls) {
-            Object.seal(Cls);
-            Object.seal(Cls.prototype);
-        };
-    }
-    TypeInfo.Sealed = Sealed;
-    /** Class Decorator:
-     *      static implements decorator
-     *
-     *      interface FooStatic
-     *      {
-     *          function bar();
-     *      }
-     *
-     *      @StaticImplements<FooStatic>
-     *      class Foo
-     *      {
-     *          static function bar() {};   // shows error if not implements this
-     *      }
-     */
-    function StaticImplements() {
-        return function (constructor) { };
-    }
-    TypeInfo.StaticImplements = StaticImplements;
-})(TypeInfo || (TypeInfo = {}));
-Object.freeze(TypeInfo);
-//# sourceMappingURL=TypeInfo.js.map
-
-/***/ }),
-
 /***/ 54:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TBaseService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__ = __webpack_require__(310);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__ = __webpack_require__(312);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__ = __webpack_require__(55);
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -2521,11 +2615,13 @@ var API_URL = 'https://h5.5ucardpay.com';
 var TBaseService = /** @class */ (function () {
     function TBaseService(http) {
         this.http = http;
+        // 设置接收后台数据的类型
         this.responseType = 'json';
         this.headers = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["d" /* HttpHeaders */]({ 'Content-Type': 'application/x-www-form-urlencoded' });
         this.params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* URLSearchParams */]();
     }
     Object.defineProperty(TBaseService.prototype, "BaseUrl", {
+        // 获取base url
         get: function () {
             return API_URL;
         },
@@ -2533,6 +2629,7 @@ var TBaseService = /** @class */ (function () {
         configurable: true
     });
     Object.defineProperty(TBaseService.prototype, "getToken", {
+        // 获取当前用户token
         get: function () {
             var token = __WEBPACK_IMPORTED_MODULE_4__shared_helper_credential_helper__["a" /* CredentialHelper */].getToken();
             if (__WEBPACK_IMPORTED_MODULE_3__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(token)) {
@@ -2591,6 +2688,12 @@ var TBaseService = /** @class */ (function () {
     TBaseService.prototype.setNewParams = function () {
         this.params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* URLSearchParams */]();
     };
+    // 获取图片
+    TBaseService.prototype.getImage = function (fileId) {
+        this.SetParam('fileId', fileId);
+        this.SetResponseType('blob');
+        return this.Post('kpay/api/image/show');
+    };
     // 请求失败
     TBaseService.REQ_OK = 1;
     // 请求成功
@@ -2604,7 +2707,7 @@ var TBaseService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 64:
+/***/ 55:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2649,14 +2752,17 @@ var CredentialHelper = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TAuthService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pub_service__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__homeservice__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pub_service__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__homeservice__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_helper_credential_helper__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_helper_loading_helper__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_helper_user_helper__ = __webpack_require__(313);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -2714,7 +2820,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
+
 var _ = __webpack_require__(74);
+
+
 
 
 
@@ -2722,13 +2831,14 @@ var _ = __webpack_require__(74);
 
 var TAuthService = /** @class */ (function (_super) {
     __extends(TAuthService, _super);
-    function TAuthService(http, location, homeService) {
+    function TAuthService(http, location, homeService, domSanitizer) {
         var _this = _super.call(this, http) || this;
         _this.http = http;
         _this.location = location;
         _this.homeService = homeService;
+        _this.domSanitizer = domSanitizer;
         _this.App = window.App;
-        _this.subject = new __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__["Subject"]();
+        _this.subject = new __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__["Subject"]();
         return _this;
     }
     Object.defineProperty(TAuthService.prototype, "currentUser", {
@@ -2748,12 +2858,13 @@ var TAuthService = /** @class */ (function (_super) {
         var _this = this;
         this.SetParam('mobile', Tel.toString());
         this.SetParam('password', this.Md5T(Password).toString());
+        __WEBPACK_IMPORTED_MODULE_9__shared_helper_loading_helper__["a" /* LoadingHleper */].setLoadingText('登录中');
         this.Post('kpay/api/login').subscribe(function (resp) {
-            if (resp.code === __WEBPACK_IMPORTED_MODULE_5__pub_service__["a" /* TBaseService */].REQ_OK) {
-                __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].setToken(resp.data.token);
+            if (resp.code === __WEBPACK_IMPORTED_MODULE_6__pub_service__["a" /* TBaseService */].REQ_OK) {
+                __WEBPACK_IMPORTED_MODULE_8__shared_helper_credential_helper__["a" /* CredentialHelper */].setToken(resp.data.token);
                 _this.GetUserData();
                 _this.homeService.GetCardList();
-                App.Nav.setPages([{ page: App.pages.tabsPage }]);
+                App.Nav.push(App.pages.creditCardPage);
             }
         }, function (error) {
             console.log(error);
@@ -2805,15 +2916,15 @@ var TAuthService = /** @class */ (function (_super) {
     };
     // 退出登陆
     TAuthService.prototype.Logout = function () {
-        __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].removeToken();
+        __WEBPACK_IMPORTED_MODULE_8__shared_helper_credential_helper__["a" /* CredentialHelper */].removeToken();
         App.UserInfo = null;
         App.DisableHardwareBackButton();
-        App.Nav.setPages([{ page: App.pages.tabsPage }, { page: App.pages.loginPage }]);
+        App.Nav.setPages([{ page: App.pages.loginPage }]);
     };
     Object.defineProperty(TAuthService.prototype, "IsLogin", {
         // 判断登录
         get: function () {
-            return __WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(__WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].getToken());
+            return __WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(__WEBPACK_IMPORTED_MODULE_8__shared_helper_credential_helper__["a" /* CredentialHelper */].getToken());
         },
         enumerable: true,
         configurable: true
@@ -2823,7 +2934,9 @@ var TAuthService = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.Post('kpay/api/checkToken').toPromise()];
+                    case 0:
+                        __WEBPACK_IMPORTED_MODULE_9__shared_helper_loading_helper__["a" /* LoadingHleper */].setShowLoading(false);
+                        return [4 /*yield*/, this.Post('kpay/api/checkToken').toPromise()];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -2831,11 +2944,14 @@ var TAuthService = /** @class */ (function (_super) {
     };
     // 修改用户信息
     TAuthService.prototype.ModifyUserInfo = function (json) {
+        var _this = this;
         for (var k in json) {
             this.SetParam(k, json[k]);
         }
-        this.Post('kpay/api/user/modify').subscribe(function (data) {
-            console.log(data);
+        this.Post('kpay/api/user/modify').subscribe(function (resp) {
+            if (resp.code === __WEBPACK_IMPORTED_MODULE_6__pub_service__["a" /* TBaseService */].REQ_OK) {
+                _this.GetUserData();
+            }
         });
     };
     // 获取用户信息
@@ -2843,7 +2959,21 @@ var TAuthService = /** @class */ (function (_super) {
         var _this = this;
         return this.Post('kpay/api/user/info').subscribe(function (resp) {
             var userData = resp.data;
-            _this.updateUser(userData);
+            if (__WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(userData)) {
+                userData.idCardNo = __WEBPACK_IMPORTED_MODULE_10__shared_helper_user_helper__["a" /* UserHelper */].formatIdCard(userData.idCardNo);
+                userData.formatedMobile = __WEBPACK_IMPORTED_MODULE_10__shared_helper_user_helper__["a" /* UserHelper */].formatMobile(userData.mobile.toString());
+                userData.name = __WEBPACK_IMPORTED_MODULE_10__shared_helper_user_helper__["a" /* UserHelper */].formatRealName(userData.name);
+                if (__WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(userData.avatar)) {
+                    _this.getImage(userData.avatar).subscribe(function (resp) {
+                        userData.avatar = _this.domSanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(resp));
+                        _this.updateUser(userData);
+                    });
+                }
+                else {
+                    userData.avatar = 'assets/imgs/user.png';
+                }
+                _this.updateUser(userData);
+            }
         }, function (error) {
             console.log(error);
         });
@@ -2851,16 +2981,17 @@ var TAuthService = /** @class */ (function (_super) {
     // 第三方登录
     TAuthService.prototype.thirdPartyLogin = function (mobile, key) {
         var _this = this;
-        __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].setMobile(mobile);
-        __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].setSecret(key);
+        __WEBPACK_IMPORTED_MODULE_8__shared_helper_credential_helper__["a" /* CredentialHelper */].setMobile(mobile);
+        __WEBPACK_IMPORTED_MODULE_8__shared_helper_credential_helper__["a" /* CredentialHelper */].setSecret(key);
         this.SetParam('mobile', mobile);
         this.SetParam('key', key);
+        __WEBPACK_IMPORTED_MODULE_9__shared_helper_loading_helper__["a" /* LoadingHleper */].setLoadingText('登录中');
         return this.Post('kpay/api/login/partner').subscribe(function (resp) {
-            if (__WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(resp.data) && !__WEBPACK_IMPORTED_MODULE_4__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].IsEmptyObject(resp.data)) {
-                __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].setToken(resp.data.token);
+            if (__WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].Assigned(resp.data) && !__WEBPACK_IMPORTED_MODULE_5__UltraCreation_Core_TypeInfo__["a" /* TypeInfo */].IsEmptyObject(resp.data)) {
+                __WEBPACK_IMPORTED_MODULE_8__shared_helper_credential_helper__["a" /* CredentialHelper */].setToken(resp.data.token);
                 _this.GetUserData();
                 _this.homeService.GetCardList();
-                App.Nav.setPages([{ page: App.pages.tabsPage }, { page: App.pages.creditCardPage }]);
+                App.Nav.setRoot(App.pages.creditCardPage);
             }
             else {
                 App.Nav.setRoot(App.pages.loginPage);
@@ -2871,25 +3002,28 @@ var TAuthService = /** @class */ (function (_super) {
     };
     // 重新登录
     TAuthService.prototype.thirdPartyReLogin = function () {
-        var mobile = __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].getMobile();
-        var secret = __WEBPACK_IMPORTED_MODULE_7__shared_helper_credential_helper__["a" /* CredentialHelper */].getSecret();
+        var mobile = __WEBPACK_IMPORTED_MODULE_8__shared_helper_credential_helper__["a" /* CredentialHelper */].getMobile();
+        var secret = __WEBPACK_IMPORTED_MODULE_8__shared_helper_credential_helper__["a" /* CredentialHelper */].getSecret();
         this.thirdPartyLogin(mobile, secret);
     };
     // 是否不需要登录
     TAuthService.prototype.shouldPassThrough = function () {
-        var paths = ['/register', '/login', '/findpassword', '/home', '/tabs/首页/home', '/thirdlogin'];
+        var paths = ['/register', '/login', '/findpassword', '/home', '/tabs/0/home', '/thirdlogin'];
         return _.indexOf(paths, decodeURIComponent(this.location.path()).toLocaleLowerCase()) > -1;
     };
     TAuthService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__angular_common__["e" /* Location */], __WEBPACK_IMPORTED_MODULE_6__homeservice__["a" /* HomeService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_common__["e" /* Location */],
+            __WEBPACK_IMPORTED_MODULE_7__homeservice__["a" /* HomeService */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["c" /* DomSanitizer */]])
     ], TAuthService);
     return TAuthService;
-}(__WEBPACK_IMPORTED_MODULE_5__pub_service__["a" /* TBaseService */]));
+}(__WEBPACK_IMPORTED_MODULE_6__pub_service__["a" /* TBaseService */]));
 
 //# sourceMappingURL=auth.js.map
 
 /***/ })
 
-},[268]);
+},[270]);
 //# sourceMappingURL=main.js.map

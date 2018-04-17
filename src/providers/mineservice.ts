@@ -43,7 +43,7 @@ export class MineService extends TBaseService
   // 购买Vip
   BuyVip(id) {
     this.SetParam('packId', id);
-    return this.Post('kpay/api/package/buy', {packId: id});
+    return this.Post('kpay/api/package/buy');
   }
 }
 

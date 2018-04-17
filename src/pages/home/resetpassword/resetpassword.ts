@@ -57,6 +57,6 @@ export class ResetPasswordPage implements OnInit
   }
 
   ionViewCanEnter() {
-    this.auth.CheckToken();
+    return App.authenticated;
   }
 }

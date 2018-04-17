@@ -5,18 +5,23 @@
 </ion-header>
 
 <ion-content class="ucenter-page">
-  <div m-b-10>
-    <ion-card no-margin p-v-10>
-      <ion-item>
-        <ion-avatar item-start>
-          <img src="assets/imgs/user.png">
+  <ion-grid p-l-10 class="page-content avatar-wrp">
+    <ion-row (click)="App.Nav.push(App.pages.profilePage)">
+      <ion-col col-3>
+        <ion-avatar>
+          <img class="avatar" [src]="App.UserInfo.avatar" alt="头像" />
         </ion-avatar>
-        <h2>{{Mobile}}</h2>
-      </ion-item>
-    </ion-card>
-  </div>
+      </ion-col>
+      <ion-col col-8 class="d-flex align-items-center" no-padding>
+        <h4>{{Mobile}}</h4>
+      </ion-col>
+      <ion-col col-1 class="d-flex align-items-center">
+        <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-  <ion-grid class="page-content border-bottom-1px">
+  <ion-grid m-t-10 p-l-10 class="page-content border-bottom-1px">
     <ion-row (click)="App.Nav.push(App.pages.creditCardPage)">
       <ion-col col-1 class="d-flex align-items-center">
         <img src="assets/imgs/ucreditcard.png" alt="刷卡收款" />
@@ -30,7 +35,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid class="page-content border-bottom-1px">
+  <ion-grid p-l-10 class="page-content border-bottom-1px">
     <ion-row (click)="App.Nav.push(App.pages.recordsPage)">
       <ion-col col-1 class="d-flex align-items-center">
         <img src="assets/imgs/records.png" alt="收款记录" />
@@ -44,7 +49,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid class="page-content border-bottom-1px">
+  <ion-grid p-l-10 class="page-content border-bottom-1px">
     <ion-row (click)="App.Nav.push(App.pages.myCardPage)">
       <ion-col col-1 class="d-flex align-items-center">
         <img src="assets/imgs/cards.png" alt="我的卡片" />
@@ -61,7 +66,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid m-t-10 class="page-content">
+  <ion-grid p-l-10 m-t-10 class="page-content">
     <ion-row>
       <ion-col col-1 class="d-flex align-items-center">
         <img src="assets/imgs/c_service.png" alt="在线客服" />

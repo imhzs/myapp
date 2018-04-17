@@ -7,6 +7,7 @@ import { TypeInfo } from '../UltraCreation/Core/TypeInfo';
 import { CardModel } from '../models/card-model';
 import { UserModel } from '../models/user-model';
 import { TAuthService } from '../providers/auth';
+import { CredentialHelper } from '../shared/helper/credential-helper';
 
 declare global
 {
@@ -124,14 +125,6 @@ export class TApplication extends TAppController
         style: 'toast-error',  prefix_lang: 'hint.'});
   }
 
-  get UserFace(): any {
-    if(TypeInfo.Assigned(localStorage.getItem('imageface'))) {
-      let avatar = localStorage.getItem('imageface');
-      return { backgroundImage : `url(${avatar})` };
-    }
-    return null;
-  }
-
   IsReal(page?: any) {
     if (!this.IsIdAuthed) {
       App.Nav.push(App.pages.authPage);
@@ -157,10 +150,8 @@ export class TApplication extends TAppController
     return this.IsIdAuthed && this.IsBankcardAuthed;
   }
 
-  get IconFace(): boolean {
-    if(this.UserFace === null && this.UserInfo.sex === '男') {
-      return true;
-    }
-    return false;
+  // 是否已登录
+  get authenticated(): boolean {
+    return TypeInfo.Assigned(CredentialHelper.getToken());
   }
 }

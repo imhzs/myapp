@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavParams, IonicPage } from 'ionic-angular';
 
-import { TAuthService } from '../../../../providers/auth';
 import { MineService } from '../../../../providers/mineservice';
 import { OrderHelper } from '../../../../shared/helper/order-helper';
 
@@ -14,12 +13,13 @@ import { OrderHelper } from '../../../../shared/helper/order-helper';
 })
 export class OrderDetailPage
 {
+  // 页面标题
   HeadTitle: string = "订单详情";
   
   // 订单详情
   OrderDetail: any;
 
-  constructor(public navParams: NavParams, public Service: MineService, private auth: TAuthService) {
+  constructor(public navParams: NavParams, public Service: MineService) {
     let orderId = navParams.get('id');
     this.GetCashDetail(orderId);
   }
@@ -34,6 +34,6 @@ export class OrderDetailPage
   }
 
   ionViewCanEnter() {
-    this.auth.CheckToken();
+    return App.authenticated;
   }
 }

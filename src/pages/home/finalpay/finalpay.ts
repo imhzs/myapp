@@ -3,7 +3,6 @@ import { NavParams, IonicPage } from 'ionic-angular';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { setTimeout, clearTimeout } from 'timers';
 
-import { TAuthService } from '../../../providers/auth';
 import { TypeInfo } from '../../../UltraCreation/Core/TypeInfo';
 
 @IonicPage({
@@ -16,11 +15,8 @@ import { TypeInfo } from '../../../UltraCreation/Core/TypeInfo';
 @Injectable()
 export class FinalpayPage implements OnInit
 {
+  // 页面标题
   headTitle :string = '银联支付';
-
-  action: string;
-
-  value: string;
 
   browser: any = {
     isLoaded: false, // 网页是否被加载
@@ -36,15 +32,19 @@ export class FinalpayPage implements OnInit
 
   this_html: any = '';
 
+  // 表单html
   htmltext: SafeHtml;
 
+  // 表单url
   formAction: string = '';
 
+  // iframe宽度
   iframeWidth: number;
 
+  // iframe高度
   iframeHeight: number;
 
-  // @ViewChild('paymentForm') paymentForm: ElementRef;
+  @ViewChild('paymentForm') paymentForm: ElementRef;
   @ViewChild('progressRef') progressRef: ElementRef;
   @ViewChild('headerRef') headerRef: ElementRef;
   @ViewChild('iframeRef') iframeRef: ElementRef;
@@ -54,7 +54,7 @@ export class FinalpayPage implements OnInit
     isShow: false
   };
 
-  constructor(public navParams: NavParams, private sanitizer: DomSanitizer, private auth: TAuthService) {
+  constructor(public navParams: NavParams, private sanitizer: DomSanitizer) {
     if (!this.navParams.get('innerHtml') && !this.navParams.get('browser')) {
       App.Nav.push(App.pages.creditCardPage);
     }
@@ -82,6 +82,7 @@ export class FinalpayPage implements OnInit
       let arr = reg.exec(bodyText);
       if (TypeInfo.IsArrayLike(arr)) {
         let html = arr[0].replace('<form', '<form target="targetIframe" ');
+        this.formAction = this.getFormAction(arr[0]);
         this.htmltext = this.sanitizer.bypassSecurityTrustHtml(html);
       }
     }
@@ -114,8 +115,8 @@ export class FinalpayPage implements OnInit
   // 提交表单
   private submitForm() {
     if (this.flag && TypeInfo.Assigned(this.htmltext)) {
-      // this.paymentForm.nativeElement.submit();
-      document.querySelector('form').submit();
+      this.paymentForm.nativeElement.submit();
+      // document.querySelector('form').submit();
     }
   }
 
@@ -171,7 +172,17 @@ export class FinalpayPage implements OnInit
     }, 10);
   }
 
+  // 获取表单url
+  private getFormAction(s: string): string {
+    let reg = /action=([^\s]*)/ig;
+    let arr = reg.exec(s);
+    if (TypeInfo.IsArrayLike(arr) && (arr.length > 1)) {
+      return arr[1].replace(/['|"]*/ig, '');
+    }
+    return '';
+  }
+
   ionViewCanEnter() {
-    this.auth.CheckToken();
+    return App.authenticated;
   }
 }

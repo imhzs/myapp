@@ -19,10 +19,13 @@ export class TBaseService
   // 登录超时
   static SESSION_TIMEOUT = 2;
 
+  // 设置接收后台数据的类型
   private responseType: any = 'json';
 
+  // 请求头
   protected headers: HttpHeaders;
 
+  // 请求参数
   protected params: URLSearchParams;
 
   constructor(protected http: HttpClient) {
@@ -30,10 +33,12 @@ export class TBaseService
     this.params = new URLSearchParams();
   }
 
+  // 获取base url
   get BaseUrl() {
     return API_URL;
   }
 
+  // 获取当前用户token
   get getToken() {
     let token = CredentialHelper.getToken();
     if (TypeInfo.Assigned(token)) {
@@ -87,5 +92,12 @@ export class TBaseService
   // 重置请求参数
   protected setNewParams() {
     this.params = new URLSearchParams();
+  }
+
+  // 获取图片
+  getImage(fileId: string) {
+    this.SetParam('fileId', fileId);
+    this.SetResponseType('blob');
+    return this.Post('kpay/api/image/show');
   }
 }

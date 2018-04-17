@@ -39,7 +39,7 @@ export class AddCreditCardPage implements OnInit
 
   constructor(public Service: HomeService, public navParams: NavParams, private auth: TAuthService, private fileService: FileService) {
     if (TypeInfo.Assigned(App.UserInfo) && !TypeInfo.IsEmptyObject(App.UserInfo)) {
-      this.GetIdCard(App.UserInfo.idCardNo);
+      this.ShowIDCard = App.UserInfo.idCardNo;
     }
   }
 
@@ -62,6 +62,7 @@ export class AddCreditCardPage implements OnInit
     this.auth.currentUser.subscribe(
       data => {
         AuthHelper.check();
+        this.ShowIDCard = App.UserInfo.idCardNo;
       }
     );
   }
@@ -71,16 +72,6 @@ export class AddCreditCardPage implements OnInit
       return true;
     }
     return false;
-  }
-
-  GetIdCard(IdNo) {
-    if (TypeInfo.Assigned(IdNo)) {
-      this.ShowIDCard = IdNo.substr(0, 6);
-      for (let i = 0; i < (IdNo.length - 10); i ++) {
-        this.ShowIDCard += '*'
-      }
-      this.ShowIDCard += IdNo.substr(-4);
-    }
   }
 
   // 提交数据
@@ -118,6 +109,6 @@ export class AddCreditCardPage implements OnInit
   }
 
   ionViewCanEnter() {
-    this.auth.CheckToken();
+    return App.authenticated;
   }
 }

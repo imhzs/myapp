@@ -7,7 +7,10 @@ import { TypeInfo } from '../../../UltraCreation/Core/TypeInfo';
 import { CardModel } from '../../../models/card-model';
 import { CardHelper, CREDIT_CARD, DEPOSIT_CARD } from '../../../shared/helper/card-helper';
 
-@IonicPage()
+@IonicPage({
+  segment: 'creditcard',
+  defaultHistory: ['CreditCardPage']
+})
 @Component({
   selector: 'page-creditcard',
   templateUrl: 'creditcard.html'
@@ -78,22 +81,28 @@ export class CreditCardPage implements OnInit
   }
 
   ionViewCanEnter() {
-    this.auth.CheckToken();
+    return App.authenticated;
   }
 
   // 初始化数据
   InitData() {
     this.CreditCards = this.cardHelper.filterCard(CREDIT_CARD);
     this.DepositCards = this.cardHelper.filterCard(DEPOSIT_CARD);
-    this.CurrentCreditCard = this.cardHelper.getPrimaryCard(CREDIT_CARD);
-    this.CurrentDepositCard = this.cardHelper.getPrimaryCard(DEPOSIT_CARD);
+
+    if (!TypeInfo.Assigned(this.CurrentCreditCard) && TypeInfo.IsEmptyObject(this.CurrentCreditCard)) {
+      this.CurrentCreditCard = this.cardHelper.getPrimaryCard(CREDIT_CARD);
+    }
+    
+    if (!TypeInfo.Assigned(this.CurrentCreditCard) && TypeInfo.IsEmptyObject(this.CurrentDepositCard)) {
+      this.CurrentDepositCard = this.cardHelper.getPrimaryCard(DEPOSIT_CARD);
+    }
 
     if (!TypeInfo.Assigned(this.CurrentCreditCard) && this.CreditCards.length > 0) {
       this.CurrentCreditCard = this.CreditCards[0];
     }
 
     if (!TypeInfo.Assigned(this.CurrentDepositCard) && this.DepositCards.length > 0) {
-      this.CurrentCreditCard = this.DepositCards[0];
+      this.CurrentDepositCard = this.DepositCards[0];
     }
   }
 

@@ -82,7 +82,7 @@ ion-header.header {
         width: 100%;
       }
       .toolbar-background {
-        @include gradient-x(lighten(color($colors, primary), 24%), color($colors, primary));
+        @include gradient-x(lighten(color($colors, primary), 0%), color($colors, primary));
       }
       .toolbar-title {
         text-align: center;
@@ -103,7 +103,7 @@ ion-header.header {
 ion-toolbar {
   &.search-bar {
     .toolbar-background {
-      @include gradient-x(lighten(color($colors, primary), 24%), color($colors, primary));
+      @include gradient-x(lighten(color($colors, primary), 0%), color($colors, primary));
       border-color: transparent;
     }
     .toolbar-content {

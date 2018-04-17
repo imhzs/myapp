@@ -28531,8 +28531,8 @@ ion-header.header ion-toolbar.toolbar.app-navbar-primary .toolbar-content {
 
 ion-header.header ion-navbar.toolbar.app-navbar-primary .toolbar-background,
 ion-header.header ion-toolbar.toolbar.app-navbar-primary .toolbar-background {
-  background-image: -webkit-gradient(linear, left top, right top, from(#c8defb), to(#569af3));
-  background-image: linear-gradient(to right, #c8defb 0%, #569af3 100%);
+  background-image: -webkit-gradient(linear, left top, right top, from(#569af3), to(#569af3));
+  background-image: linear-gradient(to right, #569af3 0%, #569af3 100%);
   background-repeat: repeat-x;
 }
 
@@ -28549,8 +28549,8 @@ ion-header.header ion-toolbar.toolbar.app-navbar-primary .toolbar-title {
 }
 
 ion-toolbar.search-bar .toolbar-background {
-  background-image: -webkit-gradient(linear, left top, right top, from(#c8defb), to(#569af3));
-  background-image: linear-gradient(to right, #c8defb 0%, #569af3 100%);
+  background-image: -webkit-gradient(linear, left top, right top, from(#569af3), to(#569af3));
+  background-image: linear-gradient(to right, #569af3 0%, #569af3 100%);
   background-repeat: repeat-x;
   border-color: transparent;
 }
@@ -28947,10 +28947,10 @@ ion-icon.app-icon, ion-icon[app-icon] {
   height: 70px;
 }
 
-.ucenter-page .card {
-  width: 100%;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+.ucenter-page .avatar-wrp .avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
 }
 
 .u-mycard .segment .segment-button {
@@ -28968,4 +28968,10 @@ ion-icon.app-icon, ion-icon[app-icon] {
 
 .u-mycard .trash {
   color: #bd2630;
+}
+
+.scroll-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }

@@ -5,7 +5,6 @@ const _ = require('lodash');
 
 import { BranchBankModel } from '../../../models/branch-bank-model';
 import { HomeService } from '../../../providers/homeservice';
-import { TAuthService } from '../../../providers/auth';
 
 @IonicPage()
 @Component({
@@ -29,8 +28,7 @@ export class BranchcardPage implements OnInit
 
   private debounced: any;
 
-  constructor(public navParams: NavParams, public Service: HomeService, private auth: TAuthService) {
-  }
+  constructor(public navParams: NavParams, public Service: HomeService) { }
 
   ngOnInit() {
     this.BankName = this.navParams.get('Bank');
@@ -61,6 +59,6 @@ export class BranchcardPage implements OnInit
   }
 
   ionViewCanEnter() {
-    this.auth.CheckToken();
+    return App.authenticated;
   }
 }

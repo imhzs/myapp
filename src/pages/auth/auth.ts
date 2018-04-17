@@ -113,8 +113,7 @@ export class AuthPage implements OnInit
 
   // 已完成身份认证不然能进入页面
   ionViewCanEnter() {
-    this.auth.CheckToken();
-    return !App.IsIdAuthed;
+    return App.authenticated && !App.IsIdAuthed;
   }
 }
 

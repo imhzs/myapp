@@ -53,4 +53,11 @@ export class LoginPage implements OnInit
   Login() {
     this.auth.Login(this.formGroup.value.Tel, this.formGroup.value.Pass);
   }
+
+  // 已登录不能进入此页面
+  ionViewDidEnter() {
+    if (App.authenticated) {
+      App.Nav.push(App.pages.creditCardPage);
+    }
+  }
 }

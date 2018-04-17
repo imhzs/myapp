@@ -31,6 +31,14 @@ export class UcenterPage
     if (TypeInfo.Assigned(App.UserInfo) && !TypeInfo.IsEmptyObject(App.UserInfo)) {
       this.User = App.UserInfo;
       this.formatMobile();
+    } else {
+      this.auth.GetUserData();
+      this.auth.currentUser.subscribe(
+        data => {
+          this.User = data;
+          this.formatMobile();
+        }
+      );
     }
   }
 
@@ -39,13 +47,7 @@ export class UcenterPage
   }
 
   ionViewCanEnter() {
-    this.auth.GetUserData();
-    this.auth.currentUser.subscribe(
-      data => {
-        this.User = data;
-        this.formatMobile();
-      }
-    );
+    return App.authenticated;
   }
 }
 

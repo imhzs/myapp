@@ -88,6 +88,6 @@ export class MyCardPage
   }
 
   ionViewCanEnter() {
-    this.auth.CheckToken();
+    return App.authenticated;
   }
 }

@@ -7,6 +7,7 @@ const lodash = require('lodash');
 
 import { TBaseService } from '../providers/pub_service';
 import { ResponseModel } from '../models/response-model';
+import { TypeInfo } from '../UltraCreation/Core/TypeInfo';
 
 // 附件类型-银行卡正面
 export const BANKCARD_FRONT = 'bankcard_front';
@@ -33,6 +34,11 @@ export class FileService extends TBaseService
    // 身份认证
    async IdentityAuth(file: any, cType: string) {
       return await this.PostFile('kpay/api/ocr/idcard', 'file', file, {'type': cType});
+   }
+
+   // 图片上传
+   async ImageUpload(file: any) {
+    return await this.PostFile('kpay/api/image/upload', 'image1', file, {});
    }
 
    async PostFiles(uri: string) {
@@ -65,10 +71,12 @@ export class FileService extends TBaseService
         });
       }
 
-      if (resp.code === 1) {
-       return resp.data;
+      if (TypeInfo.Assigned(resp) && resp.code === 1) {
+        return resp.data;
       }
-      App.ShowError(resp.msg);
+      if (TypeInfo.Assigned(resp) && resp.msg) {
+        App.ShowError(resp.msg);
+      }
       return false;
    }
 
@@ -80,7 +88,6 @@ export class FileService extends TBaseService
         input.accept = "image/png,image/jpeg,image/jpg,image/x-png";
         input.click();
         input.onchange = () => {
-            console.log(input.files[0]);
             App.ShowLoading('处理中');
             lrz(input.files[0], {
               quality: 0.6,
@@ -254,19 +261,29 @@ export class FileService extends TBaseService
         } else {
           const blob = xhr['response'];
           let xhr2: XMLHttpRequest = new XMLHttpRequest();
+          xhr2.timeout = 30000;
           let suffix = file.type.split('/')[1];
           let filename = (new Date()).getTime() + '.' + suffix;
 
           formData.append(fileKey, blob, filename);
 
-          xhr2.onloadend = () => {
+          xhr2.onerror = function (e) {
             App.HideLoading();
+            reject(e);
           };
-          xhr2.ontimeout = () => {
+
+          xhr2.onloadend = function () {
             App.HideLoading();
           };
 
+          xhr2.ontimeout = (e) => {
+            App.ShowError('请求超时，请稍后重试');
+            App.HideLoading();
+            reject(e);
+          };
+
           xhr2.onreadystatechange = () => {
+            App.HideLoading();
             if (xhr2.readyState === 4) {
               if (xhr2.status === 200) {
                 resolve(JSON.parse(xhr2.response));

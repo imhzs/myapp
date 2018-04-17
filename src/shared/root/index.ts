@@ -1,4 +1,4 @@
-export const tabsPage = 'TabsPage'; 
+export const tabsPage = 'TabsPage';
 export const homePage = 'HomePage';
 export const creditCardPage = 'CreditCardPage' ;
 export const cardInforPage = 'CardInforPage';
@@ -24,7 +24,7 @@ export const authPage = 'AuthPage';
 
 export const recordsPage = 'RecordsPage';
 export const recordDetailPage = 'OrderDetailPage';
-export const uinfoPage = 'UinfoPage';
+export const profilePage = 'ProfilePage';
 export const usetupPage = 'UsetupPage';
 export const vipMembersPage = 'VIPmembersPage';
 export const myCardPage = 'MyCardPage';

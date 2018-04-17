@@ -4,7 +4,6 @@ import { NavParams, IonicPage } from 'ionic-angular';
 import { TypeInfo } from '../../../UltraCreation/Core/TypeInfo';
 import { CardModel } from '../../../models/card-model';
 import { HomeService } from '../../../providers/homeservice';
-import { TAuthService } from '../../../providers/auth';
 import { AmountOptions } from '../creditcard/creditcard';
 import { CheckoutHelper } from '../../../shared/helper/checkout-helper';
 
@@ -37,10 +36,16 @@ export class CheckoutPage
 	// 到账金额
 	ReceiveAmount: string;
 
-	constructor (private navParams: NavParams, private service: HomeService, private auth: TAuthService, private checkoutHelper: CheckoutHelper) {
+	constructor (
+		private navParams: NavParams,
+		private service: HomeService,
+		private checkoutHelper: CheckoutHelper
+	) {
 		this.Amount = <AmountOptions>this.navParams.get('amount');
-		this.PayAmount = parseFloat(this.Amount.inputAmount.toString()).toFixed(2);
-		this.ReceiveAmount = parseFloat(this.Amount.outputAmount.toString()).toFixed(2);
+		if (TypeInfo.Assigned(this.Amount) && !TypeInfo.IsEmptyObject(this.Amount)) {
+			this.PayAmount = parseFloat(this.Amount.inputAmount.toString()).toFixed(2);
+			this.ReceiveAmount = parseFloat(this.Amount.outputAmount.toString()).toFixed(2);
+		}
 
 		if (!TypeInfo.Assigned(this.Amount) && !TypeInfo.IsObject(this.Amount)) {
 			App.Nav.push('CreditCardPage');
@@ -68,6 +73,6 @@ export class CheckoutPage
 	}
 
 	ionViewCanEnter() {
-    this.auth.CheckToken();
+    return App.authenticated;
   }
 }

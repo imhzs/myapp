@@ -55,6 +55,6 @@ export class UsetupPage
   }
 
   ionViewCanEnter() {
-    this.auth.CheckToken();
+    return App.authenticated;
   }
 }

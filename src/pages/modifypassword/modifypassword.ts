@@ -33,7 +33,7 @@ export class ModifyPasswordPage implements OnInit
 
   ngOnInit() {
     if (App.UserInfo.mobile) {
-      this.tel = App.UserInfo.mobile.toString().replace(/(\d{3})(\d{4})(\d{4})/, '$1****$3');
+      this.tel = App.UserInfo.formatedMobile;
     }
 
     this.FormGroup = new FormGroup({

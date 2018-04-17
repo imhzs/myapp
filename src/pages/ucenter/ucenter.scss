@@ -1,6 +1,9 @@
 .ucenter-page {
-	.card {
-		width: 100%;
-		box-shadow: none;
+	.avatar-wrp {
+		.avatar {
+			width: 70px;
+			height: 70px;
+			border-radius: 50%;
+		}
 	}
 }
