@@ -12,12 +12,13 @@ export class PageToolbarComponent
   constructor(public location: Location) {}
 
   @Input() CoverColor: Boolean = false;
-  @Input() HasBack: Boolean;
+  @Input() HasBack: Boolean = false;
   @Input() Title: string;
   @Input() TitleAlign: string = 'center';
   @Input() AppIcon: boolean = false;
   @Input() BtnIcon: string;
   @Input() BtnText: string;
+
   @Output() CircleUser: boolean = true;
   @Output() BtnTextEvent = new EventEmitter();
   @Output() BtnIconEvent = new EventEmitter();

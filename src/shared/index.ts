@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
+
 import { SwiperComp } from '../UltraCreation/ng-ion/swiper';
 import { PageMarqueeComponent } from './component/marquee';
 import { PageToolbarComponent } from './component/toolbar';
 import { PagePanelComponent } from './component/panel';
+import { ScrollComponent } from '../shared/component/scroll/scroll';
 
 @NgModule({
   imports: [
@@ -13,7 +15,8 @@ import { PagePanelComponent } from './component/panel';
     SwiperComp,
     PageToolbarComponent,
     PagePanelComponent,
-    PageMarqueeComponent
+    PageMarqueeComponent,
+    ScrollComponent
   ],
   entryComponents: [
   ],
@@ -21,7 +24,8 @@ import { PagePanelComponent } from './component/panel';
     SwiperComp,
     PageToolbarComponent,
     PagePanelComponent,
-    PageMarqueeComponent
+    PageMarqueeComponent,
+    ScrollComponent
   ],
 })
 export class SharedModule

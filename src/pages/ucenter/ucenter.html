@@ -5,80 +5,82 @@
 </ion-header>
 
 <ion-content class="ucenter-page">
-  <ion-grid p-l-10 class="page-content avatar-wrp">
-    <ion-row (click)="App.Nav.push(App.pages.profilePage)">
-      <ion-col col-3>
-        <ion-avatar>
-          <img class="avatar" [src]="App.UserInfo.avatar" alt="头像" />
-        </ion-avatar>
-      </ion-col>
-      <ion-col col-8 class="d-flex align-items-center" no-padding>
-        <h4>{{Mobile}}</h4>
-      </ion-col>
-      <ion-col col-1 class="d-flex align-items-center">
-        <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <app-scroll mouseWheel="true">
+    <ion-grid p-l-10 class="page-content avatar-wrp">
+      <ion-row (click)="App.Nav.push(App.pages.profilePage)">
+        <ion-col col-3>
+          <ion-avatar>
+            <img class="avatar" [src]="App.UserInfo.avatar" alt="头像" />
+          </ion-avatar>
+        </ion-col>
+        <ion-col col-8 class="d-flex align-items-center" no-padding>
+          <h4>{{Mobile}}</h4>
+        </ion-col>
+        <ion-col col-1 class="d-flex align-items-center">
+          <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-  <ion-grid m-t-10 p-l-10 class="page-content border-bottom-1px">
-    <ion-row (click)="App.Nav.push(App.pages.creditCardPage)">
-      <ion-col col-1 class="d-flex align-items-center">
-        <img src="assets/imgs/ucreditcard.png" alt="刷卡收款" />
-      </ion-col>
-      <ion-col col-10 align-items-start>
-        <ion-label f-14>刷卡收款</ion-label>
-      </ion-col>
-      <ion-col col-1 class="d-flex align-items-center">
-        <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-grid m-t-10 p-l-10 class="page-content border-bottom-1px">
+      <ion-row (click)="App.Nav.push(App.pages.creditCardPage)">
+        <ion-col col-1 class="d-flex align-items-center">
+          <img src="assets/imgs/ucreditcard.png" alt="刷卡收款" />
+        </ion-col>
+        <ion-col col-10 align-items-start>
+          <ion-label f-14>刷卡收款</ion-label>
+        </ion-col>
+        <ion-col col-1 class="d-flex align-items-center">
+          <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-  <ion-grid p-l-10 class="page-content border-bottom-1px">
-    <ion-row (click)="App.Nav.push(App.pages.recordsPage)">
-      <ion-col col-1 class="d-flex align-items-center">
-        <img src="assets/imgs/records.png" alt="收款记录" />
-      </ion-col>
-      <ion-col col-10 align-items-start>
-        <ion-label f-14>收款记录</ion-label>
-      </ion-col>
-      <ion-col col-1 class="d-flex align-items-center">
-        <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-grid p-l-10 class="page-content border-bottom-1px">
+      <ion-row (click)="App.Nav.push(App.pages.recordsPage)">
+        <ion-col col-1 class="d-flex align-items-center">
+          <img src="assets/imgs/records.png" alt="收款记录" />
+        </ion-col>
+        <ion-col col-10 align-items-start>
+          <ion-label f-14>收款记录</ion-label>
+        </ion-col>
+        <ion-col col-1 class="d-flex align-items-center">
+          <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-  <ion-grid p-l-10 class="page-content border-bottom-1px">
-    <ion-row (click)="App.Nav.push(App.pages.myCardPage)">
-      <ion-col col-1 class="d-flex align-items-center">
-        <img src="assets/imgs/cards.png" alt="我的卡片" />
-      </ion-col>
-      <ion-col col-4>
-        <ion-label f-14>我的卡片</ion-label>
-      </ion-col>
-      <ion-col col-6>
-        <ion-label ion-text f-13 text-gray text-right>{{User.creditCards}}张信用卡，{{User.depositCards}}张储蓄卡</ion-label>
-      </ion-col>
-      <ion-col col-1 class="d-flex align-items-center">
-        <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-grid p-l-10 class="page-content border-bottom-1px">
+      <ion-row (click)="App.Nav.push(App.pages.myCardPage)">
+        <ion-col col-1 class="d-flex align-items-center">
+          <img src="assets/imgs/cards.png" alt="我的卡片" />
+        </ion-col>
+        <ion-col col-4>
+          <ion-label f-14>我的卡片</ion-label>
+        </ion-col>
+        <ion-col col-6>
+          <ion-label ion-text f-13 text-gray text-right>{{User.creditCards}}张信用卡，{{User.depositCards}}张储蓄卡</ion-label>
+        </ion-col>
+        <ion-col col-1 class="d-flex align-items-center">
+          <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-  <ion-grid p-l-10 m-t-10 class="page-content">
-    <ion-row>
-      <ion-col col-1 class="d-flex align-items-center">
-        <img src="assets/imgs/c_service.png" alt="在线客服" />
-      </ion-col>
-      <ion-col col-10>
-        <ion-label f-14>在线客服</ion-label>
-      </ion-col>
-      <ion-col col-1 class="d-flex align-items-center">
-        <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-grid p-l-10 m-t-10 class="page-content">
+      <ion-row>
+        <ion-col col-1 class="d-flex align-items-center">
+          <img src="assets/imgs/c_service.png" alt="在线客服" />
+        </ion-col>
+        <ion-col col-10>
+          <ion-label f-14>在线客服</ion-label>
+        </ion-col>
+        <ion-col col-1 class="d-flex align-items-center">
+          <ion-icon name="ios-arrow-forward" item-end text-gray></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </app-scroll>
 </ion-content>
 
 <!--  个人中心 -->
