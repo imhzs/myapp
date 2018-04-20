@@ -1,6 +1,12 @@
 <ion-header no-border>
   <ion-toolbar no-padding>
-    <app-toolbar HasBack="true" [Title]="HeadTitle" AppIcon="false" BtnIcon="&#xf103;" (BtnIconEvent)="App.Nav.push(App.pages.usetupPage)"></app-toolbar>
+    <app-toolbar 
+      [HasBack]="true"
+      [Title]="HeadTitle"
+      [AppIcon]="true"
+      BtnIcon="&#xf103;" 
+      (BtnIconEvent)="App.Nav.push(App.pages.usetupPage)">
+    </app-toolbar>
   </ion-toolbar>
 </ion-header>
 

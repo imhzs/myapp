@@ -15,7 +15,10 @@ export class DomChangeDirective implements OnDestroy
     const element = this.elementRef.nativeElement;
 
     this.changes = new MutationObserver((mutations: MutationRecord[]) => {
-        mutations.forEach((mutation: MutationRecord) => this.domChange.emit(mutation));
+        mutations.forEach((mutation: MutationRecord) => {
+          console.log(mutation);
+          this.domChange.emit(mutation);
+        });
       }
     );
 

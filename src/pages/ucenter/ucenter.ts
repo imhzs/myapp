@@ -27,6 +27,13 @@ export class UcenterPage
   // 用户头像
   ImgData = { ImgSrc: void 0 };
 
+  pullUpLoad = {
+    txt: {
+      more: '58付',
+      noMore: '58付'
+    }
+  };
+
   constructor (private auth: TAuthService) {
     if (TypeInfo.Assigned(App.UserInfo) && !TypeInfo.IsEmptyObject(App.UserInfo)) {
       this.User = App.UserInfo;

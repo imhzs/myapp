@@ -5,7 +5,9 @@ import { SwiperComp } from '../UltraCreation/ng-ion/swiper';
 import { PageMarqueeComponent } from './component/marquee';
 import { PageToolbarComponent } from './component/toolbar';
 import { PagePanelComponent } from './component/panel';
+import { LoadingComponent } from './component/loading/loading';
 import { ScrollComponent } from '../shared/component/scroll/scroll';
+import { DomChangeDirective } from '../shared/directive/dom-change.directive';
 
 @NgModule({
   imports: [
@@ -16,6 +18,8 @@ import { ScrollComponent } from '../shared/component/scroll/scroll';
     PageToolbarComponent,
     PagePanelComponent,
     PageMarqueeComponent,
+    DomChangeDirective,
+    LoadingComponent,
     ScrollComponent
   ],
   entryComponents: [
@@ -25,6 +29,7 @@ import { ScrollComponent } from '../shared/component/scroll/scroll';
     PageToolbarComponent,
     PagePanelComponent,
     PageMarqueeComponent,
+    LoadingComponent,
     ScrollComponent
   ],
 })

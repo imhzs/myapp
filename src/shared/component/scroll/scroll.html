@@ -1,5 +1,47 @@
-<div class="scroll-wrapper" #wrapperRef (domChange)="onDomChange($event)">
+<div class="b-list-wrapper" #wrapperRef>
   <div class="b-scroll-content">
-    <ng-content></ng-content>
+    <!-- 内容区域 -->
+    <div class="b-list-content" #listContentRef>
+      <ng-content></ng-content>
+    </div>
+  </div>
+  <!-- 下拉刷新 -->
+  <div class="pulldown-wrapper" *ngIf="pullDownRefresh" #pulldownRef>
+    <div class="before-trigger" *ngIf="beforePullDown; else afterPullDown">
+      <i class="before-text">{{pullDownText}}</i>
+    </div>
+    <ng-template #afterPullDown>
+      <div class="after-trigger">
+        <ng-template ngIf="isPullingDown">
+          <app-loading></app-loading>
+        </ng-template>
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- 下拉无刷新 -->
+  <div class="pulldown-wrapper" *ngIf="!pullDownRefresh" #pulldownRef>
+    <div class="before-trigger" *ngIf="beforePullDown">
+      <i class="before-text">{{pullDownText}}</i>
+    </div>
+  </div>
+
+  <!-- 上拉无刷新 -->
+  <div class="pullup-wrapper" *ngIf="!pullUpLoad" #pullupRef>
+    <div class="before-trigger" *ngIf="!isPullUpLoad">
+      <i class="before-text">{{pullUpTxt}}</i>
+    </div>
+  </div>
+
+  <!-- 上拉刷新 -->
+  <div class="pullup-wrapper" *ngIf="pullUpLoad" #pullupRef>
+    <div class="before-trigger" *ngIf="!isPullUpLoad; else afterPullUp">
+      <i class="before-text">{{pullUpTxt}}</i>
+    </div>
+    <ng-template #afterPullUp>
+      <div class="after-trigger">
+        <app-loading></app-loading>
+      </div>
+    </ng-template>
   </div>
 </div>
